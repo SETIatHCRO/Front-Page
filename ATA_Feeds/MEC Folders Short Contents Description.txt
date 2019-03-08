@@ -1,0 +1,19 @@
+MEC folder Contents stored on Google Drive, ATA_Feeds:
+
+MEC 30-29 Drawings  ( folder )
+	PDF drawings of Feed Pyramid, Flex Plate, Tip Link, Arm Supports, Etc.
+
+MEC 30-29-520 LNA Documents  ( folder )
+	Documentation that Matt can find on LNA design.
+	PDF & JPG images of LNA housing and internal structure.
+	JPG photos of the exterior and interior of the LNA.
+
+MEC Vibration 07 2015-08-13 Scans  ( folder )
+	Vidio clips of Feed Arm displacements measured by Laser Vibrometer.
+	This information is from an Arm & Pyramid set on a Shaker Table.
+
+MEC Vibration 08 2015-08-14 Scans  ( folder )
+	Vidio clips of Feed Arm displacements measured by Laser Vibrometer.
+	This information is from an Arm & Pyramid set on a Feed with Cooler shaking.
+
+	
