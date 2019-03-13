@@ -1,4 +1,4 @@
 Description of contents?
 
 
-![Feed Tip Hat](ata_docs/ATA_Feeds/ATA Feed Tip _ Hat.JPG)
+![Feed Tip](ATA_Feeds/ATA%20Feed%20Tip%20_%20Hat.JPG)
