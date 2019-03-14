@@ -1,0 +1,6 @@
+Contents of Folder:  MEC 30-29-200-B ATA Cooled Feed Assy CAD Files ZIP 19-03-12
+
+Solidworks 2016 CAD files for the ATA Cooled Feed using Pack & Go to a ZIP file.
+30-29-200-B ATA Cooled Feed Assy.SLDASM
+This will include all referenced SLD-Parts & SLD-Assemblies.
+It will not include SLD-Drawings or unreferenced parts. ( we will get these later )
