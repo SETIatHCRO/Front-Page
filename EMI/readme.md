@@ -2,4 +2,4 @@
 
 *This directory contains documents related to electromagnetic interference (EMI) / radio frequency interference (RFI) at the HCRO site.  Contents summarized below*
 
-[ATA EMI Requirements](ATA\ EMI\ requirements.pdf) 
+[ATA EMI Requirements](EMI/ATA EMI requirements.pdf) 
