@@ -3,7 +3,7 @@ Documentation related to the Allen Telescope Array at the Hat Creek Radio Observ
 
 Contents:
 
-**Beamformer:** Documents related to the first ATA beamformer
+[**Beamformer:**](Beamformer) Documents related to the first ATA beamformer
 
 *Librarian: Billy Barott*
 
