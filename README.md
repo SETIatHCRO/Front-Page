@@ -15,5 +15,8 @@ Contents:
 
 *Librarian: Matt Fleming*
 
+[**RFCB:**](RFCB) Documents related to the ATA RF Converter Boards
+
+*Librarian: Alex Pollak*
 
 Go to the [-> head over to wiki](https://github.com/SETIatHCRO/ata_docs/wiki)
