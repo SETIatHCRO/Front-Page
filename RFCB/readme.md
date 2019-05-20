@@ -1,5 +1,7 @@
 ## Documentation related to the RF Converter Boards ##
 
+The RFCB is....
+
 [Detailed Circuit Diagram](Down%20Converter.pdf) A detailed diagram of the RFCB circuitry, including part numbers and signal levels.
 
 ![RFCB Schematic Zoom](/RFCB/RFCB_Schem_Zoom.png)
