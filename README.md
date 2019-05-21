@@ -23,5 +23,8 @@ Contents:
 
 *Librarian: Jon Richards*
 
+[**SonATA:**](SonATA) Documents related to the SETI on ATA (SonATA) System
+
+*Librarian: Jon Richards*
 
 Go to the [-> head over to wiki](https://github.com/SETIatHCRO/ata_docs/wiki)
