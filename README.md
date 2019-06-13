@@ -27,4 +27,6 @@ Contents:
 
 *Librarian: Jon Richards*
 
+[**NOTES:**](SonATA) The NOTES stored on tumulus. General operating procedures.
+
 Go to the [-> head over to wiki](https://github.com/SETIatHCRO/ata_docs/wiki)
