@@ -1,0 +1,68 @@
+NOTES: Observation Health assessment
+DATE: 13 Feb 2015
+
+UVSPEC to examine correlator data
+
+Why do some baselines have discontinuities in the spectra?
+
+1.  When using 'uvspec', some baselines may show some channels with a different behavior (e.g., rapid phase wrapping).  If this behavior occurs over 256 channels (or other factor of 2), it may be caused by a problem with an F board in the correlator.
+
+A common cause for an F board failure is a fan failure that leads to high temperature.  You need to log into the F board to check its temperature, as described here.  As described on this page, if the F boards are above certain thresholds, they likely have a failed fan and must be replaced manually.
+
+2.  This symptom may also indicate a problem with the corner turner.  This is a device that reorganizes the data from being grouped by spectrum to being grouped by antenna, prior to cross-correlation.  
+
+3.  Spectral corruption!  FPGA probably overheating.  Fan swap needed.
+
+Why do all baselines have discontinuities in the spectra?
+
+1.  If all baselines show oddities in the spectra, it may be related to the X board.  After the corner turning operation, all antennas and subsets of channels are cross-correlated by the X board.
+
+
+Taken from http://log.hcro.org/content/13-data-validation-and-troubleshooting#rogues
+Look for fringes
+
+The ultimate check of system health is to look for fringes in calibrator observations. Typical observations will produce a few calibrator data sets, as will the 'arraychk.csh' script, so there should be at least one per day per correlator. The key is to find the phases are not random (at least for calibrators brighter than a few Jy) for most baselines. For short observations, you can see this by plotting the visibility amplitude and phase versus channel like so:
+
+
+smauvspec device=1/xs vis=mosfxc-3c286-1430 select='pol(xx)' axis=chan,both
+
+With an observation longer than a few minutes, you can also test that the phase is stable in time. To do this, plot the visibility phase as a function of time like so:
+
+
+uvplt device=1/xs vis=mosfxc-3c186-1430 select='pol(xx)' axis=time,phase
+
+If the phases seem random for most baselines, then there may be one of many possible problems with the system.
+
+After calibration has been run on an observation, the flux should be roughly constant with time and frequency. The flux density of many sources can be found with the script called "calinfo". E.g.:
+
+obs@strato ~ % calinfo target=3c138 freq=1.43        
+Source: 0521+166 (altname=3C138)
+          RA=05:21:09.88  Dec=+16:38:22.5
+                  Flux: 8.47 Jy @ 1.425 GHz (specindex=-0.567)
+          Estimated flux: 8.453 Jy @ 1.43 GHz
+                  Additional field flux: 2 Jy @ 1.425 GHz
+
+                  Do calibrators line up in phase?
+
+                  Baseline error is suggested if several different calibrators don't line
+                  up in phase. They should be within 5 degrees of phase, even for calibrators 180 degrees
+                  apart on the sky. A string of calibrators should not show much time variation,
+                  although during daytime one can see up to 40 degrees due to the Sun. Longer baselines shoud look better. If you plot the
+                  phase and see a lot of scatter, this could be due to wet radomes (did it rain or snow recently?). Failing that, if you are looking at a bright calibrator (> 1 Jy) and the phases are wandering around a lot, something is probably broken. If you're worried, stop and take a scan on a strong
+                  calibrator. You can try set-defaults.csh to clear things up. Sometimes problems arise due to power glitches or other intermittent problems.
+                  Are the same baselines present on both correlators?
+
+                  The same antennas should be present on both the a and c correlators.
+
+                  If an antenna appears good on one correlator and bad on another (at the
+                      same freqeuncy) it's either a dead RFCB mixer for that IF chain, or
+                  attemplifiers (on the back of the iBOBs) may be dead.
+
+                  If you see
+                  multiple antennas that correspond to a particular Walsh function on one
+                  correlator but not on the others, it could be a Walshing problem (but it could be something more insidious, including a bad LO mixer). If you see fringes only on baselines for antennas that share an iBOB (e.g. 8 and 11) but not on those that don't (e.g. antenna 8 with all antennas on other iBOBs), Walshing on that iBOB probably needs restarting. The reason why antennas on the same iBOB still show up is because the same Walshing problem affecting both antennas means that they still cross-correlate correctly. Try generating and running the walshme script - run "fxconf.rb walshme" as obs on any observing computer at
+                  HCRO. Running the generated script will reprogram the ibobs to use the
+                  same walsh functions as their inputs.
+                  Rogue's Gallery
+
+                  To give you a flavor of some of the problems that you might look for in the data, we have a Rogue's Gallery of bad stuff that can affect your data. This includes several correlator and digital system problems that can be diagnosed by looking at phase plots. It's probably a good idea to try to figure out what has gone wrong in order to fix the specific problem, but if you can't do so and / or are taking some time-critical data, you can try interrupting the observation and running set-defaults.csh. This performs a bunch of initializations that can help reset malfunctioning hardware.

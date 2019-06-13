@@ -1,0 +1,8 @@
+
+# pulsar-1 pigss-store data disk array
+dn: cn=pigss-store,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pigss-store
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.hcro.org:/export/pigss-store
+

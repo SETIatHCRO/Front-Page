@@ -1,0 +1,22 @@
+
+# user1 data disk
+dn: cn=user1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user1.hcro.org:/exports/user1
+
+# user1a data disk
+dn: cn=user1a,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user1a
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user1.hcro.org:/exports/user1a
+
+# user1b data disk
+dn: cn=user1b,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user1b
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user1.hcro.org:/exports/user1b
+

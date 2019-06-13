@@ -1,0 +1,126 @@
+NOTES:  Rsync on Muleears
+DATE:	15 April 2014
+MODS: 12 Sept 2014 -- added more notes for usage
+      19 Mar 2015 -- added more disks full up 12x4T
+      06 Dec 2017 -- add obsri user can change data file ownership, etc.
+      	     	     in order to isolate sri data files 
+
+-------------
+INITIAL SETUP:
+  Mount export:
+    Muleears (10.3.0.43) set up within LDAP cloud are shared NFS mount
+
+    muleears> more /etc/exports
+
+    /volume1/exports        10.3.0.0/16(rw,async,no_wdelay,no_root_squash,insecure_locks,sec=sys,anonuid=1025,anongid=100)
+
+  Ethernet LAG:
+    eth 0,1 are bonded as a LAG. 
+    MTU currently default. Synology recommends changing LAG MTU to 9000
+
+  Rsync Daemon:
+      To create our own rsync module, we have to use a
+      "customized" rsync configuration. See note below.
+
+      Added data module to /etc/rsyncd.conf on muleears
+
+      pid file = /var/run/rsyncd.pid
+      lock file = /var/run/rsync.lock
+      use chroot = no
+      [NetBackup]
+      path = /var/services/NetBackup
+      comment = Network Backup Share
+      uid = root
+      gid = root
+      read only = no
+      list = yes
+      charset = utf-8
+      auth users = root
+      secrets file = /etc/rsyncd.secrets
+      [data]
+              uid = obs
+              gid = obs
+              path = /volume1/exports
+              comment = muleears data area
+              read only = false
+
+
+  Client Mount: 
+    (user2) /proc/mounts
+      muleears.hcro.org:/volume1/exports /data/muleears nfs rw,vers=3,rsize=4096,wsize
+        =4096,hard,intr,proto=tcp,timeo=600,retrans=2,sec=sys,addr=muleears.hcro.org 0 0
+
+    obs@user2 /exports/user2/obs 10:49:42 > rsync --version
+      rsync  version 2.6.9  protocol version 29
+
+    Some blogs recommend upgrade to 3.x version - noticeable improvment (in throughput?)
+
+    NB: muleears files generally have obs ownership
+
+    NOTE: [from synology DSM Help]
+
+        "If customized rsync configuration is used, Synology NAS will no 
+        longer be able to serve as the destination server for Shared Folder 
+        Sync, Time Backup, and LUN Backup."
+
+RSYNC USAGE:
+  rsync -avP --bwlimit 50000 <src> obs@muleears::data/<dest>/ 
+
+  See rsync man pages
+
+ISSUES:
+RSYNC FROM CLOVER - make passwordless obs access
+      Test 1 = ssh obs@muleears
+      	   muleears> /var/log/synolog/synoconn.log
+ 	   	     User [obs] from [10.3.0.48] failed to log in via [SSH]
+		     due to authorization failure.
+      Test 2 = ssh atasys@muleears
+      	   muleears> /var/log/messages
+           Apr  8 10:38:30 muleears nslcd[11601]: [1e3f1e] <shadow="atasys"> ldap_search_ext() failed: Can't contact LDAP server: Broken pipe
+           Apr  8 10:38:30 muleears nslcd[11601]: [1e3f1e] <shadow="atasys"> no available LDAP server found, sleeping 1 seconds
+
+OBSRI Muleears Protection:
+      NOTE - while the /etc/synouser.conf shows an obs user (and admin,rsync),
+      the web interface unders users only shows admin, rsync. So for now, do
+      not add a web-based obsri account.
+
+      Create an obsri account w/ uid 10266 (to match the ldap obsri uidNumber)
+      with group obs
+
+      obsri account:
+      	  obsri:x:10266:1000:SRI observer:/var/services/homes/obsri:/sbin/nologin
+      obs group:
+	  obs:x:1000:obs,obsri
+
+      On muleears create /volume1/exports/obsri
+tumulus ~ 11:00:08 > ls -lrt /data/muleears
+total 24
+drwxr-xr-x 12 obs   obs   4096 Feb 10  2014 sridata1/
+drwxrwxrwx  2  1024 users 4096 Apr  8  2014 admin/
+drwxrwxrwx  3 obs   obs   4096 Apr 10  2015 test/
+drwxrwxrwx  8 obs   obs   4096 Mar  9  2017 obs/
+drwxrwxrwx  6 root  root  4096 Sep 12 03:00 backups/
+drwx------  2 obsri obs   4096 Dec  6 11:00 obsri/
+
+
+      rsynd module:
+          [datasri]
+		uid = obsri
+        	gid = obs
+        	path = /volume1/exports/obsri
+        	comment = muleears SRI data area
+        	read only = false
+
+	  example:  will set obsri ownership at destination, regardless of
+	  user invoking
+      	     > rsync -avP obsritst obsri@muleears::datasri
+
+	     > rsync --remove-source-files \   
+	             --chown=obsri:obs \
+                     <sourcedir> obsri@muleears::datasri
+
+      
+
+
+
+

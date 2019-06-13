@@ -1,0 +1,136 @@
+NOTES:  HCRO Backups
+DATE:   1/8/2014
+AUTHOR: ELK
+MODS:	6/4/15	ELK	Add description of level 2 (B) backup of basalt rdiff roots to muleears
+			Add description of backups from muleears to ata-mp-mirror
+			Add description of obs data backup to muleears.
+      7/27/15 Add ~obs/NOTES (home dir is on /data/basalt/home)
+      10/3117 ELK       Change ldap,autofs service startup order. Problem was
+      autofs is starting before the ldap server and consequently fails when
+      trying to access the ldap server (which is local.
+
+
+[See http://www.nongnu.org/rdiff-backup for more documentation]
+----------------------------------------
+HCRO has a 2-level backup process.
+
+Nightly backups are handled by using the software rdiff-backup. This software 
+uses the rsync libraries to create difference change sets (incrementals) based 
+on a baseline which is mirrored. Once a month a copy of these rdiff files (the 
+mirror and the incremental files) is copied to a "remote" host. The creation of
+a mirror sets the baseline date from which no earlier history can be retrieved.
+
+Level 1:
+Files are stored on a RAID5 array on host basalt under /exports/basalt/backup.
+The script is /exports/basalt/backup/support/dobackups and is invoked at 23:00 nightly.
+The roots backed up in this method are generally assumed to be the dynamic roots of ATA.
+There are several static roots that are not a part of this nightly process. See table below 
+of all roots addressed in backup. Files older than 52 weeks are culled. 
+
+NOTE - due to install of a new svn host, the rdiff incompatibility between basalt (SUSE LE10) 
+and svn (OpenSUSE 12.3) requires that a hot-copy of the svn repos be created and copied over 
+to basalt, and then the rdiff being done locally on basalt from that temporary hot-copy. 
+
+Level 2:
+(A) A copy of critical backup roots is rsynced to the host buttercup in lab2. This includes the 
+nightly-generated rdiff files (although not all), and several static roots that are not included in 
+level1 backups. Lab2 is considered to be sufficiently remote for purposes of fire, but likely 
+not adequate for earthquake events.
+The script on buttercup, ~/admin/backup/dobackups_2l.sh, is a pull (buttercup initiates) [works better given
+rsync library incompatibilities between basalt and buttercup]
+
+(B) A copy of the rdiff roots (svn, boot, obs/{bin,sri-scripts,seti-scripts})
+is rsynced to muleears::/volume1/exports/backups. The script on basalt,
+/exports/basalt/backup/support/dobackups_2l.sh,
+is a push from basalt to muleears
+
+Level 3: 
+The svn (rdiff level2 backup) root on muleears is pulled by ata-mp-mirror and stored in
+ata-mp-mirror:/volume1/exports/backups. See description below of the
+ata-mp-mirror scripts
+
+OBSERVATION DATA:
+- (Level 1) Observers maintain custom scripts to push observation data to the
+muleears::/volume1/exports/obs dirs using the rsync daemon on muleears
+- (Level 2) ata-mp-mirror in MP will pull the observation data from
+mulears::/volume1/exports/obs/??
+and store on ata-mp-mirror::/volume1/exports/obs/
+
+					    (buttercup) (muleears)
+HOST     ROOT                       LEVEL1  LEVEL2-A	LEVEL2-B	NOTES
+tumulus  /data/tumulus/obs/bin      yes        yes  	yes 	(the bin, seti-scripts,sri-script dirs)
+basalt   /exports/basalt/home/obs/NOTES yes    yes    yes   (the ~obs/NOTES directory)
+svn      /srv/svn/repos/mmm         yes        yes 	yes
+svn      /srv/svn/repos/ata         yes        yes 	yes
+svn      /srv/svn/repos/ata-apps    yes        yes 	yes
+svn      /srv/svn/repos/jmir        yes        yes 	yes
+svn      /srv/svn/repos/ata-antennasyes        yes 	yes
+svn      /srv/svn/repos/bf          yes        yes 	yes
+svn      /srv/svn/repos/ralhw       yes        yes 	yes
+svn      /srv/svn/repos/hcro        yes        yes 	yes
+svn      /srv/svn/repos/ataant      yes        yes 	yes
+svn      /srv/svn/repos/atadata     yes        yes   	yes	"aka maincntl:/opt/atasys/data". see log backup writeup
+svn      /srv/svn/repos/setiQuest   yes        yes 	yes
+mrpink   /home/<user>/Maildir       no         no   	no	eliminated from backups 1/28/2014
+thumper  /data/www                  no         no   	no	eliminated from backups 1/28/2014
+thumper  /data/home                 no         no   	no	eliminated from backups 1/28/2014
+thumper  /data/mail                 no         no   	no	eliminated from backups 1/28/2014
+boot2    /data/boot2/atasys         yes        yes	yes
+boot2    /data/boot2/atasw          yes        yes	yes
+boot2    /export/boot2/ata           no        yes  	no	Rsync of whole root == /fxa == /ata/cora/fxa
+basalt   /exports/basalt/hcro        no        yes	no
+antcntl  /opt/ataant                 no        yes	no
+ft1      /lvmboot                    no        yes	no
+
+TBD:
+log      /srv/www/vhosts/log/files                  ?what would root be to get support files
+log                                                 ? what would be backup method for rdbms
+
+------------------------------------------------------------------
+ATA-MP-MIRROR scripts
+- a user account "rsync" exists on ata-mp-mirror to contain the scripts, 
+logs, and key related to our custom backups. NOTE - for now all scripts are 
+owned and run as root
+-An account mirror-rsync has been created on blake7 and public key installed. The
+private key is in the ata-mp-mirror rsync users .ssh dir
+- An ssh tunnel thru the hcro bastion host by the script
+~rsync/bin/tunnelwatchdog.sh
+which executes the tunnelkeepalive script.
+- the script runrsync rsyncs the desired roots from muleears: obs, backups/svn/ata
+ 
+------------------------------------------------------------------
+RESTORING
+       
+There are two ways to tell rdiff-backup to restore a file or directory.
+The first would be to run rdiff-backup on a mirror file and use the -r or 
+--restore-as-of options.  The second option would be to run rdiff-back
+on an increment file.
+
+1. Restore from mirror file
+
+For example, suppose in the past you have run:
+
+    rdiff-backup /data/tumulus/obs/bin /exports/basalt/backup/obs/bin
+
+to  back  up the obs bin directory into the backup directory, and now
+want a copy of the obs bin directory the  way  it  was  3  days  ago
+placed at a temporary location
+
+One way to do this is to run:
+
+    rdiff-backup -r 3D /exports/basalt/backup/obs/bin /tmp/obsbin.old
+
+where  above the "3D" means 3 days (for other ways to specify the time,
+see the TIME FORMATS section). The /exports/basalt/backup/obs/bin  
+directory  was selected,  because that is the directory containing the 
+current version of /data/tumulus/obs/bin.
+
+Note that the option to --restore-as-of always specifies an exact time.
+(So  "3D" refers to the instant 72 hours before the present.)  If there
+was no backup made  at  that  time,  rdiff-backup  restores  the  state
+recorded  for the previous backup.  For instance, in the above case, if
+"3D" is used, and there are only backups from 2 days and  4  days  ago,
+/usr/local as it was 4 days ago will be restored.
+
+2. Restore from incremental file
+

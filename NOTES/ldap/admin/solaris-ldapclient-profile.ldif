@@ -1,0 +1,20 @@
+# Example profile LDIF:
+
+dn: ou=profile,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: profile
+
+dn: cn=Solaris,ou=profile,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: DUAConfigProfile
+cn: Solaris
+defaultServerList: basalt.example.com
+defaultSearchBase: dc=obs,dc=hcro,dc=org
+defaultSearchScope: one
+searchTimeLimit: 30
+bindTimeLimit: 2
+credentialLevel: anonymous
+authenticationMethod: simple
+followReferrals: TRUE
+profileTTL: 43200

@@ -1,0 +1,100 @@
+NOTES: SNMP and IPMI tools
+DATE: 9/30/2014
+AUTHOR: ELK
+REVISION: 9/26/17 - change http access to unsecured (due to certificate issues)
+	  9/27/17 - to fix snmp receiver config on tumulus
+
+See www.net-snmp.org
+IPMI - open standard for out-of-band system management
+  Dell - DRAC (Remote Access Controller)
+
+SNMP INSTALLATION:
+---------------------------------------------------------
+net-snmp-config	- details on how the snmp package was built/installed 
+	--snmpconfpath    - list of paths examined for snmp configuration files
+
+MIBs
+	the default mib directories:
+	    $HOME/.snmp/mibs
+	    /usr/share/snmp/mibs
+
+SNMP TOOLS:
+----------------------------------------------------------
+snmpconf    tool for creating and modifying SNMP configuration files
+	 -i   - install created files in /usr/share/snmp (for all users)
+	 -p   - install created files in /root/.snmp (for personal use) 
+
+snmptrapd
+	  tools to receive and log or otherwise handle SNMP trap and inform messages
+
+	  Default it to run on UDP port 162 on all interfaces. Since 162 is a 
+    privileged port,snmptrapd must be run as root.
+
+	  systemctl start snmptrapd.service
+	  	    -A
+		    -LF n /var/log/net-snmp.log
+		    -p /var/run/snmptrapd.pid
+
+	  cmdline invoke:
+	  snmptrapd 
+	  	    -c <config-file>  configuration file - created in 
+		       		      /etc/snmp/snmptrapd.conf
+		       		      which specifies:
+				      	    authcommunity log,execute,net public
+		   [-f]		      do not fork from the calling shell
+		   -Leo		      log to standard error and standard output 
+
+    NOTIFICATION PROCESSING
+      In addition to loggin incoming notifications, they can also be forwarded to 
+      another notification receiver or passed to an external program.
+      e.g., traptoemail script included in NetSNMP package
+      add to snmptrapd.conf:
+         traphandle default /usr/bin/perl /usr/bin/traptoemail  -s
+                              mail.hcro.org   -f hcro@hcro.org  me@somewhere.com
+
+snmptrap, snmpinform:
+	  tool to send SNMP trap and inform message
+
+	  snmptrap
+		-v 2c
+		-c <community>   i.e., public
+		[-m <MIB>[:...]] load given list of MIBs (ALL loads everything)
+		   		 possibly by default loads MIBS found in dirs indicated by:
+				 	  net-snmp-config --default-mibdirs
+		<agent>		 upd:127.0.0.1[:port]   or
+				 tumulus:161 or
+				 localhost
+		<uptime>	 e.g.,""  (default value)
+		<trap-oid>	 e.g., NET-SNMP-EXAMPLES-MIB::netSnmpExampleHeartbeatNoficiation
+		<oid type value> e.g., netSnmpExampleHeartbeatRate i 123456
+
+		     	  	       from /usr/share/snmp/mibs/NET-SNMP-EXAMPLES-MIB.txt
+				       	    netSnmpExampleHeartbeatNofication NOTIFICATION-TYPE
+					       OBJECTS { netSnmpExampleHeartbeatRate }
+					       ...
+
+				       from ups.mib
+				       	    upsEstimatedMinutesRemining OBJECT-TYPE
+					       SYNTAX 		PositiveInteger
+					       UNITS		"minutes"
+					       MAX-ACCESS	read=only
+					       STATUS		current
+					    ...
+				       	    upsTrapOnBattery NOTIFICATION-TYPE
+					       OBJECTS { upsEstimatedMinutesRemaining, 
+					       	         upsSecondsOnBattery, uspConfigLowBattTime }
+
+
+---------------------
+SNMP Receivers:
+trap community string: ata
+
+Event Category: Critical
+Receivers: 10.3.0.40 (tumulus)
+Event Category: Warning
+Receivers: 10.3.0.40 (tumulus), 10.3.0.57 (user2)
+Event Category: Information
+Receivers: 10.3.0.40 (tumulus), 10.3.0.57 (user2)
+
+Event Notification:
+

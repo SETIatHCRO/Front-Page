@@ -1,0 +1,164 @@
+NOTES: Blake7 setup/configuration
+DATE: 3 Dec 2014
+History:
+12/3/14 ELK Created
+1/7/15 Added DNS swap notes
+2/24/15 Added DNS external zone updates notes
+
+Creation of new ATA bastion host.
+
+OpenBSD blake7.hcro.org 5.6 GENERIC.MP#299 i386 Rackable Systems (Tyan Computer)
+ 
+FIREWALL:
+- add blake7 to shorewall ruleset per blake config
+- TODO - revisit the tunnel for nagios when reinstalling nagios
+- modify the /etc/dhcp/dhcpd.conf to reference blake7 as domain name server (note
+    this would satisfy any configs that get this info from the dhcpd
+
+DNS:
+- add blake7 to master hcro.org (currently maintained on blake)
+
+OpenBSD 5.6 INSTALL:
+  74.43.140.35
+  255.255.255.192
+  em0
+  route default 74.43.140.1
+  ntp1.berkeley.edu
+  ns - use blake (temporaty) and mrpink
+
+  packages - (take defaults but remove game56)
+    bsd - This is the Kernel. Required
+    bsd.mp - Multi-processor (SMP) kernel (only some platforms)
+    bsd.rd - RAM disk kernel
+    base56.tgz - Contains the base OpenBSD system Required
+    etc56.tgz - Contains all the files in /etc Required
+    comp56.tgz - Contains the compiler and its tools, headers and libraries.
+    man56.tgz - Contains man pages
+  - game56.tgz - Contains the games for OpenBSD
+    xbase56.tgz - Contains the base libraries and utilities for X11
+    xetc56.tgz - Contains the /etc/X11 and /etc/fonts configuration files
+    xfont56.tgz - Contains X11's font server and fonts
+    xserv56.tgz - Contains X11's X servers
+    xshare56.tgz - Contains manpages, locale settings, includes, etc. for X
+
+    add bash and tcsh shell packages
+      pkg_add -c ftp://ftp5.usa.openbsd.org/pub/OpenBSD/5.6/pacakages/i386/bash-4.3.18.tgz
+
+  Disk Partition - use defaults (320G drive total). user dirs in /home
+    blake has a /data area, but did not set that up on blake7
+
+  rc.conf.local - boot processes
+    - enable the following
+      sshd, sendmail, nfs?, named,ntpd,syslogd
+
+      SSHD configuration
+# ssh -V
+OpenSSH_6.7, LibreSSL 2.0
+
+  sshd_config -- new settings
+    AuthenticationMethods publickey
+    PermitRootLogin no
+
+    settings based on blake:
+    Protocol 2
+    X11Forwarding yes
+    X11DisplayOffset 10
+    ClientAliveInterval 300
+    ClientAliveCountMax 5
+    PermitTunnel  yes
+    AuthorizedKeysFile  .ssh/authorized_keys
+
+    NB: may want to consider using the from="pattern-list" method
+    of setting allowed hosts. The pattern can be the canonical name
+    of a remote host, and IP address, or CIDR notation. Wilcards 
+    allowed, e.g.,
+      128.18.0.0/24 - SRI
+      209.119.0.0/24 - SETI
+    The problem would be users come from home and mobile locations...
+
+  Restart SSHD
+    kill -HUP `cat /var/run/sshd.pid`
+    /usr/sbin/sshd
+
+USER ADMIN:
+  useradd -m -s /usr/local/bin/<bash | tcsh> <user>
+  install the users public key on their authorized_keys file. Password
+  login is no longer used 
+
+  Priv account - add user to wheel group
+    user mod -G wheel <user>
+
+PUBLIC KEY AUTHENTICATION
+  See SOP instructing users on key pair generation
+  Copy users public key to their home .ssh/authorized_keys file
+  MAKE sure the owner on this file is properly set (to user)
+
+DNS PRIMARY MASTER MIGRATION
+  /var/named/etc/named.conf
+  /var/named/master/*
+
+  On Blake7
+  copy over config files from blake
+    /var/named/etc/named.conf
+    /var/named/master/*
+
+  modify the master hcro.org 
+    assign blake7 in SOA and to ns1
+    modify ns1 to be blake7
+    keep blake as an NS ?
+  modify named.conf to include blake7 ip to hcro.org zone (remove blake?)
+  modify the reverse maps to use blake7 in SOA
+    TBD - visit method to generate reverse maps from master file!!
+  modify /etc/resolv.conf:
+    - add search hcro.org (first line), and blake7 address
+
+  On other NS (auxcntl, basalt, mrpink)
+  modify their /etc/named.conf in all references to master IP address
+  modify /etc/resolv.conf to reference blake7 ip address
+
+  On firewall
+    see steps at top of notes
+  Other machines
+  Biz machines - modify their configs to reference blake7 as preferred DNS server
+  Obs machines - no mods necessary as they reference slave dns servers only
+
+  Actual changeover steps.
+  1. start blake7 named
+  2. shutdown blake named
+  3. force the update of the slaves (deletes and rebuilds their cache)
+
+  2/24/15 
+  (1)INFORM NS1.SRI.COM, which serves as a primary NS for hcro.org that
+  the hcro primary ns (blake7) address has changed... w/o doing this the
+  expiry date would have passed (~41 days) after shut down of blake and
+  ns1.sri.com would stop asking for updates and stop serving up the records.
+  (2) remove the shrewdraven zones from the blake7 /var/named/etc/named.conf
+  (3) add mrpink back into the allowed list for transfers (correct typo) 
+
+SCP - obs node/account to user-specific blake7 account
+  Problem: Users copy obs-owned files to their blake7 account for ultimate 
+  transfer outside, but default blake7 authentication is by public key.
+
+  Options: 
+  1) add obs public key to users authorized keys
+    This would allow any obs user into the users blake7 account
+  2) use host-based authentication from 10.3.0.0/24 to blake7
+    This too would allow any obs user into the users blake7 account
+  3) Add additional password authentication method for 10.3.0.0/24 source hots
+      Add following at the end of the blake7:/etc/ssh/sshd_config
+
+      Match Address 10.3.0.0/24
+        AuthenticationMethods password
+
+      For hosts that match the address, address will try the additional
+      password-based authentication method (since the public key method
+      will fail.
+
+  Using option 1 followed by option 3. Any user wanting to transfer (push) from the obs
+  account to their blake7 account would first look for the obs public key in their
+  blake7 authorized_keys file. NOTE the obs account private key is not
+  pass-phrase protected, so such a transfer can occur w/o prompting, which is
+  required for automated scripting. Failing presence of the obs public key in the
+  users authorized_keys, the user would be prompted for their blake7 account password...
+  which typically most have not set up (since they are using keys to login from the
+  outside), so there will be confusion

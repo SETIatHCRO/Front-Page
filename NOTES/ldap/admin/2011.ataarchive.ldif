@@ -1,0 +1,9 @@
+
+# /ataarchive/2011 disk
+# moved to tumulus 17 may 2011
+dn: cn=2011,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2011
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 tumulus.hcro.org:/export/tumulus/ataarchive/2011
+

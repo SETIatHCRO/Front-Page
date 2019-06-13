@@ -1,0 +1,66 @@
+TITLE:  Wrappot change pointing model updates
+DATE:   09/13/13
+AUTHOR: ELK
+-------------------------------------------------------------
+Wrappots changed:
+8/14/13 2k
+8/20/13 4g
+9/3/13  3l
+9/10/13 1f
+
+Wrappots checked/or exhibiting excessive glitches (see log below)
+9/12/13 2a - not changed, just checked. had 17 glitches over past 15 hours
+9/13/13 1b - has 62 glitches over past 15 hours
+9/13/13 3c - had 24 glitches over past 15 hours
+
+              SVN   opt      
+Ant   wrappot PM    PM
+1b    .542    .542  .542  - left alone
+1f    .534    .536  .536  - modified (although +-.003 acceptable)
+2a    .537    .537  .537  - left alone
+2k    .535    .531  .531  - modified
+3c    .504    .546  .546  - modified
+3l    .541    .509  .509  - modified
+4g    .546    .534  .534  - modified
+
+Note that the finer granularity pointing check w/ tpoint app will be done later
+(have to install a new version as old version is broken)
+
+
+
+--------------Diff off log searches for all ants for wrappot "glitches" over past 15 hours----------------------
+
+ 07:11:48 > diff wrappotstatus-0913-0700 wrappotstatus-0912-1656
+ 4c4
+ < ant1b has  258 glitches, most recently at 2013-09-13 13:10:09 (Z)
+  ---
+  > ant1b has  196 glitches, most recently at 2013-09-12 22:40:48 (Z)
+  13c13
+  < ant2a has  112 glitches, most recently at 2013-09-13 11:45:55 (Z)
+  ---
+  > ant2a has   95 glitches, most recently at 2013-09-12 23:55:04 (Z)
+  21c21
+  < ant2j has    4 glitches, most recently at 2013-09-13 11:36:47 (Z)
+  ---
+  > ant2j ok
+  25c25
+  < ant3c has  135 glitches, most recently at 2013-09-13 12:14:46 (Z)
+  ---
+  > ant3c has  111 glitches, most recently at 2013-09-12 13:23:36 (Z)
+  27c27
+  < ant3e has   18 glitches, most recently at 2013-09-13 13:05:06 (Z)
+  ---
+  > ant3e has    6 glitches, most recently at 2013-09-12 01:56:28 (Z)
+  33c33
+  < ant4e has   34 glitches, most recently at 2013-09-13 00:42:34 (Z)
+  ---
+  > ant4e has   32 glitches, most recently at 2013-09-12 23:41:43 (Z)
+  41c41
+  < ant5c has   30 glitches, most recently at 2013-09-13 04:53:51 (Z)
+  ---
+  > ant5c has   28 glitches, most recently at 2013-09-12 23:27:12 (Z)
+  47c47
+  < 12 antennas have wrappot errors since last reboot.
+  ---
+  > 11 antennas have wrappot errors since last reboot.
+

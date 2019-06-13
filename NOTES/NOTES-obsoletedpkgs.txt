@@ -1,0 +1,20 @@
+NOTES: Notes on removing obsoleted/no longer wanted packages
+DATE: 12 May 2016
+
+
+ZMD - Zen Networks Management Daemon
+    For package management - connects to repositioy
+	- generates logs of zmd-messages*
+	- removed from boot2, antcntl
+
+	rczmd stop			; stop the zmd
+	chkconfig -d novell-zmd   	; remove from startup
+
+	remove working, log files, packages(?)
+	       -R /var/cache/zmd/*
+	       /var/lib/zmd/zmd.db
+	       /var/lib/zmd/subscriptions
+	       /var/log/zmd-messages*
+	       /var/log/zmd-backend
+
+	   rpm -e zmd libzypp-zmd-backend rug zen-updater

@@ -1,0 +1,8 @@
+#dn: ou=auto_home,dc=obs,dc=hcro,dc=org
+#objectClass: organizationalUnit
+#ou: auto_home
+
+dn: ou=auto_home,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: +auto_home
+

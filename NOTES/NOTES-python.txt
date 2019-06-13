@@ -1,0 +1,93 @@
+On 12/11/2016 9:29 AM, Todd Koumrian wrote:
+> I've added the following to the 2.7.10 python distribution:
+>
+> jsonpickle (0.9.3)
+> pip (9.0.1)
+> pyserial (2.7)
+> requests (2.12.3)
+> setuptools (15.2)
+> xmltodict (0.10.2)
+>
+> Let me know what else you need.  I would like to switch over to using this distribution, it requires:
+>
+> PYTHONPATH=/hcro/opt/python
+> And adding the bin dir to the path ahead of the system one so I don't want
+to switch this over until you are ready.
+
+On 1/26/2017 12:06 PM, Todd Koumrian wrote:
+> Note that I switched over the obs account to use the /hcro/opt/python 2.10 distribution a while back, so you should be getting this shared version without having to do special shell variable setup that I'd mentioned before.
+
+State Machine
+https://github.com/pytransitions/transitions
+
+
+ 
+July 7, 2017
+obs@tumulus ~ 12:17:29 > ls /hcro/opt/python/lib/python2.7/site-packages/
+arrow/                            numpy-1.12.1.dist-info/
+arrow-0.4.2-py2.7.egg-info/       pip/
+dateutil/                         pip-9.0.1.dist-info/
+easy_install.py                   pkg_resources/
+easy_install.pyc                  pyserial-2.7-py2.7.egg-info
+ics/                              python_dateutil-2.6.0.dist-info/
+ics-0.3.1.dist-info/              README
+jdcal-1.3-py2.7.egg-info/         requests/
+jdcal.py                          requests-2.12.3.dist-info/
+jdcal.pyc                         serial/
+jsonpickle/                       setuptools/
+jsonpickle-0.9.3-py2.7.egg-info/  setuptools-15.2.dist-info/
+_markerlib/                       six-1.10.0.dist-info/
+mirexec.py                        six.py
+mirexec.pyc                       six.pyc
+mirexec.pyo                       transitions/
+miriad.py                         transitions-0.4.3-py2.7.egg-info/
+miriad.pyc                        xmltodict-0.10.2-py2.7.egg-info/
+miriad.pyo                        xmltodict.py
+mirtask/                          xmltodict.pyc
+numpy/
+ 
+obs@tumulus ~ 12:17:50 > ls /hcro/opt/python/lib/python2.7/site-packages/transitions
+core.py   extensions/  __init__.pyc  logging_.pyc  version.pyc
+core.pyc  __init__.py  logging_.py   version.py
+obs@tumulus ~ 12:18:26 > ls /hcro/opt/python/lib/python2.7/site-packages/transitions/extensions/
+diagrams.py   factory.py   __init__.py   locking.py   nesting.py
+diagrams.pyc  factory.pyc  __init__.pyc  locking.pyc  nesting.pyc
+
+2019-04-25 Install of lxml
+Use support machine as it has the needed C libraries already installed
+
+pip install --target=/hcro/opt/python/lib/python2.7/site-packages lxml
+
+2019-05-17 install of pyld (python linked data)
+# pip install --target=/hcro/opt/python/lib/python2.7/site-packages pyld
+Downloading/unpacking pyld
+  Downloading PyLD-1.0.5.tar.gz (52kB): 52kB downloaded
+  Running setup.py egg_info for package pyld
+    
+Installing collected packages: pyld
+  Running setup.py install for pyld
+      File "/tmp/tmpeyC2hg/lib/python/pyld/documentloader/aiohttp.py", line 32
+        async def async_loader(url):
+                ^
+    SyntaxError: invalid syntax
+    
+    
+Successfully installed pyld
+Cleaning up...
+
+The error on the aiohttp.py is because that is an optional feature for 3.5 or
+later. Ignore???
+
+Install jsonpath
+[this is on mac]
+$ sudo pip install jsonpath
+[on the obs machines]
+#pip install --target=/hcro/opt/python/lib/python2.7/site-packages jsonpath
+
+see https://goessner.net/articles/JsonPath/
+
+Install json-ld
+[this is on mac]
+$ sudo pip install pyld
+
+see https://github.com/digitalbazaar/pyld 

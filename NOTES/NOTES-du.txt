@@ -1,0 +1,20 @@
+NOTES: Dual-Use Subnet
+DATE:  2017-05-03
+
+
+See NOTES-kenneth.txt for bastion host setup
+
+duserver.hcro.org 10.40.0.10
+doozer/doozer
+
+DHCP 
+range 0.150-0.160
+subnet 10.40.0.0
+netmask 255.255.255.0
+DNS 74.43.140.35
+router 10.40.0.1
+
+On mingus - route pedestal traffic via 10.40.0.250
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+192.168.2.160   10.40.0.250     255.255.255.224 UG        0 0          0 vlan40

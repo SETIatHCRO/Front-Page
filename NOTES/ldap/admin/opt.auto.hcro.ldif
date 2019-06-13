@@ -1,0 +1,11 @@
+
+#
+# basalt hcro/opt
+#
+
+dn: cn=opt,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: opt
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 basalt.hcro.org:/exports/basalt/hcro/$OSNAME/$CPU/opt
+

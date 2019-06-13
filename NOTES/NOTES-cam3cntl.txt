@@ -1,0 +1,10 @@
+NOTES: Cam3cntl.hcro.org
+DATE:  2018-12-04
+
+Installed ??
+
+Model: AXIS p5414-E Network Camera
+Address: cam3.cntl.hcro.org, 10.3.0.30
+Login: root, pass (the default it came with)
+
+Manuals are at https://www.axis.com/en-us/products/axis-p5414-e/support-and-documentation

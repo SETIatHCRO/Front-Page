@@ -1,0 +1,61 @@
+NOTES:  Bee2 configuration,etc
+DATE:   03/24/15
+
+
+Commissioning:
+  BEE has to be configured with the proper network settings for 
+  it to work with the system.
+
+  On the front of the BEE2 there is a slot for a small flash card. 
+  There are 2 types of cards. One labeled "Borph Linux July 2007" 
+  and "4-25-07 Test Suite v1.1". The former is for operation, the
+  latter for testing. The test suite card is stored in the e-shop
+  cabinet.
+
+  Connect serial cable to bee. At front of the BEE2, in the back 
+  right is a 5 pin header labeled "RS232". The cable that converts 
+  the 5 pin header to a DB9 port is stored in the e-shop cabinet.
+
+    1) Plugged in the serial cable into a PC with a serial Putty 
+    session, 115200 baud, and into the 5 pin header.
+    2) Inserted the "Test Suite" card into the fron.
+    3) Powered up the BEE2.
+    4) After the boot finished types "set_eeprom". Aanswer the 
+    questions. WiKi that explains what this does: 
+      http://bee2.eecs.berkeley.edu/wiki/Bee2LinuxConfig.html
+    5) The config line you will enter in set_eeprom is:
+
+          console=tty0 console=ttyS0,115200 nfsroot=/b2s/b02 ip=10.3.32.102:10.3.0.73:10.3.0.1:255.255.0.0:b02.bfa.hcro.org:eth0:off mem=512M rw root=/dev/nfs
+
+      Note that you have to replace the IP address and bee id with the one of the 
+      unit you are replacing (total of 3 items to replace).
+
+    6) There are several other questions asked by set_eeprom. You have 
+    to enter the MAC address, not just press enter.
+    7) Power down. Leave the RS232 cable connected and the Putty 
+    session active.
+    8) Replace the card in front. insert the "Borph" card.
+    9) Repower, plug into the network. Should now see it boot 
+    successfully in the Putty window. Should be able to log in from tumulus.
+
+
+Problems:
+
+  Hangs/Reboots during FW loads - See JIRA 28,198,257,288,321
+    Probable cause is the power connectors. Loading firmware is
+    power intensive and possible cause of system crash.
+
+        Tue Mar 10 19:04:39 -0700 2015 >> Adding antennas to the hookup
+        Tue Mar 10 19:04:39 -0700 2015 >> Connecting to BEE2 Server Processes
+        Tue Mar 10 19:04:39 -0700 2015 >> Loading Firmware on b01.bfa
+        Tue Mar 10 19:04:44 -0700 2015 >> Loading Firmware on b02.bfa
+        (hangs here)
+
+  Bad Delay cals - 
+    See JIRA ATA-198. Source could be a failed FPGA fan.
+
+  Stopping on "Now booting the kernel"
+    Confirm that the eeprom configurations are correct. Typos can cause such
+    a failure.
+
+  

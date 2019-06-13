@@ -1,0 +1,11 @@
+
+#
+# pkwill home
+#
+
+dn: cn=pkwill,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: pkwill
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hcro.org:/exports/basalt/home/pkwill
+

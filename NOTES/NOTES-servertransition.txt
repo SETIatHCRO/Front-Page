@@ -1,0 +1,257 @@
+NOTES-Server Transition
+
+Sept 2017 - Preparation for transition from Sunfire control servers to Dell
+c6100
+Oct/Nov 2017 - transition of antcntl to control
+
+PREVIEW
+9/6/17 power event caused failure of boot2 and auxcntl
+NB - all production root changes should be done in sandbox and checked into
+svn and then copied into the production root.
+Move auxcntl and maincntl jsda processes to atadb. Use maincntl for boot2
+
+BOOT2
+	- these disks were recovered and booted up in the maincntl chassis
+	  - RAID: edited the /etc/mdadm.conf to have proper UUID for the md0 and md1
+	  - NETWORK: renamed the /etc/sysconfig/network/ifcfg-eth-id-<MAC address> 
+	  (openSUSE 10.2 would define the if config file based on the mac>
+	  to that of the (maincntl) chassis, namely 00:1b:24:2d:e5:05
+	  - PXE DHCP: edit the MAC for the eth0 rule in 
+	  /etc/udev/rules.d/30-net_persistent_names.rules to new MAC for eth0.
+	  (The dhcp pxe refers to eth0, so need that address map to be
+	  correct)
+	  - LDAP/SLURPD - boot2 had been set up as an ldap server w/
+	  replication. That service has been stopped. HOWEVER, need to remove
+	  references in client /etc/ldap.conf and /etc/openldap/ldap.conf to this secondary server. The
+	  client would only try to use this secondary if it could not get to
+	  the primary (basalt). 
+	  - DNS resolv.conf - use atadb address (10.3.0.74) as first in
+	  list. Edit all obs hosts /etc/resolv.conf. Edit the SBC boot files
+	  (boot2:/fxa/{f,x}[1-2]/etc/resolv.conf
+	  
+
+AUXCNTL/ATADB
+	- JSDA: move jsda processes to atadb (edit atadb processes.xml)
+	- SYSLOG-NG: copy the auxcntl /etc/syslog-ng/syslog-ng.conf to atadb ???WHAT
+	ELSE??
+	- MIRIAD: formerly physically mounted at
+	auxcntl:/export/auxcntl/miriad, with a link defined as
+	/export/miriad. The ldap then pointed to auxcntl:/export/miriad. NB:
+	the /etc/exports file has only the /export/auxcntl in it. The link
+	allows us to fake out the ldap automount to think that /export/miriad
+	is a separate mount (why this was done I am not sure)
+  	    cat /sunfires/auxcntl/md0/etc/exports
+	    /export/auxcntl 10.3.0.0/16(rw,root_squash,no_subtree_check,async,wdelay,inse                                                cure)
+ 	 - NETWORK: set the routes for ibob routing:
+	   	    # more routes
+		    169.254.0.0 - 255.255.0.0 eth0
+		    default 10.3.0.1 - -
+	- modify ibobservercontrol and check_los to refer to atadb instead of
+	auxcntl
+	- DNSserver - Need a DNS server that is (exclusively) for the control
+	machines to minimize extraneous lookups from non-control hosts (e.g.,
+	dhcp-based machines). Copied the /var/named root from auxcntl.
+	- DNS: redefine ns4 to atadb
+	- DNS: redefine obscntl to atadb
+	- DNS: redefine ntp2-2 to atadb (from auxcntl)	    and then
+	- NTPstart ntp server on atadb 
+	- CRONTAB: move auxcntl obs crons to atadb
+*/5 * * * * ~/bin/upload2wunderground > /dev/null
+*/5 5-23 * * * ~/public-webcam/scripts/cam-snapshot-publish > /dev/null
+0 * * * * /data/tumulus/obs/sri-scripts/tkoumrian/upload-cssa-weather.sh
+1 * * * * /data/tumulus/obs/sri-scripts/tkoumrian/upload-cssa-status.sh
+      	- modify the /etc/group to add the atasys user to the uucp group so
+	that the ADRserver (the GPIB i/f to the rack pam) will start up
+	  	 uucp:x:14:atasys
+
+
+
+MAINCNTL/USER2
+	- DataServer
+	  - move DataServer to user2 (edit processes.xml and copy the 
+	  DataServerInit file into the user2 setup dir.
+	  -copy the /opt/atasys/data from maincntl to user2
+	  - MYSQL
+		user2 version is 5.0.45
+		- enable mysql via yast services (start the database)
+		- init mysql server
+	    	  	 # mysql_secure_installation
+		  	 (use 115 for root password)
+			 remove anonymous users (Y)
+			 disallow root login remotely (Y)
+			 remove test database (Y)
+		- create user
+		  	 # mysql -p -u root
+			 create user atauser@localhost identified by
+			 'atapswd';
+		- initialize the data directory
+			 # mysql_install_db --user=atauser \
+			   --basedir=/opt/atasys \
+			 grant all on atauser.* to atauser@localhost;
+	- JSDA move the other jsda processes to user2 (edit processes.xml)
+	  -Change the user2 queue server entry to reflect that it is the
+	parent. Also need to use set/common/QueueIncgcServer (Instead of QueueServer)
+	processes.xml	       
+	  - edit all host processes.xml QueueServer defs to use user2 as parent
+	- MIRIAD: The DNS name Linux-x86_64 pointed to canonical name of auxcntl
+	(10.3.0.72). The miriad share was on the auxcntl /export/miriad and
+	the ldap would use $OSNAME-$CPU:/export/miriad for this mount 
+	(Linux-x86_64 - which is the case for all machine now --- we no longer 
+	have SunOS-i86pc--pointed to strato nor Linux-i386--pointed to weather
+	 machine variants). Furthermore, the /export/miriad was actually a
+	 link (on auxcntl) into /export/auxcntl/miriad (actual location). 
+         Change that DNS name to point to user2 (although no longer needed as
+	 we are eliminating the architecture-specific roots. 
+	 Copy the miriad root (auxcntl:/export/miriad) to
+	 user2:/exports/user2/miriad
+	 and create a link in user2:/exports/miriad to /exports/user2/miriad.
+	 - CRONTAB: setup (former maincntl) crontab jobs on user2
+	   obs
+# Potting soil temperature experiment
+0 */3 * * * export PATH=$PATH:/hcro/opt/jruby/bin; . /hcro/atasys/ata/setup/common/ata.startup.sh; /home/obs/tkoumrian/temptest/temptest.rb
+*/15 * * * * export PATH=$PATH:/hcro/opt/jruby/bin; . /hcro/atasys/ata/setup/common/ata.startup.sh; /home/obs/elin/feedcheck/monitoritems-new.rb
+
+	     
+ANTCNTL/CONTROL
+   Preparation
+	- /etc - config done during control commissioning
+	       ldap, ntp, resolv, fstab, exports,services, sshd
+	       /etc/sysconfig/network
+	- User accounts (under LDAP control)
+	       atasys (/opt/atasys)
+	       ataant (/opt/ataant)
+	       (requires that the pam_ldap module be installed. Remove
+	       client start of tls from ldap.conf ???)
+	- dhcpd for antennas (for subnet 172.20.0.0)
+	  	/etc/dhcpd.conf
+	  	/etc/dhcpd.ataant.conf
+		/etc/dhcpd.switches.conf
+
+		logging ??? in journalctl???
+		-NB - service will not start until interface ready (do at switchover)
+	- pxe boot server
+	  requires a tftp (loaded atftp) service be started. 
+	  On old antcntl
+	     vsftpd                    0:off  1:off  2:off  3:off  4:off  5:off  6:off
+          	tftp:               on
+        	vsftpd:             off
+	  On new antcntl (opensuse Leap)
+	      atftpd service (a static service, runs on socket activation)
+	      /etc/sysconfig/atftpd
+		  DIRECTORY /opt/ataant/boot
+ 	      systemctl enable atftpd.socket
+	      systemctl start atftpd.socket 
+	      systemctl status atftpd.{socket,service} 
+	- rsyncd 
+	  /etc/rsyncd  --- need the deamon running w/ "ataant" module
+	- recoveryServer uses the dataserver to access its database
+	  so nothing to do.
+	- JSDA
+	    NOPASSWD for processserver execution
+	      the jsda script does an ssh to host to do stop/start/status.
+	      requires the following in sudo file,.e., as root, visudo)
+	      atasys ALL= NOPASSWD: /etc/init.d/processserver
+	    $ATA_HOME/ata/etc/hosts-jsda
+		add control
+	    $ATA_HOME/ata/setup/control  
+	    	processes.xml (remove historical processes)
+		recoveryserver-config.xml
+	    /etc/init.d/processserver
+		QueueServer
+			NB: the old sunfire queue server startup used the
+			common QueuParaGCServerJVM6 (Parallel Garbage Collection)
+
+
+			> more QueueParaGCServerJVM6
+			  #!/usr/bin/env bash
+			  export ATA_JAVA_HOME=/hcro/opt/jdk1.6.0_24
+			  export ATA_LOG4J_CONF=/hcro/atasys/ata/setup/common/log4j/colby-debug-stdout.xml
+			  export ATA_LOG4J_LEVEL=TRACE1
+			  . `dirname $0`/ata.startup.sh
+
+			  exec java -Dcom.sun.management.jmxremote -server
+			  -XX:+UseParallelGC -Xmx600m ${JAVA_XTRA}
+			  ata.jsda.QueueServer "${ATA_SERVICE+--ata-service-}${ATA_SERVICE}" "$@" 2>&1 1>> ${ATA_TOP_LOG:-.}/`basename $0`.log
+
+			> more QueueServer
+			  #!/usr/bin/env bash
+			  . `dirname $0`/ata.startup.sh
+			  exec java ata.jsda.QueueServer "${ATA_SERVICE+--ata-service-}${ATA_SERVICE}" "$@" 2>&1 >> ${ATA_TOP_LOG:-.}/`ba
+sename $0`.log
+			WANT to continue to use the original queueserver
+			startup - it reduces the thread count of queueserver
+			from 208 to 104 through garbage collection
+		
+		AntennaServer
+			started w/ -Xms100m -Xmx800m
+		RecoveryServer
+			2017-11-28 - could not run AntennaServer and
+			RecoveryServer using the old java install on the new
+			OS. Kept getting memory depletion. 
+		- all others are obsolete or OBE
+	- "antcntl" dependencies. Some scripts (wrappotstatus)
+	refer to antcntl directly. These will need to be modified
+	- OS configuration - encountered memory depletion errors during thread
+	creation. Needed to increase the max users processes (thereby
+		increasing memory
+	Old Antcntl:
+	    antcntl:~ # swapon -s
+	    Filename                                Type            Size    Used    Priority
+	    /dev/sda2                               partition       1943856 85132   -1
+	    /dev/sdb2                               partition       2096472 0       -2
+	    antcntl:~ # ulimit -a  
+	    core file size          (blocks, -c) 0
+	    data seg size           (kbytes, -d) unlimited
+	    file size               (blocks, -f) unlimited
+	    pending signals                 (-i) 16383
+	    max locked memory       (kbytes, -l) 32
+	    max memory size         (kbytes, -m) 1751595
+	    open files                      (-n) 1024
+	    pipe size            (512 bytes, -p) 8
+	    POSIX message queues     (bytes, -q) 819200
+	    stack size              (kbytes, -s) 8192
+	    cpu time               (seconds, -t) unlimited
+	    max user processes              (-u) 6000
+	    virtual memory          (kbytes, -v) 4880800
+	    file locks                      (-x) unlimited
+	    antcntl:~ # free
+	                 total       used       free     shared    buffers     cached
+	    Mem:       2060624    1273192     787432          0     215744     157340
+	    -/+ buffers/cache:     900108    1160516
+	    Swap:      4040328      85132    3955196
+
+	New Antcntl:  (before any mods)
+	    control:~ # swapon -s  (before any mods AND w/ the jsda processes running (but
+		no ant network connection)
+		Filename                                Type            Size    Used    Priority
+		/dev/sda1                               partition       2103292 0       -1
+		control:~ # ulimit -a
+		core file size          (blocks, -c) 0
+		data seg size           (kbytes, -d) unlimited
+		scheduling priority             (-e) 0
+		file size               (blocks, -f) unlimited
+		pending signals                 (-i) 193110
+		max locked memory       (kbytes, -l) 64
+		max memory size         (kbytes, -m) unlimited
+		open files                      (-n) 1024
+		pipe size            (512 bytes, -p) 8
+		POSIX message queues     (bytes, -q) 819200
+		real-time priority              (-r) 0
+		stack size              (kbytes, -s) 8192
+		cpu time               (seconds, -t) unlimited
+		max user processes              (-u) 1850
+		virtual memory          (kbytes, -v) unlimited
+		file locks                      (-x) unlimited
+	    control:~ # free
+	                 total       used       free     shared    buffers     cached
+		Mem:      49449892    1124476   48325416       2088       2076     839452
+		-/+ buffers/cache:     282948   49166944
+		Swap:      2103292          0    2103292
+
+   Switchover
+	- reboot ants
+	- shutdown antcntl jsda processes. Remove antcntl from network (and hosts-jsda). 
+	- switch ant subnet eth cable over to control. Start dhcpd on control
+		(it will fail if cable is not plugged in)
+	- start control jsda processes (/etc/init.d/processserver start)
+

@@ -1,0 +1,54 @@
+##MODIFIED	4/09/2015
+#		3/30/15 SB-010 pulled from 1g (approx. date)
+#		6/4/15 see ataproblem for 1k,2k,4j,5b
+#		8/20/15 feed "original new feed" removed from 2e
+#		8/20/15 new feeds 002,003 into 4j,5b
+#		9/27/15 SB-044 pulled from 1e. SB-005 pulled from 2a
+#		10/23/15 new feeds 004,005,007 into 2e,2a,1c
+#		12/16/15 new feed 006,008,011 into 1e,1g,3l
+#		01/19/16 Feed SB-040 in 2j and SB-032 in 4f removed (bad LNA)
+#		01/27/16 Moved SB-021 from 1h to 5e
+#		01/28/16 new feeds 009,010 into 2b,2h
+#		02/01/17 feed 014(2j) 015(3c) 017(3d).
+# One entry per line. Fields must be separated by space.
+# 
+##														
+#Ant	S.N.	REV	Date		
+1a SB-017 B 9/8/2010 
+1b SB-008 B 11/30/2010
+1c 5C4-007 A 10/22/2015
+1d SB-028 B 9/2/2008
+1e 5C4-006 A 12/21/2015
+1f SB-039 B 4/3/2012
+1g 5C4-008 A 12/21/2015
+1h 
+1k 
+2a 5C4-005 A 10/22/2015
+2b 5C4-010 A 01/25/2016
+2c SB-012 B 10/30/2008
+2d SB-014 B 2/15/2012
+2e 5C4-004 A 10/22/2015               
+2f SB-019 C 1/15/2009
+2g SB-027 B 9/2/2008
+2h 5C4-009 A 01/25/2016
+2j 5C4-014 A 02/07/2017
+2k SB-016 B 9/21/2009
+2l SB-024 B 8/17/2009
+2m    
+3c 5C4-015 A 02/07/2017
+3d 5C4-017 A 02/07/2017
+3e SB-003 B 9/8/2010
+3j SB-007 B 4/9/2009
+3l 5C4-011 A 12/21/2015
+4e SB-020 C 1/10/2012
+4f    
+4g SB-030 B 4/3/2012
+4h SB-011 B 8/22/2012
+4j 5C4-002 A 8/24/2015
+4k SB-023 B 1/15/2009
+4l SB-031 B 2/15/2012
+5b 5C4-003 A 8/24/2015
+5c SB-038 B 4/20/2010
+5e SB-021 B 1/15/2009
+5g SB-046 C 4/20/2010
+5h SB-033 B 8/22/2012

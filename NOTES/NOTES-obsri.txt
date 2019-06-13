@@ -1,0 +1,28 @@
+NOTES: OBSRI account notes
+DATE: 2017-12-06  - mods to ensure obsri can run obs scripts
+
+Obsri is an ldap-based user.
+The obsri user is in the obs group. Most scripts allow obs group members full access.
+
+- ENVIRONMENT:
+   references to environment variable HOME will need to potentially be modified 
+(hardcode to /home/obs or ~obs/)
+
+- SSH:
+  NB: protections on the ssh keys and config files should generally be 400
+  obs scripts need to explicitly refer to the obs user for login (unless there
+  is some compelling reason to use obsri for these subscripts - e.g., if they
+  create files and we want to control ownership).
+
+  Password-less login:
+  1. in obsri account, generate obsri and fxsri key pairs for logins to
+   obs hosts and correlator SBCs respectively.
+  2. add the fxsri.pub to the fx obs authorized_keys
+  (/data/boot2/ata/netboot/home/obs/.ssh
+  3. add obsri.pub to the obs authorized_keys
+  4. modify the obsri user ssh config:
+      fx SBCs use fxsri identity file
+      tumulus use obsri identity file
+
+
+  

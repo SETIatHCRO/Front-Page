@@ -1,0 +1,18 @@
+NOTES:  Low Sensitivity on iBOBs  
+DATE:   9/12/13
+AUTHOR:    ELK
+
+--------------------
+Symptoms:
+  - Health check showed low sensitivity on 35-38Y
+
+Correction:
+  - power cycle offending iBOB(s) (in this case would be i12.fxc (aka i20.bfa))
+  - [may need to restart the ibob server for respective ibob(s) cycled
+  - Restart the FxCatcherServer
+     as atasys@tumulus
+         ataps -c stop -p FXCatcherServer
+        > ataps -c restart -p FXCatcherServer
+  - rewalsh fxc ibobs
+        > fxconf.rb walshme fx64c > walshme; source walshme
+

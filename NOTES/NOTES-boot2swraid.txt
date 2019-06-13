@@ -1,0 +1,152 @@
+NOTES: Boot2 SW RAID
+DATE: 5/21/18
+
+After power outage, noticed during boot2 that the boot2 SW RAID is degraded.
+
+Boot2 is still on the old (last) Sunfire machine. It has two disks configured
+as two SW RAID 1 mirrors, md0 (boot) and md1 (export).
+
+# more /etc/mdadm.conf
+DEVICE partitions
+ARRAY /dev/md0 level=raid1 UUID=883a0604-9ad0-4b00-802b-8d6cad61b651
+ARRAY /dev/md1 level=raid1 UUID=28f06b07-f1e9-43eb-8cc6-d21dac148e16
+
+# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/md0               20G  7.6G   12G  41% /
+udev                 1007M  132K 1007M   1% /dev
+/dev/md1              208G  114G   84G  58% /export/boot2
+
+
+Here is the RAID status on 5/21/18
+
+ # cat /proc/mdstat
+Personalities : [raid1] [raid0] [raid5] [raid4] [linear]
+md1 : active raid1 sda3[0]
+      221110528 blocks [2/1] [U_]
+
+md0 : active raid1 sda1[0]
+      20972736 blocks [2/1] [U_]
+
+unused devices: <none>
+
+
+THE [U_] implies a degraded RAID1 array (should be [UU] - but need to confirm
+which disk is bad.
+
+boot2:/var/log # mdadm --detail /dev/md0
+/dev/md0:
+        Version : 00.90.03
+  Creation Time : Mon May 21 11:06:05 2007
+     Raid Level : raid1
+     Array Size : 20972736 (20.00 GiB 21.48 GB)
+    Device Size : 20972736 (20.00 GiB 21.48 GB)
+   Raid Devices : 2
+  Total Devices : 1
+Preferred Minor : 0
+    Persistence : Superblock is persistent
+
+    Update Time : Mon May 21 11:43:48 2018
+          State : clean, degraded
+ Active Devices : 1
+Working Devices : 1
+ Failed Devices : 0
+  Spare Devices : 0
+
+           UUID : 2fe93adb:6676d82e:175c1c28:eac818b8
+         Events : 0.111502985
+
+    Number   Major   Minor   RaidDevice State
+       0       8        1        0      active sync   /dev/sda1
+       1       0        0        1      removed
+boot2:/var/log # mdadm --detail /dev/md1
+/dev/md1:
+        Version : 00.90.03
+  Creation Time : Mon May 21 11:06:05 2007
+     Raid Level : raid1
+     Array Size : 221110528 (210.87 GiB 226.42 GB)
+    Device Size : 221110528 (210.87 GiB 226.42 GB)
+   Raid Devices : 2
+  Total Devices : 1
+Preferred Minor : 1
+    Persistence : Superblock is persistent
+
+    Update Time : Mon May 21 11:44:40 2018
+          State : clean, degraded
+ Active Devices : 1
+Working Devices : 1
+ Failed Devices : 0
+  Spare Devices : 0
+
+           UUID : 5e9af23b:e74c0804:33f73d86:b55967e8
+         Events : 0.164947870
+
+    Number   Major   Minor   RaidDevice State
+       0       8        3        0      active sync   /dev/sda3
+       1       0        0        1      removed
+
+From dmesg:
+
+md: md0 stopped.
+md: bind<sdb1>
+md: bind<sda1>
+md: kicking non-fresh sdb1 from array!
+md: unbind<sdb1>
+md: export_rdev(sdb1)
+raid1: raid set md0 active with 1 out of 2 mirrors
+Attempting manual resume
+...
+
+md: md1 stopped.
+md: md1 stopped.
+md: bind<sdb3>
+md: bind<sda3>
+md: kicking non-fresh sdb3 from array!
+md: unbind<sdb3>
+md: export_rdev(sdb3)
+raid1: raid set md1 active with 1 out of 2 mirrors
+loop: loaded (max 8 devices)
+
+
+fdisk -l
+
+Disk /dev/sda: 250.0 GB, 250056000000 bytes
+255 heads, 63 sectors/track, 30400 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           1        2611    20972826   fd  Linux raid autodetect
+/dev/sda2            2612        2873     2104515   82  Linux swap / Solaris
+/dev/sda3            2874       30400   221110627+  fd  Linux raid autodetect
+
+Disk /dev/sdb: 250.0 GB, 250056000000 bytes
+255 heads, 63 sectors/track, 30400 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1   *           1        2611    20972826   fd  Linux raid autodetect
+/dev/sdb2            2612        2873     2104515   82  Linux swap / Solaris
+/dev/sdb3            2874       30400   221110627+  fd  Linux raid autodetect
+
+Disk /dev/md0: 21.4 GB, 21476081664 bytes
+2 heads, 4 sectors/track, 5243184 cylinders
+Units = cylinders of 8 * 512 = 4096 bytes
+
+Disk /dev/md0 doesn't contain a valid partition table
+
+Disk /dev/md1: 226.4 GB, 226417180672 bytes
+2 heads, 4 sectors/track, 55277632 cylinders
+Units = cylinders of 8 * 512 = 4096 bytes
+
+Disk /dev/md1 doesn't contain a valid partition table
+
+
+
+ANSWER
+This can happen after an unclean shutdown (like a power fail). Usually removing and re-adding the problem devices will correct the situation:
+
+/sbin/mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1
+/sbin/mdadm /dev/md0 --add /dev/sdb1
+
+/sbin/mdadm /dev/md1 --fail /dev/sdb3 --remove /dev/sdb3
+/sbin/mdadm /dev/md1 --add /dev/sdb3

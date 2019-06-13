@@ -1,0 +1,9 @@
+NOTES: Setup of 'data' server on Dell C6100
+DATE: 2017-11-29
+
+Shared directories:
+
+
+Nginx:
+https://www.howtoforge.com/tutorial/install-nginx-php-and-mysql-lemp-stack-on-opensuse-leap-42.1/
+

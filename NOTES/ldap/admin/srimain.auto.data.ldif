@@ -1,0 +1,8 @@
+
+# srimain data disk
+dn: cn=srimain,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: srimain
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 srimain.hcro.org:/exports/srimain
+

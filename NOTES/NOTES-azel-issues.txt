@@ -1,0 +1,242 @@
+TITLE: AZ/EL issues
+
+
+
+ISSUE: ant3c not holding az position and getting stuck on + limit 
+DATE:   09/16/13
+AUTHOR: ELK
+-------------------------------------------------------------
+9/13/13 Antenna will spontaneously moving in + az and get stuck on limit
+9/16/13 Antenna stuck on + limit. 
+      - az reported value shows as 117
+      - drivebox server times out on setPulseFreq
+
+== DishServer.log ===================================================================
+  2013-09-16 21:59:00,916 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 117.204, 477.204
+  2013-09-16 21:59:04,971 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 477.2065, 117.2065
+  2013-09-16 22:00:22,510 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 117.2065, 477.2065
+  2013-09-16 22:01:07,409 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 477.209, 117.209
+  2013-09-16 22:02:04,475 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 117.204, 477.204
+  2013-09-16 22:02:29,002 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 477.204, 117.204
+  2013-09-16 22:02:41,265 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 117.204, 477.204
+  2013-09-16 22:02:53,429 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 477.204, 117.204
+------------------------------
+
+      - attempts to talk to driveboxserver failed (retried every 15 min?)
+==  DriveBoxServerl.log ================================================================
+2013-09-16 19:43:15,421 | INFO DriveBoxServer Server - Response: ok
+2013-09-16 20:47:32,820 | WARN DriveBoxServer Server - java.net.SocketTimeoutException: Read timed out java.net.SocketInputStream.socketRead0(Native Method) java.net.SocketInputStream.read(SocketInputStream.java:129) ata.motion.MicroControllerServer.readBytes(MicroControllerServer.java:354) ata.motion.MicroControllerServer.commandResponse(MicroControllerServer.java:273) ata.motion.DriveBoxServer.setPulseFreq(DriveBoxServer.java:178) sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source) sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) java.lang.reflect.Method.invoke(Method.java:585) ata.jsda.Server.InvokeMethod(Server.java:425) ata.jsda.Server.Call(Server.java:353) ata.jsda.Server.run(Server.java:320) java.lang.Thread.run(Thread.java:595)
+  2013-09-16 20:47:35,854 | WARN DriveBoxServer Server - First attempt at setPulseFreq failed: ata.motion.MicroControllerException: Read timed out ata.motion.MicroControllerServer.readBytes(MicroControllerServer.java:386) ata.motion.MicroControllerServer.commandResponse(MicroControllerServer.java:273) ata.motion.DriveBoxServer.setPulseFreq(DriveBoxServer.java:178) sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source) sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) java.lang.reflect.Method.invoke(Method.java:585) ata.jsda.Server.InvokeMethod(Server.java:425) ata.jsda.Server.Call(Server.java:353) ata.jsda.Server.run(Server.java:320) java.lang.Thread.run(Thread.java:595)
+  2013-09-16 20:47:35,855 | WARN DriveBoxServer Server - Retrying once...
+  2013-09-16 20:47:35,948 | INFO DriveBoxServer Server - Response: ok
+  2013-09-16 21:51:53,323 | WARN DriveBoxServer Server - java.net.SocketTimeoutException: Read timed out java.net.SocketInputStream.socketRead0(Native Method) java.net.SocketInputStream.read(SocketInputStream.java:129) ata.motion.MicroControllerServer.readBytes(MicroControllerServer.java:354) ata.motion.MicroControllerServer.commandResponse(MicroControllerServer.java:273) ata.motion.DriveBoxServer.setPulseFreq(DriveBoxServer.java:178) sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source) sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) java.lang.reflect.Method.invoke(Method.java:585) ata.jsda.Server.InvokeMethod(Server.java:425) ata.jsda.Server.Call(Server.java:353) ata.jsda.Server.run(Server.java:320) java.lang.Thread.run(Thread.java:595)
+  2013-09-16 21:51:56,369 | WARN DriveBoxServer Server - First attempt at setPulseFreq failed: ata.motion.MicroControllerException: Read timed out ata.motion.MicroControllerServer.readBytes(MicroControllerServer.java:386) ata.motion.MicroControllerServer.commandResponse(MicroControllerServer.java:273) ata.motion.DriveBoxServer.setPulseFreq(DriveBoxServer.java:178) sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source) sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) java.lang.reflect.Method.invoke(Method.java:585) ata.jsda.Server.InvokeMethod(Server.java:425) ata.jsda.Server.Call(Server.java:353) ata.jsda.Server.run(Server.java:320) java.lang.Thread.run(Thread.java:595)
+  2013-09-16 21:51:56,370 | WARN DriveBoxServer Server - Retrying once...
+  2013-09-16 21:51:56,463 | INFO DriveBoxServer Server - Response: ok
+--------------------------------------
+
+  - Attempted to Drive off limit, but trouble writing to copley server
+==CopleyServer.log==================================================================
+2013-09-13 23:07:39,707 | INFO CopleyServer Server - setup completed
+2013-09-16 22:18:58,195 | ERROR CopleyServer Server - Trouble reading from Servo AZ:java.lang.Exception: Connection reset
+Trouble writing to Copley Servo AZ. ata.motion.CopleyServer.writeCommand(CopleyServer.java:401) ata.motion.CopleyServer.commandResponse(CopleyServer.java:341) ata.motion.CopleyServer.getStatus(CopleyServer.java:268) sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) java.lang.reflect.Method.invoke(Method.java:585) ata.jsda.Server.InvokeMethod(Server.java:425) ata.jsda.Server.Call(Server.java:353) ata.jsda.Server.run(Server.java:320) java.lang.Thread.run(Thread.java:595)
+  2013-09-16 22:18:58,196 | INFO CopleyServer Server -  Exception on method: getStatus(I)Ljava/lang/String;
+  2013-09-16 22:18:58,197 | INFO CopleyServer Server - e instanceof InvocationTargetException
+  2013-09-16 22:18:58,197 | INFO CopleyServer Server - Setting up new Exception for return_obj
+  2013-09-16 22:18:58,197 | INFO CopleyServer Server - setup completed
+-------------------------------------
+  - ataservostatus report on limit, 
+  ataant@antcntl:~> ataservostatus 3c
+  ant3c
+  Az Servo:
+      Positive Limit Switch.
+      Attempting to Stop Motor.
+      Motor Brake Active.
+      PWM Outputs Disabled.
+      Following Error.
+      Amplifier Fault.
+      Following Error.
+   El Nominal
+  - resetservos, then offlimit
+  - az then reports at 446
+  - The Enabling motion below indicates the movement 
+
+===DishServer.log=========================================================
+  2013-09-16 22:19:49,995 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+  2013-09-16 22:20:10,630 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+  2013-09-16 22:21:31,197 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 446.1515, 86.1515
+  2013-09-16 22:21:39,408 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 86.1515, 446.1515
+----------------------------------------
+  
+  - No new messages in DriveBosServer at above time.
+
+  - at 22:28 position is now reported as 86, then back to 446 - but no movement
+  - at 22:33 parked antenna. The "enabling antenna motion is that command"
+  - at 22:36 antenna spontaneously moved in + azimuth, reporting -azimuth values 
+    (e.g., from -180..0) for the positions from 180 to 360, and then sticks on 117.
+
+== DishServer.log========================================================
+2013-09-16 22:31:34,981 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 86.1515, 446.1515
+2013-09-16 22:32:35,210 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+2013-09-16 22:35:31,653 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 179.9715, -180.0285
+------------------------------------------
+
+091713
+  - Drove off limit before reboot
+  - reboot, findencoders, at 107 (and shows sometimes 467)
+
+== DishServer.log
+ataant@ant3c:~/logs> tail DishServer.log
+2013-09-17 14:11:30,915 | INFO DishServer Tracker MonCom Server - Got a pointing model.
+2013-09-17 14:11:31,353 | INFO DishServer Tracker MonCom Server - Az deg/step = 0.0025, max vel = 3.0 deg/s.
+2013-09-17 14:11:31,355 | INFO DishServer Tracker MonCom Server - El deg/step = 0.0025, max vel = 1.0 deg/s.
+2013-09-17 14:15:59,055 | WARN MonCom Thread-7 - Unexpected exception while updating AzMotorFaults:java.lang.Exception: Invalid return value from servo. ata.jsda.Server.Call(Server.java:364)
+  2013-09-17 14:16:01,274 | WARN MonCom Thread-7 - Unexpected exception while updating ElIDraw:java.lang.Exception: Invalid return value from servo. ata.jsda.Server.Call(Server.java:364)
+  2013-09-17 14:16:46,884 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+  2013-09-17 14:16:52,657 | WARN null Thread-4 - Impossible az_gap value -2064 from azimuth encoder: java.lang.Exception: (null)  ata.motion.EncoderServer.gapToDegrees(EncoderServer.java:1142)
+  2013-09-17 14:16:57,305 | WARN null Thread-4 - Impossible el_gap value -2878 from elevation encoder:java.lang.Exception: (null)  ata.motion.EncoderServer.gapToDegrees(EncoderServer.java:1142)
+  2013-09-17 14:18:37,389 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 107.139, 467.139
+  2013-09-17 14:18:41,444 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 467.139, 107.139
+ ----------------------------------------------------------
+
+ISSUE: 2l not moving in elevation
+DATE: 2018-02-09
+
+Relay card went bad and was causing power to go to ground on el servo
+
+-------------------------------------------------------------\
+ISSUE: 2k stopping on azimuth on azel commanding
+DATE: 2018-09-05
+
+Situation similar to 2l so suspected bad relay card on 2k. Changed out the 
+relay card, rebooted, but problem persists.
+Symptoms are that on an explicit setazel, the az motor will stop and 
+servostatus is as below. However, a setvelocity will drive the motor 
+(and clear/correct the servostatus).
+
+> ataservostatus 2k
+ant2k
+Az Servo:
+    Motor Phasing Error.
+    Attempting to Stop Motor.
+    Motor Brake Active.
+    PWM Outputs Disabled.
+    Amplifier Fault.
+    Motor Phasing Error.
+El Nominal
+
+The DishServer log had the following for my initial setazel after reboot, but this has not repeated w/ subsequent setazel commands:
+2018-09-05 19:55:21,718 | INFO DishServer Tracker MonCom Server - Got a pointing model.
+2018-09-05 19:55:22,101 | INFO DishServer Tracker MonCom Server - Az deg/step = 0.0025, max vel = 3.0 deg/s.
+2018-09-05 19:55:22,103 | INFO DishServer Tracker MonCom Server - El deg/step = 0.0025, max vel = 1.0 deg/s.
+2018-09-05 19:55:31,272 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+2018-09-05 19:55:34,694 | WARN null Thread-4 - Impossible el_gap value -702 from elevation encoder:java.lang.Exception: (null)  ata.mo
+tion.EncoderServer.gapToDegrees(EncoderServer.java:1142)
+2018-09-05 19:55:37,761 | WARN null Thread-4 - Impossible az_gap value -2288 from azimuth encoder: java.lang.Exception: (null)  ata.mo
+tion.EncoderServer.gapToDegrees(EncoderServer.java:1142)
+2018-09-05 20:02:23,115 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+
+Input from Todd:
+The controlbox microcontroller board (not the linux board) has some kind of serial connection to the encoders and it reads them and then sends a UDP packet to the linux board at 10 Hz, where the Java software takes over.  I assume you’ve power cycled the antenna to make sure it isn’t a transient software problem.  These errors look like the serial connection is just getting garbage.
+
+My guess would be that garbage readings is going to be because:
+
+-	Encoders are bad
+-	Wiring to encoders is bad (including power supply)
+-	Microcontroller board is bad.
+
+Moving the dish by velocity doesn’t use encoders at all, so that always works.   
+
+Antenna model issues is way downstream from the point that bad raw encoder data would produce these messages.  Swapping control boxes would have been the usual first step, to see if it follows the control box.  Also because it’s easier than changing encoders I believe.
+
+ISSUE: 5b gets muddled on az positioning (values turn to negative)
+DATE: 2019-04-11
+
+
+On 4/11/19, 8:18 AM, "Marcus Masters" <mark.masters@sri.com> wrote:
+
+    Todd,
+    
+    I have been trying to get to the bottom of az servo problems on 5b.  It
+    has had its boxes relay card and az encoder changed out. When giving it
+    a commanded location to go, its readout changes from positive to
+    negative part way through resulting in it getting confused, and running
+    all the way to limit.  This also happens during obs causing the az to
+    drop out.  If you stop ant motion during the process, it goes back to
+    normal readings.  One of the interesting things is that when you drive
+    it in a setvelocity situation, it has no problem that showed up.  I was
+    wondering what separates giving it a commanded location, and running it
+    setvelocity.  Or any other suggestions you may have.
+
+-------------------
+Here is excerpt from log for simple test this morning (starting at 180 18) (2019-04-11.
+
+Setazel 0 18 --- executes successfully
+Setazel 180 18 --- at about 80 az, numbers are in thousands, then numbers switch to negative (but approx.. correct degree).
+Setantsoff. --- stops the ant (otherwise would continue to negative limit), then the readings correct themselves.
+ServoStatus --
+
+> ataservostatus 5b
+Connection reset
+Trouble writing to Copley Servo AZ.
+> ataservostatus 5b
+ant5b
+Az Nominal
+El Nominal
+
+Wrappot offsets are correct (i.e., we are at correct positions).
+
+DishServer:
+2019-04-11 16:52:19,736 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+2019-04-11 16:53:39,627 | INFO DishServer Tracker MonCom Server - Enabling antenna motion.
+2019-04-11 16:53:57,143 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 45.4
+07, -314.3105
+2019-04-11 16:53:59,022 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = -309
+.0405, 51.2595
+2019-04-11 16:53:59,813 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = 53.2
+37, -306.508
+2019-04-11 16:55:20,518 | WARN Encoder InterpreterThread Thread-3 - Kalman filter Az discontinuity: azold, az = -77.
+9455, 282.0545
+
+DriveBox:
+2019-04-11 14:42:11,561 | INFO DriveBoxServer Server -  Exception on method: setPulseFreq(III)V
+2019-04-11 14:42:11,562 | INFO DriveBoxServer Server - e instanceof InvocationTargetException
+2019-04-11 14:42:11,562 | INFO DriveBoxServer Server - Setting up new Exception for return_obj
+2019-04-11 14:42:11,562 | INFO DriveBoxServer Server - setup completed
+19-04-11 15:46:28 | 19-04-11 15:46:28: java.net.SocketTimeoutException: Read timed out
+java.net.SocketInputStream.socketRead0(Native Method)
+java.net.SocketInputStream.read(Unknown Source)
+ata.motion.MicroControllerServer.readBytes(MicroControllerServer.java:344)
+ata.motion.MicroControllerServer.commandResponse(MicroControllerServer.java:269)
+ata.motion.DriveBoxServer.setPulseFreq(DriveBoxServer.java:167)
+sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+java.lang.reflect.Method.invoke(Unknown Source)
+ata.jsda.Server.InvokeMethod(Server.java:425)
+ata.jsda.Server.Call(Server.java:353)
+ata.jsda.Server.run(Server.java:320)
+java.lang.Thread.run(Unknown Source)
+
+2019-04-11 15:46:31,455 | INFO DriveBoxServer Server -  Exception on method: setPulseFreq(III)V
+2019-04-11 15:46:31,456 | INFO DriveBoxServer Server - e instanceof InvocationTargetException
+2019-04-11 15:46:31,456 | INFO DriveBoxServer Server - Setting up new Exception for return_obj
+2019-04-11 15:46:31,457 | INFO DriveBoxServer Server - setup completed
+19-04-11 16:50:48 | 19-04-11 16:50:48: java.net.SocketTimeoutException: Read timed out
+java.net.SocketInputStream.socketRead0(Native Method)
+java.net.SocketInputStream.read(Unknown Source)
+ata.motion.MicroControllerServer.readBytes(MicroControllerServer.java:344)
+ata.motion.MicroControllerServer.commandResponse(MicroControllerServer.java:269)
+ata.motion.DriveBoxServer.setPulseFreq(DriveBoxServer.java:167)
+sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+java.lang.reflect.Method.invoke(Unknown Source)
+ata.jsda.Server.InvokeMethod(Server.java:425)
+ata.jsda.Server.Call(Server.java:353)
+ata.jsda.Server.run(Server.java:320)
+java.lang.Thread.run(Unknown Source)
+
+2019-04-11 16:50:51,465 | INFO DriveBoxServer Server -  Exception on method: setPulseFreq(III)V
+2019-04-11 16:50:51,466 | INFO DriveBoxServer Server - e instanceof InvocationTargetException
+2019-04-11 16:50:51,467 | INFO DriveBoxServer Server - Setting up new Exception for return_obj
+2019-04-11 16:50:51,467 | INFO DriveBoxServer Server - setup completed
+

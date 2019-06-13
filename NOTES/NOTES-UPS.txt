@@ -1,0 +1,32 @@
+NOTES:  UPS shed monitoring
+DATE:   12/1/13
+AUTHOR: ELK
+
+GENERAL:
+----------------------------------------
+A Site UPS was installed ??. This UPS provides protection from transitory
+glitches from power lines as well as protection from overdraw by equipment.
+The backup generator will provide continuous power for ?? hours. This UPS/generator combo covers the following equipment:
+
+    -SPR (Circuits ??-??)
+    -lab 1 Circuit ??
+    -all node houses/antennas
+
+The UPS is a Mitsubuishi 9900A Series
+www.meppi.com
+Technical Support: 1-800-887-7830 (5am-9am, 10am-1:30pm)
+
+REMOTE MONITORING
+-----------------------------------------
+The DiamondLink NetCom product is used to monitor the UPS status
+
+https://site-ups.hcro.org
+user: admin
+pwd: b2k2l2y   (sic)
+
+The temperature of the UPS shed is also available for monitoring:
+
+akcp-ups-shed.hcro.org
+user: Administrator
+pwd: <none>
+

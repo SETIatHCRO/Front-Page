@@ -1,0 +1,81 @@
+NOTES: Basalt machine changeover
+DATE: 27 Apr 2016
+
+The former basalt machine (SuperMicro) was replaced w/ a Dell PowerEdge
+2950. The SuperMicro machine had been exhibiting unreliability starting
+with failed motherboard in July 2015 (replaced), and RAID degradation 
+(twice - resolved by reseating disks and rebuilding RAID). 
+
+The basalt machine provides the following services and shared mounts:
+  LDAP Server (Master w/ replication on boot2)
+     - for user authentication
+     - for shared mount
+  DNS (ns3)
+  Backups (see notes on backups)
+  Shared Mounts (on /exports/basalt)
+       /home  - user home dirs
+       /hcro/opt - optional package installs
+       /hcro/miriad - miriad
+
+PREPARATION:
+- configuration of Dell PowerEdge w/ 13.1 (see notes on substitutemachines)
+- nightly rsync archive of the /exports/basalt directories onto 
+  substitute machine
+- export of primary LDAP (bdb) database:
+    > slapcat -b "dc=obs,dc=hcro,dc=org" -l /tmp/contents.ldif
+
+OFFLINE SETUP:
+Network
+	- configure machine name, dns, and IP info (via yast)
+
+LDAP
+	- copy SSL certificates from old basalt (/etc/ssl/servercerts &
+	/etc/ssl/certs/YaST-CA.pem)
+	Note that these certificates are expired (self authorized) and
+	while the LDAP is configured for TLS/SSL, all access is internal
+	so not using the SSL features (??). For ease, opted to use same
+	key pair. Copied into same location.
+	- via yast, configured remaining ldap parms (database type bdb).
+	Info is stored in configuration backend (see slapd-config(5))
+	This started up the slapd, but it had an empty database. Shutdown
+	the slapd. 
+	- import ldap database contents
+	  >slapadd -l /tmp/contents.ldif
+
+Mounts	
+	- needed to unmount the substitute machine partition that 
+	contained the /exports/basalt dirs so that it could be renamed
+	/exports/basalt
+	- edit the substitute machine /etc/fstab and /etc/exports to
+	properly refer to the mounts
+	  /etc/exports
+		/exports/basalt 10.3.0.0/16(rw,no_root_squash,async,wdelay)
+		/exports/basalt/home 10.3.0.0/16(rw,root_squash,wdelay,no_subtree_check,async)
+		/exports/basalt/hcro 10.3.0.0/16(rw,no_root_squash,async,wdelay,no_subtree_check,async)
+	- edit /etc/auto.master to include the line
+	    +auto.master
+	  NBBBB - this seems to be required in 13.1 but was commented out in
+	  all 10.* hosts except atadb...
+
+Services
+	- Ensure all the needed services are enabled (done via Yast)
+	  - autofs   - nfs, (nfsserver??, nfsboot??)
+	  - cron     - ntp
+	  - ldap     
+	  - named
+
+NAGIOS
+	- create user and group nagios
+	- get the /etc/init.d/nrpe  script
+ Add nrpe to the list of system services and have it automatically start when the system boots.
+
+chkconfig --add nrpe
+chkconfig nrpe on
+
+BACKUPS
+	- add backup jobs to the crontab (root)
+0 23 * * * /exports/basalt/backups/support/dobackups
+0 3 * * * /exports/basalt/backups/support/dobackups_2l.sh
+
+EXTRA DIRS
+~root/admin  - copy this dir of scripts

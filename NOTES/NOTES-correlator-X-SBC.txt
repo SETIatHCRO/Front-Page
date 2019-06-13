@@ -1,0 +1,115 @@
+NOTES: Correlator X SBCs
+Date: 3/19/15
+
+Changing SBC requires the following:
+  - Verify Jumper Switch settings
+  - Setup IP Configuration
+  - Master Boot Agent Configuration - PXE boot
+  - Setup - see below
+
+Jumper Settings (Xboard):
+  1= closed or on; 0= open or off
+  positions: 1234
+
+  SW5 - BIOS Recovery             1000
+  SW4 - Config Mode Preset        1100
+  SW3 - CMOS Clear/Battery Backup 1000
+  SW6 - Console redirection       0000
+
+IP Configuration:
+  1) Note MAC address
+  2) root@boot2, modify /etc/dhcpd.pxe.conf
+      - note some SBCs have opts and some are without.
+      must list them in correct place in this file
+      ???how to tell
+  3) /etc/init.d/dhcpd restart
+
+Master Boot Agent Configuration:
+  -accessed via ^-alt-B
+  Boot Method:        PXE
+  Config Message:     Enabled
+  Message Timeout:    3 sec
+  Boot Failure Prompt: wait for key
+  Boot Failure:       reboot
+
+Xboard SBC
+  Use ZT5550, 500MHz boards only (need higher speed for processing)
+  BIOS/PXE/BootAgent Versions: 
+    00-80-50-03-99-30  v5.16 v2.41  v4.21  (acquired Jan 2015)
+    00-80-50-02-84-87  v5.14 v2.41  v4.21
+
+  Setup
+    Main:
+      Primary M.    None
+      Primary S.    None
+      Secondary M.  None
+      Secondary S.  None
+
+      Flash Drive:  P: 
+                    3712K 
+                    No
+      Console:
+      Enet:         A   Front
+                    B   Front
+
+    High Availability:
+      Com Port A        Enable
+      Rear Panel SMBUS  Enable
+      HA Mode           Normal
+      Host State        Backup
+      Bus Segment       Segment 1
+      Reboot on Mode Tr.  Disabled
+      Warm Takeover     Disabled
+
+    Advanced
+        Installed...    other
+        Reset Conf..    No
+        Secured         N
+
+        Advanced Chipset
+          ECC Config      ECC scrub
+          SERR Signal...  Multiple bit
+        Cache Memory
+                          Enabled
+                          Write Protect
+                          Write Protect
+                          Write Back
+                          Write Back
+                          Write Back
+        PS/2 Mouse        Enabled
+        Legacy USB        Enabled
+
+        PCI Config
+          PCI/PND ISA UMB Region Exclu. (all Available)
+          PCI/PND ISA IRQ Resource Exclu. (all Available)
+
+        I/O Device Config
+          Serial A        Enable 3F8 IRQ 4
+          Serial B        Enable 2F8 IRQ 3
+          Parallel        Auto/Bidirect.
+          Floppy          Enable/Primary
+  
+        Lang Disk ???     DOS
+        Local Bus IDE     Both
+
+    Power:
+        Savings           Disabled
+                          Off
+                          Off
+                          Disable (all remaining same(
+
+    Boot:
+      Boot Order:
+                      Hard Drive
+                      Removable
+                      ATAPI CD-ROM
+                      Flash OS
+                      MBA UNDI slot 5
+                      MBA UNDI slot 6
+
+      Display F1/F2   Enable
+      Quick Boot      Enabled
+      Summary Screen  Disabled
+
+
+NOTE - batteries in cabinet. A failing board could be due to battery problem.

@@ -1,0 +1,234 @@
+NOTES: Nagios 
+DATE: 1/7/2014
+AUTHOR: ELK
+MODIFIED
+10/7/15 Install of 4.1.1
+4/15/16 Config of 4.1.1
+--------------------------------------------
+Nagios servxer:  on user2  accessed as http://nagios.hcro.org/nagios
+  service nagios {start|restart|stop|reload, etc.}
+
+
+Installation directory: /hcro/opt/nagios (on basalt)
+	     NB: this dir translate to different locations depending
+	     on machine architecture:
+	     	/exports/basalt/hcro/Linux/x86_64/opt (all Dells, Suns)
+		/exports/basalt/hcro/Linux/i386/opt  (basalt,cinder,caldera)
+	     Primary install will be on the x86_64. Minimum of files kept
+	     under the i386 in order to run NRPEs on those machines 
+
+	     etc/objects	configuration files (servers, services)
+	     libexec		scripts (bash, interpreted perl, etc.)
+
+NRPE daemons:
+     NRPEs run as standalone daemons on hosts (some may not be automatically 
+     restarted):
+	/hcro/opt/nagios/bin/nrpe -c /hcro/opt/nagios/etc/nrpe.cfg -d
+
+Add users:
+  > htpasswd2 /hcro/opt/nagios/etc/htpasswd.users
+
+Administrator:
+nagiosadmin/  berkeley
+
+1/7/2014  ELK Change the var/rw directory access so that can access nagios.cmd 
+(for external commands)
+# EXTERNAL COMMAND FILE
+# This is the file that Nagios checks for external command requests.
+# It is also where the command CGI will write commands that are submitted
+# by users, so it must be writeable by the user that the web server
+# is running as (usually 'nobody').  Permissions should be set at the
+# directory level instead of on the file, as the file is deleted every
+# time its contents are processed.
+
+
+10/7/15
+See www.debianhelp.co.uk/nagiosinstall.htm for good notes on install
+
+Install of 4.1.1
+	/hcro/opt/nagios-4.1.1    (share on basalt)
+	useradd nagios		  (already existed)
+	groupadd nagcmd		  (did not exists -- only group nagios
+	existed)
+	usermod -G nagcmd nagios
+TODO - make user/group creation part opensuse server install
+	**modify the nagios link to point to new release
+
+./configure --prefix=/hcro/opt/nagios-4.1.1 --with-nagios-group=nagios --with-command-group=nagcmd
+
+
+** Configuration summary for nagios 4.1.1 08-19-2015 ***:
+
+ General Options:
+ -------------------------
+        Nagios executable:  nagios
+        Nagios user/group:  nagios,nagios
+       Command user/group:  nagios,nagcmd
+             Event Broker:  yes
+        Install ${prefix}:  /hcro/opt/nagios
+    Install ${includedir}:  /hcro/opt/nagios/include/nagios
+                Lock file:  ${prefix}/var/nagios.lock
+   Check result directory:  ${prefix}/var/spool/checkresults
+           Init directory:  /etc/rc.d
+  Apache conf.d directory:  /etc/apache2/conf.d
+             Mail program:  /usr/bin/mail
+                  Host OS:  linux-gnu
+          IOBroker Method:  epoll
+
+ Web Interface Options:
+ ------------------------
+                 HTML URL:  http://localhost/nagios/
+                  CGI URL:  http://localhost/nagios/cgi-bin/
+ Traceroute (used by WAP):  /usr/sbin/traceroute
+
+    
+
+Make
+	make all
+	make install
+	
+Install
+	make install-init
+	     - this installs the init script in /etc/rc.d
+	     -** Do this on all hosts (???)
+	make install-commandmode
+	     - this installs and configures permissions on the directory
+	       holding the external command file
+	     i.e., chmod g+s /hcro/opt/nagios/var/rw
+
+	make install-config
+	     - this installs example config files
+	     ** MODIFY these files to meet needs.
+	     	-nagios.cfg  -- change path to install
+
+	make install-webconf
+	     - this installs the apache config files for the nagios web if
+	     ** do this ONLY on the web host server (user2)x
+
+	cp -R contrib/eventhandlers/ ./libexec/
+	chown -R nagios:nagios /hcro/opt/nagios/libexec/eventhandlers
+
+Plug-Ins Install
+----------------------------
+	.configure --prefix=/hcro/opt/nagios ....
+	make
+	make install
+
+Plug-in nrpe
+	nrpe-2.15
+	NOTE- there were compilation errors in nrpe.c related to SSL. Had to
+	add a ifdef HAVE_SSL around much code to be able to use the
+	disable-ssl. Also want to compile to allow user specified command
+	arguments. Need to revisit whether we want to also allow bash command 
+	substitution.LAstly, needed to compile on user2 as the bin is shared
+	across multiple servers whose os level vary and can only rely on
+	backward compatibility
+	
+	
+	
+	
+	.configure --prefix=/hcro/opt/nagios --disable-ssl --enable-command-args ....
+	make all
+	make install
+
+WEB Install
+    NB - the /etc/apache2/conf.d/nagios.conf users the IfVersion syntax which
+    requires the the apache mod_version module be enabled
+    	     a2enmod version
+    NB - since the nagios root (/hcro/opt/nagios) is a symbolic link, need to
+    enable apache2 to follow symbolic links in the /hcro/opt directory (modify
+    the /etc/apache2/conf.d/nagios.conf
+
+    
+    htpasswd2 -c /hcro/opt/nagios/etc/htpasswd.users nagiosadmin
+    service apache2 restart
+
+
+GRAPHING - NAGIOSGRAPH, PNP4NAGIOS
+
+https://sourceforge.net/projects/nagiosgraph/files/nagiosgraph/1.5.2/
+
+NB - prior nagios install used nagiosgraph for graphs. Proved problematic.
+   Switched to pnp4nagios
+
+PNP4Nagios setup
+  - Use Bulk Mode with NPCD (Nagios-Perfdata-C-Daemon) - provides an 
+  asynchronous mode to hangle nagios performance data
+
+  **** NB - this requires that the NPCD daemon be running along w/ nagios!!!!
+
+  perfdata (written to /hcro/opt/nagios/var/host-perfdata and service-perfdata
+  is moved to the spool directories under pnp4nagios
+  (/hcro/opt/pnp4nagios/var/spool/host-perfdata.* and service-perfdata.* where 
+  * is a timestamp).
+
+
+
+HOST SETUP
+---------------------
+User account - create system account w/ no login directoy and create group at
+same time (-U). Add user to group
+     useradd -U -r -s /bin/false nagios
+     /usr/sbin/usermod -G nagios nagios
+
+Create a new nagcmd group for allowing external commands to be submitted
+through the web interface (for nagios host only - user2). 
+Add both the nagios user and the apache user to the group.
+
+/usr/sbin/groupadd nagcmd
+/usr/sbin/usermod -a -G nagcmd nagios
+/usr/sbin/usermod -a -G nagcmd wwwrun
+
+Use standalone daemon (the way most hosts are currently configured). 
+
+SuSE Boot
+     /etc/init.d/
+SysV service management
+      Add nrpe to the list of system services.have it automatically start when the system boots.
+
+      chkconfig --add nrpe
+      chkconfig nrpe on
+
+
+tumulus:~ # systemctl status nrpe
+nrpe.service - SYSV: A simple script to autostart NRPE and allow us to easily re                                   boot
+   Loaded: loaded (/etc/init.d/nrpe)
+   Active: active (running) since Thu 2016-04-21 09:30:21 PDT; 19min ago
+ Main PID: 3074 (nrpe)
+   CGroup: /system.slice/nrpe.service
+           └─3074 /hcro/opt/nagios/bin/nrpe -c /hcro/opt/nagios/etc/nrpe.cfg ...
+
+Apr 21 09:43:36 tumulus nrpe[4362]: Handling the connection...
+Apr 21 09:43:36 tumulus nrpe[4362]: Host is asking for command 'check_disk_.....
+Apr 21 09:43:36 tumulus nrpe[4362]: Running command: /hcro/opt/nagios/libex... /
+Apr 21 09:43:36 tumulus nrpe[4362]: Command completed with return code 0 an...00
+Apr 21 09:48:36 tumulus nrpe[4524]: Connection from 10.3.0.57 port 37547
+Apr 21 09:48:36 tumulus nrpe[4524]: Host address is in allowed_hosts
+Apr 21 09:48:36 tumulus nrpe[4524]: Handling the connection...
+Apr 21 09:48:36 tumulus nrpe[4524]: Host is asking for command 'check_disk_.....
+Apr 21 09:48:36 tumulus nrpe[4524]: Running command: /hcro/opt/nagios/libex... /
+Apr 21 09:48:37 tumulus nrpe[4524]: Command completed with return code 0 an...00
+
+
+Nagios Passive Checks:
+ Nagios supports a way to monitor hosts and services passively instead of 
+actively. Passive checks are initiated and performed by external 
+applications/processes. Passive check results are submitted to Nagios for 
+processing
+
+1. An external application checks the status of a host or service.
+
+2. The external application writes the results of the check to the external 
+command file (/hcro/opt/nagios/var/rw/nagios.cmd)
+
+3. The next time Nagios reads the external command file it will place the 
+results of all passive checks into a queue for later processing. 
+
+4. Nagios will periodically execute a check result reaper event and scan the 
+check result queue. Each service check result that is found in the queue is 
+processed in the same manner - regardless of whether the check was active or 
+passive. Nagios may send out notifications, log alerts, etc. depending on the 
+check result information.
+
+Add atasys (on user2) to the nagcmd to allaow it to submit external commands
+/ust/sbin/usermod -G nagcmd atasys

@@ -1,0 +1,30 @@
+NOTES: NOTES-powerfail 2018-05-16
+
+HCRO had 3 separate utility power losses on 5/15/2018 
+(lightening storms --- not sure how close) at ~12:15, 15:00, and 16:15 
+The backup UPS/generator system would appear to have correctly covered during 
+the first 2 losses, but failed on the third event. The Automatic Transfer 
+Switch (ATS) had a short, failing to start the generator and hence no power 
+into the UPS, which after 19 minutes (~16:39) ran out of backup battery supply.
+
+At 10:00 2018-05-16 We put the system into manual coverage. Note that this 
+means that should we have another utility power loss, we will need to manually 
+switch on the generator and activate the equivalent switch in the ATS. 
+
+TIMING Rack:
+       Digital Logger power conditioner (timingps - 10.3.0.215) - one half appears not to work
+       Rubidium Clock - took a long time to sync the 1PPS, but eventually it
+       did
+
+CONTROL Racks:
+	Boot2 SW Raid is degraded. See notes specific to that
+	Basalt, SVN - power supplies either failed or their power bays are 
+	  suspect. Left power supply is primary. Right is redundant.
+	Bfb (old) netgear switch died.
+ANTS:
+	ant1k  will not cool past 125. Have shutoff per minex recommendation
+	ant2a  after power outage not cooling 48 volt doesnt seem to turn anything
+	on. Has been shut off
+	ant2h  will not cool past 90. Have shutoff per minex recommendation
+	ant3l  noisy before but cooling, now after power outage not cooling 48 volt doesnt seem ...
+	ant4j will not cool past 125. Have shutoff per minex recommendation

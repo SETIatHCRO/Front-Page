@@ -1,0 +1,133 @@
+NOTES: FXA/FXC failure modes and fixing solutions
+DATE:  Nov. 8, 2013
+AUTHOR:  ELK, TK,KK, LW
+
+--------------------------------------------------------------
+Scenarios:
+
+A. F-board SBC bootup failure
+  Evident from red indicators on front of SBC card. Connect the console terminal 
+  to the VGA output and it will indicate where hanging. Can also confirm by pinging,
+  e.g., ping f1.fxa  or fxhealth (pings all correlator sbcs)
+
+  1) A reset of the board should clear the problem (small pushbutton on front of card). 
+    Failing that,
+  2) a power cycle of the f-board chassis (and do x-board at same time for surity)
+  3) may also need to reseat the SBC. 
+  
+
+B. C-board load hanging during fcxinit call within set-defaults
+  This is caused by an incomplete connection between the C-board and I-board and/or cPCI.
+
+  1) Determine the offending C-board (see schematic below) and gently nudge/push against
+  it's connection at the back of the I-board. If successful, you will see the glow of the
+  C-board red indicator light as it comes on. The fcxinit will also move forward with its
+  initialization of other cards.
+  2) If nudging (try harder and again) doesn't succeed, then may have to reseat the C-board.  See instructions for this below.
+  
+C. F-board initialization failed
+  set-defaults doesn't hang, but some of the symptoms here are:
+    - set-defaults fcxinit step that synchronized the X-boards will give message 
+    that says "Set..." rather than "Synchronized..."
+    - an fcheck of the f-board temperatures after they are loaded will have non-nominal
+    temperations e.g. <60 or >95. Note that the latter could be legitimate and just
+    a hot fpga (a different use case), but the former (a cold fpga) is an indicator 
+    that the fpga did not initialize
+
+    Easiest way to confirm whether an FPGA initialized is:
+      f1.fxa> fbuptime.rb
+      0: up 0d 00:31:13.63
+      1: up 127d 00:31:22.63
+      2: up 0d 00:00:00.00
+      3: up 0d 00:31:38.63
+
+    A time of all zeroes indicates failure as does a large time value (we just
+    rebooted for heavens sake).
+
+    Possible actions
+    1) Nudge the I-board connection for the related C-board
+    2) May have to reseat the entire I-board
+    3) May have to reseat the C-board
+
+D. X-board SBC bootup failure
+  Indicator lights on X-board SBC are red or unit does not ping (fxhealth will ping
+  all of the correlator boards). Connect console terminal to VGA output to see
+  where hanging
+
+    1)Reset the SBC (small reset pushbutton on front)
+    2)May possibly need to power-cycle (cycle f-boards for surity)
+    3)May need to reseat SBC card
+
+E. Block Artifacts in Scan
+
+F. Channels Missing
+
+G.
+
+H. Reseating the I(nterconnect)-board (F-Chassis)
+  The I-board has a template insert that should first be pushed up and the board and 
+  template pushed directly onto the c-boards. A bowed i-board indicates failure to reseat.
+  Harder to see would be failure to reseat from top to bottom. Board should push solidly
+  on and have no give anywhere.
+
+I. Xboard missing.
+   - This will first be seen in the set-defaults in xboard loads where there
+   is no "Loading X board 3" after the "Initializing fx64{a|c}:J{1|7}",
+   instead it just moved on to Intializing fx64..:J{3|9}
+   - What that indicates is that an xboard is not being seen. Could be any of
+   the 4 xboards. The PCI just maps whatever it sees in the chassis in order.
+   - the slots are in bus2, left to right addressing, 0a-0f (e.g., the board next to
+   the SBC is 0f)
+   - a pcitweak -l or scanpci will list the bus 02 cards and give the device
+   number. If  physical card is not showing up in this list of bus 2 cards,
+   then that is the problem card.
+
+J. Channel block Extreme Amp. variation - across set of channels for xboard
+   -a single value can throw off the range of amplitude plotting. Need to
+   narrow down to the offending channel(s). With that, could be the ribbon
+   cables or the matching C boards or interconnect board...
+   - fxspec.rb -n fx64c 40 40 640 128   --- look at 3.x1.fxc output for 4jx
+
+   Xboard-Channel mapping  X2:0-511   X1:512-1023
+     Channel	    Xboard
+     0-127	    3.x2
+     128-255	    2.x2
+     256-383	    0.x2
+     384-511	    1.x2
+     512-639	    2.x1
+     640-767	    3.x1
+     768-859	    1.x1
+     860-1023	    0.x1
+     
+GENERAL TOOLS
+---------------------------------------
+1. Memory test tools
+  xmemtest
+2. Spectrum graph
+  fxspec.rb
+Usage:
+
+  fxspec.rb [OPTIONS] INST IN0 IN1 [CHANNEL_START [CHANNEL_COUNT [DUMPS]]]
+
+Options:
+
+  -b                  Output binary data
+  -d PGPLOT_DEV       Plot spectrum to PGPLOT_DEV rather than printing them
+  -f                  Mask channel 512
+  -m                  Flip (mirror) the spectrum
+  -n                  Normalize values by dividing by total number of samples
+  -r                  Compute RMS as square root of normalized values
+  -w                  Wait for banks to swap before dumping
+  -p                  Report peak power and channel
+
+Defaults:
+
+  CHANNEL_START = 0 for fx8 and fx16; 0 or 512 (host-specific) for fx32 and fx64
+  CHANNEL_COUNT = 1024 for fx8 and fx16; 512 for fx32 and fx64
+  DUMPS = 1
+
+3. PCI tools
+   scanpci
+   pcitweak -l
+    
+  

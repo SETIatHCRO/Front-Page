@@ -1,0 +1,66 @@
+NOTES: Mingus configuration
+DATE: 2019-05-29
+
+
+[No good notes existed from the creation of the mingus backup, aka "mingus'
+sister" done in ~8/2014. Will try to reprise here]
+
+Mingus   - Dell PowerEdge 1850
+Linux Gentoo 4.1.1-r3
+Kernel 2.6.23-hardened-r12
+portage 2.1.4.4
+
+70.100.31.22  00:1B:21:17:B5:6E
+
+/etc/gentoo-release
+	Gentoo Base System release 1.12.11.1
+
+hardened
+stage3-amd64-hardened 
+20120621
+
+Partitions
+	root
+	swap (rather than swap files)
+	boot (for kernel image)  [Intel compatible HW]
+
+parted
+cddick
+
+/etc/conf.d/net   [THIS includes edits for Guest subnet May 2019]
+	slaves_bond0=" eth0 eth1 eth3 "
+	config_bond0=("null")
+	mtu_bond0=1500
+	depend_bond0=(" need net.eth0 net.eth1 net.eth3 ")
+	config_eth0=("null")
+	config_eth1=("null")
+	#config_eth2=("65.119.34.20/24" ) # ("74.43.140.65/26")
+	#config_eth2=("74.43.140.26/26")
+	config_eth2=("70.100.31.22/30")
+	routes_eth2=("default via 70.100.31.21")
+	config_eth3=("null")
+
+	vlans_bond0="1 10 20 30 40 50 60"
+	vconfig_bond0=("set_name_type VLAN_PLUS_VID_NO_PAD")
+	config_vlan1=("null")
+	config_vlan10=("10.10.10.1/24")
+	config_vlan20=("10.3.0.1/16")
+	config_vlan30=("10.1.49.1/24")
+	config_vlan40=("10.40.0.1/16")
+	config_vlan50=("74.43.140.1/26")
+	config_vlan60=("10.60.0.1/16")
+
+ifconfig eth2 <IP_ADDR> broadcast 128.18.40.255 netmask 255.255.255.0 up
+route add default 128.18.40.1 
+
+
+/etc/resolv.conf
+	search hcro.org seti.org
+	#nameserver 128.18.30.65
+	nameserver 66.133.189.215
+	nameserver 216.67.192.3
+	nameserver 209.119.71.25
+	nameserver 209.119.71.54
+
+Shorewall: (modified since 2012)
+	params zones policy masq interfaces rules

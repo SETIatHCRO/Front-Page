@@ -1,0 +1,288 @@
+NOTES: Installations for Thistle
+       		     - apache2
+		     - svn
+		     - drupal
+		     - pyd.io
+		     - wordpress
+DATE: Oct 26, 2014
+MOD:  10/26/14 - Started
+      08/25/16 - install of wordpress (arsls.hcro.org/documentation)
+
+Pyd.io (formerly Ajax Explorer)
+
+
+Apache2:
+  Version:       # apache2ctl -v
+                 Server version: Apache/2.4.6 (Linux/SUSE)
+                 Server built:   2014-10-13 13:15:28.000000000 +0000
+  Documentation: http://httpd.apache.org/docs/2.4/
+                 http://en.opensuse.org/Apache2 (very sparse)
+                 http://en.opensuse.org/Apache_Quickstart_HOWTO (docs only thru 11.4)
+                 /usr/share/doc/packages/apache2/README.SUSE
+  Config Files:  
+    openSUSE and SLES (Apache httpd 2.2):
+
+    ServerRoot              ::      /srv/www
+    DocumentRoot            ::      /srv/www/htdocs
+    Apache Config File      ::      /etc/apache2/httpd.conf
+    Listen port bind        ::      /etc/apache2/listen.conf
+    Other Config Files      ::      /etc/sysconfig/apache2
+    SSL Config File         ::      /etc/apache2/ssl-global.conf
+    ErrorLog                ::      /var/log/apache2/error_log
+    AccessLog               ::      /var/log/apache2/access_log
+    cgi-bin                 ::      /srv/www/cgi-bin
+    binaries (apachectl)    ::      /usr/sbin
+    start/stop              ::      /etc/init.d/apache2 (start|restart|restart-graceful|reload|graceful|graceful-stop|stop|configtest)
+
+     Notes:     Modules are enabled in /etc/sysconfig/apache2 which 
+     is read by the startup script. 
+     The a2enmod/a2dismod tool can be used to activate/deactivate modules.
+
+
+  Runs as User wwwrun Group www
+  Name-based Virtual Hosting
+    - add NameVirtualHost directive in listen.conf
+      NameVirtualHost *:80
+
+    - add the server name to DNS, e.g., arsls.hcro.org, pointing to server IP
+
+  Name-based Virtual Hosts
+    - add a /etc/apache2/vhosts.d/<vhostname>.conf
+        <VirtualHost 74.43.140.32:80>
+            ServerAdmin www@hcro.org
+            ServerName arsls.hcro.org
+            DocumentRoot /srv/www/vhosts/arsls  (non drupal version)
+
+            CustomLog /var/log/apache2/arsls-access_log combined
+            ErrorLog /var/log/apache2/arsls-error_log
+          ...
+          </VirtualHost>
+
+     - use symbolic link to put server files on different partition???
+          e.g., /srv/www/vhosts/arsls is a symbolic link to different partition
+          So had to add a directive in main server to allow symbolic links
+          for the /srv/www/vhosts directory, e.g.,
+            -created file /srv/www/vhosts/vhosts-sym.conf
+                  <Directory "/srv/www/vhosts">
+                    Options +FollowSymLinks
+                  </Directory>
+     -added include line into /etc/sysconfig/apache2
+                APACHE_CONF_INCLUDE_FILES="/srv/www/vhosts/vhosts-sym.conf"
+              # This allows you to add e.g. VirtualHost statements without 
+              # touching /etc/apache2/httpd.conf itself, which makes upgrading 
+              # easier. When the server starts, it will create an entry in
+              # the /etc/apache2/sysconfig.d/include.conf w/ that include
+         
+     - modify controls on who can get from the server. This is done in the 
+     directory section of the vhost conf file (e.g., arsls.conf)
+        Require all granted     
+  
+Subversion:
+    - Install
+    - HTTP configuration (access via apache web server)
+      - Config files
+      	/etc/apache2/conf.d/subversion.conf  --- add the repository info
+	/etc/apache2/vhosts.d/svn.conf    -- to redirect the repositories as
+	virtual host roots
+MySQL:
+    - run mysql setup after install to set up root account, etc.
+      # /usr/bin/mysql_secure_installation  
+    - create the pydio user and database in mysql
+      drop user pydio@localhost;                  - may not be needed, but
+      flush privileges;                           - cleared up some issues
+      create user pydio@localhost identified by 'pydios_password'
+      grant all on pydio.* to pydio@localhost with grant option
+
+      
+
+Pydio:
+version 6.0.2
+  Default installed php:
+    # php --version
+    PHP 5.4.20 (cli)
+    Copyright (c) 1997-2013 The PHP Group
+    Zend Engine v2.4.0, Copyright (c) 1998-2013 Zend Technologies
+
+  Initial Run: 
+   - missing php extension modules
+      PHP Fatal error:  Class 'DOMDocument' not found
+      -install php5-dom
+      PHP Fatal error:  Call to undefined function json_encode()
+      -install php5-json
+
+  Pydio Diagnostic Tool:
+    -Security Breach - "data/ folder is not correctly protected...subfolders
+      are web-accessible"
+        - added Directory directive to remove indexes and followsymlinks options
+        but that didn't solve the error
+        - commented out data directory directive to followSymLinks. This
+        seemed to solve the data directive error.
+    -Exif Extension enabled (warning) "installing php-exif extension is
+    recommended if you plan to handle images" ignored
+    -PHP Output Buffer disabled - "should disable php output_buffering for
+      better performance"
+        Apache has directives (in apache config) that allow changing of PHP 
+        directives, but ignored
+    -SSL Encryption - "You are not using SSL encryption or it was not detected."
+        not using SSL" ignore for now -- later setup up for SSL.
+
+  Pydio Install:
+    - Configure for mysql usage. Examine the logs if failure to connect to database
+    - configure admin account
+
+
+Pydio 6.0.7  (5/15/15)
+    - get tar version from sourceForge. Put into /opt/pydio-core-6.0.7 (w/
+    link /opt/pydio)
+    - chown -R wwwrun /srv/www/pydio/pydio-core-6.0.7/data/
+    - modify /etc/apache2/arsls.conf  (server for arsls project)
+      - add alias for /pydio to point to /opt/pydio
+      - add Directory entry for /opt/pydio
+      	- need to specify AllowOverride All to get past "Security Breach on
+	data/ folder"
+      - add Directory entry for /opt w/ FollowSymLinks
+
+      - got warning from setup wizard regarding "cannot write htaccess
+        file". Fix was to copy text they provided into the
+        /opt/pydio-core-6.0.7/.htaccess
+      - could not log in w/ admin account, but had also created elin account.
+      - Also had old accounts from prior 6.0.4 install - logged in
+      	> mysql -u root -p
+	use pydio
+	
+
+Drupal 7.36:  (drupal.org)
+  NOTES - setting up as a multi-site using subdomains, e.g., arsls.hcro.org or thistle.hcro.org
+  OpenSuse web root is /srv/www
+
+
+  Prerequisites:
+  	Web server apache 2.x --     
+	    apache2ctl -V
+	    	       Apache/2.4.6 (Linux/SUSE)
+	  Database Mysql 5.0.15 with PDO or higher SQLite 3.3.7 or higher
+  		 mysql -V
+		       mysql Ver 13.13 Distrib 5.6.12, for Linux (x86_64)
+
+    # mysql -u root -p     #115TeV[;
+      mysql> create database arsls;
+      Query OK, 1 row affected (0.00 sec)
+
+      mysql> grant all on arsls.* to drupal@localhost identified by '115TeV[;';
+      Query OK, 0 rows affected (0.00 sec)
+      mysql> flush privileges;
+      Query OK, 0 rows affected (0.00 sec)
+
+      mysql> exit
+      Bye
+
+	  PHP 5.2.5 or higher (5.4 recommended)
+	    	  php -v
+		      PHP 5.4.20 (cli)
+          install the php5-curl (needed for the drupal feeds module) -- did it via yast
+  Download:
+    # wget http://ftp.drupal.org/files/projects/drupal-7.36.tar.gz
+    # tar xzvf drupal-7.36.tar.gz
+    # mv drupal-7.36 /srv/www/drupal
+
+    # cd /srv/www/drupal/sites
+    # cp default/default.settings.php default/settings.php
+    # chmod -R a+rw default
+
+  Site Config:
+    Modify the /etc/apache2/default-server.conf  to make index.php first item in DirectoryIndex
+    Modify the virtual host conf files also
+
+    # cd /srv/www/drupal/sites
+    # cp -a default arsls.hcro.org
+    # cp -a default thistle.hcro.org
+
+    Include the php5.conf in the vhosts conf files
+      Include /etc/apache2/conf.d/php5.conf
+
+  Setup Automated Cron:
+    see Administration > Configuration > System > Cron
+
+    Cron job name is Administration > Reports > Status 
+    Add it to the 
+  Load Additional Modules:
+    Additional Drupal modules are loaded by
+      - unpack tarball into sites/all/modules
+      - enable the modules on administration page
+      OR
+      use the update manager module under Administration > Modules
+      and then click on "enable new modules"
+
+
+    Advanced Help
+    Entity API contributed module (is in the core along w/ the basic (?) entity API module)
+      Entity Construction Kit (ECK)?
+    Feed Module (requires Chaos and Job Scheduler modules)
+    # wget http://ftp.drupal.org/files/projects/feeds-8.x-3.x-dev.tar.gz
+
+    
+    Chaos Tools (ctools)  https://www.drupal.org/node/2356405
+    Job Scheduler
+
+    Taxonomy menu https://www.drupal.org/project/taxonomy_menu
+    DHTML Menu https://www.drupal.org/project/taxonomy_menu
+    FAQ module http://ftp.drupal.org/files/projects/faq-7.x-1.0.tar.gz
+    Outline Designer https://www.drupal.org/node/275286
+    Superfish https://www.drupal.org/node/436336
+    Panels?
+
+      SSHD configuration
+# ssh -V
+OpenSSH_6.2p2, OpenSSL 1.0.1i 6 Aug 2014
+
+  sshd_config -- new settings
+    AuthenticationMethods publickey
+    PermitRootLogin no
+
+    settings based on blake:
+    Protocol 2
+    AddressFamily inet      #to make sure that X-11 forwarding works in non-IPv6 environment
+    X11Forwarding yes
+    X11DisplayOffset 10
+    ClientAliveInterval 300
+    ClientAliveCountMax 5
+    PermitTunnel  yes
+    AuthorizedKeysFile  .ssh/authorized_keys
+
+    NB: may want to consider using the from="pattern-list" method
+    of setting allowed hosts. The pattern can be the canonical name
+    of a remote host, and IP address, or CIDR notation. Wilcards 
+    allowed, e.g.,
+      128.18.0.0/24 - SRI
+      209.119.0.0/24 - SETI
+    The problem would be users come from home and mobile locations...
+
+  Restart SSHD
+    kill -HUP `cat /var/run/sshd.pid`
+    /usr/sbin/sshd
+
+USER ADMIN:
+  useradd -m -s /bin/bash <user>
+  install the users public key on their authorized_keys file. Ensure file
+  has 644 access only. Password login is no longer used 
+  NOTE - login was being rejected because said account was locked. So solution
+  was to set a password on the account (that is never exercised as long as key works)
+ 
+
+  Priv account - add user to wheel group
+    usermod -G wheel <user>
+
+PUBLIC KEY AUTHENTICATION
+  See SOP instructing users on key pair generation
+  Copy users public key to their home .ssh/authorized_keys file
+  MAKE sure the owner on this file is properly set (to user)
+
+FIREWALL - added to the rules to allow ssh
+	 ACCEPT all dmz:BLAKE7 tcp ssh
+NOTE!!! - this probably is not a good idea as opens potential path into other
+	 hcro machines. Maybe see if there are rules to limit movement from
+	 thistle to hcro...
+
+WORDPRESS INSTALL
+  /opt/wordpress --> /opt/wordpress-4.6
+  continued on my personal machine notes (NOTES-arsls.hcro.org.txt).

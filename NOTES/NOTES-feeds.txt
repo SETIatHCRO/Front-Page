@@ -1,0 +1,37 @@
+NOTES: Feeds -- all things about them
+DATE:  20 Aug 2015
+
+
+FEED Config:
+	New feeds have new firmware and hardware configurations that require
+	special case handling. Among these are different feed focus boundaries 
+	and low-level driver I/O.
+
+	Config files for versioning are kept in
+	$ATA_HOME/etc/antenna-config.xml
+
+
+FEED UPGRADE:
+     After install of a new version feed, the config needs to be updated.
+
+     - modify the version in the antenna-config.xml file
+     - restart RecoveryServer, AntennaServer (as atasys)
+       	       >  ataps -c restart -p RecoveryServer
+     - reboot the antenna (as atasys)
+       	       >  ataantsyscntl -r <ant>
+
+
+FEED LOCATIONS:
+     Minex delivers a Factory Feed Report with each new or repaired feed.
+     Included in the report are the factory defined LNA biases. These 
+     feed locations and biases are kept in config files to allow automated 
+     periodic maintenance checks to ensure LNAs are maintaining their factory 
+     settings. Due to the many versions of LNAs, the ruleset for how to update
+     the biases varies. Refer to NOTES-LNAbias.txt
+
+     Current location of feed location/bias settings: ~obs/NOTES/config
+     	     feedlocations.txt
+	     feedreports.txt
+
+FEED BIAS CHECK:
+     Currently ~obs/elin/lna/lnacompare	

@@ -1,0 +1,8 @@
+
+# /ataarchive/2010 disk
+dn: cn=2010,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2010
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 strato.hcro.org:/ataarchive/2010
+

@@ -1,0 +1,28 @@
+NOTES: Xilinx ISE 14.7 install on Windows 10
+DATE: 2019-03-20
+
+Runs in a virtual machine (uses Oracle VirtualBox)
+Installation:
+	 network adapter setting:
+	  attached to: NAT
+	 Project directory (in c:/Users/Hatcreekadmin/ise_projects
+	   (must be set to be writeable)
+
+Run  (using auto_project.ipf)
+3 errors
+
+  EXCEPTION:iMPACT:BitReader.c:197:1.46 - File does not exist
+
+  ERROR:Bitstream:14 - The device part "2vp50ff1152" specified in the
+  bitstream file ".gine.use.use)orihects.ubib)testsyute)2007_Mar_5_1543.bit"
+  is invalid. Either the device is not supported by this software installation
+  or the file may be corrupted and should be recreated.
+
+  FATAL_ERROR:GuiUtilities:Gui_Clip_ApplicationBase.c:364:1.30 - This
+  application has performed and illegal operation and must be shut down for
+  technical support on this issue please visit http://www.xilinx.com/support
+
+Created new project.
+	- does not recognize the 2nd device (the fpga) and cannot read the bit
+	file for it.
+	- Was able to initialize the first device and program it.

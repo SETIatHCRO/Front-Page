@@ -1,0 +1,723 @@
+NOTES: openSUSE on DellC6100
+
+Collection of notes on the FW, HW, and SW changes made on DellC6100
+-----------------
+DELL C6100 FW Upgrade
+
+BIOS, etc. upgrade  (3/29/17)
+-set the BIOS to boot from USB drive containing the MS-DOS OS
+- jon has already the 3 items that needed upgraded: bios, bmc, ethernet
+
+c:\BIOS\flash.dat
+c:\BMC\flash.dat
+c:\ETHERN1\eeflash.dat
+
+Disk Install
+7200 RPM - 
+
+
+recable drives.
+
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjqtJuqg_PTAhVI72MKHapKDwcQFggmMAA&url=https%3A%2F%2Fforums.servethehome.com%2Findex.php%3Fthreads%2Ftaming-the-c6100.1317%2F&usg=AFQjCNHY2AVWwJd6dWvv5jdMv6YEoiHKDA
+
+2017-09-13==============Wicked (ethernet) not starting on control and support
+computers. Fine on data computer
+
+Get Dell Diagnostics from http://www.dell.com/support/home/us/en/19/product-support/servicetag/dqhjrl1/drivers
+wget 
+grep -Ff <(hwinfo --disk --short) <(hwinfo --usb --short)
+umount /dev/sdf1
+dd if=/path/to/downloaded.iso of=/dev/sdX bs=4M status=progress && sync
+
+2018-06-15==============Wicked problem
+No notes on solution for Leap network not correctly install. Managed to get
+control (aka antcntl) to work however...but then data wasn't working.
+Did reinstall on 6/15/18. Below is notes for general install
+
+DATA computer Installation
+------------------------------------
+VD 0 RAID Config
+     - Leave the VD 0 as is. Delete the VD 1 and remove its disks
+Boot disk
+     - change bios boot hard disk drive sequence to use usb
+     - set order of disks
+LEAP install
+     - Network card - em1
+     - Partitions
+       - edit proposal and remove the /home partition
+       - keep the suggestion of btrfs for / partition. It is apparently best
+         at leveraging the full power of snapshots
+     - Online repository config the first time will fail, so ignore.
+     - Shutdown. Remove boot USB. Insert next set of disks. 
+     - Reboot. F2 to change the boot disk ordering to use the RAID.
+       ^H for Webbios to configure VD 1. Used the suggested RAID 6 because
+       could not figure out how to change to RAID 5 (very confusing app).
+     - Disable ipv6
+       - was causing the cURL used by the YAST repository management to fail
+       (becuase it uses ipv6),
+       so edited /etc/sysctl.conf to add lines to disable ipv6
+       NB: this didn't work in subsequent installs, and at first thought the
+       issue was the ipv6 (i.e., did I need to re-enable it?), but then
+       determined the route wasn't set 
+     - Services to enable (or check that they are enabled)
+       - autofs (was not in list of services. Had to go to repositories to
+       get)
+       - cron
+       - network
+       - nscd
+       - ntpd
+       - postfix - ????
+       - rpcbind - ????
+       - rsyncd
+       - sshd
+       - wicked
+     - VD 1 Disk Partitioning/Mount (fdisk -l)
+       step 1:
+          parted /dev/sdb
+          (parted) mklabel gpt
+          (parted) mkpart primary ext4
+          Start? 0%
+          End? 100%
+          (parted) quit
+
+   	Step 2:
+             $ mkfs.ext4 /dev/sdb1
+   	Step 3:
+       	     $ mkdir -p /export/<hostname>
+   	Step 4:
+             - modify the /etc/fstab. First get mounted device by id
+             $ ls -l /dev/disk/by-id
+             ...
+       	      lrwxrwxrwx 1 root root 10 Mar 15 10:21 wwn-0x600050e0e727a700ff66000037530000-part1 -> ../../sdb1
+             $ vi /etc/fstab
+               - add the following line
+/dev/disk/by-id/wwn-0x600050e0e727a700ff66000037530000-part1 /export/data ext4 defaults,noatime,nodiratime 0 2
+	Step 5:
+             $ mount -a
+	Step 6:
+	     - Add the mounts to the /etc/exports (the host root and the
+             hcrong shared mount) 
+/export/data
+             127.0.0.2/8(rw,root_squash,no_subtree_check,async,wdelay,insecure) 10.3.0.0/16(rw,root_squash,no_subtree_check,async ,wdelay,insecure)
+/export/data/hcrong        127.0.0.2/8(rw,root_squash,no_subtree_check,async,wdelay,insecure) 10.3.0.0/16(rw,root_squash,no_subtree_check,async,wdelay,insecure)
+	     
+	Step 7:
+	     LDAP
+	     pam_dap provides the authentication and authorization information for a user. 
+	     nss_ldap provides the other user information that would be in /etc/passwd such as the uid, gid,home dir, gecos, and so on.
+	     - install pam_ldap module (for authentication) ???
+	     # zypper in pam_ldap - ???this failed on support and doesn't
+	     exist on data, but package found on antcntl
+	     (pam_ldap-186-16.13.x86_64) - however, that
+	     option is not checked in the ldap client config (yast) on
+	     antcntl.
+	     Get pam_ldap rpm from 
+http://rpm.pbone.net/index.php3/stat/4/idpl/32891473/dir/opensuse/com/pam_ldap-186-33.55.x86_64.rpm.html
+# rpm -ivh ~/pam_ldap-186-33.55.x86_64.rpm 
+warning: /root/pam_ldap-186-33.55.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 3adc1350: NOKEY
+error: Failed dependencies:
+	libldap-2.4.so.2()(64bit) is needed by pam_ldap-186-33.55.x86_64
+
+Installed version that is same version number as on antcntl
+# rpm -ivh ~/pam_ldap-186-16.13.x86_64.rpm 
+error: Failed dependencies:
+	libldap-2.4.so.2()(64bit) is needed by pam_ldap-186-16.13.x86_64
+WENT AHEAD and broke the dependency and installed the packaged. Figured it may be an RPM "bug"
+       - Modify the /etc/pam.d/sshd
+            auth sufficient pam_ldap.so
+            account sufficient pam_ldap.so
+	     (for tumbleweed)
+	     - install the nss_ldap package.
+
+	     - ldap client config
+	       - By checking that we want network disk locations, yast will
+             install automount
+	       - allow users to authenticate w/ pam_ldap (NB - must have the
+	pam_ldap installed
+	       - Users, Groups, Network disk locations for ldap data source
+	       - server location: basalt.hcro.org:389
+	       - DN of search: dc=obs,dc=hcro,dc=org
+	Step 8:
+	     - see the NOTES-ldap for info on adding the share mount location
+	     for this host.
+
+ISSUES
+
+WICKED START PROBLEM on Data June 2018 - solved 9/11/2018
+------------------------------------------------------
+For comparison w/ antcntl
+
+antcntl# less /etc/sysconfig/network/ifcfg-em1
+
+BOOTPROTO='static'
+BROADCAST=''
+ETHTOOL_OPTIONS=''
+IPADDR='10.3.0.71/16'
+MTU=''
+NAME=''
+NETMASK=''
+NETWORK=''
+REMOTE_IPADDR=''
+STARTMODE='auto'
+DHCLIENT_SET_DEFAULT_ROUTE='yes'
+
+ # ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: em1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:a0:d1:ee:89:40 brd ff:ff:ff:ff:ff:ff
+    inet 10.3.0.71/16 brd 10.3.255.255 scope global em1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::2a0:d1ff:feee:8940/64 scope link
+       valid_lft forever preferred_lft forever
+3: em2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:a0:d1:ee:89:41 brd ff:ff:ff:ff:ff:ff
+    inet 172.20.0.1/16 brd 172.20.255.255 scope global em2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::2a0:d1ff:feee:8941/64 scope link
+       valid_lft forever preferred_lft forever
+4: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:a0:d1:ec:d3:36 brd ff:ff:ff:ff:ff:ff
+5: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:a0:d1:ec:d3:37 brd ff:ff:ff:ff:ff:ff
+
+ # ip route
+default via 10.3.0.1 dev em1
+10.3.0.0/16 dev em1  proto kernel  scope link  src 10.3.0.71
+172.20.0.0/16 dev em2  proto kernel  scope link  src 172.20.0.1
+
+ # /sbin/ifstatus em1
+em1             up
+      link:     #2, state up, mtu 1500
+      type:     ethernet, hwaddr 00:a0:d1:ee:89:40
+      config:   compat:suse:/etc/sysconfig/network/ifcfg-em1
+      leases:   ipv4 static granted
+      addr:     ipv4 10.3.0.71/16 [static]
+      route:    ipv4 default via 10.3.0.1 proto boot
+
+ # ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: em1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:a0:d1:ee:89:40 brd ff:ff:ff:ff:ff:ff
+3: em2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:a0:d1:ee:89:41 brd ff:ff:ff:ff:ff:ff
+4: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:a0:d1:ec:d3:36 brd ff:ff:ff:ff:ff:ff
+5: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:a0:d1:ec:d3:37 brd ff:ff:ff:ff:ff:ff
+
+ONE issue was with a BIOS setting (8/23/18)
+    - cPCI-NIC FUnction support had been changed from PXE to disabled
+     (disabled,PXE,iPSCI options) thinking that that would speed up boot.
+     But that essentially disabled the embedded NIC (em1 and em2). The proper
+     action was to keep as PXE, but disable the NIC1 and NIC2 Rom.
+    - HOWEVER - that did not solve all problems
+REINSTALL
+    - w/ the network connected
+    - initial install w/ default to use DHCP (routing set by the DHCPD)
+    - In Yast reconfigure for static IP - but did not modify the routing. 
+    - A reboot showed new static ip, I/F working, but no routing
+    - In Yast set the routing for 10.3.0.1. NOW have
+ # ip route
+default via 10.3.0.1 dev em1
+10.3.0.0/16 dev em1  proto kernel  scope link  src 10.3.0.92
+
+
+ARGGGG = 9/3/18
+A reboot and again the network would not start. The em1 interface was down.
+Found a line in the dmesg that  appears trying to rename the em1 to
+eth0. 
+      igb: .... em1: renamed from eth0
+This could be a device naming issue???
+
+tried   (2019-05-01 -- ifconfig has been superseded by ip --- the below notes
+must be wrong. Use ip instead. See below for 2019-05-01)
+ifconfig em1 down
+ifconfig em1 up
+and interface then was up, but a start (nor restart) of the network service did not bring
+up wicked.
+
+See
+https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+https://forums.opensuse.org/showthread.php/528075-Predictable-device-names-vanished-returned-to-ethX-!
+
+Persistent vs Predicatable Interface Names - THE SOURCE OF THE PROBLEM
+------------------------------------------
+udev rules define persistent device naming. Prior to this method, the kernel
+would simply assign names beginning w/ eth0, eth1 as all interfaces are proved
+by the drivers. Our C6100 has 4 interfaces: 2x 1G and 2x 10G. A race condition
+would sometimes result when the 1G (defined as em1,2) is probed before the 10G 
+(defined as eth0,1) and would then get renamed or something (see above igb
+driver message) to cause the confusion.
+
+Have multiple choised of how to solve this (see the freedesktop site). Somehow
+Antcntl works, and it has a persistent rules for the 10G interfaces
+(only). 
+
+a) SETTING PERSISTENT RULES
+From the 42.1, section 2.1  Release Notes
+"When upgrading a remote machine from openSUSE 13.2, make sure your network 
+interfaces are named correctly. openSUSE 13.2 used so-called predictable
+network interface names (for example,enp5s0), whereas openSUSE Leap 42.1 
+uses persistent interface names (eth0). After upgrading and rebooting, the 
+network interface names may therefore change. This could lock you out of the 
+system. To avoid interfaces from being renamed, run the following command for 
+each of your network interfaces before you reboot the system:
+
+/usr/lib/udev/udev-generate-persistent-rule -v -c enp5s0 -n enp5s0 -o /etc/udev/rules.d/70-persistent-net.rules
+Replace enp5s0 with the name of your network interface."
+
+-c <INTERFACE> Current interface name (ex: ip link)
+-n <INTERFACE> New interface name (ex: net0)
+
+"NOTE: Using the generate persistent rule might mean you will need to do extra
+work to ensure that it will work accordingly. This mean, regenerating the 
+initramfs/initrd image and/or using 'net.ifnames=0' option at boot time.
+In openSUSE/SUSE, the user will need to regenerate the initramfs/initrd image, 
+but usually there is no need for 'net.ifnames=0' option if the persistent rule 
+is available in initramfs/initrd image.
+
+i.e., dracut --force
+
+
+udevadm info /sys/class/net/<IF>
+
+Nov. 2018 - had same issue on support.hcro.org
+- check pci setting in bios
+
+--------------------------------
+FOR LDAP access
+
+mkdir /opt/atasys
+??Copy atasys home directory files from some other host
+Ensure that the /etc/pam.d/sshd has references to the pam_ldap.so for auth and account settings
+
+FOR LDAP mounts
+If the network has failed, then the autofs needs to be restart as it failed to talk to the ldap server on reboot.
+
+
+
+UPGRADE 42.3 to Tumbleweed
+-------------------------------------
+Online Upgrade
+There are three tasks needed in order to Online upgrade from any release to Tumbleweed:
+
+Install the current online updates of the old distribution, if any. (Mostly needed for openSUSE 13.2 to fix a kernel issue during migration. On 13.2 also reboot the machine before proceeding.)
+Changing repositories to point to Tumbleweed
+Running zypper dup (which is shorthand for zypper dist-upgrade) to upgrade all packages
+Repositories
+Start by removing the existing repos:
+
+mkdir /etc/zypp/repos.d/old
+mv /etc/zypp/repos.d/*.repo /etc/zypp/repos.d/old
+Then add the new repos
+
+zypper ar -f -c http://download.opensuse.org/tumbleweed/repo/oss repo-oss
+zypper ar -f -c http://download.opensuse.org/tumbleweed/repo/non-oss repo-non-oss
+zypper ar -f -c http://download.opensuse.org/tumbleweed/repo/debug repo-debug
+zypper ar -f -c http://download.opensuse.org/update/tumbleweed/ repo-update
+Optionally you can also add the repos for the sources, usually you'd use OBS for that purpose.
+
+zypper ar -f -d -c http://download.opensuse.org/tumbleweed/repo/src-oss repo-src-oss
+zypper ar -f -d -c http://download.opensuse.org/tumbleweed/repo/src-non-oss repo-src-non-oss
+The resulting list of repositories should look like this:
+
+# zypper lr -u
+ # | Alias             | Name              | Enabled | Refresh | URI
+ --+-------------------+-------------------+---------+---------+--------------------------------------------------------
+ 1 | repo-debug        | repo-debug        | Yes     | Yes     | http://download.opensuse.org/tumbleweed/repo/debug
+ 2 | repo-non-oss      | repo-non-oss      | Yes     | Yes     | http://download.opensuse.org/tumbleweed/repo/non-oss
+ 3 | repo-oss          | repo-oss          | Yes     | Yes     | http://download.opensuse.org/tumbleweed/repo/oss
+ 4 | repo-src-non-oss  | repo-src-non-oss  | No      | Yes     | http://download.opensuse.org/tumbleweed/repo/src-non-oss
+ 5 | repo-src-oss      | repo-src-oss      | No      | Yes     | http://download.opensuse.org/tumbleweed/repo/src-oss
+ 6 | update            | repo-update       | Yes     | Yes     | http://download.opensuse.org/update/tumbleweed/
+The update repo is usually empty and only used as a last resort, when the next snapshot of tumbleweed is late and a big security hole has to be fixed fast.
+
+Running the upgrade
+Once you are done with the repo setup use zypper dup to upgrade.
+
+Warning: It's a good idea to run this command in a screen session to avoid zypper dup from getting killed in case e.g. X dies. To avoid this problem you can use Tmux, too.
+zypper dup
+Now go make some coffee and have a lot of fun when using our rolling release.
+
+Meanwhile don't forget to subscribe to the mailinglist to stay up to date with the Factory development.
+
+If the upgrade fails: refresh zypper
+Sometimes zypper fails to upgrade indicating it cannot find some files like this:
+
+Retrieving: monitoring-tools-1.14.0-4.2.x86_64.rpm ......................................................................................................[error]
+File './x86_64/monitoring-tools-1.14.0-4.2.x86_64.rpm' not found on medium 'http://download.opensuse.org/repositories/server:/monitoring/openSUSE_Tumbleweed/'
+When you look at http://download.opensuse.org/repositories/server:/monitoring/openSUSE_Tumbleweed/x86_64/ you see a more recent version of monitoring-tools-*.x86_64.rpm
+
+The above error usually means your local zypper configuration is out of sync with the repository. A zypper refresh solves that, so this combination correctly updates:
+
+zypper refresh --force
+zypper dist-upgrade
+
+java OutOfMemoryError: unable to create new native thread
+-----------------------------------------------------
+Problem seen on 2019-03-19 -- possibly because I had two atastatus windows
+open and Cecile had one too...
+
+SEE NOTES-servertransition.txt --- For what was done initially on 2017-11-28...
+Which was to increase the max user processes from 1850 to 6000
+This supposedly would increase the memory size
+HEre is memory as of 2019-03-20
+antcntl:~ # free
+             total       used       free     shared    buffers     cached
+Mem:      49449892    8229148   41220744       2060       2076    5696408
+-/+ buffers/cache:    2530664   46919228
+Swap:      2103292          0    2103292
+
+
+Could only put the antennaServer and queueserver on antcntl because
+any more java processes would hit this memory error limit.
+
+Found this in forums:
+https://forums.opensuse.org/showthread.php/522286-Java-app-could-use-gt-16k-threads-in-13-2-now-it-fails-to-create-threads-below-4k
+
+"Removed fork bomb protection from: /etc/security/limits.conf
+This gives:
+Code:
+ulimit -u
+31526
+Now it works again."
+
+SO - increase the max user processes from 6000 to suggested 31526???
+
+antcntl: ulimit -a        (leap)
+antcntl:~ # ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 193110
+max locked memory       (kbytes, -l) 64
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 6000
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+antcntl:~ # ulimit -u
+6000
+
+tumulus:~ # ulimit -a  (13.1)
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 128471
+max locked memory       (kbytes, -l) 64
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 128471
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+tumulus:~ # ulimit -u
+128471
+
+-------------
+HERE are the java processes on antcntl
+antcntl:~ # ps -ef |grep java
+atasys    4061     1  0 Mar19 ?        00:00:29 java ata.ProcessServer.ProcessServer --ata-service-atasys -v DEBUG /hcro/atasys/ata/setup/antcntl/processes.xml -i 4041
+atasys    4103  4061  2 Mar19 ?        00:35:07 java -server -Xms2g -Xmx5g -Xincgc ata.antenna.AntennaServer --ata-service-atasys -spool 200 -ac /hcro/atasys/ata/setup/antcntl/antenna-config.xml
+atasys    4104  4061  1 Mar19 ?        00:23:43 java -server -XX:+UseParallelGC -Xms1g -Xmx2g ata.jsda.QueueServer --ata-service-atasys -v INFO -name AntCntl -bind antcntl -parent user2.hcro.org -spool 25 -maxworkers 2000
+root     29285 26149  0 10:19 pts/0    00:00:00 grep --color=auto java
+antcntl:~ # 
+
+antcntl:~ # cat /proc/4103/limits
+Limit                     Soft Limit           Hard Limit           Units     
+Max cpu time              unlimited            unlimited            seconds   
+Max file size             unlimited            unlimited            bytes     
+Max data size             unlimited            unlimited            bytes     
+Max stack size            8388608              unlimited            bytes     
+Max core file size        0                    unlimited            bytes     
+Max resident set          unlimited            unlimited            bytes     
+Max processes             193110               193110               processes 
+Max open files            4096                 4096                 files     
+Max locked memory         65536                65536                bytes     
+Max address space         unlimited            unlimited            bytes     
+Max file locks            unlimited            unlimited            locks     
+Max pending signals       193110               193110               signals   
+Max msgqueue size         819200               819200               bytes     
+Max nice priority         0                    0                    
+Max realtime priority     0                    0                    
+Max realtime timeout      unlimited            unlimited            us        
+antcntl:~ # cat /proc/4104/limits
+Limit                     Soft Limit           Hard Limit           Units     
+Max cpu time              unlimited            unlimited            seconds   
+Max file size             unlimited            unlimited            bytes     
+Max data size             unlimited            unlimited            bytes     
+Max stack size            8388608              unlimited            bytes     
+Max core file size        0                    unlimited            bytes     
+Max resident set          unlimited            unlimited            bytes     
+Max processes             193110               193110               processes 
+Max open files            4096                 4096                 files     
+Max locked memory         65536                65536                bytes     
+Max address space         unlimited            unlimited            bytes     
+Max file locks            unlimited            unlimited            locks     
+Max pending signals       193110               193110               signals   
+Max msgqueue size         819200               819200               bytes     
+Max nice priority         0                    0                    
+Max realtime priority     0                    0                    
+Max realtime timeout      unlimited            unlimited            us        
+
+[Memory Usage - Likely only a single atastatus window open]
+# ps aux --sort -rss |grep atasys
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+atasys    4103  2.5  2.2 18479800 1097072 ?    Sl   Mar19  35:18 java -server -Xms2g -Xmx5g -Xincgc ata.antenna.AntennaServer --ata-service-atasys -spool 200 -ac /hcro/atasys/ata/setup/antcntl/antenna-config.xml
+atasys    4104  1.7  0.8 9216960 418612 ?      Sl   Mar19  23:50 java -server -XX:+UseParallelGC -Xms1g -Xmx2g ata.jsda.QueueServer --ata-service-atasys -v INFO -name AntCntl -bind antcntl -parent user2.hcro.org -spool 25 -maxworkers 2000
+atasys    4061  0.0  0.2 4811328 102564 ?      Sl   Mar19   0:29 java ata.ProcessServer.ProcessServer --ata-service-atasys -v DEBUG /hcro/atasys/ata/setup/antcntl/processes.xml -i 4041
+
+[Open up second atastatus]
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+atasys    4103  2.5  2.2 18479800 1097072 ?    Sl   Mar19  35:21 java -server -Xms2g -Xmx5g -Xincgc ata.antenna.AntennaServer --ata-service-atasys -spool 200 -ac /hcro/atasys/ata/setup/antcntl/antenna-config.xml
+atasys    4104  1.7  0.8 9216960 418612 ?      Sl   Mar19  23:52 java -server -XX:+UseParallelGC -Xms1g -Xmx2g ata.jsda.QueueServer --ata-service-atasys -v INFO -name AntCntl -bind antcntl -parent user2.hcro.org -spool 25 -maxworkers 2000
+atasys    4061  0.0  0.2 4811328 102576 ?      Sl   Mar19   0:30 java ata.ProcessServer.ProcessServer --ata-service-atasys -v DEBUG /hcro/atasys/ata/setup/antcntl/processes.xml -i 4041
+
+[Open up third atastatus]
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+atasys    4103  2.5  2.2 18479800 1099396 ?    Sl   Mar19  35:23 java -server -Xms2g -Xmx5g -Xincgc ata.antenna.AntennaServer --ata-service-atasys -spool 200 -ac /hcro/atasys/ata/setup/antcntl/antenna-config.xml
+atasys    4104  1.7  0.8 9216960 418612 ?      Sl   Mar19  23:54 java -server -XX:+UseParallelGC -Xms1g -Xmx2g ata.jsda.QueueServer --ata-service-atasys -v INFO -name AntCntl -bind antcntl -parent user2.hcro.org -spool 25 -maxworkers 2000
+atasys    4061  0.0  0.2 4811328 102576 ?      Sl   Mar19   0:30 java ata.ProcessServer.ProcessServer --ata-service-atasys -v DEBUG /hcro/atasys/ata/setup/antcntl/processes.xml -i 4041
+
+[reduce back to one]
+atasys    4103  2.5  2.2 18479800 1099584 ?    Sl   Mar19  35:26 java -server -Xms2g -Xmx5g -Xincgc ata.antenna.AntennaServer --ata-service-atasys -spool 200 -ac /hcro/atasys/ata/setup/antcntl/antenna-config.xml
+
+Check over 15 minutes period: CONFIRMS that we need to restart this process bi-weekly
+antcntl:~ # for i in {1..15}; do ps -p 4103 -o rss,vsz,pmem; sleep 120; done
+  RSS    VSZ %MEM
+1129092 18479800  2.2
+  RSS    VSZ %MEM
+1129284 18479800  2.2
+  RSS    VSZ %MEM
+1131516 18479800  2.2
+  RSS    VSZ %MEM
+1131568 18479800  2.2
+  RSS    VSZ %MEM
+1133920 18479800  2.2
+  RSS    VSZ %MEM
+1134036 18479800  2.2
+  RSS    VSZ %MEM
+1134256 18479800  2.2
+  RSS    VSZ %MEM
+1136408 18479800  2.2
+  RSS    VSZ %MEM
+1136608 18479800  2.2
+  RSS    VSZ %MEM
+1138832 18479800  2.3
+  RSS    VSZ %MEM
+1138976 18479800  2.3
+  RSS    VSZ %MEM
+1139236 18479800  2.3
+  RSS    VSZ %MEM
+1141480 18479800  2.3
+  RSS    VSZ %MEM
+1141672 18479800  2.3
+  RSS    VSZ %MEM
+1143764 18479800  2.3
+
+---------------------------
+2019-05-01 --- again, network (em1) is not up on data machine.
+ Work-around:
+ip link show
+ip link set em1 down
+ip link set em1 up
+systemctl start network
+
+There was no /usr/lib/udev/udev-generate-persistent-rule (and write_net_rules,
+rule_generator.functions). Copied from support
+
+data:/usr/lib/udev # /usr/lib/udev/udev-generate-persistent-rule -l
+Found 4 network interfaces:
+I: INTERFACE: em1
+I: MACADDR: 00:a0:d1:ee:ba:2c
+I: PCI: 0000:01:00.0
+I: INTERFACE: em2
+I: MACADDR: 00:a0:d1:ee:ba:2d
+I: PCI: 0000:01:00.1
+I: INTERFACE: eth0
+I: MACADDR: 00:a0:d1:ec:d3:48
+I: PCI: 0000:02:00.0
+I: INTERFACE: eth1
+I: MACADDR: 00:a0:d1:ec:d3:49
+I: PCI: 0000:02:00.1
+
+data:~ # udevadm info /sys/class/net/em1 |grep ID_NET_NAME
+E: ID_NET_NAME=eno1
+E: ID_NET_NAME_MAC=enx00a0d1eeba2c
+E: ID_NET_NAME_ONBOARD=eno1
+E: ID_NET_NAME_PATH=enp1s0f0
+
+# This file was automatically generated by the /usr/lib/udev/write_net_rules
+# program,run by the persistent-net-generator.rules rules file.
+#
+# You can modify it,as long as you keep each rule on a single
+# line,and change only the value of the NAME= key.
+# PCI device 0x8086:0x10fb (ixgbe)
+# PCI device 0x8086:0x10fb (ixgbe)
+# PCI device 8086:10C9 (igb)
+# PCI device 8086:10C9 (igb)
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:a0:d1:ee:ba:2c", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="em1"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:a0:d1:ee:ba:2d", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="em2"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:a0:d1:ec:d3:48", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:a0:d1:ec:d3:49", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth1"
+
+Changed nothing. 
+Reboot. Still have network startup problem.
+
+TRY change the order in persistent rules file to put em1 after eth0 (this is
+how support is on support).
+
+reboot. Still have network startup problem
+This appears to be a startup order problem peculiar to the 4 I/Fs.
+From dmesg:
+[   12.514914] igb 0000:01:00.0: added PHC on eth0
+[   12.514920] igb 0000:01:00.0: eth0: (PCIe:2.5Gb/s:Width x4) 00:a0:d1:ee:ba:2c
+[   12.514923] igb 0000:01:00.0: eth0: PBA No: Unknown
+[   13.028238] igb 0000:01:00.0 em1: renamed from eth0
+
+TRY - change the (unused 10G I/F) eth0 and eth1 to net0 and net1 - 
+reboot. Still have network startup problem.
+[   13.162959] igb 0000:01:00.0: added PHC on eth0
+[   13.162965] igb 0000:01:00.0: eth0: (PCIe:2.5Gb/s:Width x4) 00:a0:d1:ee:ba:2c
+[   13.162968] igb 0000:01:00.0: eth0: PBA No: Unknown
+[   13.547031] igb 0000:01:00.0 em1: renamed from eth0
+[   14.836626] ixgbe 0000:02:00.0 net0: renamed from eth0
+
+And this after ip link set up and restart of network.
+[82484.363571] igb 0000:01:00.0 em1: igb: em1 NIC Link is Up 1000 Mbps Full
+Duplex, Flow Control: RX/TX
+
+Comparison across data, support, antcntl (the Dell6100 machines). Support and
+antcntl would appear to be working.
+
+antcntl
+---------
+NAME="openSUSE Leap"
+VERSION="42.3"
+ID=opensuse
+ID_LIKE="suse"
+VERSION_ID="42.3"
+PRETTY_NAME="openSUSE Leap 42.3"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:opensuse:leap:42.3"
+BUG_REPORT_URL="https://bugs.opensuse.org"
+HOME_URL="https://www.opensuse.org/"
+
+antcntl:~ # udevadm info /sys/class/net/em1
+P: /devices/pci0000:00/0000:00:01.0/0000:01:00.0/net/em1
+E: DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/net/em1
+E: ID_BUS=pci
+E: ID_MODEL_FROM_DATABASE=82576 Gigabit Network Connection
+E: ID_MODEL_ID=0x10c9
+E: ID_NET_DRIVER=igb
+E: ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link
+E: ID_NET_NAME_MAC=enx00a0d1ee8940
+E: ID_NET_NAME_ONBOARD=eno1
+E: ID_NET_NAME_PATH=enp1s0f0
+E: ID_OUI_FROM_DATABASE=INVENTEC CORPORATION
+E: ID_PATH=pci-0000:01:00.0
+E: ID_PATH_TAG=pci-0000_01_00_0
+E: ID_PCI_CLASS_FROM_DATABASE=Network controller
+E: ID_PCI_SUBCLASS_FROM_DATABASE=Ethernet controller
+E: ID_VENDOR_FROM_DATABASE=Intel Corporation
+E: ID_VENDOR_ID=0x8086
+E: IFINDEX=2
+E: INTERFACE=em1
+E: SUBSYSTEM=net
+E: SYSTEMD_ALIAS=/sys/subsystem/net/devices/em1 /sys/subsystem/net/devices/em1
+E: TAGS=:systemd:
+E: UDEV_BIOSDEVNAME=1
+E: USEC_INITIALIZED=10176277
+
+support
+----------
+NAME="openSUSE Tumbleweed"
+# VERSION="20181105"
+ID="opensuse-tumbleweed"
+ID_LIKE="opensuse suse"
+VERSION_ID="20181105"
+PRETTY_NAME="openSUSE Tumbleweed"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:opensuse:tumbleweed:20181105"
+BUG_REPORT_URL="https://bugs.opensuse.org"
+HOME_URL="https://www.opensuse.org/"
+
+support:~ # udevadm info /sys/class/net/em1
+P: /devices/pci0000:00/0000:00:01.0/0000:01:00.0/net/em1
+E: DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/net/em1
+E: ID_BUS=pci
+E: ID_MODEL_FROM_DATABASE=82576 Gigabit Network Connection
+E: ID_MODEL_ID=0x10c9
+E: ID_NET_NAME_MAC=enx00a0d1eeadb4
+E: ID_NET_NAME_ONBOARD=eno1
+E: ID_NET_NAME_PATH=enp1s0f0
+E: ID_OUI_FROM_DATABASE=INVENTEC CORPORATION
+E: ID_PCI_CLASS_FROM_DATABASE=Network controller
+E: ID_PCI_SUBCLASS_FROM_DATABASE=Ethernet controller
+E: ID_VENDOR_FROM_DATABASE=Intel Corporation
+E: ID_VENDOR_ID=0x8086
+E: IFINDEX=2
+E: INTERFACE=em1
+E: SUBSYSTEM=net
+E: SYSTEMD_ALIAS=/sys/subsystem/net/devices/em1
+E: TAGS=:systemd:
+E: UDEV_BIOSDEVNAME=1
+E: USEC_INITIALIZED=12804206
+
+data
+-----------
+NAME="openSUSE Tumbleweed"
+# VERSION="20180911"
+ID="opensuse-tumbleweed"
+ID_LIKE="opensuse suse"
+VERSION_ID="20180911"
+PRETTY_NAME="openSUSE Tumbleweed"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:opensuse:tumbleweed:20180911"
+BUG_REPORT_URL="https://bugs.opensuse.org"
+HOME_URL="https://www.opensuse.org/"
+
+data:~ # udevadm info /sys/class/net/em1 
+P: /devices/pci0000:00/0000:00:01.0/0000:01:00.0/net/em1
+E: DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/net/em1
+E: ID_BUS=pci
+E: ID_MODEL_FROM_DATABASE=82576 Gigabit Network Connection
+E: ID_MODEL_ID=0x10c9
+E: ID_NET_DRIVER=igb
+E: ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link
+E: ID_NET_NAME=eno1
+E: ID_NET_NAME_MAC=enx00a0d1eeba2c
+E: ID_NET_NAME_ONBOARD=eno1
+E: ID_NET_NAME_PATH=enp1s0f0
+E: ID_OUI_FROM_DATABASE=INVENTEC CORPORATION
+E: ID_PATH=pci-0000:01:00.0
+E: ID_PATH_TAG=pci-0000_01_00_0
+E: ID_PCI_CLASS_FROM_DATABASE=Network controller
+E: ID_PCI_SUBCLASS_FROM_DATABASE=Ethernet controller
+E: ID_VENDOR_FROM_DATABASE=Intel Corporation
+E: ID_VENDOR_ID=0x8086
+E: IFINDEX=2
+E: INTERFACE=em1
+E: SUBSYSTEM=net
+E: SYSTEMD_ALIAS=/sys/subsystem/net/devices/em1 /sys/subsystem/net/devices/em1
+E: TAGS=:systemd:
+E: USEC_INITIALIZED=13572252
+
+See white paper

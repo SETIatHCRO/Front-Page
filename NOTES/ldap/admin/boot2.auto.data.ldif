@@ -1,0 +1,8 @@
+
+# boot2 data disk
+dn: cn=boot2,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: boot2
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 boot2.hcro.org:/export/boot2
+

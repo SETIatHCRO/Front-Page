@@ -1,0 +1,131 @@
+NOTES-muleears-mirroring-mp.txt
+
+Notes on performing Synology-to-Synology backup mirroring and initial config
+
+History:
+  2015-03-10: Created by TLK
+  2015-07-01: elk - See end of NOTES for latest on automated rsync methods
+  2016-06-07: elk - changes to MP VPN and ata-mp-mirror IP after location move
+
+Initial configuration (first time only)
+---------------------------------------
+
+On ata-mp-mirror:
+  - Backup&Replication -> Shared Folder Sync -> Server (tab) -> Check "Enabled
+  Shared Folder Sync Service"
+
+On user2:
+   - open VPN connection
+     - snx -s vpn.sri.com -u e20977  (use your id/password)
+     - Setup port forwarding on user2 to send mulears:1234 to ata-mp-mirror:22
+       ssh -N -L 10.3.0.57:1234:ata-mp-mirror.esg.sri.com:22 localhost
+     - Test connection by ssh'ing to ata-mp-mirror
+       On tumulus: ssh Admin@user2.hcro.org -p 1234
+
+On muleears:
+   - Backup&Replication -> Shared Folder Sync -> Client (tab) -> Create:
+     - Task Name: ata-mp-mirror
+     - Source to sync: check "exports"
+       - Check "I understand...."
+     - servername: user2.hcro.org
+     - username: Admin
+     - password: password for ata-mp-mirror
+     - Check "Customize SSH encryption port for encrypted shared folder sync
+       - Port: 1234
+     - Check "Enable SSH transfer encryption"
+     - Check "Enable block level synchronization"
+     - Click "Test Connection" to make sure everything is correct.
+     - Set schedule: Run sync manually
+
+     - No speed control for this side of the sync
+       Need to set it up on ata-mp-mirror probably
+
+On user2:
+     - After successfully adding the sync task:
+       - kill the ssh forwarding on user2
+       - close the vpn: snx -d
+
+To do a backup
+---------------
+
+On user2:
+   - open VPN connection
+     - snx -s vpn.sri.com -u e20977  (use your id/password)
+     - Setup port forwarding on user2 to send mulears:1234 to ata-mp-mirror:22
+       ssh -N -L 10.3.0.57:1234:ata-mp-mirror.esg.sri.com:22 localhost
+     - Test connection by ssh'ing to ata-mp-mirror
+       On tumulus: ssh Admin@user2.hcro.org -p 1234
+
+On Muleears:
+   - Backup&Replication -> Shared Folder Sync -> Client (tab)
+     - Click "Sync Now"
+
+When done, close up shop on user2:
+       - kill the ssh forwarding on user2
+       - close the vpn: snx -d
+
+----------------------------------------------------
+
+Alternative method (13 May)
+
+- mirror-rsync account on blake7 (for tunneling access from ata-mp-mirror)
+- create rsync user on ata-mp-mirror (with a home directory/volume1/homes/rsync/.ssh in which to store
+  private key). Public key installed on blake7
+- From Synology DSM Help
+
+  "Note:
+
+    - If other people want to perform network backup from a client that is not
+    Synology NAS, they can only do so with the privileges of admin or rsync on 
+    your Synology NAS. If you don't want to share your admin credentials with 
+    other people, you can go to Control Panel > User to create a user named
+    rsync, modify its privileges, and then share its user credentials with
+    other people.
+    - If you perform network backup from a Synology NAS running a version of
+    DSM before 3.0 or a client that is not Synology NAS, and you want to
+    retain the source data's owner and group information, you must add the
+    backup account to the administrators group, and back up data to the
+    NetBackup shared folder."
+
+    It seems that the Synology DSM backup services are for configuring push
+    type of backups. Because a push to MP mirror would require a VPN running
+    on muleears (not an option)
+
+----------------------------------------------------------
+Method of automated rsync from ata-mp-mirror cron job via a tunnel
+
+1. Per above, the following accounts exist for these scripts:
+   mirror-rsync account on blake7. Public key installed
+   rsync user on ata-mp-mirror /volume1/homes/rsync. Private key in .ssh dir
+
+2. Scripts (rsync@ata-mp-mirror:bin) - owned/run by root
+   - script to maintain tunnel thru blake7 to muleears: ~rsync/bin/tunnelkeepalive
+   - script to ensure tunnel remains alive: ~rsync/bin/tunnelwatchdog.sh 
+   - script to rsync obs data: ~rsync/bin/runrsync-obsdata
+     	 - in crontab for 18:00 every day. Exits on failure to get semaphore
+	 (means prior job is still running)
+  	 - NB - this script is currently set to rsync only lwye data (on
+	 muleears and excluding arrayhealth)
+	 - CHANGE this script if want to do other obs data roots or more
+	 excludes
+	 - log file is in ~rsync/log
+   - script to rsync other data: ~rsync/bin/runrsync-other
+     	 - in crontab for every 2,5 day of the week at 06:00 (perhaps overkill?)
+     	 - set to rsync the svn/ata rdiff backup on muleears (originally
+	 rsynced from basalt to muleears).
+	 - CHANGE this script if you want to do other non-obs roots	 
+
+3. Testing
+   - testing remotely problematic as it requires VPN to be running which times
+   out after 8 hours even though running script detached.
+   - would modify crontab to set the hour to short delta, but couldn't figure
+   out how to get crontab to be reloaded....work-around was to reboot. clumsy.
+
+
+ACCESS 2016-06-07
+---------------------------
+VPN access to SRI is now via vpn-mp.sri.com --- and it does not support linux
+snx clients. It does support setup via web interface, but requires latest in 
+java package.
+
+Also, ata-mp-mirror IP is now 128.18.144.86 (as of 6/7/16 the DNS had not been updated)

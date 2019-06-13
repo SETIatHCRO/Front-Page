@@ -1,0 +1,14 @@
+NOTES:	MATLAB installation
+AUTHOR:	ELK
+HISTORY:
+10/7/15	Created. R2015b upgrade
+
+
+
+LICENSE TYPE: 
+-Standalone Named User license
+-one user can use it on up to 4 different computers
+	   user: obs
+	   host: clover 00:25:90:92:8F:82
+
+Modify the .bashrc to point to new release

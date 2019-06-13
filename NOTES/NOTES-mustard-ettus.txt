@@ -1,0 +1,145 @@
+NOTES: Reconfiguration of Mustard for Ettus environment
+DATE:  2016-03-14
+HISTORY: 
+2016-03-14 Original install
+
+-----------------------------------------------------     
+INSTALLATION
+-----------------------------------------------------     
+0. HARDWARE RAID
+   VD0 - boot disk 0,1 (500G total). Raid 1
+   VD1 - data disks 2-5. (11T total). Raid 0. See format/mounting steps below
+
+1. Ubuntu 14.04.4-desktop 64-bit LTS
+   User: brutus
+   pwd:	 ettu
+
+2. Network params - done from system settings gui
+   Host: Mustard
+   IP:   10.3.0.45
+   GW:   10.3.0.1
+   Mask: 255.255.0.0
+   DNS:	 10.3.0.41 10.3.0.42
+
+3. SSHD
+   - out of the box could not get apt-get to find openssh-server
+   - Had to open "Software & Updates Settings". Closing it then forced an
+   update which allowed apt-get to find openssh-server. Perhaps a
+   sudo apt-get update and sudo apt-get dist-upgrade would have done same
+   thing
+   - sudo atp-get install openssh-server
+     	  configured automatically w/ the download/install!!!
+
+4. NTP
+   - sudo apt-get install ntp ntpdate
+   - edit /etc/ntp.conf
+     - remove the ubuntu default servers. Add HCRO servers
+       	 # Use HCRO servers
+       	 server ntp1-1.hcro.org iburst prefer
+	 server ntp1-2.hcro.org iburst
+	 server ntp2-1.hcro.org iburst
+	 server ntp202.hcro.org iburst
+   - sudo service ntp restart
+   - verify
+	ntpq -p   or 
+	watch ntpq -cpe -cas
+
+5. 3Ware CLI install (for hardware raid access)
+    see http://updates.aslab.com/doc/disk-controller/3ware_User_Guide_Ubuntu.pdf
+    - enable access to 3ware hardware raid repository. Modify the 
+    /etc/apt/source.list to include
+    	deb http://hwraid.le-vert.net/ubuntu precise main
+    - install package w/o authentication (or get the key?)
+    - sudo apt-get install tw-cli
+    - restart server
+    - sudo tw-cli info c0
+
+Unit  UnitType  Status         %RCmpl  %V/I/M  Stripe  Size(GB)  Cache  AVrfy
+------------------------------------------------------------------------------
+u0    RAID-1    OK             -       -       -       465.651   RiW    ON
+u1    RAID-0    OK             -       -       256K    11175.8   RiW    ON
+
+VPort Status         Unit Size      Type  Phy Encl-Slot    Model
+------------------------------------------------------------------------------
+p0    OK             u0   465.76 GB SATA  0   -            HITACHI HDS7250SASU
+p1    OK             u0   465.76 GB SATA  1   -            HITACHI HDS7250SASU
+p2    OK             u1   1.82 TB   SATA  2   -            WDC WD2003FYYS-02W0
+p3    OK             u1   1.82 TB   SATA  3   -            WDC WD2003FYYS-02W0
+p4    OK             u1   1.82 TB   SATA  4   -            WDC WD2003FYYS-02W0
+p5    OK             u1   1.82 TB   SATA  5   -            WDC WD2003FYYS-02W0
+p6    OK             u1   1.82 TB   SATA  6   -            WDC WD2003FYYS-02W0
+p7    OK             u1   1.82 TB   SATA  7   -            WDC WD2003FYYS-02W0
+		 
+6. Data Disk configure
+   BEFORE
+brutus@mustard:~$ sudo fdisk -l
+
+Disk /dev/sda: 500.0 GB, 499989348352 bytes
+255 heads, 63 sectors/track, 60786 cylinders, total 976541696 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00056000
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048   842383359   421190656   83  Linux
+/dev/sda2       842385406   976539647    67077121    5  Extended
+/dev/sda5       842385408   976539647    67077120   82  Linux swap / Solaris
+
+WARNING: GPT (GUID Partition Table) detected on '/dev/sdb'! The util fdisk doesn't support GPT. Use GNU Parted.
+
+
+Disk /dev/sdb: 11999.9 GB, 11999933104128 bytes
+255 heads, 63 sectors/track, 1458908 cylinders, total 23437369344 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+
+Disk /dev/sdb doesn't contain a valid partition table
+
+   Step 1:
+   	$ sudo fdisk /dev/sdb
+WARNING: GPT (GUID Partition Table) detected on '/dev/sdb'! The util fdisk
+doesn't support GPT. Use GNU Parted
+
+	oops...
+
+   Step 2:
+   	$ sudo parted /dev/sdb
+	  (parted) mklabel gpt
+	  (parted) mkpart primary ext4
+	  Start? 0%
+	  End? 100%
+	  (parted) quit
+
+   Step 3:
+   	$ sudo mkfs.ext4 /dev/sdb1
+   Step 4:
+   	$ sudo mkdir -p /exports/mustard
+   Step 5:
+   	- modify the /etc/fstab. First get mounted device by id
+	$ ls -l /dev/disk/by-id
+	...
+	lrwxrwxrwx 1 root root 10 Mar 15 10:21 wwn-0x600050e0e727a700ff66000037530000-part1 -> ../../sdb1
+	$ sudo vi /etc/fstab
+	  - add the following line
+/dev/disk/by-id/wwn-0x600050e0e727a700ff66000037530000-part1 /exports/mustard ext4 defaults,noatime,nodiratime 0 0
+   Step 6:
+   	$ sudo mount -a
+	$ df -h
+	Filesystem      Size  Used Avail Use% Mounted on
+	udev             32G  4.0K   32G   1% /dev
+	tmpfs           6.3G  1.7M  6.3G   1% /run
+	/dev/sda1       396G  3.7G  372G   1% /
+	none            4.0K     0  4.0K   0% /sys/fs/cgroup
+	none            5.0M     0  5.0M   0% /run/lock
+	none             32G  144K   32G   1% /run/shm
+	none            100M   28K  100M   1% /run/user
+	/dev/sdb1        11T   31M   11T   1% /exports/mustard
+
+
+-----------------------------------------------------     
+POST-INSTALLATION:
+-----------------------------------------------------     
+

@@ -1,0 +1,8 @@
+dn: ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: organizationalUnit
+ou: AUTOFS
+
+dn: nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.master
+

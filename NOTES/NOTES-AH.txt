@@ -1,0 +1,76 @@
+NOTES: Arrayhealth Toolset [DRAFT]
+DATE: 2018-07
+
+
+Arrayhealth (AH) is collection of python-based library and program modules 
+that provide access to the attributes, components, and arrayhealth run data 
+of the ATA. 
+
+- Code is contained in AH SVN repository.
+- Released (non-working) copy is at $AH_HOME (/home/obs/arrayhealth)
+- AH_HOME defined in /hcro/atasys/ata/setup/common/ata.startup.*
+- $AH_HOME/ah/scripts is in $PATH and contains bash invokes for all pertinent 
+  AH modules. 
+
+Program Modules:
+----------------------------------------------
+
+ahrun - arrayhealth observation script. See help for complete list of 
+	 optional arguments and defaults. Run weekly to generate the miriad
+	 datasets and with the -o option to derive the tsys values [currently
+	 using the RapidBeta compass scripts]. Gathered datapoints stored as
+	 json-based records in an obslog file.
+
+	 ahrun.py -o
+
+ahcheck - script to check the facts in an obslog against established delta
+	 or range thresholds. Facts are the attribute values (simple datatype) 
+	 associated w/ specific component gathered during a given 'phase' of 
+	 the run. A phase may be an initializing phase or a observation phase 
+	 (e.g., a specific quasar at a specific frequency). Output format
+	 options are csv,tsv,json,none (python object). The 'flag' and 'rflag'
+	 options will output only those attributes not meeting established
+	 threshold or only those meeting the threshold respectively.
+
+	 ahcheck --attr tsys-a,tsys-c -f 1430 --flag --fmt csv
+
+	 ahcheck --attr cryotemp --fmt json  [read in initializing
+	 	    	   	    	  	phase only]
+
+bestantpols - script to generate sorted list of best ant pols for specified
+	 context. 
+	 
+	 bestantpols --rflag --v1only     [output only V1 meeting threshold]
+
+ 	 bestantpols -h
+	 usage: bestantpols.py [-h] [--rootpath ROOTPATH] [--rootdir ROOTDIR]
+                      	       [--runname RUNNAME] [--rundate RUNDATE]
+                      	       [--runiter RUNITER] [--flag] [--rflag] [-f FREQ]
+                      	       [--v2only] [--v1only] [--attr ATTR] [--details]
+
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -f FREQ, --freq FREQ  frequency to check. (default: 3040)
+	  --v2only              Version 2 only filter (default: False)
+  	  --v1only              Version 1 only filter (default: False)
+  	  --attr ATTR, --attr ATTR
+          	                attribute to select on. If specifying more than one,
+                 	        must be of like kind (default: tsys-a,tsys-c)
+  	  --details             BFA ibob details (all BFs have same antpol hookups)
+                                (default: False)
+
+	run:
+  	  --rootpath ROOTPATH   observation root path (default: /data/tumulus/obs)
+  	  --rootdir ROOTDIR     observation root directory (default: arrayhealth)
+    	  --runname RUNNAME     observation runname. Run directory ALWAYS prepended w/
+                                date, e.g.<RUNDATE>_<RUNNAME> (default: arrayhealth)
+  	  --rundate RUNDATE     rundate. YYYY-MM-DD|latest|today. (default: latest)
+  	  --runiter RUNITER     run iteration. (default: None)
+
+	runcheck:
+  	  --flag                Return only non-good results, i.e. theshold check
+                        	returns MARGINAL, POOR, TOO LOW, LOW or HIGH (default:
+                        	False)
+  	  --rflag               Return only good results, i.e. meet threshold check of
+                        	OK, EXCELLENT, or GOOD (default: False)
+

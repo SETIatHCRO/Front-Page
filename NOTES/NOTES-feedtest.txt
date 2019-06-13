@@ -1,0 +1,20 @@
+NOTES: Feed Testing
+DATE: Nov. 12, 2014
+
+ atagetlnas
+
+
+SYNOPSIS
+     atagetlnas [OPTIONS] antenna
+DESCRIPTION
+     Return the lna settings for one antenna.
+EXAMPLES
+     Return lna settings on antenna 5e
+     atagetlnas 5e
+OPTIONS
+     -q
+        quiet mode: no error or status messages
+     -v
+        verbose (diagnostic) mode
+
+`

@@ -1,0 +1,3 @@
+dn:			dc=obs,dc=hcro,dc=org
+objectClass:		top
+objectClass:		domain

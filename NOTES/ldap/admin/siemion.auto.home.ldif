@@ -1,0 +1,11 @@
+
+#
+# siemion home
+#
+
+dn: cn=siemion,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: siemion
+nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/exports/basalt/home/siemion
+

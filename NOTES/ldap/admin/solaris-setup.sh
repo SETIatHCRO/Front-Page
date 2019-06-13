@@ -1,0 +1,25 @@
+ldapclient manual -v \
+-a credentialLevel=proxy         \
+-a authenticationMethod=simple   \
+-a proxyDN=cn=Administrator,dc=obs,dc=hcro,dc=org        \
+-a proxyPassword="XXXXXXXXXXXXX" \
+-a defaultServerList=10.3.0.42:389       \
+-a defaultSearchBase=dc=obs,dc=hcro,dc=org       \
+-a domainName=hcro.org \
+-a followReferrals=false         \
+-a attributeMap=group:userpassword=userPassword  \
+-a attributeMap=group:memberuid=memberUid        \
+-a attributeMap=group:gidnumber=gidNumber        \
+-a attributeMap=passwd:gecos=cn \
+-a attributeMap=passwd:gidnumber=gidNumber       \
+-a attributeMap=passwd:uidnumber=uidNumber       \
+-a attributeMap=passwd:homedirectory=homeDirectory       \
+-a attributeMap=passwd:loginshell=loginShell     \
+-a attributeMap=shadow:shadowflag=shadowFlag     \
+-a attributeMap=shadow:userpassword=userPassword         \
+-a objectClassMap=group:posixGroup=posixGroup \
+-a objectClassMap=passwd:posixAccount=posixAccount       \
+-a objectClassMap=shadow:shadowAccount=shadowAccount     \
+-a serviceSearchDescriptor=passwd:dc=obs,dc=hcro,dc=org?sub      \
+-a serviceSearchDescriptor=group:dc=obs,dc=hcro,dc=org?sub
+

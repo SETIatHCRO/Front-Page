@@ -1,0 +1,11 @@
+1dy	SB-028	BaD LNA, vm not adjustable
+1ky	SB-013	Bad LNA
+3dx	SB-015	Bad LNA
+2ey	i16.bfa:in2 Bad attemplifier (bfa)
+2fx	SB-019	    Bad LNA, vm not adjustable
+2lx	i16.bfb:in0 Bad attemplifier (bfb)
+3jx	i11.bfb:in2 Bad attemplifier (bfb)
+5cx	i09.bfa:in0 Bad attemplifier (bfa). possible bad ibob (i09.bfa)
+5gx	i09.bfa:in1 Bad attemplifier (bfa), possible bad ibob (i09.bfa)
+4gx	i12.fxa:in2 Missing ibob (fxa)
+4gy	i12.fxa:in3 Missing ibob (fxa)

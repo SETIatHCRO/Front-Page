@@ -1,0 +1,11 @@
+
+#
+# basalt home
+#
+
+dn: cn=basalt,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: basalt
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hcro.org:/exports/basalt/home
+

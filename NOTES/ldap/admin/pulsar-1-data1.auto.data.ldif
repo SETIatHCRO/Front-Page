@@ -1,0 +1,8 @@
+
+# pulsar-1-data1 data disk
+dn: cn=pulsar-1-data1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pulsar-1-data1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.hcro.org:/export/data1
+

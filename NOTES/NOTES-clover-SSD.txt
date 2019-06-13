@@ -1,0 +1,51 @@
+NOTES: Clover SSD Install
+DATE: 03 Feb 2015
+HISTORY:  2/3/15 ELK  created
+
+Links
+  https://wiki.debian.org/SSDOptimization
+https://wiki.archlinux.org/index.php/Solid_State_Drives#Tips_for_Maximizing_SSD_Performance
+
+Modify I/O Scheduler - NOT DONE
+  Change from cfq to noop or deadline
+
+    # cat /sys/block/sdX/queue/scheduler
+        noop deadline [cfq]
+
+Confirm BIOS Settings
+  SATA Mode [AHCI Mode]
+  Aggressive Link Power Mgmt [Enabled]
+
+Steps:
+1) mkdir /scratch  (chown obs:obs)
+2) modify /etc/fstab
+/dev/disk/by-id/ata-Samsung_SSD_850_PRO_1TB_S1SRNWAFB05385D-part1 /scratch ext4 defaults,noatime,nodiratime 0 0
+
+  Note - at this time NOT using the discard mount option which will trim 
+  (erase) the SSD as soon as a file is deleted. Alternatively trim can be
+ done at boot or by a cron job, or as step in usage (e.g., at end of 
+    processing)
+
+3) parted /dev/sdc
+    mklabel   gpt
+    mkpart primary ext4
+      start? 0%
+      end?  100%
+4) mkfs.ext4 /dev/sdc1
+    Note - using the default block size (512). Did we want to consider 4k?
+5) mount -a
+
+6) setup rsync destination
+  - ensure the rsyncd is enabled on clover
+  - modify /etc/rsyncd.conf
+      - comment out the hosts allow from original. May revisit access control
+      - add scratch module
+      [scratch]
+              uid = obs
+              gid = obs
+              path = /scratch
+              comment = space for image processing
+              read only = false
+
+
+

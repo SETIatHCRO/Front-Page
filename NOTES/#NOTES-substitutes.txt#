@@ -1,0 +1,22 @@
+NAME: Substitute Commissioning
+DATE: July 27,2015
+
+HISTORY: 
+7/27/15	 Initial commissioning of subr5 and subr10
+
+BACKGROUND---------------------
+PowerEdge 
+PSU
+- If not using redundant PSU, then place PSU in left bay (1). Unused bay must 
+have a blank PS to ensure proper cooling/air flow (use bad ones in lieu of 
+having enough blanks).
+
+Drives
+The carriers we have are SAS. Drives can take SAS or SATA --- The RAID
+Controller is for SAS (??).
+
+7/27/15
+- Checked all PowerEdge for redundant PSU. Replaced right PSU on Tumulus.
+
+-  
+

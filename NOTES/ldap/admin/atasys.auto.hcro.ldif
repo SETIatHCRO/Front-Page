@@ -1,0 +1,11 @@
+
+#
+# boot2 hcro/atasys
+#
+
+dn: cn=atasys,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: atasys
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 boot2.hcro.org:/export/boot2/atasys
+

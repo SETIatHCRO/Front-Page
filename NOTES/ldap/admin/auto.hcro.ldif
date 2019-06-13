@@ -1,0 +1,16 @@
+
+#
+# auto.hcro
+#
+dn: cn=/hcro,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.master
+cn: /hcro
+nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+
+dn: nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.hcro
+#
+# End auto.home
+

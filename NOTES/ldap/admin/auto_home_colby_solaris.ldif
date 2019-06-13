@@ -1,0 +1,12 @@
+
+#
+# provide automount maps for solaris
+
+dn: cn=colby,nisMapName=+auto_home,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: +auto_home
+cn: colby
+nisMapEntry: vers=3 basalt.hcro.org:/exports/basalt/home/colby
+
+
+

@@ -1,0 +1,31 @@
+NOTES: DMZ hosting of foreign computers
+DATE:  9/30/15
+AUTHOR: ELK
+MODS:
+
+
+These notes relate to hosting "foreign" computers (SRI and non-SRI) on our
+DMZ.
+
+Foreign HOSTS (as of 9/30/15):
+Name	      IP    	     Group		Contact				NOTES
+baler	      74.43.140.13 Berkeley Seismo	doug@seismo.berkeley.edu,	BK.HATC seismic station
+	      	     	      			operations@seismo.berkeley.edu
+q330	      74.43.140.14 Berkeley Seismo					intermittently connected
+unavco-gps    74.43.140.15 Unavco   		woolace@unavco.org		adam 707-367-0991 	
+hatcreekmango 74.43.140.16 Asti Bhatt
+hatcreekmangops 74.43.140.17 Asti					powerstrip
+amisr		74.43.140.18 Steven Chen
+
+SHOREWALL Mods to accomodate trusted Institutions
+zone - add zone specific to the instutute (so
+ADD HOST
+    DNS (blake7)
+	Assign IP address and add to DMZ primary DNS
+    Firewall (mingus)
+    	params
+		add symbol for host IP
+		add symbol for ports
+	rules
+		add accept, eg
+		ACCEPT srimp  dmz:$AMISR   tcp ssh	

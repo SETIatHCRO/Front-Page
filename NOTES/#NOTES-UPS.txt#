@@ -1,0 +1,66 @@
+NOTES:  UPS shed monitoring
+DATE:   12/1/13
+AUTHOR: ELK
+
+9/25/17	ELK	Info on UPS bypass event and failure of SNMP trap to be sent
+
+GENERAL:
+----------------------------------------
+A Site UPS was installed ??. This UPS provides protection from transitory
+glitches from power lines as well as protection from overdraw by equipment.
+The backup generator will provide continuous power for ?? hours. This UPS/generator combo covers the following equipment:
+
+    -SPR (Circuits ??-??)
+    -lab 1 Circuit ??
+    -all node houses/antennas
+
+The UPS is a Mitsubuishi 9900A Series
+www.meppi.com
+Technical Support: 1-800-887-7830 (5am-9am, 10am-1:30pm)
+
+REMOTE MONITORING
+-----------------------------------------
+The DiamondLink NetCom product is used to monitor the UPS status
+
+https://site-ups.hcro.org
+user: admin
+pwd: b2k2l2y   (sic)
+
+NB: 25 Sept 2017 - the mozilla and chrome browser will no longer interface w/
+the device due to security requirements/setups. Have to use IE.
+
+The temperature of the UPS shed is also available for monitoring:
+
+akcp-ups-shed.hcro.org
+user: Administrator
+pwd: <none>
+
+==================================================================
+UPS Bypass event
+on 9/5/17 UPS failed and did not self clear (see event in august in which
+device did self clear). Cleared the event on 9/7 manually.
+	
+Sep 07 10:17:08	UPS Alarm	User:System	Event id: 80000013, General UPS Failure : Removed
+Sep 06 18:36:10	UPS Alarm	User:System	Event id: 80000001, Awaiting Power : Removed
+Sep 06 18:36:10	UPS Alarm	User:System	Event id: 80000002, Bypass Bad : Removed
+Sep 06 18:36:00	UPS Alarm	User:System	Event id: 80000001, Awaiting Power
+Sep 06 18:36:00	UPS Alarm	User:System	Event id: 80000002, Bypass Bad
+Sep 05 14:01:34	UPS Alarm	User:System	Event id: 80000013, General UPS Failure
+
+
+8/17/2017 17:37	UPS Alarm	User:System	Event id: 80000013, General UPS Failure : Removed
+8/17/2017 17:37	UPS Alarm	User:System	Event id: 80000002, Bypass Bad : Removed
+8/17/2017 17:37	UPS Alarm	User:System	Event id: 80000013, General UPS Failure
+8/17/2017 17:37	UPS Alarm	User:System	Event id: 80000002, Bypass Bad
+8/17/2017 17:25	UPS Alarm	User:System	Event id: 80000013, General UPS Failure : Removed
+8/17/2017 17:25	UPS Alarm	User:System	Event id: 80000002, Bypass Bad : Removed
+8/17/2017 17:23	UPS Alarm	User:System	Event id: 80000013, General UPS Failure
+8/17/2017 17:23	UPS Alarm	User:System	Event id: 80000002, Bypass Bad
+8/17/2017 17:11	UPS Alarm	User:System	Event id: 80000013, General UPS Failure : Removed
+8/17/2017 17:11	UPS Alarm	User:System	Event id: 80000002, Bypass Bad : Removed
+8/17/2017 17:10	UPS Alarm	User:System	Event id: 80000013, General UPS Failure
+8/17/2017 17:10	UPS Alarm	User:System	Event id: 80000002, Bypass Bad
+8/17/2017 16:36	UPS Alarm	User:System	Event id: 1000000E, UPS Communications Restored
+8/17/2017 16:36	UPS Alarm	User:System	Event id: 10000000, UPS Communications Lost
+8/8/2017 9:27	UPS Alarm	User:System	Event id: 1000000E, UPS Communications Restored
+8/8/2017 9:18	UPS Alarm	User:System	Event id: 10000000, UPS Communications Lost

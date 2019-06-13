@@ -1,0 +1,8 @@
+
+# weather data disk
+dn: cn=weather,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: weather
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 weather.hcro.org:/export/weather
+

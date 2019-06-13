@@ -1,0 +1,337 @@
+NOTES - svn server
+
+June 2013 Comissioning of new Subversion server
+10/2/14 Notes on startup failure and manual start
+12/22/14 - Add svn mgmt notes for inserting post-commit hook
+12/22/14 - remove passphrase from the ssl key so that svn will startup w/o
+prompting on boot
+5/3/17 - regenerate certificate (prior expired)
+8/15/17 - rebuild of boot disk after (non-raid) boot disk failure
+3/25/19 - creation of AH repository
+
+=================================================
+I. Network Configuration
+  svn.hcro.org  74.43.140.10 (keep the same as old SVN)
+
+II. openSSL install
+04/30/14 -- Upgrade of openSSL to 1.0.1g for Heartbleed security flaw.
+            Restart apache2 server
+            replace key and certificate (self-signed) 
+              config in /etc/apache2/vhosts.d/svn-ssl.conf
+            see https://www.openssl.org/docs/HOWTO/certificates.txt 
+
+           
+  III. Apache web server install
+  - configure for SSL and non-SSL access (redirected to SSL, i.e., https)
+
+# apache2ctl -v
+  Server version: Apache/2.2.22 (Linux/SUSE)
+  Server built:   2013-03-28 12:52:01.000000000 +0000
+
+  ./usr/share/doc/packages/apache2/ - REAMEs
+  ./etc/sysconfig/apache2 - list of shared modules to load, etc.
+        Added mod_ssl, mod_dav, mod_dav_svn (NB: order is important)
+	e.g., a2enmod ssl
+        # a2enmod -l
+       actions alias auth_basic authn_file authz_host authz_groupfile authz_default authz_user autoindex cgi dav dav_svn dir env expires include log_config mime negotiation setenvif ssl status userdir php5 reqtimeout authz_svn auth_digest
+       
+  ./etc/apache2 - main configuration files
+      listen.conf - port to listen on
+      httpd.conf - main apache config file - includes others - generally not edited
+      conf.d/   - configuration files for optional modules
+        subversion.conf - list of repositories
+      ssl.key/
+      ssl.crt/ - ssl x509 key
+      vhosts.d/ - virtual host config files
+        svn.conf
+        svn-ssl.conf
+  ./var/log/apache2 - apache and svn error logs
+
+  Multiple ways to control service
+    /usr/sbin/rcapache2
+    /usr/sbin/apache2ctl
+    sudo systemctl <cmd> apache2.service
+
+  Startup of SVN apache server:
+   NB: because the service has been installed with digest authentication, the
+   certificate passphrase is required to start it up (see IV.4), e.g.,
+  
+      svn:/etc # service apache2 start
+      Enter SSL pass phrase for svn.hcro.com:443 (RSA): **************
+
+IV. Subversion Install on Apache without tears
+  See (http://svnbook.red-bean.com)
+
+  1. Location    SVNPath = /srv/svn/repos
+  2. Authentication
+      Use digest authentication (safer than the basic authentication used 
+      previously)
+      
+      Digest authentication uses a different file format than Basic 
+      authentication; it is created using Apache's htdigest2 utility rather 
+      than htpasswd. Digest authentication also has the additional concept of 
+      a .realm., which must match the value of the AuthName directive - 
+      namely "Subversion repository". 
+  
+      The password file is created as follows:
+
+      $ ### First time: use -c to create the file
+      $ htdigest2 -c /srv/svn/user_acces/svn-auth.htdigest "Subversion repository" harry
+      Adding password for harry in realm Subversion repository.
+      New password: *****
+      Re-type new password: *****
+      $ htdigest2 /srv/svn/user_access/svn-auth.htdigest "Subversion repository" sally
+  3. Authorization
+      Allow blanket access control as long as user successfully authenticates
+      On all repositories:
+           SSLRequireSSL
+           <LimitExcept OPTIONS>
+              Require valid-user
+           </LimitExcept>
+  4. Certificates
+      passphrase  control-By*key
+
+  5. Remove passphrase from key (in /etc/apache2/ssl.key/svn.key
+      - make a backup of the old key
+      # openssl rsa -in svn.key -out new.key
+      # cp new.key svn.key
+
+      
+  6. Generate new key (after prior expired)
+  to view the key
+cd /etc/apache2
+$ openssl x509 -noout -text -in ssl.crt/<name>.crt
+
+$ openssl req -new -x509 -key ssl.key/svn.pem -out ssl.crt/svn.crt -days 1095
+
+ Subject: C=US, ST=California, L=Hat Creek, O=SRI International, OU=HCRO, CN=svn.hcro.org/emailAddress=elin.klaseen@sri.com
+
+$ systemctl restart apache2.service
+  
+Subversion Management
+================================================
+
+  I. Adding new SVN Users
+    See above (2)
+
+
+  II. Adding (existing, dormant) SVN repositories
+    Modify the /etc/apache2/conf.d/subversion.conf 
+    Modify the /etc/apache2/vhosts.d/svn.conf and svn-ssl.conf
+
+  III. Moving repositories from one server to another
+
+    1) Create dump of the repository on source machine
+      svnadmin dump /src/svn/repos/<repo> >/tmp/<repos>.svn_dump
+
+    2) Create root on target machine
+      svnadmin create /srv/svn/repos/<repo>
+      chown -R wwwrun:svn  <location>
+
+    3) Copy over, then load in dump
+      svnadmin load --force-uuid --bypass_prop_validation /srv/svn/repos/<repo> /tmp/<repo>.svn_dump
+
+  IV. Adding commit event hooks
+
+  1) in <repo>/hooks - create post-commit script (there is a template) with args:
+       #   [1] REPOS-PATH   (the path to this repository)
+       #   [2] REV          (the number of the revision just committed)
+       #   [3] TXN-NAME     (the name of the transaction that has become REV)
+
+    the scripts creates and email to send. List of receivers in hard-coded in the script
+
+================================================
+Boot disk rebuild (8/15/17)
+- For some reason, original build did not have boot disk in a RAID. The Data
+disk also contained disks 2,3,5 (why out-of order, don't know).
+- Added in 2nd disk in slot 4 to create a RAID of the boot disk.
+- Installed the LEAP 42.2 
+  - change hard-drive sequence (put USB first - NB BIOS said use '-/+' to
+  change order but only the arrow keys worked (perhaps a keyboard issue)
+  - ensure boot order is from hard-drive
+  - ensure usb emulation is auto
+- After install, shutdown and added back in the data VD disks (2,3,5).
+  - VD mgmt -> controller -> foreign config -> import
+- Add data VD to the /etc/fstab
+  - fdisk /dev/sdX -l          ! to find the available devices
+  - ls -l /dev/disk/by-uuid    ! get the UUID
+  - edit /etc/ fstab  (determine disk format type from fdisk)
+  - mounted to /data location
+
+Network
+----------------
+	- same as before
+	- explicitly disable IPV6. Thought it was the source of a DNS issue,
+	turns out had mis-entered the name server address.
+SSH
+----------------
+	- only want to allow root login from the obs subnet and
+	certificate-based so no prompt"
+	- at end of svn:/etc/ssh/sshd_config
+#2017-08-16 - setup for root login on math
+PermitRootLogin no
+PermitEmptyPasswords no
+PasswordAuthentication no
+Match Address 10.3.0.0/24
+    PermitRootLogin yes
+
+Backups
+---------
+The dobackups script relies on a root login from basalt to svn. Need this to
+be passwordless (certificate-based). 
+Could not find the existing public key for this on basalt (????), so created a
+new one (in basalt:/root/.ssh). Installed the public key on svn:/root/.ssh/authorized_keys
+	  
+OpenSSL - 
+----------------
+	already installed (1.0.2j-2.2)
+
+Apache2		
+----------------
+	Server version: Apache/2.4.23 (Linux/SUSE)
+	Server built:   2017-07-26 12:15:59.000000000 +0000
+	- enable modules dav, dav_svn, authz_svn,auth_digest 
+	using a2enmod - this will modify /etc/apache2/loadmodule.conf
+	the /etc/sysconfig/apache2 file
+ # a2enmod -l
+actions alias auth_basic authn_file authz_host authz_groupfile authz_core
+	authz_user autoindex cgi dir env expires include log_config mime
+	negotiation setenvif ssl socache_shmcb userdir reqtimeout authn_core
+	dav dav_svn authz_svn auth_digest
+# cd /etc/apache2
+# openssl req -newkey rsa:2048 -x509 -nodes -days 1095 -keyout ssl.key/svn.pem -out ssl.crt/svn.crt
+
+Since svn.hcro.org is dedicated to serving up only the svn files, then comment
+out all in the /etc/apache2/default-server.conf except for the include of the
+/etc/apache2/conf.d/*.d
+And in that directory, put a subversion.conf there (using the subversion.conf.rpmnew
+as template)
+
+# Example configuration for a subversion repository
+# Install the package subversion-doc and see
+# /usr/share/doc/packages/subversion for the full documentation
+# An online version can be found at http://svnbook.red-bean.com/
+#
+
+<IfModule mod_dav_svn.c>
+
+##
+## project related HTML files
+##
+#<IfModule mod_alias.c>
+#Alias /repos    /srv/svn/html
+#</IfModule>
+#<Directory /srv/svn/html>
+#        Options         +Indexes +Multiviews -FollowSymLinks
+#        IndexOptions    FancyIndexing \
+#                        ScanHTMLTitles \
+#                        NameWidth=* \
+#                        DescriptionWidth=* \
+#                        SuppressLastModified \
+#                        SuppressSize
+#
+#        order allow,deny
+#        allow from all
+#</Directory>
+
+
+
+#<Location /repos/myproject1>
+#   DAV svn
+#   SVNPath /srv/svn/repos/myproject1
+#
+#   AuthType Basic
+#   AuthName "Authorization Realm"
+#   AuthUserFile /srv/svn/user_access/myproject1_passwdfile
+#   AuthGroupFile /srv/svn/user_access/myproject1_groupfile
+#
+#   # Limit read access to certain people
+#   <Limit GET PROPFIND OPTIONS REPORT>
+#      # uncomment to require SSL connection for password protection.
+#      # SSLRequireSSL
+#      Require group project1_committers
+#      Require group project1_readers
+#   </Limit>
+#
+#   # Limit write permission to list of valid users.
+#   <LimitExcept GET PROPFIND OPTIONS REPORT>
+#      # uncomment to require SSL connection for password protection.
+#      # SSLRequireSSL
+#      Require group project1_committers
+#   </LimitExcept>
+#
+#</Location>
+##
+## Hosting svn at "/"
+##
+<VirtualHost *:443>
+    ServerName svn.hcro.org
+    ErrorLog    /var/log/apache2/svn.hcro.org-error_log
+    TransferLog /var/log/apache2/svn.hcro.org-access_log
+
+    # SSL Engine Switch:
+    # Enable/Disable SSL for this virtual host.
+    SSLEngine on
+    SSLCertificateFile  /etc/apache2/ssl.crt/svn.crt
+    SSLCertificateKeyFile /etc/apache2/ssl.key/svn.pem
+
+#    #
+#    # Do not set DocumentRoot. It is not needed here and just causes trouble.
+#    #
+#    # Map the error documents back to their defaults.
+#    # Otherwise mod_dav_svn tries to find a "error" repository.
+#    #
+    ErrorDocument 400 default
+    ErrorDocument 401 default
+    ErrorDocument 403 default
+    ErrorDocument 404 default
+    ErrorDocument 405 default
+    ErrorDocument 408 default
+    ErrorDocument 410 default
+    ErrorDocument 411 default
+    ErrorDocument 412 default
+    ErrorDocument 413 default
+    ErrorDocument 414 default
+    ErrorDocument 415 default
+    ErrorDocument 500 default
+    ErrorDocument 501 default
+    ErrorDocument 502 default
+    ErrorDocument 503 default
+    #
+    <Location />
+      DAV svn
+      SVNParentPath /data/svn/repos/
+      SVNListParentPath on
+      AuthType Digest
+      AuthName "Subversion repository"
+      AuthBasicProvider file
+      AuthUserFile /data/svn/user_access/svn-auth.htdigest
+      SetOutputFilter DEFLATE
+      <LimitExcept GET PROPFIND OPTIONS REPORT>
+        Require valid-user
+      </LimitExcept>
+      #
+#      # Optional configuration for mod_dontdothat
+#      # prevent users from causing high load on the server, e.g. checking out
+#      # the root of the tree or the tags or branches directories
+#      #
+#      #<IfModule mod_dontdothat.c>
+#      #  DontDoThatConfigFile /srv/svn/mod_dontdothat.config
+#      #  DontDoThatDisallowReplay off
+#      #</IfModule>
+    </Location>
+</VirtualHost>
+
+</IfModule>
+
+
+
+Subversion
+----------------
+	- install (in yast) subversion 
+# svn --version
+svn, version 1.9.5 (r1770682)
+
+CREATE AH repository 3/25/19
+---------------------------------------
+

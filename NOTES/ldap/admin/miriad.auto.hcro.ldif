@@ -1,0 +1,11 @@
+
+#
+# basalt miriad
+#
+
+dn: cn=miriad,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: miriad
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 $OSNAME-$CPU.hcro.org:/export/miriad
+

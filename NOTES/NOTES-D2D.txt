@@ -1,0 +1,166 @@
+NOTES: D2D (foxtrot beamformer raw data)
+DATE: 2018-01-17
+      2018-11-05 use ft:elin/ft_all_new.bash for host list as argument
+      2019-05-01 - timing sync issue (ntp?). Also, add description of startup
+
+STARTUP
+----------------------
+Config:
+~obs/bbarott/foxsrv/FoxHookup.cfg
+	- what is the mapping of antpols to ft nodes?
+
+Entities:
+[script location: /home/obs/bbarott/foxsrv]
+[see shared mount: boot2:/b2s/b* and /b2s/bfu/data]
+
+  Node	Script			Class Instantiation
+  ft	fxs_managerserver.rb  	fxs_manager
+  ft* 	fxs_nodeserver.rb	fxs_node
+  tumulus foxcap_init.rb	fxs_recsrvr - invokes fxs_node.recordStart
+  tumulus foxcap_rec.rb		invokes fxc_recsrvr.recordStart
+
+recordStart (running on the ft*) invokes packet relay to write to file in {datadir}:
+        pkdir = "/hcro/foxsys/OpenSonATA/sigproc-pkg/utilities/packetrelay/src"
+        datadir = "/data"
+        cmd = "#{pkdir}/packetrelay -I 226.0.0.1 -i #{port} -f #{datadir}/#{fn} -s #{pklen}"
+
+WHERE is TIMESTAMP in this data file? First row processed generates "spam"
+output in a log somewhere
+
+UTILITES on FT:
+--------------------------------------
+ft_all:
+This script taks a host list and distributes a specified command. The commands
+can be generic linux commands or a specialized command.
+
+See ~/elin/ft_all_new.bash <host list> {serial|parallel|local} cmd
+
+See ~/ft_all.bash    --- contains host list and code to distribute the remote
+    		     command (through distribution of ft_all_cmd.bash) 
+		     and run in parallel or serially. 
+
+Commands: (taken from ~/elin/ft_all_20120818/NOTES)
+
+# shtudown nodes
+./ft_all.bash serial "run /sbin/shutdown -h -P now"
+
+
+#generate and copy key on ft node 
+./ft_all.bash serial "keygen"
+./ft_all.bash local "keycopy"
+
+# See how much space is available on each node
+./ft_all.bash serial "run df -h| grep /data"
+
+# Delete a set of data.  Be very carful with this!
+# Check first with ls
+# ./ft_all.bash serial "run ls /data/20111215-*" | more
+# ./ft_all.bash serial "run rm /data/20111215-*"
+
+#copy files based on a date
+# e.g., get a list of all files that have been modified in past 6 days, use that for rsync
+# have to make sure the destination is mounted
+./ft_all.bash serial "run find /data -type f -mtime -7 -printf '%f\n'> /tmp/files.txt | rsync -av --files-from=/tmp/files.txt /data foxtrot-boot1:/mnt/sdd"
+
+
+============================================================================
+Copying a collection of data to thumb drives
+============================================================================
+# For the list of collection nodes:
+#    insert usb drive into the right hand port on the back of each ft node
+#    make a record (spreadsheet/ paper) of which thumb drive # is where
+#
+# Edit ft_all.bash.  Change the list of nodes at the top to what was used
+# in the collect
+
+# Delete all the per node log files
+./ft_all.bash serial "run rm /tmp/ft_all_cmd.log ; touch /tmp/ft_all_cmd.log"
+# Look in the log files for errors is something goes wrong.
+
+# Check the all nodes find a correct thumb drve
+./ft_all.bash serial "find_usb"
+# Look for any no drive found messages, and fix problems
+
+# Format the thumb drives (takes 5-10 minutes)
+./ft_all.bash parallel "format_usb"
+
+# Wait for the jobs to finish
+./ft_all.bash serial "run ps aux | grep mkfs | grep -v grep"
+# You will see no more mkfs lines when donw
+
+# Check the output
+./ft_all.bash serial "run cat /tmp/ft_all_cmd.log; echo" | more
+# look for any issues
+
+# mount the drives
+./ft_all.bash parallel "mount_usb"
+
+# check that they are mounted and see how much space is available
+./ft_all.bash serial "run df -h | grep ata_thumb"
+
+# Come up with the correct ls args to describe the data
+./ft_all.bash serial "run ls /data/20120816_* " | more
+
+# Check the pre compression data size
+./ft_all.bash serial "run du -sch /data/20120816_* | tail -1"
+# The data should compress or less then 60% of this in the transfer.
+# Sometimes less that 50%
+
+# Transfer the data
+./ft_all.bash parallel "transfer /data/20120816_*"
+
+# Wait for transfer to finish
+./ft_all.bash serial "run ps aux | grep \"time gzip\" | grep -v grep"
+# This is a little flakey.  For some reason there are occasional long
+# pauses with no apparent usb activity on some nodes.  The lights on
+# the usb drives still blink.  Waiting upto 20 minutes for activity to 
+# resume.
+
+# The last file written is
+./ft_all.bash serial "run ls -lhrt /tmp/ata_thumb/ | tail -1"
+
+# Look for 100% used drives.  This indicates that an attempt was made to
+# transfer too much data.
+./ft_all.bash serial "run df -h | grep ata_thumb"
+
+# To generate a record of what is on the drives
+./ft_all.bash serial "run ls -lh /tmp/ata_thumb/" > 20120818_all_thumb.txt
+
+
+# If all the data is transfered, unmount the drives
+./ft_all.bash parallel "unmount_usb"
+
+# check that they are unmounted
+./ft_all.bash serial "run df -h | grep ata_thumb"
+
+
+2018-11-02
+------------
+ISSUE of rsync failures due to host key verification failure - -- host did not have ssh keys
+defined and those keys were not in the authorized_keys file on foxtrot-boot1.
+[NB: I just created ft11 key as test, hence current date]
+foxtrot-boot1:~/elin # find /ft/nfsroot/ft* -name id_rsa.pub -exec ls -l {} \;
+-rw-r--r-- 1 root root 396 2014-11-13 04:02 /ft/nfsroot/ft10/root/.ssh/id_rsa.pub
+-rw-r--r-- 1 root root 396 2018-11-02 02:11 /ft/nfsroot/ft11/root/.ssh/id_rsa.pub
+-rw-r--r-- 1 root root 396 2014-11-13 15:14 /ft/nfsroot/ft12/root/.ssh/id_rsa.pub
+-rw-r--r-- 1 root root 395 2014-11-12 22:20 /ft/nfsroot/ft6/root/.ssh/id_rsa.pub
+-rw-r--r-- 1 root root 395 2014-11-13 04:01 /ft/nfsroot/ft7/root/.ssh/id_rsa.pub
+-rw-r--r-- 1 root root 395 2014-11-13 04:01 /ft/nfsroot/ft8/root/.ssh/id_rsa.pub
+-rw-r--r-- 1 root root 395 2014-11-13 04:01 /ft/nfsroot/ft9/root/.ssh/id_rsa.pub
+
+
+2019-05-01
+------------
+ISSUE of ntp synchronization - because ft nodes are off for long periods,
+their ntp servers (primary is ft from which other nodes get their time) do not
+sync (the jitter and offset keeps increasing).
+
+1. while has current CNS2 server in ntp.conf, has ntp1-2 (==ntp1-6 ===
+meinberg 005) as "prefered"
+	 - change the cns2 as the prefered. Remove reference to ntp1-2
+	 - If we ever do protected and use the meinbergs, will need to modify
+	 back.
+
+2. Add to /etc/sysconfig/ntp
+   NTPD_FORCE_SYNC_ON_STARTUP="yes" 
+   NTPD_FORCE_SYNC_HWCLOCK_ON_STARTUP="yes"

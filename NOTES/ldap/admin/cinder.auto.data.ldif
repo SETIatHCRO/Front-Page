@@ -1,0 +1,8 @@
+
+# cinder data disk
+dn: cn=cinder,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: cinder
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 cinder.hcro.org:/export/cinder
+

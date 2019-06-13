@@ -1,0 +1,8 @@
+
+# jrseti data disk
+dn: cn=jrseti,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: jrseti
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 jrseti.hcro.org:/export/jrseti
+

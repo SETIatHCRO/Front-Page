@@ -1,0 +1,80 @@
+NOTES: TAI and UTC offset correction
+DATE: 2018-08-22
+
+DESCRIPTION:
+The Beamformer and Correlator operate in TAI (international atomic time) which
+is used by the ephemeris catalogs, etc. The system clocks are UTC, and the
+offset between the TAI and UTC is maintained differently for the BF versus
+correlator.
+
+Time and Correlators:
+------------------------
+  The TimeServer (/hcro/atasys/ata/src/ata/TimeServer) queries ATATime to get 
+  corrected UTC time. ATATime gets current leap second offsets from the
+  DataServer (stored in database based on an XML input file -
+  UTCMinusTAI.xml). 
+  Note that this XMLfile is stored on obs production at
+    atasys@user2:/opt/atasys/data/TimeServer  (formerly on mainctl)
+
+Time and Beamformers: [excerpted from Barottw email of 8/22/2018]
+------------------------
+  The offset between TAI and UTC is maintained by the beamformer software
+  (rather than queried from an external server). This is stored within the
+  top-level code of the hardware abstraction of the beamformer (bf_bee2.rb).  
+  Copies of this code exist on:
+	Tumulus: /home/obs/bbarott/bfu/bf_bee2.rb
+	Boot2: /opt/bfu/bin/bf_bee2.rb
+	BEE2s: (I THINK!) stored locally on boot2 at /b2s/local/opt/bf/bin/, 
+	       then mirrored by network config to /opt/bf/bin/ to each bee2
+
+  The offset is at about line 53 in the source file. The reason for having
+  three copies of the code is that, while the BEE2s actually perform the math 
+  to calculate the clock offset, the user-layer software (Bfu) daemons require 
+  a copy of the code to implement distributed ruby (on boot2), and for the user (tumulus)
+
+  HOW TO CHANGE:
+  This offset must be changed in bf_bee2.rb whenever the TAI offset is
+  updated. 
+  New copies should be deployed to the above three locations. The beamformer 
+  daemons, and probably also the bee2s themselves, should be restarted.
+
+  SYMPTOMS IF IGNORED:
+  Offsets in the clock will cause incorrect pointing of the beamformer. This 
+  will be worse at high frequencies. The synthetic beam (to memory) is about 
+  3 arcmin at 1420 MHz. So, at 6.6 GHz (methanol masers), the beam is about 
+  0.68 arcmin; given the current error (3sec), and approximate sidereal drift 
+  rate for equatorial sources (0.25arcmin/sec), this gives a current error of 
+  about 0.75 arcmin  more than a full beamwidth of pointing error.  This will 
+  manifest in phase calibrations by drifts, calibration transfer errors, and 
+  generally confusing results at high frequencies. The effect is most
+  pronounced at low frequencies.
+
+
+Verification:
+------------------------
+  Verify Correct leap second in use:
+    > atamainsystime -l
+      UTC       2015-05-01T00:16:41.375Z
+      LAST      6.7544804
+      MJD(UTC)  57143.01158999
+      ATATAI    1430439436375000000
+
+      The "TAI" time is in nsec. Take the (10) first digits (seconds) and pass to 
+      interactive ruby (irb). Verify that w/ the correct offset (now 35), that the seconds
+      value in the irb Time.at return is the same seconds value in the atamainsystime
+      (e.g., w/ an offset of 35, both are at 41 s.). 
+
+       > irb
+       irb(main):001:0> Time.at(1430439436-34)
+       => Thu Apr 30 17:16:42 -0700 2015
+       irb(main):002:0> Time.at(1430439436-35)
+       => Thu Apr 30 17:16:41 -0700 2015
+
+
+
+Older Code releases:
+---------------------------
+  The TimeServer/database method did not work in older 
+  releases that are currently (4/30/15) on the PM laptops. 
+  See the NOTES (NOTES-pm-admin) for the workaround.
+

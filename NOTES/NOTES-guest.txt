@@ -1,0 +1,367 @@
+NOTES: Guest VLAN setup/configuration (for hackathon)
+DATE: 2019-05-06
+History:
+
+---------------------------------------
+No bastion host - this subnet is strictly for outgoing access to internet.
+Intent is that all houses, dormitory, obs room, and conference room can be 
+switched over to this subnet as needed.
+
+DNS (Blake7):
+-----------
+- Add 10.60 to the acl list in /var/named/etc/named.conf 
+If not done, then applications on clients cannot complete dns looksup (e.g., browser)
+
+
+FORCE10 Router:
+------------
+   Manual - Dell-Force10-S_CLI_7.7.1.0_30-June-08-USE-THIS.pdf
+   Login to console port (from tumulus - due to fw rules)
+        ssh 10.3.1.1  admin/ad021314
+   Enter Exec Priv mode
+   	> enable  mh@llwfww@s
+
+Create backup of the running-config
+Force10# show file-systems
+
+      Size(b)     Free(b)      Feature      Type   Flags  Prefixes
+      3104256     3073536     dosFs2.0 USERFLASH      rw  flash:
+            -           -            -   network      rw  ftp:
+            -           -            -   network      rw  tftp:
+            -           -            -   network      rw  scp:
+Force10#cd flash:
+Force10#dir
+Directory of flash:
+
+  1  drw-      16384   Dec 31 1979 17:00:00 -07:00 .  
+  2  drwx       1536   Aug 24 2018 05:49:55 -07:00 ..  
+  3  d---        512   Dec 30 1980 17:00:08 -07:00 ADMIN_DIR  
+  4  -rw-       5965   Sep 17 2014 14:18:38 -07:00 startup-config  
+  5  -rw-       5138   Feb 26 2013 00:30:58 -07:00 running-config-022613  
+  6  -rw-       5345   Feb 05 2014 21:40:34 -07:00 test  
+  7  -rw-       5644   Apr 08 2014 15:39:24 -07:00 running-config-040814  
+Force10#copy running-config flash://running-config-050719
+!
+5900 bytes successfully copied
+
+Remove ports 43-48 from obs vlan
+-------
+Force10#config           
+Force10(conf)#interface vlan 20
+Force10(conf-if-vl-20)#show config
+!
+interface Vlan 20
+ description Obs Network
+ ip address 10.3.1.1/16
+ tagged Port-channel 1-2
+ untagged GigabitEthernet 0/27-48
+ untagged Port-channel 3
+ no shutdown
+Force10(conf-if-vl-20)#no untagged gigabitethernet 0/43
+Force10(conf-if-vl-20)#no untagged gigabitethernet 0/44
+Force10(conf-if-vl-20)#no untagged gigabitethernet 0/45
+Force10(conf-if-vl-20)#no untagged gigabitethernet 0/46
+Force10(conf-if-vl-20)#no untagged gigabitethernet 0/47
+Force10(conf-if-vl-20)#no untagged gigabitethernet 0/48
+Force10(conf-if-vl-20)#exit
+Force10(conf)#interface vlan 1
+Force10(conf-if-vl-1)#show config
+!
+interface Vlan 1
+!untagged GigabitEthernet 0/4,43-48   ---NB - unused ports put into vlan 1 by default
+Force10(conf-if-vl-1)#exit
+
+Ensure ports are in switchport mode (requirement of layer 2 mode)
+------------
+Force10(conf)#interface gigabitethernet 0/43
+Force10(conf-if-gi-0/43)#switchport
+Force10(conf-if-gi-0/43)#exit
+Force10(conf)#interface gigabitethernet 0/44 
+Force10(conf-if-gi-0/44)#switchport                    
+Force10(conf-if-gi-0/44)#exit                          
+Force10(conf)#interface gigabitethernet 0/45
+Force10(conf-if-gi-0/45)#switchport                    
+Force10(conf-if-gi-0/45)#exit                          
+Force10(conf)#interface gigabitethernet 0/46
+Force10(conf-if-gi-0/46)#switchport                    
+Force10(conf-if-gi-0/46)#exit                          
+Force10(conf)#interface gigabitethernet 0/47
+Force10(conf-if-gi-0/47)#switchport                    
+Force10(conf-if-gi-0/47)#exit                          
+Force10(conf)#interface gigabitethernet 0/48
+Force10(conf-if-gi-0/48)#switchport                    
+Force10(conf-if-gi-0/48)#exit                          
+
+Add ports to vlan 60
+-----------------
+
+interface Vlan 60
+ no ip address
+ shutdown
+Force10(conf-if-vl-60)#untagged gigabitethernet 0/43-48 
+Force10(conf-if-vl-60)#show config
+!
+interface Vlan 60
+ no ip address
+ untagged GigabitEthernet 0/43-48
+ shutdown
+Force10(conf-if-vl-60)#exit
+Force10(conf)#interface vlan 20
+Force10(conf-if-vl-20)#show config
+!
+interface Vlan 20
+ description Obs Network
+ ip address 10.3.1.1/16
+ tagged Port-channel 1-2
+ untagged GigabitEthernet 0/27-42
+ untagged Port-channel 3
+ no shutdown
+Force10(conf-if-vl-20)#wr mem
+                       ^
+% Error: Invalid input at "^" marker.
+Force10(conf-if-vl-20)#exit
+Force10(conf)#wr mem
+              ^
+% Error: Invalid input at "^" marker.
+Force10(conf)#exit
+Force10#wr mem
+
+
+
+create VLAN 60  "Guest"
+--------
+
+Force10#show vlan
+
+Codes: * - Default VLAN, G - GVRP VLANs
+Q: U - Untagged, T - Tagged
+   x - Dot1x untagged, X - Dot1x tagged
+   G - GVRP tagged, M - Vlan-stack
+
+    NUM    Status    Description                     Q Ports
+*   1      Inactive                                  U Gi 0/4
+    10     Active    Admin Network                   T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Gi 0/10-13
+    20     Active    Obs Network                     T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Po3(Gi 0/25-26)
+                                                     U Gi 0/27-48
+    30     Active    SonATA Network                  T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Po4(Gi 0/14-15)
+                                                     U Gi 0/16-18
+    40     Active    SRI LAN                         T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Gi 0/19-24
+    50     Active    DMZ                             T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Gi 0/9
+Force10#config
+Force10(conf)#interface vlan 40
+Force10(conf-if-vl-40)#show config
+!
+interface Vlan 40
+ description SRI LAN
+ no ip address
+ tagged Port-channel 1-2
+ untagged GigabitEthernet 0/19-24
+ no shutdown
+Force10(conf-if-vl-40)#
+Force10(conf-if-vl-40)#no untagged gigabitethernet 0/21
+Force10(conf-if-vl-40)#no untagged gigabitethernet 0/22
+Force10(conf-if-vl-40)#no untagged gigabitethernet 0/23
+Force10(conf-if-vl-40)#no untagged gigabitethernet 0/24
+Force10(conf-if-vl-40)#exit
+
+Add ports 21-24 to obs
+Force10(conf)#interface vlan 20
+Force10(conf-if-vl-20)#show config
+!
+interface Vlan 20
+ description Obs Network
+ ip address 10.3.1.1/16
+ tagged Port-channel 1-2
+ untagged GigabitEthernet 0/27-42
+ untagged Port-channel 3
+ no shutdown
+Force10(conf-if-vl-20)#exit
+
+Ensure that the ports are in layer 2 mode (i.e., switchport)
+Force10(conf)#interface gigabitethernet 0/21
+Force10(conf-if-gi-0/21)#show config
+!
+interface GigabitEthernet 0/21
+ no ip address
+ switchport
+ no shutdown
+Force10(conf-if-gi-0/21)#exit
+Force10(conf)#interface vlan 20
+Force10(conf-if-vl-20)#untagged gigabitethernet 0/21-24
+Force10(conf-if-vl-20)#show config
+!
+interface Vlan 20
+ description Obs Network
+ ip address 10.3.1.1/16
+ tagged Port-channel 1-2
+ untagged GigabitEthernet 0/21-24,27-42
+ untagged Port-channel 3
+ no shutdown
+Force10(conf-if-vl-20)#
+
+exit configuration mode
+write running-config to memory
+
+Force10#wr mem
+
+Force10#
+
+
+
+MINGUS NETWORK:
+Linux Gentoo 1.12.11.1 kernel 2.6.23-hardened-r12
+
+/etc/conf.d/net
+	1. add config_vlan60=("10.60.0.1/16")
+	2. modify vlans_bond0="1 10 20 30 40 50 60"
+	3. because prior there was no config_vlan1 entry, the
+	network would default to using dhcp, and issues leases for default
+	address (160.254) at rapid intervals. 
+e.g., (from the nohup.out of restarting the net)
+*   Bringing up bond0
+                                                                          [ ok ]
+ *   Adding VLAN 1 to bond0
+                                                                          [ ok ]
+ *   Configuration not set for vlan1 - assuming DHCP
+ *   Bringing up vlan1
+ *     dhcp
+ *       Running dhcpcd ...err, vlan1: timed out
+warn, vlan1: using IPV4LL address 169.254.81.250
+                                               [ ok ]
+ *       vlan1 received address 169.254.81.250/16
+ 	 SO instead add the following:
+	    config_vlan1=("null")
+
+Add symbolic link in /etc/init.d for vlan60
+    # ln-s net.lo net.vlan60
+
+Make firewall changes, then bounce network and firewall
+
+     #nohup /etc/init.d/net.bond0 restart
+     # /etc/init.d/shorewall restart
+
+MINGUS FIREWALL:
+(Model after admin - vlan10, but also need dhcp rules)
+zones - add guest zone
+interfaces - add vlan60
+masq - add vlan60
+params - (?) add CONCIERGE 10.60.0.10
+policy - add guest/net src/dest accept line and to fw
+rules - same rules as for admin. Add rule that allows me to get to the dhcp svr
+
+----------------------------
+Guest subnetwork 
+
+Originally thought I needed a host to run the DHCP server (similar to srilan),
+but then realized could use the mingus DHCP (it does it for the biz and obs
+lans).  10.60.0.0/16
+
+Modify /etc/conf.d/dhcp
+  # Configure which interface or interfaces to for dhcpd to listen on.
+# List all interfaces space separated. If this is not specified then
+# we listen on all interfaces.
+DHCPD_IFACE="vlan10 vlan20 vlan60" 
+
+   
+Added to /etc/dhcp/dhcpd.conf, restarted dhcpd
+
+  subnet 10.60.0.0 netmask 255.255.0.0
+  {
+  option domain-name "hcro.org";
+  option  domain-name-servers 74.43.140.35 ;
+    option routers 10.60.0.1;
+    range 10.60.0.50 10.60.0.100;
+  }
+}
+but when plugging w/ lab laptop, still got a 10.3 dhcp address.?.
+
+Added in the net boot startup scripts to include the new vlans.
+mingus dhcp # rc-update add net.vlan60 default
+ * net.vlan60 added to runlevel default
+mingus dhcp # rc-update add net.vlan40 default
+ * net.vlan40 added to runlevel default
+mingus dhcp # rc-update add net.vlan60 boot
+ * net.vlan60 added to runlevel default
+mingus dhcp # rc-update add net.vlan40 boot
+ * net.vlan40 added to runlevel default
+
+
+However, before making any changes to the mingus DHCP, noted some oddness
+that was perhaps result of router/firewall changes. 
+
+INFO from mingus after firewall and router changes only:
+
+/etc/dhcp/dhcpd.conf
+leases are in
+/var/lib/dhcp/dhcpd.leases
+# dhcpcd --version
+dhcpcd 3.2.3
+# dhcpd --version
+isc-dhcpd-V3.1.0-Gentoo
+
+HERe are the boot time services - Note that net.vlan40 is not in there - but
+since it is just a symbolic link to net.lo (as are the other vlans, then
+perhaps that is why it works.
+
+mingus etc # rc-update show
+            bootmisc | boot                          
+             checkfs | boot                          
+           checkroot | boot                          
+               clock | boot                          
+         consolefont | boot                          
+               dhcpd |      default                  
+            hostname | boot                          
+             keymaps | boot                          
+               local |      default nonetwork        
+          localmount | boot                          
+             modules | boot                          
+            net.eth0 | boot                          
+            net.eth1 | boot default                  
+            net.eth2 | boot default                  
+            net.eth3 | boot default                  
+              net.lo | boot                          
+          net.vlan10 | boot                          
+          net.vlan20 | boot                          
+          net.vlan30 | boot                          
+          net.vlan50 | boot                          
+            netmount |      default                  
+                ntpd |      default                  
+              racoon |      default                  
+           rmnologin | boot                          
+           shorewall |      default                  
+                sshd |      default                  
+           syslog-ng |      default                  
+             urandom | boot                          
+          vixie-cron |      default                  
+       zabbix-agentd |      default                  
+
+
+PROBLEM w/ connections dropping
+-------------
+Could it be mingus is busy?
+mingus log # tail messages
+May  7 21:49:05 mingus dhcpd: DHCPACK to 10.3.0.182 (ec:f4:bb:54:8f:0e) via vlan20
+May  7 21:49:17 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:49:48 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:50:01 mingus cron[9317]: (root) CMD (test -x /usr/sbin/run-crons && /usr/sbin/run-crons )
+May  7 21:50:19 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:50:50 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:51:21 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:51:52 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:52:24 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+May  7 21:52:55 mingus dhcpcd[4223]: vlan1: adding IP address 169.254.81.250/16
+
+the running process:
+
+    /sbin/dhcpcd -h mingus.hcro.org vlan1
+How/where is dhcpcd started? Is it needed? vlan1 is inactive (per force10)

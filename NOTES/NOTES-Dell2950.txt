@@ -1,0 +1,111 @@
+NOTES:  Dell 2950 management notes
+2018-08-03 - Added in notes for converting RAID from 0 to 1 on AH machine
+
+Upgrade PERC 5/i HW RAID Ctrllr FW:
+  1) Use OMSA 7.4 LiveCD. 
+  2) Upon bootup, a pop-up labeled "Inventory and Update Firmware" will come up. It will 
+  take a while for the inventory to complete and be displayed on the popup.
+  3) A browser will also popup and possibly fail to connect to "127.0.0.1:1311", but a 
+  retry and it will connect -- But don't know a password that will get in...so ignore browser
+  4) After inventory complete, select desired components to update"
+    - BIOS
+    - SAS/SATA Backplane
+    - PERC 5/i
+    All other items failed -- to be investigated later.
+
+Install OMSA - OpenManager Server Administration
+  See https://en.opensuse.org/SDB:Dell_OMSA
+  Follow instructions for appropriate OS.
+
+
+    PERC Upgrades
+
+    Existing VERSION
+     Controller  PERC 5/i Integrated (Embedded)
+
+    Controllers
+    ID                                            : 0
+    Status                                        : Non-Critical
+    Name                                          : PERC 5/i Integrated
+    Slot ID                                       : Embedded
+    State                                         : Degraded
+    Firmware Version                              : 5.1.1-0040
+    Minimum Required Firmware Version             : 5.2.1-0067
+    Driver Version                                : 00.00.03.10-rc5
+
+    Minimum Required Driver Version               : 00.00.03.20
+    Number of Connectors                          : 2
+    Rebuild Rate                                  : 30%
+    BGI Rate                                      : 30%
+    Check Consistency Rate                        : 30%
+    Reconstruct Rate                              : 30%
+    Alarm State                                   : Not Applicable
+    Cluster Mode                                  : Not Applicable
+    SCSI Initiator ID                             : Not Applicable
+    Cache Memory Size                             : 256 MB
+    Patrol Read Mode                              : Auto
+    Patrol Read State                             : Stopped
+    Patrol Read Rate                              : 30%
+    Patrol Read Iterations                        : 319
+    Abort check consistency on error              : Not Applicable
+    Allow Revertible Hot Spare and Replace Member : Not Applicable
+    Auto replace member on predictive failure     : Not Applicable
+    Load balance                                  : Not Applicable
+
+    tumulus:~ # fdisk /dev/sdb
+        Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+        Building a new DOS disklabel with disk identifier 0xa36c2f98.
+        Changes will remain in memory only, until you decide to write them.
+        After that, of course, the previous content won't be recoverable.
+
+
+        The number of cylinders for this disk is set to 71079.
+        There is nothing wrong with that, but this is larger than 1024,
+        and could in certain setups cause problems with:
+        1) software that runs at boot time (e.g., old versions of LILO)
+        2) booting and partitioning software from other OSs
+          (e.g., DOS FDISK, OS/2 FDISK)
+        Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
+
+        Command (m for help): p
+
+                        Disk /dev/sdb: 584.6 GB, 584652423168 bytes
+                        255 heads, 63 sectors/track, 71079 cylinders
+                        Units = cylinders of 16065 * 512 = 8225280 bytes
+                        Disk identifier: 0xa36c2f98
+
+                           Device Boot      Start         End      Blocks   Id  System
+
+        quit
+
+
+  Upgrading Megaraid_sas driver
+
+    tumulus:~ # modinfo megaraid_sas
+               filename:       /lib/modules/2.6.22.5-31-default/kernel/drivers/scsi/megaraid/megaraid_sas.ko
+               description:    LSI Logic MegaRAID SAS Driver
+               author:         megaraidlinux@lsi.com
+               version:        00.00.03.10-rc5
+               license:        GPL
+               srcversion:     A8A7A11896D9EDDC421E7EF
+               alias:          pci:v00001028d00000015sv*sd*bc*sc*i*
+               alias:          pci:v00001000d00000413sv*sd*bc*sc*i*
+               alias:          pci:v00001000d00000060sv*sd*bc*sc*i*
+               alias:          pci:v00001000d00000411sv*sd*bc*sc*i*
+               depends:        scsi_mod
+               supported:      yes
+               vermagic:       2.6.22.5-31-default SMP mod_unload
+
+
+
+  Testdisk - contained in the photorec module
+
+    http://www.cgsecurity.org/wiki/TestDisk_Step_By_Step
+
+  MIGRATE RAID 0 to 1 (BOOT VD - 2 disks)
+
+omreport storage vdisk controller=1
+omreport storage pdisk controller=1
+
+omconfig storage vdisk action=reconfigure controller=0 vdisk=0 raid=r1
+pdisk=0:0:0,0:0:1  (takes a long time)

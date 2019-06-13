@@ -1,0 +1,40 @@
+
+Show full list:
+ldapsearch -x  '(objectclass=*)' namingContexts
+
+Show individual account info:
+ldapsearch -x -L "(uid=colby)"
+ldapsearch -x -LLL "(uid=colby)"
+
+Individual subfield:
+ldapsearch -x -L -u -t "(uid=colby)" loginField
+
+
+Add in map directory
+ldapadd -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f auto.home.ldif
+
+Delete sub part of map directory
+ldapdelete -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W "cn=/home,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org"
+
+To modify entry
+ldapmodify -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f /tmp/modify
+
+Contents of /tmp/modify:
+dn: uid=gharp,ou=people,dc=obs,dc=hcro,dc=org
+changetype: modify
+homeDirectory: /home/gharp
+
+
+Change password:
+ldappasswd -x -D "uid=wright,ou=People,dc=obs,dc=hcro,dc=org" -w wr1ght -a wr1ght -s wr2ght
+
+Modify dn,
+contents of /tmp/modify:
+
+# caldera data disk
+dn: cn=crv,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+changetype: moddn
+newrdn: cn=caldera
+deleteoldrdn: 1
+
+Then run ldapmodify as per above

@@ -1,0 +1,155 @@
+NOTES:  Antenna pointing calibration
+DATE:   09/14/16
+        Updated June 13, 2019
+AUTHOR: JR
+
+These notes are to suppliment NOTES-pointing_calibration.txt. 
+The medium and fine level adjustements have been improved with
+the introduction of 2 new scripts:
+
+pointingmodelcorr.rb - Calculates the best pointing model offsets and
+  suggests the best arguments to atasetpmoffsets
+tpoint_fit.rb - takes th output of atapointer and automatically creates 
+  the new fit file, the pointing model coefficients. No need to do it
+  by hand anymore.
+
+III. Medium Level Adjustments
+
+1) Run pointingmodelcorr.rb <ant list, comma separated>
+
+  Syntax: pointingmodelcorr.rb <ant list, comma separated>
+  Example: pointingmodelcorr.rb 1a,1b,1c
+
+  It is best to run only on one node at a time. The program points to 
+  GPS satellites. Occasionally there is not one available and you may have 
+  to wait 10 or 20 minutes for one to rise.
+
+  Output: A file named "corr.pnt" is appended to and contains as an example:
+ 
+  ****
+  ant: 1a
+  Date:     Tue Aug 16 15:45:42 -0700 2016
+  Elev X:   5126821.0, 86717144.0, [97390880.0], 95370064.0, 9606030.0
+  Elev Y:   4150576.0, 96228960.0, [102588768.0], 98082336.0, 9055430.0
+  Az X:     3930998.0, 95498616.0, [97228808.0], 92609200.0, 8361026.0
+  Az Y:     3974478.0, 101007344.0, [102617344.0], 100567680.0, 5203159.0
+  Sat:      GPS-BIIR-9---PRN-21-
+  Az/El:    276.678 49.088
+  atasetpmoffsets --absolute 1a 290.7950 77.7110
+  XY New:   290.787825779867 77.6869849299829
+  XY Diff:  0.00717422013337909 0.0240150700170858
+  Cmd:      atasetpmoffsets --absolute 1a 290.787825779867 77.6869849299829
+  X New:    290.78161426603 77.6688532577884
+  X Diff:   0.0133857339696419 0.042146742211628
+  Cmd:      atasetpmoffsets --absolute 1a 290.78161426603 77.6688532577884
+  Y New:    290.793138884239 77.7026651372184
+  Y Diff:   0.00186111576118719 0.00833486278162354
+  Cmd:      atasetpmoffsets --absolute 1a 290.793138884239 77.7026651372184
+  ****
+
+  Here is an explanation of each line of the output:
+
+  Elev X contains the 5 power mensurements for the X pol along the elevation direction.
+  Elev Y contains the 5 power mensurements for the Y pol along the elevation direction.
+  Az X contains the 5 power mensurements for the X pol along the azimuth direction.
+  Az Y contains the 5 power mensurements for the Y pol along the azimuth direction.
+  Az/El is the azimuth and elevation of the antenna after the last power measurement.
+  The first atasetpmoffsets is the original pm offsets of this dish.
+  First set of offsets are calculated averaging the X and Y pol values. 
+  XY New: the new pointing model offsets calulated suing the X/Y averages.
+  XY Diff: the difference of this calculated pm offsets from the original.
+  Cmd:      atasetpmoffsets --absolute ... is the command to apply this calculated offset.
+  Second set of offsets are calculated just using the X pol power values. 
+  X New: the new pointing model offsets calulated suing the X pol power values.
+  X Diff: the difference of this calculated pm offsets from the original.
+  Cmd:      atasetpmoffsets --absolute ... is the command to apply this calculated offset.
+  Third set of offsets are calculated just using the Y pol power values. 
+  X New: the new pointing model offsets calulated suing the Y pol power values.
+  X Diff: the difference of this calculated pm offsets from the original.
+  Cmd:      atasetpmoffsets --absolute ... is the command to apply this calculated offset.
+
+  The output may seem a bit terse. What we really want is to just tell us the 
+  atasetpmoffsets command to run. But there is problem with squint. Quite often one pol
+  is good, the other is far off. That is because of squint. So, the operator has to
+  decide which is the best atasetpmoffsets arguments to use.
+
+  The "XY Diff" values are the degrees off the center pointing if you use both the X and
+  Y pol differences together.
+  The "X Diff" uses just the X pol to calculate the difference in degrees.
+  The "Y Diff" uses just the Y pol to calculate the difference in degrees.
+
+  In the above example the Y pol is MUCH better than the X pol, so use those offsets. To
+  use the offsets you would issue the command:
+
+    "atasetpmoffsets --absolute 1a 290.793138884239 77.7026651372184"
+
+  and that is it, the pointing model offsets should be better adjusted. Although in this case the
+  adjustments were really small. 
+
+  Once the correct offsets have been applied, the dish is ready fro fine level adjusting
+  using T-point.
+
+  NOTES:
+  1: Karto suggests it is best to use the best pol for the pointing model corrections.
+     Gerry suggests using the X pol always.
+  2: You may notice some squint, a few are quite bad. Use the pol with the smallest diff.
+  3: The satellite selection only uses satellites above 40.0 degrees
+      and rising, less than 60.0 degrees. Occasionally you 
+      may have to wait till a satellite meets this condition.
+
+
+IV. Fine Level adjustments
+
+1) Setup observation using atapointer using fxa
+    (source /hcro/atasys/ata/src/fxStreaming/atapointer2polIGS.java)
+
+      - create and cd into directory for observations
+      - initialize target antenna
+        > fxconf.rb sagive <none|maint> fxa <ant>   ! get antenna into observing subarray
+        > set-defaults.sh y fx64a              ! initialize fxa (only)
+        > atasetskyfreq b 1575                      ! set observation freq.
+        > atasetfocus <ant> 1575                     ! set focus 
+        > atasetpams <ant> 37 37             ! JR - why 37?  Because of strong transmitter?
+
+2) Run capture program
+  
+        > atapointer <file_suffix> <ant> A --lo b --freq 1575 --stophour <hh.x> -v
+
+        NOTE - Refer to atapointer help for syntax, e.g., 18.0 for stop @ 6:00PM local time.
+        Recommended that after an encoder change that a 4-8 hour collection be done, 
+        but 3-4 hours will suffice.
+
+3) Run tpoint_fit.rb
+
+tpoint_fit.rb <dat file name>
+The atapointer outputs 2 files, one for each pol named like: FXPointer_ant1e_y_1e.dat
+
+Example:
+
+> tpoint_fit.rb /setidata/data/2016/09/14/tpoint/FXPointer_ant3l_y_3l.dat
+Input DAT file: /setidata/data/2016/09/14/tpoint/FXPointer_ant3l_y_3l.dat
+Original RMS:   106.14, num points: 71
+Fitted RMS:     34.79, num points: 54
+FIT file:       FXPointer_ant3l_y_3l.fit
+New DAT file:   FXPointer_ant3l_y_3l.dat_fit
+
+In this case the antenna model parameters are in the file FXPointer_ant3l_y_3l.fit
+
+Now update the existing fit file for this antenna. See 
+http://log.hcro.org/content/radio-pointing-procedure for the procedure to manually
+do this. Scroll down to the line that starts with
+"Edit the original to match the parameters of the fit.".
+
+Do the same for each pol dat file created by tpoint_fit.rb
+
+Here is an example observation script
+atasetalarm -a -u jrichards -m "Running atapointer on antenna 3l till 5pm"
+fxconf.rb sagive none fxa 3l
+#set-defaults.sh y fx64a
+atasetskyfreq b 1575
+atasetfocus 3l 1575
+atasetpams 3l 37 37
+sleep 10
+atapointer 3l 3l A --lo b --freq 1575 --stophour 17.00 -v 2>&1 | tee 3l.log 
+fxconf.rb sagive fxa none 3l
+atasetalarm -a -u jrichards -m "Finished with antenna 3l"

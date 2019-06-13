@@ -1,0 +1,175 @@
+NOTES - NTP
+DATE: 11/26/13
+AUTHOR: ELK
+MODIFICATIONS: 06/09/16 - alignment of NTP configurations
+
+General
+-----------------------------------
+HCRO uses NTP to synchronize servers to common UTC time.
+
+NTP is a collection of protocols, programs and servers used to keep time on 
+computers distributed on a network. The goal of NTP is to keep each computer 
+as close to UTC as possible. 
+
+For indepth information on NTP, see: http://www.ntp.org/
+
+HCRO currently has the following NTP servers defined
+ntp1-1 - aeon (stratum 1)   10.3.0.49
+##ntp1-2 - chronology         10.3.0.46 -- OOS
+ntp1-3
+ntp1-4 - unavco-gps
+ntp2-1 - basalt (stratum 2)
+ntp2-2 - auxcntl
+
+[FOLLOWING SECTION IS OBE 3/23/15]
+ntp1-1 aka aeon is a 1U server running FreeBSD 6.2 and synchronizes against the CNS Clock I on the first of two RS232 ports in the back of the CNS Clock.  The system is in the Time and Frequency Distribution rack. The CNS Clock is based on a Motorola OnCore GPS chipset. Drivers are provided with the general NTP release that can communicate directly with the OnCore chip. This allows aeon to receive current UTC in a binary format over the serial port while also using the DCD RS232 line for 1PPS. This allows for µs level accuracy on this system. NTP is using the PPSAPI (RFC-2783) specification for handling 1PPS. Round trip latency to this server on the Obs LAN is usually ~0.2-0.5ms. 
+
+ntp1-2 is the Meinberg device. [The former host used at this name, a SunBlade 15000 
+running solaris, failed in spring 2013.] The Meinberg has a GPS receiver. 
+
+ntp1-3 aka atantp.csr.seti.org is currently no connected. TBD
+
+ntp1-4 aka unavco-gps.hcro.org is a Trimble NetRS device used by UNAVCO for 
+measuring crustal plate movements and deformation. The NetRS is not a particularly 
+good stratum 1 source of time keeping. It comes pre-configured to offer NTP 
+service, but if you dig into what it is doing, it appears the instance of ntp 
+running on the device synchronizes to GPS via a serial link between the local 
+linux host OS and the GPS receiver. This increases the RMS to ~20ms and offsets
+from UTC of ~5ms.
+
+
+From NTP FAQ
+"Of course the final achievable accuracy depends on the time source being used. 
+Basically, no client can be more accurate than its server. In addition the quality 
+of network connection also influences the final accuracy. Slow and non predictable 
+networks with varying delays are very bad for good time synchronization.
+
+A time difference of less than 128ms between server and client is required to maintain 
+NTP synchronization. The typical accuracy on the Internet ranges from about 5ms to 100ms, 
+possibly varying with network delays. A recent survey[2] suggests that 90% of the NTP 
+servers have network delays below 100ms, and about 99% are synchronized within one second 
+to the synchronization peer.
+
+With PPS synchronization an accuracy of 50µs and a stability below 0.1 PPM is achievable o
+
+HCRO goal would be an offset of 0.004 msec (4 usec) [according to Colby]
+
+I. ntpq - examining status
+----------------------------------------------
+auxcntl:~ # ntpq -p
+     remote           refid      st t when poll reach   delay   offset  jitter
+     ==============================================================================
+     *aeon.hcro.org   .GPS.            1 u  364 1024  377    4.259    0.029   0.027
+     +chronology.hcro .PPS.            1 u 1018 1024  377    4.288    0.011   0.061
+      basalt.hcro.org 10.3.0.49        2 u  547 1024  337    0.076   -0.021   0.247
+
+
+
+
+Columns Defined:
+remote: peers speficified in the ntp.conf file
+* = current time source
+# = source selected, distance exceeds maximum value
+o = source selected, Pulse Per Second (PPS) used
++ = source selected, included in final set
+x = source false ticker
+. = source selected from end of candidate list
+- = source discarded by cluster algorithm
+blank = source discarded high stratum, failed sanity
+
+refid: remote source.s synchronization source
+
+stratum: stratum level of the source
+
+t: types available
+l = local (such as a GPS, WWVB)
+  u = unicast (most common)
+  m = multicast
+  b = broadcast
+  - = netaddr
+
+  when: number of seconds passed since last response
+
+  poll: polling interval, in seconds, for source
+
+  reach: indicates success/failure to reach source, 377 all attempts successful
+
+  delay: indicates the roundtrip time, in milliseconds, to receive a reply
+
+  offset: indicates the time difference, in milliseconds, between the client server and source
+
+  disp/jitter: indicates the difference, in milliseconds, between two samples
+
+
+II. ntpdc 
+    
+   ntpdc -c loopinfo     - display the combined offset in seconds, as seen at the last poll.  
+
+   auxcntl:~ # ntpdc -c loopinfo/usr/
+   offset:               0.000132 s
+   frequency:            -31.546 ppm
+   poll adjust:          30
+   watchdog timer:       1246 s
+
+   ntpdc -c kerninfo      - display the current remaining correction, just as ntptime does.
+
+   auxcntl:~ # ntpdc -c kerninfo
+   pll offset:           0.00012 s
+   pll frequency:        -31.546 ppm
+   maximum error:        0.251044 s
+   estimated error:      3.9e-05 s
+   status:               0001  pll
+   pll time constant:    6
+   precision:            1e-06 s
+   frequency tolerance:  512 ppm
+
+III. Recovery after outage/server down
+
+Aeon:
+  As of 3/23/15 the CNS II is now commissioned as "Aeon" our stratum 1
+  clock source. The older CNS clock is on standby and not currently used.
+  It may take some time for the CNS II to resync w/ the GPS satellites
+  if it has been w/o power for some time. 
+
+  IS 1PPS led sufficient to indicate sync w/ satellites, or do we need
+  to use the PC-based Tac application to determine GPS sync???
+
+Other nodes
+  1. Stop the ntpd 
+  2. Force the clock to update to a reference clock, e.g., Now w/ the CNS II
+    then will want to use it (aeon) as the reference clock. The only other
+    stratum 1 is the unavco, but it is not as reliable and is not under UPS.
+
+      # ntpdate <reference clock>
+ 
+    3. Restart the daemon using the -g (panic) and -x (slew) switches
+        (mingus/openbsd) ntpd -x -g
+--------------------------------------------
+6/9/16 - Align the NTP configurations
+
+Have done following changes per karto (most in /etc/ntp.conf):
+
+(Production) Servers:
+
+    - remove references to ntp1-2 (aka ntp1-6). These were historical. 
+    We no longer redundancy for our internal stratum 1 (since aeon died 
+    and we moved to CNS2 for our ntp1-1)
+    - remove references to ntp1-4. This is the unavco GPS source, and 
+    it drifts and throws things off
+    - remove references to berkeley time servers
+    - add references to below after ntp1-1
+
+        server nist-time-server.eoni.com    iburst
+        server utcnist2.colorado.edu   iburst
+
+    - change references to auxcntl (ntp2-2) and basalt (ntp2-1) from 
+    "server" to "peer"
+    - ensure that ntp startup uses ntp1-1.hcro.or for initial query 
+    (this in /etc/sysconfig/ntp)
+
+
+Correlator boards:
+
+    - same as above, plus
+    - add "iburst prefer" to ntp1-1.hcro.org server reference
+    - keep internal peer references to other boards

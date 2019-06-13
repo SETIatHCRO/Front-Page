@@ -1,0 +1,79 @@
+NOTES: Delay Calibration
+DATE: 03/27/14
+AUTHOR: Elin
+---------------------------------------------
+Revision History:
+
+
+What is?
+     short baseline
+     shadowed baseline
+     
+-----------------------
+See http://log.hcro.org/content/delay-calibration-procedure.
+See also
+http://log.hcro.org/content/13-data-validation-and-troubleshooting#rogues
+http://log.hcro.org/content/polarization-calibration-recipe
+
+ 
+Below is a condensed version:
+
+ 1) Use one of the mosfx variants to get an observation of a calibrator, 
+  preferably something bright (3c84 is good) and at a frequency without 
+  a whole lot of interference (3040 is also good), and set the length 
+  of the observations for 5 minutes
+
+ 2) Look at the dataset using uvspec to find bad ant pols. Easiest way to 
+  do this is to use the following command:
+
+    > uvspec vis=<visdir> device=/xs axis=ch,pha interval=999 select=-auto
+    or
+    > smauvspec device=1/xs vis=<visdir> select='pol(xx)' axis=chan,both
+    or
+
+    With an observation longer than a few minutes, you can also test that the
+    phase is stable in time. 
+    To do this, plot the visibility phase as a function of time like so:
+
+
+    > uvplt device=1/xs vis=mosfxc-3c186-1430 select='pol(xx)' axis=time,phase
+
+  make note of any antpols that look really lousy. Those with obvious phase 
+  wrap must be fixed manually. For each antpol with a large delay, subtract 
+  10*Nwraps from its current delay value, where Nwraps is the appropriately 
+  signed number of wraps (Nwraps need not be an integer.) Phase increasing 
+  with frequency is "positive"; decreasing with frequency is "negative". 
+  Upload these new delays and scan again.
+
+ 3) Flag out the bad antpols from the dataset, i.e., those that could not be
+    solved manually (you need to do this because 
+    the bad antpols mess with MIRIADs delay solver). To do this, use UVFLAG. 
+    Below is an example for flagging 2Y:
+
+    > uvflag vis=<filename> flagval=f options=none select='ant(2),pol(yy)'
+
+    Do this for each bad antpol.
+
+ 4) Use the delays.csh script to generate the new delays file. It can be 
+    invoked as follows:
+
+    > delays.csh <filename> <refant> <LO>
+
+     Here, refant is the reference antenna to solve the delays against (if 
+     its working, I usually choose 1). LO is kind of a weird input, but 
+     basically for the FXA correlator, use B1. For the FXC correlator, use C1. 
+     This script will produce a file called 'delays.new.<LO>'.
+
+ 5) Save the old delays to disk (just in case). You can get a copy of the old 
+    delays using fxconf.rb
+
+    > fxconf.rb delays <corr_name> > delays.old.<corr_name>
+
+    Here, 'corr_name' is either fx64a or fx64c.
+
+ 6) Upload the new delays.
+
+    > fxconf.rb upload delays delays.new.<LO>
+
+ 7) Do a test observation, and repeat the above steps if neccessary.
+

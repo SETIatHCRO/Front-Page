@@ -1,0 +1,33 @@
+TITLE: 1PPS FSC/100Hz clock alignment
+DATE: 7/30/2014
+AUTHOR: ELK
+
+--------------------------------------------
+obs@tumulus ~/NOTES 14:37:15 > fsccontrol -h
+Usage: /home/obs/bin/fsccontrol [options]
+
+---------------------------------
+Scope signal monitoring
+---------------------------------
+
+    -a, --getalign                   Show instantaneous 1PPS/FSC alignment difference
+    -c, --checkalign MAX             Check 1PPS/FSC alignment
+                                          exit code 0: ok
+                                          1: error occurred
+                                          2: alignment is out of spec
+     -s, --showscreen                 Display image of current scope screen
+     --screenfile FILE            Write image of current scope screen to file
+     --datadir DIR                Output directory for alignment error traces
+                                      (default is current directory)
+     --fix                        Align the 1PPS and FSC automatically
+
+          ---------------------------------
+          debugging stuff not normally used
+          ---------------------------------
+
+                 --debug                      turn on debugging output
+                 --raw STRING                 SCPI command
+                 --getdata                    get waveforms to files (see --datadir)
+                 --rotate DIR                 Rotate phase
+
+

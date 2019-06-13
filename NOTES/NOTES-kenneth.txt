@@ -1,0 +1,210 @@
+NOTES: Kennth setup/configuration (DU bastion host)
+DATE: 17 Feb 2016
+History:
+17 Feb 2016 ELK Created - based on blake7 notes
+13 Apr 2016 ELK Add in notes for DU testing
+
+
+---------------------------------------
+Creation of DU bastion host (using old weather host - Rackable Systems, i386).
+
+OpenBSD kenneth.hcro.org 5.6 GENERIC.MP#299 i386 
+ 
+FORCE10 Router:
+   Login to console port
+        ssh 10.3.1.1  admin/ad021314
+   Enter Exec Priv mode
+   	> enable  mh@llwfww@s
+
+   Use VLAN 40
+
+Force10#show vlan
+
+Codes: * - Default VLAN, G - GVRP VLANs
+Q: U - Untagged, T - Tagged
+   x - Dot1x untagged, X - Dot1x tagged
+   G - GVRP tagged, M - Vlan-stack
+
+    NUM    Status    Description                     Q Ports
+*   1      Inactive                                  U Gi 0/4
+    10     Active    Admin Network                   T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Gi 0/10-13
+    20     Active    Obs Network                     T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Po3(Gi 0/25-26)
+                                                     U Gi 0/27-48
+    30     Active    SonATA Network                  T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Po4(Gi 0/14-15)
+                                                     U Gi 0/16-18
+    40     Active    SRI LAN                         T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Gi 0/19-24
+    50     Active    DMZ                             T Po1(Gi 0/1-3)
+                                                     T Po2(Gi 0/5-7)
+                                                     U Gi 0/9
+Force10#config
+Force10(conf)#interface vlan 40
+Force10(conf-if-vl-40)#show config
+!
+interface Vlan 40
+ description SRI LAN
+ no ip address
+ tagged Port-channel 1-2
+ untagged GigabitEthernet 0/19-24
+ no shutdown
+Force10(conf-if-vl-40)#
+
+
+FIREWALL:
+- add kenneth to shorewall ruleset per blake7 config
+- will use cert authen. For now no access restriction rule for source ssh access
+
+DNS:
+- add kenneth to master hcro.org (currently maintained on blake)
+
+OpenBSD 5.8 INSTALL:
+  74.43.140.21
+  255.255.255.192
+  em0
+  route default 74.43.140.1
+  leave ntp as is (pool)
+  ns - use blake7
+
+  packages - (take defaults but remove game56)
+    bsd - This is the Kernel. Required
+    bsd.mp - Multi-processor (SMP) kernel (only some platforms)
+    bsd.rd - RAM disk kernel
+    base58.tgz - Contains the base OpenBSD system Required
+    etc58.tgz - Contains all the files in /etc Required
+    comp58.tgz - Contains the compiler and its tools, headers and libraries.
+    man58.tgz - Contains man pages
+  - game58.tgz - Contains the games for OpenBSD
+    xbase58.tgz - Contains the base libraries and utilities for X11
+    xetc58.tgz - Contains the /etc/X11 and /etc/fonts configuration files
+    xfont58.tgz - Contains X11's font server and fonts
+    xserv58.tgz - Contains X11's X servers
+    xshare58.tgz - Contains manpages, locale settings, includes, etc. for X
+
+    NOTE!!!
+    add bash and tcsh shell packages
+      pkg_add -c ftp://ftp5.usa.openbsd.org/pub/OpenBSD/5.6/pacakages/i386/bash-4.3.18.tgz
+
+  Disk Partition - use Whole defaults (320G drive total). user dirs in /home
+    blake has a /data area, but did not set that up on blake7
+
+  rc.conf.local - boot processes
+    - enable the following
+      sshd, sendmail, nfs?, named,ntpd,syslogd
+
+      SSHD configuration
+# ssh -V
+OpenSSH_7.0, LibreSSL 2.2.2
+
+  sshd_config -- new settings
+    AuthenticationMethods publickey
+    PermitRootLogin no
+
+    settings based on blake7:
+    Protocol 2
+    X11Forwarding yes
+    X11DisplayOffset 10
+    ClientAliveInterval 300
+    ClientAliveCountMax 5
+    PermitTunnel  yes
+    AuthorizedKeysFile  .ssh/authorized_keys
+
+  Restart SSHD
+    kill -HUP `cat /var/run/sshd.pid`
+    /usr/sbin/sshd
+
+USER ADMIN:
+  useradd -m -s /usr/local/bin/bash <user>
+  install the users public key on their authorized_keys file. Password
+  login is no longer used 
+
+  Priv account - add user to wheel group
+    user mod -G wheel <user>
+
+PUBLIC KEY AUTHENTICATION
+  See SOP instructing users on key pair generation
+  Copy users public key to their home .ssh/authorized_keys file
+  MAKE sure the owner on this file is properly set (to user)
+
+
+---TBD------
+
+
+SCP - obs node/account to user-specific blake7 account
+
+  User sets up tunnel through kenneth for DU host
+  Terminal 1:
+    ssh -L 3333:<duhost>:873 <user>@blake7.hcro.org
+  Terminal 2:
+    rsync -Pah --bwlimit 5000 --port 333 localhost::data/obs/<etc>/<path>/<files> .
+
+10.40 subnet - VLAN 40
+----------------------------
+DU subnetwork 
+
+Users (via certificate) can log into kenneth.hcro.org (74.43.140.21)
+ (openBSD).
+
+
+DHCP server machine: duserver (10.40.0.10) [account doozer/doozer] (Ubuntu). 
+Has dhcp, sshd, and rsyncd running.
+
+ > sudo service isc-dhcp-server restart
+
+
+VNC Access
+-----------------------------------------------
+Firewall Rules for VNC access
+ACCEPT from net to kenneth for VNC_PORTS
+ACCEPT from kenneth to srln for VNC_PORTS
+
+e.g., Cygwin on Windows
+      ssh L 5900:10.40.0.11:5900 kenneth.hcro.org
+
+This will ssh into kenneth and meanwhile port 5900 (VNC) on host is forwarded 
+to port 5900 of 10.40.0.11 which is the Windows Dual Use PC on the other side 
+of Kenneth.
+
+Run VNC viewer on host but connect to localhost (not kenneth, not
+10.40.0.11). 
+
+
+
+------------------------------
+TRACKING
+
+Directory: /data/tumulus/obs/lwye/April2016/
+
+Create ephem for object of interest (good for 24 hours):
+       > ataephem 36411
+
+Track:
+NB The objects are GEO, so the dishes will appear stationary.
+	> atatrackephem `slist.csh reserved` 36411.ephem
+
+Satellite Signals:
+1
+	Satellite name: GOES 15
+	Satellite ID: 36411
+
+2
+	Satellite name: GOES 14
+	Satellite ID: 35491
+
+3
+	Satellite name: GOES 13
+	Satellite ID: 29155
+
+4
+	Satellite name: INMARSAT 4-F3
+	Satellite ID: 33278
+
+5
+	Satellite name: TDRS 11
+	Satellite ID: 39070

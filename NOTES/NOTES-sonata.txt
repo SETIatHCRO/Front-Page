@@ -1,0 +1,19 @@
+NOTES: Sonata operations
+DATE:  10/20/15
+
+Hosts:
+	SSE100 10.1.49.240
+
+Login:  sonata@10.1.49.240  2x/0&Bond
+
+Shutdown:
+/home/sonata/sonata_install/scripts/sonata-cron-end-obs-session.sh
+
+should take about 5 minutes, then get an email and ants back in none
+
+2017-06-15
+> eee
+end,end,end
+
+>sss
+start,start,start

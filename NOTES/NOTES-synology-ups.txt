@@ -1,0 +1,61 @@
+NOTES:  Synology UPS configuration
+DATE:   10/9/14
+AUTHOR: ELK
+
+Synology NAS has ability to receive notifications from UPS devices 
+(networked or directly connected) regarding pending shutdown
+However, this feature is only supported with a set of UPSes:
+See
+Synology Compatible UPS: https://www.synology.com/en-us/knowledgebase/faq/300
+
+What was noted when trying to enable UPS support [Control Panel/UPS]
+was a return message of "Cannot connect to the network UPS Server"
+
+With that "Enable UPS support" box checked (although failed), noted 
+the following processed running on muleears: snmpd, upsd, and upsmon.
+Once the "Enable UPS support" was unchecked, the upsd and upsmon processes
+went away.
+
+The config files for these ups processes are in /usr/syno/etc/ups
+The config file for the snmpd is /usr/syno/etc
+
+
+muleears> /usr/syno/sbin/upsd -h
+Network UPS Tools upsd SDS5-0-2014Q1-NewPlatformbranch-4750-140528
+Network server for UPS data.
+
+usage: upsd [OPTIONS]
+
+  -c <command>  send <command> via signal to background process
+                commands:
+                 - reload: reread configuration files
+                 - stop: stop process and exit
+  -D            raise debugging level
+  -h            display this help
+  -r <dir>      chroots to <dir>
+  -q            raise log level threshold
+  -u <user>     switch to <user> (if started as root)
+  -V            display the version of this software
+  -4            IPv4 only
+  -6            IPv6 only
+  
+muleears> /usr/syno/sbin/upsmon -h
+Network UPS Tools upsmon SDS5-0-2014Q1-NewPlatformbranch-4750-140528
+Monitors UPS servers and may initiate shutdown if necessary.
+
+usage: /usr/syno/sbin/upsmon [OPTIONS]
+
+  -c <cmd>      send command to running process
+                commands:
+                 - fsd: shutdown all master UPSes (use with caution)
+                 - reload: reread configuration
+                 - stop: stop monitoring and exit
+  -D            raise debugging level
+  -h            display this help
+  -K            checks POWERDOWNFLAG, sets exit code to 0 if set
+  -p            always run privileged (disable privileged parent)
+  -u <user>     run child as user <user> (ignored when using -p)
+  -4            IPv4 only
+  -6            IPv6 only
+  -b            System on booting
+

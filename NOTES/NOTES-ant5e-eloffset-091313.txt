@@ -1,0 +1,88 @@
+TITLE: 5e Elevation offset pointing model update 
+DATE:   09/13/13
+AUTHOR: ELK
+
+General:
+See http://www2.jpl.nasa.gov/basics/bsf2-2.php for a description of telescope reference systems
+
+-------------------------------------------------------------
+8/26/13 Elevation values reported as bad and AZ wrapping
+
+E.g., antenna at 180 18 but reporting 180 64.20
+
+Instructions from Gerry are:
+ Gerry says ".atafindencoders., then drive the elevation down to the lower limit and change the fixed offset elevation value in the pointing model file to be 16.5 degrees. .atareloadpm..  Then we will need to do a pointing run with .atapointer. (suck the text file that is created into TPOINT and generate a REAL pointing model for the dish)."  
+
+ 1. initial attempt to setvelocity to drive down would not move the ant - 
+    the servostatus was reporting problem
+ 2. rebooted, atafindencoders antenna el at approx. 35 but reporting 80.94
+ 3. atasetvelocity 5e 0 -1
+ 4. ant resting at el low limit
+      Az Nominal
+      El Servo:
+          Attempting to Stop Motor.
+          Motor Brake Active.
+          PWM Outputs Disabled.
+          Following Error.
+          Amplifier Fault.
+          Following Error.
+
+      ant5e  180.299  64.201
+
+--------------------------------------------------------------
+9/17-18/13  Run atapointer
+
+1. 5e is at lower el limit (from above steps) - 180 64
+2. modified the elevation offset in production pointing model file to be 16.5 (formerly 213.838) 
+  as atasys@maincntl - file in /opt/atasys/data/Pointing/PointModel_ant5e.dat
+  Before  AzOffset = 33.533
+          ElOffset = 213.838
+  After:  AzOffset = 33.533
+          ElOffset = 16.5
+
+3. atareloadpm 5e  
+    Note that the az/el changed to 192 501  (why did azimuth reading change?)
+    although the actual setting is 180 ~16.5
+4. atapointer run
+    set-defaults-new.csh y fx64a
+    atasetskyfreq a 1575
+    atasetskyfreq b 1575
+    atasetskyfreq c 1575
+    atasetskyfreq d 1575
+    atapointer test 5e a --lo b --stophour 18.00
+
+    Failed because antenna could not reach position and was set offline.
+
+5. parked the antenna - correctly moves to 180 on az, but is reporting 192.
+    does not move in elevation (because of servo fault per above) and reports 500
+3. Run atatpointer - 
+
+SYNOPSIS
+    atapointer filename ant correlator [OPTIONS]
+    DESCRIPTION
+        Acquires radio pointing data from GPS or single radio source.
+        EXAMPLES
+            A regular pointing run on all available GPS satellites
+                output file name suffix = thursday, antenna = 3d, both polarizations, correlator A
+                      atapointer thursday 3d A
+                      OPTIONS
+                          --obj obj
+                                  name of object to track continuously (default uses GPS list)
+      --lo lo
+              which LO to query for frequency (default a)
+      --freq freq
+              set frequency to given value before starting (default = use current)
+      --niters niters
+              number of iterations on target before quitting (default = infinite)
+      --stophour stophour
+              local hour-of-day when program should exit (default = never)
+      -q
+              quiet mode: no error or status messages
+      -v
+              verbose (diagnostic) mode
+
+
+- Invoked tpoint (for now directly- from atasys)
+  atasys@antcntl:/hcro/opt/tpoint 08:55:27 > tpt / / ~/temp/null /hcro/opt/tpoint/etc/tpoint/tpoint.ini
+
+

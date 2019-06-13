@@ -1,0 +1,57 @@
+NOTES: Dropbox from Linux
+DATE:  10/20/15
+
+
+Dropbox from ATA Obs machines (to laurenwye@gmail.com location)
+-----------------------------
+
+
+
+
+Installation:
+   Installed on /hcro/opt/.dropbox_dist
+	  wget --no-check-certificate -O -
+   "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+ wget --no-check-certificate https://raw.github.com/andreafabrizi/Dropbox-Uploader/master/dropbox_uploader.sh
+
+Running as GUI daemon:
+	Will need a account (gmail)
+
+   Running as Daemon (needs to be run on 13.1 suse machine for library
+	  compatibility, e.g., tumulus or clover, mustard). Will also require
+	  X server running on PC
+
+	  /hcro/opt/.dropbox-dist/dropboxd &
+
+   Running from command line - doesn't require X server
+	  dropbox.py
+
+Uploader:   (Dropbox CLI in lieu of running the GUI daemon)
+
+	    See
+	    http://xmodulo.com/access-dropbox-command-line-linux.html
+
+	    First time is run will ask to be granted access to Dropbox
+	    account
+ /hcro/opt/.dropbox-dist/dropbox_uploader.sh -k upload mw-pass09-ft6_s0.bin ATA\ Downlink
+
+
+obs@tumulus /hcro/opt/.dropbox-dist 16:33:48 > ./dropbox_uploader.sh -k info
+Dropbox Uploader v0.16
+
+ > Getting info...
+
+Name:   Lauren Wye
+UID:    481801225
+Email:  laurenwye@gmail.com
+Quota:  1051648 Mb
+Used:   0 Mb
+Free:   1051647 Mb
+
+obs@tumulus /hcro/opt/.dropbox-dist 16:33:57 > ./dropbox_uploader.sh -k list
+ > Listing "/"... DONE
+ [D] 0      ATA Downlink
+ [F] 692088 Get Started with Dropbox.pdf
+ [F] 65785  sun.ephem
+ [F] 15     test

@@ -1,0 +1,135 @@
+NOTES: Power Outage Recovery/Monitoring
+DATE:  2016-03-28
+
+UPS Capacity:
+    Covered Equipment: SPR, Node Houses (antennas)
+    Run Time: single tank of fuel ~12-16 hr. (??). Exact time unknown since 
+    	several pieces of equipment have been removed from that circuit.
+        Once staff on site, then can have "unlimited" refueling.
+
+Recovery:
+
+    Servers - Most of SPR server BIOS have been set to reboot based on last
+    power state. Likely that most will go through some disk check so bootup
+    may take some time (5-20 minutes per disk). Also not guaranteed that all 
+    will come up. Visual/ping inspection required.
+
+    The order of server startup is important due to shared disk mounting. 
+    It may be the case that would have to judiciously reboot servers to get 
+    correct shared mounts. Order is:
+    	    1. Control Servers
+	    	    1. maincntl
+		    2. antcntl
+		    3. auxcntl
+	    2. App Support Servers
+	       	    1. boot2
+		    2. atadb
+		    3. tumulus
+		    4. user2
+		    5. muleears
+	    3. Network support servers
+		    1. mingus
+		    2. basalt
+		    3. blake7
+		    4. svn
+		    5. itzel
+	    4. Other
+		    1. sonata
+		    2. buttercup
+		    3. clover
+		    4. foxtrot
+		    5. erebus,cinder,caldera
+     --------------       
+     Timing - Server NTP:
+     The NTP application on each server will need to be forced to recover
+     quickly as the normal adjustment algorithm would take too
+     long. This involves shutting down the ntp server processes, adjusting
+     to a known good reference, and restarting the ntp process.
+
+     Cycle through the above hosts to check their jitter and offset accuracy.
+     Check all signal processing hosts too.
+
+     See NOTES-ntp.txt - Section III covers NTP recovery
+     --------------       
+
+     Timing Rack
+     See the HCRO-RESOURCE-FTS document for expected indicators.
+
+     --
+
+     Timing - Power Supply
+     All timing rack equipment is powered through a remote control
+     power strip (timingps.hcro.org). These outlets are currently
+     configured to turn all outlets OFF after an outage.
+     This will then force us to go through an orderly starup. The
+     downside is that it means that until we do power up, it will 
+     then take all the longer before things sync up.
+
+     --
+
+     Timing - CNS II (Aeon)
+     The CNS II is the stratum 1 timing source for HCRO. It is on rack
+     above the Rubidium. The lab PC has an application for accessing
+     status displays of this device.
+
+     --
+
+     Timing - Rubidium
+     The rubidium is the first in the line after the CNS II. It must have
+     sync to the GPS 1PPS. It will take a while for its algorithm to 
+     achieve this sync.
+
+     --
+
+     Timing - FSC/100Hz Adjustment
+     
+     The FSC Agilent Oscilliscope will produce a 409.6kHz clock that along
+     with the 1PPS signal is used to produce the walsh signals. To ensure 
+     the these 2 input signals are aligned, fsccontrol (operating on
+      oscilliscope fscclock), is used to (automatically) adjust the FSC
+     signal.
+     A fix can be forced by:
+     (as obs)		 > fsccontrol --fix
+
+     --
+
+     Timing - LOs & Clock Buffer Modules
+     
+     LOs and clock buffer modules should come up automatically.
+
+     --
+
+     Timing - Walsh Box
+
+     Walsh box should be reset, since unknown order of 1pps or fsc inputs
+     (as obs). If walsh is reset, then likely have to readjust alignment w/ 
+     fsc signal (i.e., force via fsccontrol )
+
+     --
+
+     Timing - ibobs, bees, correlators
+
+     These items would be last in the order of startup. They may need to
+     be restarted due to uncertainty of that order.
+
+Monitoring:
+   Several processes provid explicit (their sole function) or implicit
+   (in addition to other functions) background monitoring of ATA 
+   components. These may be JSDA process or specialized scripts running
+   as cronjobs. JSDA processes can be stopped via ataps command. Cron jobs
+   are stopped through the crontab or edits directly to config files
+
+	RecoveryServer (AuxCntl) - antenna monitoring and recovery
+	IbobServers (AuxCntl) - ibob monitoring and access (FXA, BFA, BFB)
+	WeatherServer (AuxCntl) - weather device (weatherport-davis,
+		      		 weatherport-vaisala)
+	bg-monitor-cronjob (atasys@maincntl) - background cronjob. Main
+			   	config files is /hcro/atasys/ata/etc/
+				bg-monitor-cronjob.cfg which lists following:
+				check_1pps_walsh
+				check_fxconf
+				check_fboards
+				check_los
+				check_ibobservers
+				check_powerstrips
+				check_resets	    

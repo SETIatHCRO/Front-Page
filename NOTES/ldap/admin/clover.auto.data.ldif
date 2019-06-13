@@ -1,0 +1,8 @@
+
+# clover data disk
+dn: cn=clover,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: clover
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 clover.hcro.org:/exports/clover
+

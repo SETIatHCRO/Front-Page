@@ -1,0 +1,39 @@
++ - - - - - - - - - - - - - - - - - - - - +
+|                 TPOINT                  |
+|   Telescope Pointing Analysis System    |
+|              Version 19.6               |
++ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ +
+
+Copyright 2014 P.T.Wallace - all rights reserved.
+
+This copy of TPOINT was supplied on January 24th, 2014.  It is
+licensed for use with the 6-m antennas of the Allen Telescope
+Array, Hat Creek Radio Observatory, California.
+
+There are 73 standard pointing terms.
+* INPRO
+Reading procedures from file procs.dat ...
+The library now contains 464 lines.
+* INST
+Reading star catalog entries from file stars.dat ...
+The catalog contains 210 stars.
+
+TPOINT ready for use:  type HELP for assistance, END to quit.
+
+* .INIT
+* RETURN
+* indat vi
+Input file cannot be opened!  File = vi.dat, status = -1
+?
+* USE IE IA CA AN AW
+* FIT
+* FAUTO
+* slist
+List of observations is empty.
+* outmod vi.fit
+EOF* END
+
+
+* END OF SESSION *
+
+

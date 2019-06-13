@@ -1,0 +1,147 @@
+NOTES: Tumulus Boot Disk failure and Recovery
+
+MODS: 
+  12 Sept 2014 - created - ELK
+
+-----------
+BACKGROUND:
+   In July 2014 Tumulus Disk 0 had been noted having a predicted drive failure (blinks green
+   amber and off). Replacement slated for late August. August 3 HCRO experienced a power
+   outage (on site-UPS for several hours). Power restored Aug 4 and machines rebooted 
+   automaticallyi (tumulus included). Aug 25 Disk 0 failed and tumulus would no longer boot
+
+
+BOOT DISK RECOVERY:
+  [Confusion all along in rescue/repair attempts was that I was specifying wrong device -
+  the / is /dev/sda2 --- not /dev/sda1]
+  All original disks and configuration in place during step 1.
+
+  1. Inserted 10.3 rescue CD
+    - at boot menu selected "Repair Installed System"
+         "an error occurred during the installation" and it then gave option for install.
+    - rebooted to rescue system. An ls of /dev showed sda, sda1, sdb (but no sda2 nor sdb1)
+    - fsck -t ext3 /dev/sda1
+         "If you wish to check the consistency of a XFS file system or repair a damaged 
+         filesystem, see xfs_check and xfs_repair"
+    -e2fsck /dev/sda1
+         "Couldn't find ext2 superblock, tring backup blocks. Bad magic number in
+          superblock while tring to open /dev/sda1....try alternate superblock"
+
+      NB: block size is 4k -- try 32768
+    - e2fsck -b 32768 /dev/sda1
+         "superblock could not be read"
+    - mke2fs -n /dev/sda1
+          bad magic numbers on candidate superblocks. no useable superblocks    
+  2. Finally realized there was no recovery. Needed to install new disk and rebuild.
+
+  3. Inserted new disk for failed disk 0, all other disks remained in chassis. 
+   ^R showed disk 0 ready and disks 1-5 showed as online with following:
+
+    VD 0   ! note after the fact that the VD number changed from 1 to 0
+      RAID 5  544.4G
+      Disks 1-5
+      Stripe Element Size: 128Kb
+      Read Policy   Read Ahead
+      Write Policy  Write Back
+      VD Name    <empty>
+
+  4. Started boot disk reinstall (w/o creating VD containing disk 0), when install partitioning
+  step showed utilizing disks 1-5, canceled out of the install (openSUSE 10.3)
+
+  Confusion at this point. From my notes I show that I tried all 6 disks in a different
+  machine...when doing so, I may have cleared the foreign configurations on those
+  (original) 6 disks. Finally went back to original machine
+
+  5. rebooted. ^R Put disks 1-5 in offline state, then deleted VD1 (disks 1-5 still in chassis).
+  6. shutdown, removed disks 1-5. rebooted. ^R created VD 0 out of disk 0. Initialized Disk 0
+  7. installed openSUSE 10.3. minimal configuration (network device, sshd)
+  8. Installed OMSA 5.5 to have better RAID tools
+
+VD 1 RECOVERY:
+  Note - alert logs gathered:
+      /var/log/lsi_0827.log
+      /var/log/lsi_0828.log
+      /var/log/lsi_0910.log
+      /tmp/omreport_alertlog-082814.log
+
+  1. Import of foreign configuration failed. Exported alert log. 
+     See tumulus:/var/log/lsi_0827.log
+  2. 08/28/14 11:49 - Submited query to Dell community Forum. See   
+   http://en.community.dell.com/support-forums/servers/f/906/p/19597921/20672773#20672773
+
+  3. Installed and ran DSET for Dell (results in /tmp) 
+  4. 8/29/14 08:00 - cleared foreign config, recreated VD 1 as RAID 5 stripe size default (64k)
+   # fdisk -l
+
+  Disk /dev/sda: 146.1 GB, 146163105792 bytes
+  255 heads, 63 sectors/track, 17769 cylinders
+  Units = cylinders of 16065 * 512 = 8225280 bytes
+  Disk identifier: 0x000e1db9
+
+     Device Boot      Start         End      Blocks   Id  System
+     /dev/sda1               1         262     2104483+  82  Linux swap / Solaris
+     /dev/sda2   *         263       17770   140632064   83  Linux
+
+     Disk /dev/sdb: 584.6 GB, 584652423168 bytes
+     255 heads, 63 sectors/track, 71079 cylinders
+     Units = cylinders of 16065 * 512 = 8225280 bytes
+     Disk identifier: 0x00000000
+
+     Disk /dev/sdb doesn't contain a valid partition table
+
+   5. 8/29/14 11:01 - found in notes that original VD was stripe size 128k. Asked
+    Dell if could recover.
+   6. 8/29/14 12:35 - Dell responds:
+      "In regards to the stripe size, after retag the array at 64bit stripe did you access 
+      the OS and write data to that array yet? Or has it not been accessed yet. The reason 
+      I ask is that if you wrote to the drives with that strip size then there may be issues 
+      going to the 128 it was at prior. I think the data that was originally on the drives 
+      would be accessible, but anything written at 64 wouldn't be visible."
+
+   7. 8/29/14 - deleted and recreated VD per original config. Still no partition seen.
+
+   8. 8/29/14 1:26 [now in email w/ Chris Hawk - Dell] 
+      "I was having issues looking at part of the Dset report, but one thing that I am 
+      seeing jump out id that the controller itself is out of date. That would be the first 
+      thing I would do, as it being out of date can cause issues with a driver that is more 
+      current and may explain some of the issues. The link for the Perc 5/I firmware is here - 
+      http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=WJG5R&fileId=2953936584&osCode=ES11&productCode=poweredge-1950&languageCode=EN&categoryId=SF
+
+      Update the controller and then go to the controller BIOS (CTRL-R) and then delete 
+      and recreate the array as it was per your notes.
+
+      If it still shows Foreign on any of the drives attempt to clear the foreign again 
+      and then retag.
+
+      Moving them over to another server will result in the same thing, if it is marked 
+      as foreign. We need to get the foreign cleared from the drives and THEN do the retag."
+
+  9. Did not want to change tumulus PERC fw just yet, so moved to test machine (crater)
+
+  
+CRATER TESTING:
+    Installed openSUSE 10.3 (same as on tumulus)
+  1. Upgraded firmware on crater
+      BIOS 1.3.7 --> 2.7.0
+      PERC 5/i 5.1.1-0040 --> 5.2.2-0072
+  2. Inserted original disks 1-5. Import of foreign config succeeded, but no partition
+     visible
+  3. Installed openSUSE 13.1 and OMSA 7.4
+  4. Import (?) succeeded but still no partition visible. While OMSA 7.4 supports
+    ability to retrieve partition information, only "some" RAID ctrllrs can return
+    such information.
+  5. Rebooted - forgot OMSA Live CD was in DVD and system came up in live boot
+  6. Shutdown -r on next startup couldn't get to console
+  7. Noted blinking lights on VD1 disks (! might this have been a background initialization/
+      parity check? Or a disk check? What did this signify?)
+  8. Waited until blinking stopped. Still no console access (?)
+  9. Hard shutdown. Reboot
+  10. Still no /dev/sdb partition
+  11. shutdown, removed original disks 1-5. Inserted test disks
+  12. partition (test) disks 1-5 using default begin/end. Partition shows up.
+
+TUMULUS FW Upgrade:
+  1. After testing on crater, upgraded tumulus BIOS and RAID HW Ctrllr Fw
+  2. Put original disks 1-5 back in. Import succeeded, but no partition
+
+

@@ -1,0 +1,542 @@
+NOTES:  LDAP
+DATE:   11/11/13
+AUTHOR: ELK
+HISTORY: 2016-02-09 Notes for configuring secondary LDAP (section VI)
+	 2015-05-09 notes on automount lookup failures on boot2
+	 2019-05-02 notes on ldap access on data, support
+-------------------
+General Info:
+OBS LAN LDAP server run on basalt (slapd - standa-alone LDAP daemon)
+       /usr/lib/openldap/slapd -h ldap:/// -u ldap -g ldap -o slp=on
+       
+       basalt:~ # service ldap
+       Usage: /etc/init.d/ldap {start|stop|status|try-restart|restart|force-reload|reload}
+
+       
+       See the "OpenLDAP 2.3 Administrator's Guide" (http://www.OpenLDAP.org/doc/admin23/)
+       for more details on slapd.
+
+
+LDAP Server is used for maintaining user authentication/login information and
+for maintaining Automount maps
+
+Configuration files in /etc/openldap
+  ldap.conf           - client config
+  ldap.conf.default   -
+  schema              -
+  slapd.conf          - server config
+  slapd.conf.default  -
+  /etc/autofs
+
+With the nss_ldap package installed, there will also be an /etc/ldap.conf.
+This file is used by the PAM and NSS modules supplied by the nss_ldap package
+(used for authentication). The nsswitch.conf file determines what modules
+are used. 
+
+I. General Tools:
+
+  1. LDAP Version
+
+    # ldapsearch -VV     !client-side check
+
+
+        ldapsearch: @(#) $OpenLDAP: ldapsearch 2.3.19 (Jun 16 2006 15:02:17) $
+               build@d158:/usr/src/packages/BUILD/openldap-2.3.19/clients/tools
+               (LDAP library: OpenLDAP 20319)
+
+  2. Show Entire LDAP Directory
+
+    # ldapsearch -x -LLL
+
+  3. Show full list:
+
+    # ldapsearch -x  '(objectclass=*)' namingContexts
+
+  4. Show individual account info:
+    
+    # ldapsearch -x -L "(uid=colby)"
+    # ldapsearch -x -LLL "(uid=colby)"
+
+  5. Show Individual subfield:
+  
+    # ldapsearch -x -L -u -t "(uid=colby)" loginField
+
+
+II. MAP DIRECTORIES (Shared file systems mounted by autofs)
+
+  1. Add in map directory, e.g., for a new machine
+  
+    # ldapadd -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f srimain.auto.data.ldif
+
+    contents of srimain.auto.data.ldif (see root@basalt: ~/admin/ldap) contains:
+ 
+      # srimain data disk
+      dn: cn=srimain,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+      objectClass: nisObject
+      nisMapName: auto.data
+      cn: srimain
+      nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 srimain.hcro.org:/exports/srimain
+
+
+  2. Delete sub part of map directory
+
+    # ldapdelete -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W "cn=/home,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org"
+
+III. USER MANAGEMENT
+
+  1. Add User
+    a) add user in Yast. specify home directory as /exports/basalt/home/<user>
+      (i.e., not as /home/<user> - which is a virtual location under control of autofs)
+
+    b) modify the user home directory in the LDAP record 
+
+    #  ldapmodify -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f /tmp/modify
+
+      Contents of /tmp/modify:
+        dn: uid=gharp,ou=people,dc=obs,dc=hcro,dc=org
+        changetype: modify
+        homeDirectory: /home/gharp
+
+    c) create the AUTOFS map entry for the user 
+
+    # ldapadd -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f <user>.auto.home.ldif
+
+      contents of <user>.auto.home.ldif  (see ~admin/ldap)
+
+        #
+        # testuser home
+        #
+
+        dn: cn=<user>,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+        objectClass: nisObject
+        nisMapName: auto.home
+        cn: <user>
+        nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/exports/basalt/home/<user>
+
+     d) reload the maps (on server and clients)
+        11/19/13 - first tried the reload on the server (basalt)
+          # /etc/init.d/autofs reload 
+              this hung likely due to open files on some of the mounted systems
+              ultimately reboot basalt and that made the new user account
+              accessible - but only on basalt
+
+        11/19/13 - tried the reload on the client sonata
+          # /etc/init.d/autofs reload
+              didn't work - at least it returned, but login to sonata did not have correc
+              login directory
+          # /etc/init.d/autofs restart
+              also didn't work
+          # shutdown -r now
+              this will work - except sonata has some screwy reboot - "Quiet Mode Enabled"
+
+     e) Configure for ssh
+        
+
+  2. Delete User  
+
+    a) YAST/User management - delete the user
+    b) delete home directory (root@basalt)
+        rmdir -r /exports/basalt/home/<dir>
+
+        NOTE - user logins will fail at this point (reprompt for password)
+  
+  3. User account password
+    a -n will not execute the command (useful for debugging w/ -v or -d 1)
+
+    elin@tumulus:~ 07:53:50 > ldapwhoami -x
+    > anonymous
+
+    elin@tumulus:~ 08:00:18 > ldapwhoami -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W
+    Enter LDAP Password:
+    dn:cn=Administrator,dc=obs,dc=hcro,dc=org
+
+    elin@tumulus:~ 08:23:30 > ldappasswd -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -S "uid=elin,ou=people,dc=obs,dc=hcro,dc=org"
+    New password:
+    Re-enter new password:
+    Enter LDAP Password:
+
+
+
+  4. Modify dn
+
+
+    #  ldapmodify -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f /tmp/modify
+
+    contents of /tmp/modify:  NOT TESTED YET
+      # caldera data disk
+      dn: cn=crv,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+      changetype: moddn
+      newrdn: cn=caldera
+      deleteoldrdn: 1
+
+
+
+IV. AUTOMOUNT
+Quick Debug Info
+      # systemctl stop autofs
+      # automount -f -v
+      do a mount access from some host, look at log on server, client, and
+      host w/ mount.
+
+Automount maps are maintained in LDAP (rather than nis, etc.). The following shared 
+drives are mounted across the servers in the LDAP cloud:
+  /data, /home, /hcro
+
+  # ldapsearch -x -LLL -b "nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org" "cn" "nisMapEntry"
+      
+      dn: nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+
+      dn: cn=/data,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+      cn: /data
+      nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+
+      dn: cn=/home,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+      cn: /home
+      nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+
+      dn: cn=/hcro,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+      cn: /hcro
+      nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+
+
+V. Client configuration
+Using nss_ldap (inherited fom 10.3 configurations). 13.1 seems to steer client
+installs towards SSSD (System Security Services Daemon). The SSSD service
+provides a single configuration point for access to identity and authentication
+information, as well as caching for offline support. As the latter isn't needed
+at HCRO, then we will stick w/ nss_ldap for now.
+
+See VI for notes on LDAP client config on openSUSE 13.1 (srimain 9/9/14)
+
+openSUSE 10.3 can be done from yast, but below are config file mods required
+to get nss,ldap,pam and ssh operational on 13.1.
+
+ /etc/openldap/ldap.conf
+    # LDAP Default - See ldap.conf(5) for details
+    TLS_REQCERT     allow
+    host    basalt.hcro.org   #set to localhost on basalt
+    base    dc=obs,dc=hcro,dc=org
+ /etc/sysconfig/ldap
+    # Main configuration DN. At these place (in the LDAP directory) the
+    # configuration objects (like userConfiguration or groupConfiguration)
+    # are saved as default.
+    BASE_CONFIG_DN="ou=ldapconfig,dc=obs,dc=hcro,dc=org" 
+ /etc/ldap.conf
+  # This is the configuration file for the LDAP nameservice
+  # switch library and the LDAP PAM module.
+  # NB: elk09/09/14 - the following is based on user2 settings
+  # Your LDAP server. Must be resolvable without using LDAP.
+  # Multiple hosts may be specified, each separated by a
+  # space. How long nss_ldap takes to failover depends on
+  # whether your LDAP client library supports configurable
+  # network or connect timeouts (see bind_timelimit).
+  host    basalt.hcro.org
+
+  # The distinguished name of the search base.
+  base    dc=obs,dc=hcro,dc=org
+
+  # Reconnect policy:
+  #  hard_open: reconnect to DSA with exponential backoff if
+  #             opening connection failed
+  #  hard_init: reconnect to DSA with exponential backoff if
+  #             initializing connection failed
+  #  hard:      alias for hard_open
+  #  soft:      return immediately on server failure
+  bind_policy     soft
+
+  # Search the root DSE for the password policy (works
+  # with Netscape Directory Server). Make use of
+  # Password Policy LDAP Control (as in OpenLDAP)
+  pam_lookup_policy       yes
+
+  # Use the OpenLDAP password change
+  # extended operation to update the password.
+  pam_password    crypt
+
+  # returns NOTFOUND if nss_ldap's initgroups() is called
+  # for users specified in nss_initgroups_ignoreusers
+  # (comma separated)
+  nss_initgroups_ignoreusers      root,ldap
+
+  # Enable support for RFC2307bis (distinguished names in group
+  # members)
+  nss_schema      rfc2307bis
+
+  # NDS mappings
+  nss_map_attribute       uniqueMember member
+
+  # OpenLDAP SSL mechanism
+  # start_tls mechanism uses the normal LDAP port, LDAPS typically 636
+  ssl     start_tls
+  ldap_version    3
+  pam_filter      objectclass=posixAccount
+  nss_base_passwd dc=obs,dc=hcro,dc=org
+  nss_base_shadow dc=obs,dc=hcro,dc=org
+  nss_base_group  dc=obs,dc=hcro,dc=org
+  tls_checkpeer   no
+  #ssl on
+
+ /etc/ssh/sshd_config
+  Protocol 2
+
+  # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+  # but this is overridden so installations will only check .ssh/authorized_keys
+  #AuthorizedKeysFile     .ssh/authorized_keys   [i.e., comment this out]
+
+  # To disable tunneled clear text passwords, change to no here!
+  PasswordAuthentication no
+
+  # Set this to 'yes' to enable PAM authentication, account processing,
+  # and session processing. If this is enabled, PAM authentication will
+  # be allowed through the ChallengeResponseAuthentication and
+  # PasswordAuthentication.  Depending on your PAM configuration,
+  # PAM authentication via ChallengeResponseAuthentication may bypass
+  # the setting of "PermitRootLogin without-password".
+  # If you just want the PAM account and session checks to run without
+  # PAM authentication, then enable this but set PasswordAuthentication
+  # and ChallengeResponseAuthentication to 'no'.
+  UsePAM yes
+
+  X11Forwarding yes
+
+  # i.e., comment this out 
+  #UsePrivilegeSeparation sandbox         # Default for new installations.
+  
+  # override default of no subsystems
+  Subsystem       sftp    /usr/lib64/ssh/sftp-server
+
+  # This enables accepting locale enviroment variables LC_* LANG, see sshd_config(5).
+  AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+  AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+  AcceptEnv LC_IDENTIFICATION LC_ALL
+
+ /etc/pam   - modify the common files, sshd
+ /etc/nsswitch.conf
+  passwd: compat ldap
+  group:  compat ldap 
+ 
+VI LDAP Client config - openSUSE 13.1 - srimain 9/9/14 (aka mustard - was resolved)
+11/18/15 -- problem exists on subr072...too bad I didn't complete these notes 
+last year...now have to research again.
+
+ERROR MESSAGE
+User connect attempt:
+2014-09-09T17:20:38.888041-07:00 srimain sshd[2033]: gkr-pam: error looking up u                                          ser information
+2014-09-09T17:20:41.812614-07:00 srimain sshd[2033]: pam_unix(sshd:auth): check                                           pass; user unknown
+2014-09-09T17:20:41.839074-07:00 srimain sshd[2033]: pam_ldap: error trying to b                                          ind as user "uid=obs,ou=people,dc=obs,dc=hcro,dc=org" (Invalid credentials)
+2014-09-09T17:20:43.499871-07:00 srimain sshd[2031]: error: PAM: Authentication                                           failure for illegal user obs from paintbrush.hcro.org
+2014-09-09T17:20:43.503963-07:00 srimain sshd[2034]: gkr-pam: error looking up u                                          ser information
+2014-09-09T17:20:52.275684-07:00 srimain sshd[2031]: error: Received disconnect                                           from 10.3.0.20: 13: Unable to authenticate [preauth]
+
+Ls of an automount disk succeeds (e.g., ls /data/tumulus):
+ldapsearch -x -LLL succeeds: returns full listing
+
+See
+http://serverfault.com/questions/629936/opensuse-13-1-pam-ldap-error-trying-to-bind-invalid-credentials
+	Got resolution by adding "+::::::" to end of /etc/passwd and shadow
+	files. But suggests there may be something else wrong (note that both
+	mustard and tumulus have that ending tag in /etc/passwd file only).
+
+
+VI. Configure Secondary LDAP Server on boot2 (Feb 2016)
+See (Chapter 14.4)  www.openldap.org/doc/admin23/replication.html. NOTE
+that one can alternatively do LDAP-Sync-based replication which allows a
+slave to accept database changes that are then synced back to the master 
+when available. We don't have many ldap changes so going w/ simpler slurpd
+replication.
+
+A. Backup the primary database to secondary database:
+
+   1. Export primary BDB database:
+   --> slapcat -b "dc=obs,dc=hcro,dc=org" -l /tmp/contents.ldif
+
+   2. Copy data to secondary ldap server:
+   --> scp /tmp/contents.ldif root@IP:/tmp/contents.ldif
+
+   3. Import data to secondary ldap database (secondary cannot be running):
+      (if needed, may have to remove old conents - rm /var/lib/ldap/*.
+      slapadd is the bulk load of the database that can only be done on
+      machine w/ the server configured. Versus ldapadd which uses the ldap
+      protocol to add entries one at a time).
+   --> slapadd -l /tmp/contents.ldif
+
+   4. Change the owner/permissions for the database:
+   --> chown ldap.ldap /var/lib/ldap/*.*
+   --> chmod 700 /var/lib/ldap
+
+NB: when attempting to import, the initial import failed due to a syntax error
+in the dn associated w/ Solaris. Chose to delete this from ldap database
+(believe it is no longer needed).
+
+B. Setup up new LDAP servers (on secondary) with settings similar
+to primary LDAP server
+   /etc/openldap/slapd.conf
+   
+
+C. Add the following lines to the configuration file(slapd.conf) in 
+   Primary LDAP Server:
+   ------------------------------
+   Line1 : replogfile /var/lib/ldap/replica.log
+
+   Line2 : replica uri=ldap://boot2.hcro.org binddn="cn=Administrator,dc=obs,dc=hcro,dc=org" bindmethod=simple credentials=password
+
+   where secondary ldap server ip is 10.3.0.73 (boot2)
+
+D. Add the following lines to the configuration file(slapd.conf) 
+in Secondary LDAP Server:  (10.3.0.42 is basalt - the master)
+   ------------------------------
+   Line1 : updatedn "cn=Administrator,dc=obs,dc=hcro,dc=org"
+   Line2 : updateref ldap://10.3.0.42
+
+E. Configure/start the master-side replication server - slurpd
+   [it uses a atemporary directory for processing. this directory must
+   exist - /var/run/slapd/openldap-slurp  --- with ldap.ldap ownership]
+
+   did it via Yast system services (Runlevel) - defaults to rc.3/S10 & K12
+   and the ldap service is rc.3 S09 and K13
+
+F. Configure clients with list of ldap servers
+    modify the host field to add boot2
+	   /etc/openldap/ldap.conf
+	   /etc/ldap.conf
+    restart any services that are ldap clients:
+    	    sshd (definitely needed to restart for the pam_ldap check)
+	    automount (I didn't restart this and is seemed to work ok)
+
+
+
+VII. Automount lookup(ldap) got answer, but no first entry
+Boot2 generates following lookup issues when logging in (obs). Apparently
+issue is solved in later release, but cannot find repository for it
+(current versions are > 5.0)
+
+
+> May  9 09:18:32 boot2 automount[16124]: lookup(ldap): got answer, but no first entry for (&(objectclass=automount)(cn=obs))
+> May  9 09:18:32 boot2 sshd[16122]: Accepted publickey for obs from 10.3.0.40 port 55207 ssh2
+> May  9 09:18:37 boot2 automount[16137]: lookup(ldap): got answer, but no first entry for (&(objectclass=automount)(cn=tumulus))
+> May  9 09:18:39 boot2 automount[16157]: lookup(ldap): got answer, but no first entry for (&(objectclass=automount)(cn=miriad))
+
+> boot2:/etc # automount -V
+> Linux automount version 4.1.4
+> boot2:/etc # rpm -qa autofs
+> autofs-4.1.4-23.4
+
+> This one slipped through the cracks.
+> > The most recent FC-5 update has a patch that does this.
+> > 
+> > Can you check and confirm that this problem is resolved.
+>
+> Ian, many thanks, this appears to have done the job.
+> (autofs-4.1.4-27)
+>
+
+VIII. Setting UPGRADE servers. Adding their shared mounts.
+On basalt
+ # /usr/lib/openldap/slapd -VV
+@(#) $OpenLDAP: slapd 2.4.33 $
+        opensuse-buildservice@opensuse.org
+
+
+PROBLEM - getting
+   # ldapadd -v -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f control.auto.data.ldif
+ldap_initialize( <DEFAULT> )
+Enter LDAP Password:
+ldap_bind: Invalid credentials (49)
+
+NB:- Something was done on Apr 27 2016 when ldap files were last updated. It may
+be I used the Yast module to access ldap (MISTAKE) and then backed out when I 
+remembed that it tries to use the SSD version instead of the pam version.
+
+- regenerated the hash of the password and updated slapd.conf, but still
+  failed. NOTE - that the default hash algorithm was SSHA
+- try 
+ # ldapsearch -v -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W
+ldap_initialize( <DEFAULT> )
+Enter LDAP Password:
+ldap_bind: Invalid credentials (49)
+
+Check of the system messages shows only one abberation
+2017-08-25T08:53:01.423690-07:00 basalt slapd[15180]: connection_read(33): no connection!
+Can ignore this - it is apparently a client that is disconnecting without
+first unbinding....but that presumably means the client at least got to the server???
+
+Noticed that there is the slapd.d directory. This is the configuration backend
+to slapd ---- This is being used because in /etc/sysconfig/openldap, the
+following is set:
+# Here you can configure which of the configuration backends you want to
+# use. Possible values are "files" for slapd.conf(5) styleconfiguration or
+# "ldap" for the slapd-config(5) LDAP based configuration backend.
+#
+OPENLDAP_CONFIG_BACKEND="ldap"
+basalt:~/admin/ldap # man slapd-config
+basalt:~/admin/ldap # ls -lrt /etc/sysconfig/openldap
+-rw-r--r-- 1 root root 4426 Apr 27  2016 /etc/sysconfig/openldap
+ 
+Now get
+ldap.service - LSB: OpenLDAP Server (slapd)
+   Loaded: loaded (/etc/init.d/ldap)
+   Active: active (running) since Fri 2017-08-25 10:38:23 PDT; 2s ago
+  Process: 16430 ExecStop=/etc/init.d/ldap stop (code=exited, status=0/SUCCESS)
+  Process: 15133 ExecReload=/etc/init.d/ldap reload (code=exited, status=3)
+  Process: 16445 ExecStart=/etc/init.d/ldap start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/ldap.service
+           └─16503 /usr/lib/openldap/slapd -h ldap:/// ldaps:/// ldapi:/// -f /etc/openldap/slapd.conf -u ldap -g ldap -o slp=off
+
+Aug 25 10:38:22 basalt systemd[1]: Starting LSB: OpenLDAP Server (slapd)...
+Aug 25 10:38:23 basalt ldap[16445]: Starting ldap-server..done
+Aug 25 10:38:23 basalt systemd[1]: Started LSB: OpenLDAP Server (slapd).
+
+Instead of
+ # service ldap status
+ldap.service - LSB: OpenLDAP Server (slapd)
+   Loaded: loaded (/etc/init.d/ldap)
+   Active: active (running) since Fri 2017-08-25 10:15:31 PDT; 33s ago
+  Process: 16063 ExecStop=/etc/init.d/ldap stop (code=exited, status=0/SUCCESS)
+  Process: 15133 ExecReload=/etc/init.d/ldap reload (code=exited, status=3)
+  Process: 16120 ExecStart=/etc/init.d/ldap start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/ldap.service
+           └─16142 /usr/lib/openldap/slapd -h ldap:/// ldaps:/// ldapi:/// -F /etc/openldap/slapd.d -u ldap -g ldap -o slp=off
+
+Aug 25 10:15:30 basalt slapd[16141]: @(#) $OpenLDAP: slapd 2.4.33 $
+                                             opensuse-buildservice@opensuse.org
+Aug 25 10:15:30 basalt slapd[16142]: bdb_monitor_db_open: monitoring disabled; configure monitor database to enable
+Aug 25 10:15:30 basalt slapd[16142]: slapd starting
+Aug 25 10:15:31 basalt ldap[16120]: Starting ldap-server..done
+Aug 25 10:15:31 basalt systemd[1]: Started LSB: OpenLDAP Server (slapd).
+
+And now the administrative actions work BUT only when using the -w <passw>
+(instead of w/ -W which prompts for the password and then still returns
+invalid credentials on the bind). Also noticed that the ldapsearch -x -LLL
+returns no objects when it should return entire ldap entries (invoked from
+root or basalt on basalt). This was solved by modifying the
+/etc/openldap/ldap.conf
+and adding in the dc=obs to the base
+
+2017-09-07 - BOOT2 failure
+Have to move the /hcro/atasys to different location
+Modify the ldap autofs entry
+Again got the invalid credentials on the bind.
+From
+https://www.linuxquestions.org/questions/linux-newbie-8/nss_ldap-failed-to-bind-to-ldap-server-916145/
+Did (which I had done last time too):
+    slappasswd
+but this time, the encrypted version had "SSHA" instead of "SHA" prefixed.
+rootpw "{SSHA}6k3i6F5CLZUIls9Jie0M5famA5JgL7CF"
+
+
+2019-05-02 - support machines (Dell6100 - OpenSUSE Tumbleweed
+
+When testing ldap connection (within yast), got:
+
+Connection check has failed on host                       │ │ TLS                                    │ │
+ │- Host name or IP and port number (ip:por│ │ldap://basalt.hcro.org:389. ERROR: ldap_int_sasl_init:    │ │ StartTLS                               │ │
+ │- URI (ldap://server:port, ldaps://server│ │SASL library version mismatch: expected 2.1.27, got 2.1.26│ │ ───────────────────────────────────────┘ │
+ │basalt.hcro.org:389▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒│ │ldapsearch:
+ ldap_get_option(API_INFO) failed    
+
+Upgraded the package.
+
+Automounts were failing on data, support. Had to restart autofs...This is
+likely related to the network service startup issues
+
+

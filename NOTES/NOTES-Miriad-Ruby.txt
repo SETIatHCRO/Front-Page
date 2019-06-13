@@ -1,0 +1,4 @@
+See log
+ATA Observation and Data Reduction Manual
+  RAPID Documentation
+      miriad.rubyforge.org

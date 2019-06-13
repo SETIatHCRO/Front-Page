@@ -1,0 +1,197 @@
+NOTES - Commissioning of substitute machines
+DATE - 10/16/15
+
+
+two basic substitute Dell PowerEdge 2950 machines configured: 
+subr072 (10.3.0.55) and subr150 (10.3.0.56) with OpenSuse 13.1.
+
+The nomenclature is "substitute w/ disk RPM 7.2k (or 15k)". Each is 
+configured w/ boot disk of RAID 1 and data disk of RAID 10. It is the data 
+disk speed that the RPM designation refers to. The data disks are accessible 
+via the standard nfs shared mount of /data/subr072
+
+DRAC (remote access):
+Remote access controllers (RAC), aka DRAC5, are enabled on these machines.  
+It is accessed at 10.3.6.XX where XX is the same number as in their IP address.
+This allows console access over the internal network even while powered-off.
+The RAC provides a secure web interface (user root, std password).
+Can do console redirection, but have only gotten that working w/ IE to the 
+machine (10.3.6.56) that has the older version of the RAC FW (1.0) as it uses 
+ActiveX versus 10.3.6.55, which had its RAC FW upgraded last year and it uses 
+java....these are issues we can work out later.
+
+The notes for the installs, w/ a draft section on the RAC, is in 
+~obs/NOTES/NOTES-openSUSE-13_1.txt
+
+XEN INSTALL:
+
+ XEN  (www.xenproject.org)
+      xen 4.3.4_05-47
+      kernel-xen
+      xen-tools
+
+      yast2-vm   (virtualization server config in yast - this was not in
+      		 the 13.1 distribution. )
+      		 First time need to do the "install hypervisor and tools"
+
+      nagios-xen-host
+      nagios-xen
+ Host Bootloader modifications (grub2 for 13.1)
+ /boot/grub2/grub.cfg 
+ NB - may be the case that the XEN grub files were a part of the original
+ install (only not activated) as the dates, e.g., /etc/grub.d/linux_xen
+      already existed
+ NB - at bootup need to select the XEN kernel (TODO make it the default). 
+ this will cause the XEN daemon (libvirtd??) to be there at bootup.
+
+ Boot Managers for Xen VMs
+      PvGrub - "safer (as in designed to be more secure - see Securing Xen)
+      and more efficient alternative to PyGrub to boot domU images: unlike
+      pygrub it runs an adapted version of the grub boot loader inside the
+      created domain itself, and uses the regular domU facilities to read the
+      disk mounted as root directory, fetch files from network, etc. It also
+      eventually loads the PV kernel and chain-boots it."
+
+      PyGrub - "start Linux domUs with a kernel inside the DomU instead of a
+      kernel that lies in the filesystem of the dom0. This means easier
+      management - each domU manages its own kernel and initrd, meaning you
+      can use the built-in package manager to update the kernels, instead of
+      having to track and update kernels stored in your dom0. It also allows
+      easy migration of HVM'ed Linuxes - there's no need to extract the
+      installed kernel & initrd. 
+
+      Use PyGrub 
+
+Network Configuration
+	3 styles for Xen host: bridged, routed, nat. default is bridged.
+
+	brctl - command line
+
+Install Hypervisor and tools via yast
+Adding a VM (via the yast virtualization\virtual machine manager (subr150)
+
+  
+https://www.suse.com/documentation/sles11/singlehtml/book_xen/book_xen.html
+
+[1.2 Understanding Virtualization Modes]
+     "Full virtualization mode lets virtual machines run unmodified operating 
+systems, such as Windows* Server 2003 and Windows XP, but requires the
+computer running as the VM Host Server to support hardware-assisted
+virtualization technology, such as AMD* Virtualization or Intel* 
+Virtualization Technology.
+
+    Some guest operating systems hosted in full virtualization mode, can be 
+configured to run the Novell* Virtual Machine Drivers instead of drivers 
+originating from the operating system. Running virtual machine drivers
+improves performance dramatically on guest operating systems, such as Windows 
+XP and Windows Server 2003. For more information, see Chapter 14, Virtual 
+Machine Drivers.
+
+    Paravirtual mode does not require the host computer to support 
+hardware-assisted virtualization technology, but does require the guest 
+operating system to be modified for the virtualization environment. Typically, 
+operating systems running in paravirtual mode enjoy better performance than 
+those requiring full virtualization mode.
+
+    Operating systems currently modified to run in paravirtual mode are 
+referred to as paravirtualized operating systems and include SUSE Linux 
+Enterprise Server 11 and NetWare® 6.5 SP8."
+
+run in paravirual mode (?). The Dell 2950 BIOS apparently has virtualization 
+technology support (needs to be turned on) 
+
+TOOLSTACKS:
+	variety exist: xl, libvirt, xend (deprecated)
+	xl is lighweight and CLI-focused
+	libvirt 
+Domain 0 HOST SETUP:
+     HARDWARE REQUIREMENTS
+     	      CPU - Pentium II or AMD K7 450 MHz
+	      Memory - 512 MB   (the 2950 have ??)
+	      Free Disk Space - 7 GB
+	      DVD-ROM Drive
+	      Hard Drive - 20 GB
+	      IP Address - IP address for each VM Guest
+
+     CONFIGURE THE boot manager for the Xen VM
+      Yast  System/Boot Loader/Boot Loader Options/Default Boot Section
+      - select "openSUSE 13.1 Server_64bit_ATA_Server [ OEM ] GNU/Linux, with
+      Xen hypervisor"
+
+subr150:~ # xl info
+host                   : subr150
+release                : 3.11.10-29-xen
+version                : #1 SMP Thu Mar 5 16:24:00 UTC 2015 (338c513)
+machine                : x86_64
+nr_cpus                : 4
+max_cpu_id             : 7
+nr_nodes               : 1
+cores_per_socket       : 2
+threads_per_core       : 1
+cpu_mhz                : 2992
+hw_caps                : bfebfbff:20000800:00000000:00000900:0004e3bd:00000000:00000001:00000000
+virt_caps              :
+total_memory           : 16378
+free_memory            : 165
+sharing_freed_memory   : 0
+sharing_used_memory    : 0
+outstanding_claims     : 0
+free_cpus              : 0
+xen_major              : 4
+xen_minor              : 3
+xen_extra              : .4_05-47.1
+xen_caps               : xen-3.0-x86_64 xen-3.0-x86_32p
+xen_scheduler          : credit
+xen_pagesize           : 4096
+platform_params        : virt_start=0xffff800000000000
+xen_changeset          : 27560
+xen_commandline        :
+cc_compiler            : gcc (SUSE Linux) 4.8.1 20130909 [gcc-4_8-branch revision 202388
+cc_compile_by          : abuild
+cc_compile_domain      :
+cc_compile_date        : Sun Jun 14 14:37:33 UTC 2015
+xend_config_format     : 4
+
+subr150:~ # xl list
+Name                                        ID   Mem VCPUs      State   Time(s)
+Domain-0                                     0 16031     4     r-----      33.2
+
+subr150:~ # virsh
+virsh # version
+Compiled against library: libvirt 1.1.2
+Using library: libvirt 1.1.2
+Using API: Xen 1.1.2
+Running hypervisor: Xen 4.3.0
+
+
+     MANAGING MEMORY:
+     subr150 - 16G memory (dmidecode -t 16 - 8x2G)
+     Yast/System/Boot Loader/..Loader Options.../Optional Kernel line commands
+         add "dom0_mem=2G"
+      
+
+     NETWORK ADAPTER/BRIDGE:
+      tbd
+
+Need to reboot to ensure libvirtd is running (systemctl status libvirtd.service)
+
+TEST - install the ISO image onto the host (/proc/sys/dev/cdrom/info for list)
+     mkdir /mnt/sr0
+     mount /dev/sr0 /mnt/sdd
+     cp <iso> /exports/subr150/downloads   (for lack of better place)
+     but later saw note that images are stores in /var/lib/xen/images, so put
+     a copy there (the Elin... is a liveCD
+
+ 
+CREATE VIRTUAL MACHINES:
+
+So use the command line version:
+   vm-install
+      "A tool to set up a VM Guest, configure its devices and start the 
+      operating system installation. ... When invoked on a terminal, starts 
+      the wizard in command-line mode. vm-install is also started when 
+      creating a new virtual machine in the Virtual Machine Manager. "
+
+	default of initial/maximum memory : 768
+	no virtual disks
+	network adapter

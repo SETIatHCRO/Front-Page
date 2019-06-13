@@ -1,0 +1,14 @@
+#  
+# auto.ataarchive
+#
+# Moved to tumulus 17 may 2011
+dn: cn=/ataarchive,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.master 
+cn: /ataarchive
+nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+
+dn: nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.ataarchive
+

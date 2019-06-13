@@ -1,0 +1,42 @@
+NOTES:  Focus calibration at full extension - 1d,1f,2e,2f,2c
+DATE:   09/13/13
+AUTHOR: ELK
+-------------------------------------------------------------
+Feed focus going into "not calibrated" state when commanded to <=1400
+
+Standard test
+1. setfocus 3000 --cal  (typically feed are in not calibrated state before start)
+2. setfocus 1000        (sw should truncate the request to 1400 and focus should stop there)
+3. setfocus 500         (again, sw should truncate, and feed should not move as already there)
+4. setfocus 3000        (should move back to ~6" out)
+
+- If the full extension limit is too sensitive, then step 2 will put the feed into "not calibrated"
+- This occurred on 1d,1f,2f. 2e behaved correctly for all commands
+- Adjusted the limit "switch" one full turn less sensitive (tried 1/2 turn on 1d, but it wasn't
+    enough. This corrected the problem.
+- 2f however, failed on step 4 and went to "not calibrated" yet stopped in the approx. 3000
+setting position (~ 6" out). This will need to be investigated further
+- 2c was not in out test list, but while out in the field, heard it make feed extension
+noise. Upon checking, the setting should have been at 1400 per others in the observation set. 
+Instead the feed was in the "not calibrated" state (but likely fully extended to desired position).
+
+- Observations
+  - Feed focuses were getting within ~5-30 of desired setting when they would go into
+    not calibrated, so only a small adjustment was needed.
+  - Hence, observations at 1400 should be okay. However, the next focus request will take
+    a longer time to get to desired position as the feed, in an unknown "not calibrated" state
+    will first move in a direction (seems to be in the direction of the last movement) in
+    an attempt to calibrate itself (i.e.,fully retract) before moving to desired position. 
+    Thus in our testing, if step 2 resulted in not calibrated, then next command the feed
+    would first go further out, then fully retract (calibrate) and go to desired position,
+    and it took quite a while to get it done... 
+
+=======================================================
+09/20/13 - Testing of 2c Feed focus
+
+- Observations
+  - would not retract for explicit calibration command - instead was extending
+  - would extend when expecting it to retract upon command, e.g., at 3000, command to 4000
+  - The capacitor (mounted w/ a resistor) is accessed from behind feed mount
+  - replaced the capacitor and now correctly operating
+  - see pg 14 of Rim Box (144).pdf on cmit.sri.com/svn/ATASRI/trunk/docs/ATA/Antenna.

@@ -1,0 +1,29 @@
+/home/obs/bin/set-defaults.sh begins at Thu Oct  2 11:05:49 PDT 2014
+Check FXA to see if pingable boards are alive...
+Check FXC to see if pingable boards are alive...
+FXA is alive
+FXC is alive
+Using previously chosen antennas in subarray fxa
+ setup  antenna list - Thu Oct  2 11:05:53 PDT 2014
+Antennas: 2e
+ set antennas focus to 5000 mhz, lnas & pams to on & L-band defaults - Thu Oct  2 11:05:54 PDT 2014
+ fx64a uses LO B, fx64c uses LO C - Thu Oct  2 11:05:58 PDT 2014
+ unlock LO B and C if they are locked
+Setting LO b to 1430
+Setting LO c to 1430
+ set LO B and C to 1430 and adjust rfcb attemplifiers to rms of 13 - Thu Oct  2 11:06:03 PDT 2014
+ set BW to 100 mhz - Thu Oct  2 11:06:06 PDT 2014
+ set integration time to 10 sec - Thu Oct  2 11:06:24 PDT 2014
+Starting walsh setup, takes a long time. - Thu Oct  2 11:06:25 PDT 2014
+Setting up walshing on fx64a
+Finished setting up walshing on fx64a
+Setting up walshing on fx64c
+Finished setting up walshing on fx64c
+ initialize correlators (please be patient) - Thu Oct  2 11:06:43 PDT 2014
+starting fcxinit on fx64a - Thu Oct  2 11:06:43 PDT 2014
+starting fcxinit on fx64c - Thu Oct  2 11:06:43 PDT 2014
+checking correlator initialization success - Thu Oct  2 11:10:10 PDT 2014
+launch data broadcasters - Thu Oct  2 11:10:14 PDT 2014
+checking ibob health
+/home/obs/bin/set-defaults.sh ends at Thu Oct  2 11:10:16 PDT 2014
+(see set-defaults.log for times)

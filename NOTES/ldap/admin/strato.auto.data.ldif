@@ -1,0 +1,8 @@
+
+# strato data disk
+dn: cn=strato,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: strato
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 strato.hcro.org:/export/strato
+

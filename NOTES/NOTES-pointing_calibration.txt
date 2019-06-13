@@ -1,0 +1,489 @@
+NOTES:  Antenna pointing calibration
+DATE:   10/1/13
+AUTHOR: ELK
+
+Revisions:
+10/1/13 ELK Initial writeup
+03/21/14 ELK Added a Medium level stepped as supplied by Karto
+03/27/14  ELK Refine notes for medium steps
+10/15/14  Refine Med cal notes based on Karto demo (and lwye edits on 10/29/14)
+11/3/14 Correct notes on wrappot change (create scenario II.D)
+02/04/15 clarify notes for El encoder change. Diff is between apparent azel and known 16.5
+08/17/15 clarify again notes for EL encoder change. If offset is <1, then may
+need to set back up to > 1 value, then decreement precisely
+02/09/18  Update the server changes from server transition notes
+(maincntl->user2, auxcntl->atadb)
+04/12/19 clarify notes for Az encode change. Offsets AND wrappotintercept must
+be updated.
+====================================================================
+DESCRIPTION:
+Steps for the gross, medium, and fine-level tuning of the antenna pointing model 
+azel offsets and coefficients after an encoder change. The PM offsets are 
+relative values based on their respective encoder indices and must be 
+adjusted after any encoder change. An Az encoder requires that the
+wrappotintercept be checked and adjusted.
+
+Gross Level adjustments will get the antenna within a few degrees, medium to within a
+few arcminutes (roughly), and fine to within a few arcseconds.
+
+NB: See also notes on adjusting the pointing model wrappot intercept  
+after a wrappot change (Gross Level step.D).
+
+--------------
+I. Saving Pointing Model modifications
+
+  1. Modify the relavant offset, i.e., AzOffset or ElOffset, or
+     WrapPotIntercept value in the following locations:
+
+      production tree as atasys@user2 
+          /opt/atasys/data/Pointing/PointingModel_ant<ant>.dat
+      source reference tree as atasys
+          /hcro/atasys/ata/src/setup/pm/PointingModel_ant<ant>.dat
+
+  2. Check modification into SVN
+
+---------------
+II. Gross Level Adjustments 
+
+  II.A Elevation
+
+  [In the case of an el encoder change]
+  1. If the antenna el commanding is functional and position correct, run the 
+  antenna to known position -- 16.5 -- before changing the encoder.
+  If not know, then would have to use level on the bottom feed strut. With an
+  antenna positioned at 16.5, the angle of the feed strut will be 17.7.
+  Use the setvelocity until the level readout is at 17.7 and push estop.
+
+      > atasetazel <ant> 180 16.5    !functional el encoder
+      > atasetvelocity <ant> 0 -0.5      !non-functional el encoder 
+
+  2. Determine current pointing model offsets
+
+      > atagetpmoffsets <ant>
+
+  3. Determine apparent azel
+
+      > atagetazel <ant>
+
+  4. Calculate difference between known real 16.5 and apparent el values
+      return from atagetazel.
+     Modify pm el offset (via delta adjustments) to obtain an atagetazel
+     status reading == 16.5
+    
+      > atasetpmoffsets <ant> 0 -10
+
+     NOTE - may want to make smaller incremental adjustments to 
+     determine correct and desired results. The bigger the variance
+     then the deltas do not have a linear effect. Once the variance is 
+     <90, the the change will be linear. The values will take 
+     some time to propogate from antenna into the database (where 
+     the "get" values are retrieved from).
+
+     NOTE - if diff value is <1, then seems that pmoffset changes <1 do
+     not have any effect. So set the pmoffset back up (e.g., 0 5), check the
+     difference (w/ read az/el and expected az/el), and try again.
+
+  5. Save new pm offset values in production, source, and SVN trees.
+     See I above for these instructions.
+
+  II.B Azimuth
+
+  1. Run antenna to true north heading - (14,28'E on 10/1/13)
+
+     > atasetvelocity <ant> <+|->0.5 0
+
+     NOTE - Can verify current magnetic declination at
+     http://magnetic-declination.com/. The final position is
+     approximate and can be achieved by holding compass on ant
+     and hitting stop button when at desired az position.
+
+  2. Determine current pointing model offsets
+
+      > atagetpmoffsets <ant>
+
+  3. Determine apparent azel
+
+      > atagetazel <ant>
+
+  4. Calculate difference between pm and apparent az values.
+     Modify az offset to obtain an az status reading == 0.0
+    
+      > atasetpmoffsets <ant> <azDelta> 0
+
+     NOTE - make smaller incremental adjustments to determine correct 
+     and desired results particularly if starting delta is >90 degrees. 
+     The values will take some time to propogate from antenna into the 
+     database (where the "get" values are retrieved from). 
+
+  4a. Check and adjust the wrappot intercept per step II D. above
+
+  5. Save new pm offset values in production, source, and SVN trees.
+     See "Saving Pointing Model" below for these instructions.
+
+
+  II.C Azimuth Wrappot off by 360
+     A condition has been found in which the physical wrappot
+     reading and the PM wrappot intercept end up 360 degrees out
+     of sync. Unclear how this has happened - possibly the antenna
+     has gone past one limit and wrapped around until it is stopped 
+     at other limit.
+
+      Solution:
+  1. Rotate the antenna to the known true 180 position (this
+     is the position used for setting the wrappot initially )
+
+      > atasetvelocity <ant> .1 0
+    
+    May want to check position w/ compass
+
+  2.read wrappot value at this position. This value should be
+    entered into the pm file WrapPotIntercept attribute
+
+      > atagetwrappot <ant>
+      
+      as atasys@user2
+      > vi /opt/atasys/data/Pointing/PointingModel_ant<ant>.dat
+
+  3. Reload the pointing model
+  
+      > ataareloadpm <ant>
+
+     See "Saving Pointing Model" for steps in modifying the pointing model file
+
+  II. D Wrappot change
+      az readings that go bad, or when wrappotstatus <ant> returns glitch 
+      results then probably bad wrappot
+
+      1. The wrappot is changed while ant is at 180 (middle of range) and the
+      wrappot is put at .5 Ohm (middle of range).
+
+      2. Move the antenna to 0,18. 
+      3. get the current wrappot reading (atagetwrappot)
+      4. edit the pointing model w/ the new wrappot intercept gotten
+        in step 3.
+      5. Update production pointing model and SVN w/ new value.
+--------------
+III. Medium Level Adjustments
+
+  1) Point the antennas towards a GPS satellite, and set the sky freq for LO
+     to 1550 MHz (will result in GPS being in the middle of the upper half of the channels).
+     [NB: GPS signal is at 1575 MHz, hence tuning of LO to ~ (1550-1600).
+     You could also set the sky freq for LO to 1600 MHz, which will put the
+     GPS signal in the lower half of the channels.]
+      > fxconf.rb sagive <from> <to> <antsfor obs>
+      > atalistsats -l gps            ! could also do atasats -l; find sat that is not on boundaries
+     [NB: selecting a satellite that has lower elevation will give better
+     azimuth refining. Goal is to select one that is at least 40 deg in
+     elevation (so that it is up long enough - need at least 10 minutes on the gps.]
+      > set-defaults.sh y fx64a              ! initialize fxa (only)
+      > ataephem <sat>
+      > atasetskyfreq b 1550                      ! set observation freq.
+      > atasetfocus --cal <ants> 1400                     ! set focus 
+     [NB: - why set focus to 1400??? LW: I am not sure.]
+      > atatrackephem <ants> <ephem file>
+
+  2) Get the nominal pam settings for the antenna you are trying to work on:
+       > atagetpams 1d
+          ant1d      on 6.0      on 11.0
+
+  3) Whatever the nominal pam settings, add 20-30 dB to it (use 30 to just be sure)
+       > atasetpams 1d 36.0 41.0
+       or
+       > atasetpams <ants> offset 0 30   ! to set them all in one command
+
+     [NB: it is possible to oversaturate the antenna, which will be seen in 
+      large side lobes when looking at fxspec plot. In which case will need to
+      increase the pam settings. ]
+      
+
+  4) Run autoattenall to set the attemplifiers. If autoatten balks (complains
+    input signal is too high or too low), adjust the PAMs accordingly. Want to
+    make sure that the attemplifiers values are not clipped to their high
+    value (31.5) which would indicate that the PAMS are too high: run
+    adcstats.rb iXX.fxa (or ibob corresponding to ant) to get a power reading from the ibob
+        > autoattenall.sh fx64a:fxa
+                        
+                        
+  5) Use atagetpmoffsets to get the pointing model offsets (and write these 
+      numbers down somewhere)
+       > atagetpmoffsets `slist.csh fxa`
+          ant1d     356.1000 -135.3084
+
+  6) Figure out which correlator input is connected to the antpol you want to look at,
+       > fxconf.rb hookup_tab fx64a | grep -e (<ant1>|<ant2>...)
+    [e.g., fxconf.rb hookup_tab fx64a:fxa | grep 3lx. NB: the correlator input
+  number is the second column in the hookup_tab output (e.g., 22 in this case)]
+
+  	 ## LW took out the below; it's not needed if run autoatten as above. 
+    #and set the attemplifier so that the RMS counts is equal to 3 
+    #( e.g., i11.fxa, in0 corresponds to 1DX).
+    #   > autoatten.rb i11.fxa in0 3
+              
+  7) Open a terminal, and ssh into x1.fxa (upper half of channels for 1550 sky
+    freq), and use fxspec.rb program to look at
+    the GPS tone (takes a single auto-correlation value out of the correlator
+    and puts it up in plot view- should be a nice big peak in the middle 
+      of the window) and write down peak mangitude value.
+       >fxspec.rb fx64a <pol#> <pol#>  ! e.g., 40 is ant1dx pol, 22 is 3lx pol
+    - this is the outcome of the above fxconf.rb step.
+    [NB: x1 represents the upper half of channels. x2 is lower half. Select which
+     x card to log into based on whether sky freq is set above the nominal
+     GPS signal (1575) or below it. 1600 sky freq means x2, 1550 means x1 ]
+     [Also note: by using the same correlator pol number, you get the
+    autocorrelation, otherwise you get the baseline)
+       
+    [NB: in following steps, do first elevation then repeat process for azimuth]
+    [NB: the azimuth offset will affect X and Y polarization roughly equally
+    (although with large offsets --i.e., multiple degrees -- there might be
+    some difference between the two pols] 
+
+  8) Use atasetpmoffsets (and the orinal pointing model offsets you recorded) to 
+      nudge the antenna up by three degrees (i.e. subtract 3.0 from the second 
+      number to change the elevation offset). Wait 30 seconds, then run the fxspec.rb program and 
+      record the peak power.
+       > atasetpmoffsets --absolute 1d 356.1000 -138.3084
+
+       [Note: -absolute will offset from what the encoder is reading, not
+       referenced to where actually pointing]. 
+                  
+  9) Use atasetpmoffsets and then move the down by three degrees (i.e. add 3.0 
+      from the second number you originally had). If the pointing is good, then 
+      the peak power you get when you use fxspec.rb will be the same as when 
+      you added 3 degrees to the encoder value (again, wait 30 seconds before 
+      you call it again). If the new peak value is too high, add a slightly 
+      larger number to the pointing model offset until you roughly match the 
+      value you got in step 8 (and if too low, add a slightly smaller
+      number).
+                  
+  10) Average the two offsets you used (-3 and whatever value you needed to 
+      add to match step 8) to find the total offset you need to apply to the 
+      encoder. This new offset will give you a symmetrical response if you
+      move equally off in either direction
+                  
+  11) Repeat (starting at step 8) for the azimuth values. 
+
+  [NB: It is also possible that the starting pm offset is not at the peak...in
+  which case need to see which offsets give higher peak and use that as a new
+  starting place to check deltas]
+
+  12) Save PM offset modifications to the PM.  atasetpmoffsets --absolute will
+  store the values, but they are transient. (see I. section above for
+  committing the values)
+--------------
+IV. Fine Level adjustments
+      
+  1) Setup observation using atapointer using fxa
+    (source /hcro/atasys/ata/src/fxStreaming/atapointer2polIGS.java)
+
+    - create and cd into directory for observations
+    - initialize target antenna
+      > fxconf.rb sagive <none|maint> fxa <ant>   ! get antenna into observing subarray
+      > set-defaults.sh y fx64a              ! initialize fxa (only)
+      > atasetskyfreq b 1575                      ! set observation freq.
+      > atasetfocus <ant> 1575                     ! set focus 
+      > atasetpams <ant> 37 37
+
+  2) Run capture program
+  
+      > atapointer <file_suffix> <ant> A --lo b --freq 1575 --stophour <hh.x> -v
+
+        NOTE - Refer to atapointer help for syntax, e.g., 18.0 for stop @ 6:00PM local time.
+        Recommended that after an encoder change that a 4-8 hour collection be done, 
+        but 1-2 hours will suffice.
+
+  3) Run the tpoint analysis program
+
+        These instructions are for tpoint version 19.6, Copyright 2014
+        NOTE - refer to the tpoint documentation. Commands utilized 
+            (for a altazimuth antenna)
+
+    Prerequisites:
+        - X-server running as some procs may require graphics output
+        - Environment variables:
+            > source /hcro/opt/tpoint/tpoint.sh  
+
+    Invocation:
+      > tpoint [log] [init] [cmd_file] [outmessages]
+
+     or interactively 
+      > tpoint
+
+* INDAT FXPointer_ant1a_x_test.dat
+* USE IE IA CA AN AW
+* FIT
+
+       coeff       change     value    sigma
+
+  1     IE       -191.419   -191.42   15.450
+  2     IA       -379.009   -379.01   72.057
+  3     CA       -121.675   -121.68   50.841
+  4     AN       -112.561   -112.56   18.723
+  5     AW       -112.453   -112.45   17.145
+
+Sky RMS = 123.98
+Popn SD = 129.04
+
+Observation #20 is a possible outlier candidate.
+
+* fauto
+
+#...the fauto will automate the recursive fitting until the change is 0
+
+
+        coeff       change     value    sigma
+
+  1     IA                    +0.00
+  2     IE         +0.000   -176.79   13.265
+  3   & HASA2      +0.000    +78.36   19.099
+  4   & HASA3      -0.000   -126.51   22.756
+  5   & HASA8      -0.000    -80.73   20.554
+  6   & HECA3      -0.000    +41.51   15.388
+  7   & HESE3      +0.000    -65.30   14.916
+  8     NPAE       -0.000   +552.98   55.912
+  9     CA         -0.000   -774.87   42.237
+  10   & HSSE8      -0.000    -65.12   15.670
+  11     AN         -0.000    -85.62   13.146
+  12     AW         +0.000   -121.48   10.190
+
+Sky RMS =  72.63
+Popn SD =  79.81
+
+Observation #16 is a weak outlier candidate.
+
+# save the fit results
+
+* outmod fit/1a.fit
+* quit
+
+
+* END OF SESSION *
+
+  
+  
+  4.  Update the pointing model w/ new pointing coefficients
+  
+  NB (ELK 2/4/14) - This section needs more clarification on which coefficients to update and also 
+  an explanation of why such variance in new/old values
+
+
+    New Pointing coefficients:
+     > more fit/1a.fit
+     :NODA
+     T   64  72.6281    0.000   0.0000
+      =IA         +0.0000
+        IE       -176.7891    13.26471
+        & HASA2     +78.3644    19.09948
+        & HASA3    -126.5066    22.75645
+        & HASA8     -80.7305    20.55354
+        & HECA3     +41.5092    15.38791
+        & HESE3     -65.2982    14.91626
+          NPAE     +552.9825    55.91150
+          CA       -774.8686    42.23664
+        & HSSE8     -65.1213    15.66988
+          AN        -85.6159    13.14589
+          AW       -121.4771    10.19040
+      END
+
+    Old Pointing coefficients:
+     > more /hcro/atasys/ata/src/setup/pm/PointingModel_ant1a.dat
+     Pos = ( 0.0 , 0.0 , 0.0 )
+  AzOffset = 290.795
+  ElOffset = 97.411
+  AzMax = 451
+  AzMin = -91
+  ElMax = 88.0
+  ElMin = 16.5
+  AzMaxSpeed = 3.0
+  ElMaxSpeed = 1.0
+  AzMaxAccel = 4.0
+  ElMaxAccel = 4.0
+  AzMotorDegPerStep = 0.00018803
+  ElMotorDegPerStep = 0.0001
+  ElIsScrewDrive = true
+  AzMotorDir = 1
+  ElMotorDir = -1
+  AzEncoderDegPerStep = 0.0025
+  ElEncoderDegPerStep = 0.0025
+  AzIndexDir = 1
+  ElIndexDir = -1
+  AzEncoderDir = -1
+  ElEncoderDir = -1
+  WrapPotIntercept = 0.537
+  WrapPotSlope = -0.0002356
+  TPOINT Coefficients
+  IA  =    -463
+  AN  =    -146
+  AW  =    -127
+  CA  =     0
+  NPAE  =   0
+  ACES  =   0
+  ACEC  =   0
+  HASA2 =   0
+  HACA2 =   0
+  IE  =    -300
+  ECES  =   0
+  ECEC  =   0
+
+
+  5. Save the updated pointing model
+
+    Per section II above.
+=================================================================================
+
+      Comments from Gerry 10/3/13
+      "If you want the best data, start the pointing program and watch as the data flash to 
+      the screen. Remember, it looks at 10 points around the GPS satellite in a star like this
+                          1
+
+
+                          2
+
+        6          7     3/8    9       10
+
+                          4
+
+
+                          5
+
+
+       where the satellite is supposed to be right-on in the middle (points 3 and 8). The points
+       2, 4, 7, 9 are at the half-power beamwidth. Ideally they should all have power values 
+       that are 50% the size of the power on the central peak.  The points 1, 5, 6, 10  are all 
+       "far away" from the GPS satellite and are used to measure the background (dark count) 
+       level.
+       
+       After the  first 5 points, the program takes points 1 and 5, draws a straight line through
+       them and subtracts the interpolated values from points 2, 3, 4.  Then 2,3,4 are fitted 
+       with a Gaussian, potentially offset from the center in case the pointing isn't perfect. 
+       That's all right since after you fix the pointing model, the pointing should be close to 
+       spot-on.
+
+       Then the  same procedure is used for the 5 vertical points. Using all the values to fit a
+       2-D gaussian does not lead to any more information than the single line fits.
+
+       You should expect "squint," which happens when the X-pol and Y-pol pointings are not 
+       identical. This happens a lot and the squint at 1.6 GHz is 0.5 degrees or less unless 
+       there is something dreadfully wrong with the feed. You get to choose only one pointing 
+       model, and we've always chosen to optimize the X-polarization. One could do a global 
+       optimization on both pols and this might be better if the squint is small on all antennas.
+
+
+       If the fits are unsuccessful then that usually means you are far off of true pointing. 
+       Very often, by inspection of the raw data, you can figure out which way the antenna 
+       should move in az-el to get it more tightly on source. You can use the "atasetpmoffsets" 
+       command to add or subtract a constant Az or constant El from the pointing model without 
+       going through all the hassle of reloading the entire pointing model. Just remember the 
+       offsets you use and put them into the PM by hand when you're done.
+
+      Going back to the beginning, the first time you start the pointer program on an antenna, 
+      watch the output screen. It will show you the measured powers on all 10 points and also 
+      information about the fits.
+
+      So:
+
+      > Adjust the pams s.t. you get the biggest difference between ON the GPS and the four 
+      outlier points. On most antennas, we have seen ~100 x greater power when the pams are 
+      optimized. Write down the pam setting that works and we'll put it into the PAM table 
+      under the label, "GPS.""
+
+

@@ -1,0 +1,4 @@
+NOTES: Boot Server (PXE)
+DATE: 2019-03-26
+
+See https://en.opensuse.org/SDB:PXE_boot_installation

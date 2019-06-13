@@ -1,0 +1,130 @@
+NOTES: Icinga2 Installation/Configuration
+DATE: 2018-09-11
+
+See zypper addrepo https://download.opensuse.org/repositories/server:monitoring/openSUSE_Tumbleweed/server:monitoring.repo
+
+zypper addrepo https://download.opensuse.org/repositories/server:monitoring/openSUSE_Tumbleweed/server:monitoring.repo
+zypper refresh
+
+zypper in nginx
+systemctl start nginx
+systemctl enable nginx
+cd /srv/www/htdocs/
+echo "<h1>This is Nginx OpenSUSE Leap 42.1</h1>" > index.html
+
+zypper in mariadb mariadb-client
+
+You can start it using:
+ rcmysql start
+
+/usr/bin/mysql_secure_installation  - 115T
+
+
+zypper in php5 php5-mysql php5-fpm php5-gd php5-mbstring
+cd /etc/php5/fpm/
+cp php-fpm.conf.default php-fpm.conf
+
+modify the php-fpm.conf file...
+
+cd /etc/php5/cli/
+modify php.ini.....
+ cp php.ini /etc/php5/conf.d/
+
+cd /etc/nginx/
+cp nginx.conf nginx.conf.backup
+modify the nginx.conf file
+
+nginx -t
+systemctl start php-fpm
+systemctl restart nginx
+
+CONFIGURE VIRTUAL HOST
+enable document root elsewhere.
+
+
+ICINGA2
+zypper ar https://packages.icinga.com/openSUSE/ICINGA-release.repo
+zypper install icinga2 nagios-plugins-all
+  Problem: nothing provides libcrypto.so.1.1()(64bit) needed by icinga2-bin-2.9.1-30.2.x86_64
+
+  will ignore for now...
+
+data:~ # rpm -qi icinga2
+Name        : icinga2
+Version     : 2.9.1
+Release     : 30.2
+Architecture: x86_64
+Install Date: Thu Sep 13 08:56:17 2018
+Group       : System/Monitoring
+Size        : 54088
+License     : GPL-2.0-or-later
+Signature   : DSA/SHA1, Tue Sep 11 11:51:52 2018, Key ID a5c23697ee454f98
+Source RPM  : icinga2-2.9.1-30.2.src.rpm
+Build Date  : Tue Sep 11 11:49:33 2018
+Build Host  : lamb24
+Relocations : (not relocatable)
+Vendor      : obs://build.opensuse.org/server:monitoring
+URL         : https://www.icinga.com/
+Summary     : Network monitoring application
+Description :
+Meta package for Icinga 2 Core, DB IDO and Web.
+Distribution: server:monitoring / openSUSE_Tumbleweed
+
+
+-enable/start icinga2 FAILS - unable to find shared libary boost_thread 1.68
+(1.54 version is currently installed)
+
+Sep 13 09:00:36 data icinga2[20922]: /usr/lib64/icinga2/sbin/icinga2: error while loading shared libraries: libboost_thread.so.1.68.0: cannot open shared object file: No such file or directory
+
+a) OPTION - 1 Update the boost libraries (thread, system)
+ # ls -l /usr/lib64/libboo*
+-rwxr-xr-x 1 root root 14640 Jul  7  2017 /usr/lib64/libboost_system.so.1.54.0
+-rwxr-xr-x 1 root root 97296 Jul  7  2017 /usr/lib64/libboost_thread.so.1.54.0
+
+- downloaded 1.68 (source) from boost.org
+
+ # ./bootstrap.sh --with-toolset=gcc --with-libraries=thread,system,atomic,chrono,program_options,regex --libdir=/usr/lib64 --includedir=/usr/include
+
+NB - Had to install the following dependencies 
+   gcc-c++ compiler (for build of boost)
+ # ./b2 install   (the -n switch will show all actions, but not take them ---
+ good for confirming what/where results)
+
+Other ICINGA2 library requirements
+   ssl 1.1.0  (had openssl 1.0)
+   glibc2.25, glibc2.27 (had 2.22-19.1)
+ 
+ARGGG - too many libraries to upgrade - the glib ones cause conflicts. Time to
+upgrade to Tumbleweed...
+
+See https://en.opensuse.org/openSUSE:Tumbleweed_upgrade
+
+-----------------------------------------
+
+Decided to use apache instead of nginx (no notes --- sorry).
+
+/etc/apache2/conf.d/
+/etc/icinga2
+/etc/icingaweb2
+
+  542  2018-10-11 09:06:48 grep icinga /etc/group
+  543  2018-10-11 09:07:14 grep icinga /etc/passwd
+
+systemctl restart icinga2
+icingacli module list
+  358  2018-10-10 11:55:45 icingacli feature list
+  359  2018-10-10 11:55:57 icingacli feature help
+  372  2018-10-10 11:59:05 icinga2 feature list
+  373  2018-10-10 11:59:15 icinga2 feature enable perfdata
+  374  2018-10-10 11:59:28 icinga2 feature list
+
+  775  2018-10-16 13:03:46 ls /var/spool/icinga2//perfdata
+  776  2018-10-16 13:03:55 rm /var/spool/icinga2//perfdata/*
+  777  2018-10-16 13:04:05 systemctl start icinga2
+
+
+Icinga2 monitoring backend:
+mysql database: icinga/icinga
+
+icinga database.
+show tables;

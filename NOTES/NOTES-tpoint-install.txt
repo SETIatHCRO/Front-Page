@@ -1,0 +1,21 @@
+NOTES:  (re)Installation of Tpoint from distribution CD
+DATE:   9/16/13
+AUTHOR:    ELK
+
+--------------------
+(as root)
+1) Copy files from distribution CD to /hcro/opt/tpoint
+2) make INSTALL_DIR=/hcro/opt/tpoint    
+3) created tpoint.sh
+    - modify path to include /hcro/opt/tpoint/bin
+    - define var TPT_INI = /hcro/opt/tpoint/etc/tpoint/tpoint.ini
+
+4) Remove references to tpoint in the ~obs/.bashrc -- this is an attempt to keep obs
+  account to minimum definitions required for observations. Users needing to run
+  tpoint need to source /hcro/opt/tpoint/tpoint.sh and then invoke tpoint
+
+5) Remove old installations/files of tpoint in ~obs/bin and ~obs/tpoint
+
+6) to invoke
+  > source /hcro/opt/tpoint/tpoint.sh
+  >tpoint

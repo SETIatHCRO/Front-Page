@@ -1,0 +1,8 @@
+
+# mustard data disk
+dn: cn=mustard,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: mustard
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 mustard.hcro.org:/exports/mustard
+

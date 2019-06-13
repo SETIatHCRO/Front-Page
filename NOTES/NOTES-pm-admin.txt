@@ -1,0 +1,187 @@
+NOTES: Protected Mode administrative details
+DATE: 2015-03-25
+HISTORY:
+2015-04-30 Added notes for resolving leap second offset correction
+
+Background:
+  Protected mode laptops (CTRL, RCV) are running older versions of 
+  ATA software. 
+
+Issues during 2015-03-24/25 testing:
+
+  NTP - the /etc/ntp.conf files were not pointing to the respective
+  stratum 1 servers (CTRL-->ntp1-5/10.3.0.50 RCV-->ntp1-6/10.3.0.51)
+
+  ------------
+
+  DNS - The CTRL is aparently set to use the localhost (/etc/hosts) for
+  name resolution. Edited it to add the ntp1-5 (but also just used the 
+  IP address in the ntp.conf file so no name resolution required). 
+  The RCV host uses DNS (/var/named/master/hcro.org). Had to edit that
+  to get the current ibob configuration information
+
+  ------------
+
+  DHCP - Edited the dhcpd file on CTRL host to get the control box MAC 
+  to ant locations up to date. This file is located in 
+  /etc/dhcpd.ataants.conf (on antcntl in production system) The 
+  results of having incorrect ant-MAC addresses were ants not being seen
+  by the antenna server and/or ants being seen but incorrectly identified.
+
+  ------------
+
+  Network Switches - the configuration should be
+    CTRL --> Procurve-->BF2 switch
+    RCV --> Fujitsu
+  Step ??? does a port scan comparison of the above switches. The BF2
+  switch is "new" (Netgear FS726TP managed switch). It does not have an 
+  IP address so removed it from the list of checked switches (TODO - assign
+  address or find if it already has one and update script).
+  scan list. 
+
+  ------------
+
+  Pointing models - needed to get the pointing models correctly copied
+  into the CTRL production location (/hcr/atasys/ata/setup/data/Pointing).
+  The PM instructions were incorrect in this step. Also, the ownership 
+  of many directories and files needed to be set to atasys::users. Many
+  were colby::1000. The results of having incorrect pointing models were
+  ants that were showing incorrect azel values for current locations.
+
+  ------------
+
+  Failing ibobs - BFB ibobs were fickle. PM setup only uses i1,i4,i7,i11.
+  The ibobserver will abort if it runs into a problem ibob which then causes
+  the bfibob command to fail. Determine failed ibob by looking at last output
+      ataps -l -p IBOBServerBFB
+  Reset the failed ibob. Repeat. If ibob will not come back, and it is not
+  on of the testing ibobs (i1.bfa,i4.bfa,i7.bfa,i11.bfa) then can remove it
+  from the list. This requires edits to the IBOBServerBFB processes.xml file 
+  (RCV /hcro/atasys/ata/setup/talon-receive???) and to the bfibob script. 
+  The (older version) of the bfibob script had the ibob range coded in multiple
+  locations. Brought over the latest version and edited to remove problem
+  ibobs.   The ataps (older version) would not correctly reinit/restart the server, 
+  so had to resort to as root forcing a stop/start of the processes.   
+
+  ------------
+
+  FXConf database - wasnt correct for current status (i.e., subarray membership).
+
+  ------------
+
+  Leap Second Offsets
+  The TimeServer queries ATATime to get corrected UTC time. ATATime by design
+  is supposed to get current leap second offsets from the DataServer (stored
+  in database based on an XML input file - UTCMinusTAI.xml). Note that this XML
+  file is stored on obs production at
+    atasys@maincntl:/opt/atasys/data/TimeServer.
+  In the obs source at /hcro/atasys/ata/src/ata/TimeServer
+
+  However, the TimeServer/database method did not work in older 
+  releases that are currently (4/30/15) on the PM laptops. The work-around in
+  this old code is a hardcoded table defined in ATATime,
+  default_leap_second_table,
+  to hold these offsets.
+
+  public static final long[][] default_leap_second_table = {
+    //                {867715200000000000L, -31L * 1000000000L},  // 1997-07-01T00:00:00Z
+                      {915148800000000000L, -32L * 1000000000L},  // 1999-01-01T00:00:00Z
+                      {1136073600000000000L, -33L * 1000000000L}, // 2006-01-01T00:00:00Z
+                      {1230768000000000000L, -34L * 1000000000L}, // 2009-01-01T00:00:00Z
+                      {1332870587013000000L, -35L * 1000000000L}}; // 2012-07-01T00:00:00Z
+  Verify Correct leap second in use:
+    > atamainsystime -l
+      UTC       2015-05-01T00:16:41.375Z
+      LAST      6.7544804
+      MJD(UTC)  57143.01158999
+      ATATAI    1430439436375000000
+
+      The "TAI" time is in nsec. Take the (10) first digits (seconds) and pass to 
+      interactive ruby (irb). Verify that w/ the correct offset (now 35), that the seconds
+      value in the irb Time.at return is the same seconds value in the atamainsystime
+      (e.g., w/ an offset of 35, both are at 41 s.). 
+
+       > irb
+       irb(main):001:0> Time.at(1430439436-34)
+       => Thu Apr 30 17:16:42 -0700 2015
+       irb(main):002:0> Time.at(1430439436-35)
+       => Thu Apr 30 17:16:41 -0700 2015
+
+
+  Add new leap second offset:
+  - backup the java, class, and so files (if regression required)
+    /hcro/atasys/ata/src/ata/ataTime/ATATime.java and ATACalendar.java
+    /hcro/atasys/ata/lib/libATATime.so
+    /hcro/atasys/ata/lib/ata/ataTime/ATATime.class
+  - Edit ATATime.java, the default_leap_second_table, add entry to table
+  - make java_sources
+  - restart the jsda processes
+    sudo -i
+    /etc/init.d/processserver stop
+    /etc/init.d/processserver start
+
+
+  ------------
+
+  Subsecond Time update:
+  Premission should gather an updated version of the gpsrapid.daily file
+  atasys@maincntl:/opt/atasys/data/TimeServer/gpsrapid.daily
+
+TODO:
+  1. examine all the pre-mission scripts for gathering up the configuration
+  information (pointing models, ant dhcp, dns) - see ~obs/bbarott/bfu/AF_Progs.
+  Consider expanding or creating separate list to resolve above issues.
+  2015-04-30 - add getting the latest gpsrapid.daily (see above)
+
+  2. if can't update all the software, then perhaps update/install useful 
+  scripts (bfibob, atarecoverants). 
+
+  3. Check and get IP address for BFB network switch and put into ??? 
+  script
+
+TESTING 2015-03-24/25:
+Original hookups and revised hookups( gotten from 
+    ~obs/bbarott/foxsrv/FoxHookup.cfg)
+
+i1.adc0 = 1a.x.1
+i1.adc1 = 1b.x.1        1hx
+i1.adc2 = 1c.x.1        5cx
+i1.adc3 = 1d.x.1
+
+i4.adc0 = 2c.x.1        5gx
+i4.adc1 = 2d.x.1        4gx***
+i4.adc2 = 2e.x.1        2jx
+i4.adc3 = 2f.x.1        2fx
+
+i7.adc0 = 4e.x.1        5bx
+i7.adc1 = 4f.x.1        4kx
+i7.adc2 = 4g.x.1        4jx***
+i7.adc3 = 4h.x.1        4lx
+
+i11.adc0 = 3g.x.1        3dx
+i11.adc1 = 3h.x.1        3ex
+i11.adc2 = 3j.x.1        3jx
+i11.adc3 = 3l.x.1        3lx
+
+The *** are because when I went to get the i7:in2, I realized that 4gx was a part of the original hookup. So am not sure if those 2 pairings were then switched around so that 4gx stayed on original hookup (or not).
+
+TESTING 2015-04-30
+i1.adc0    1a.x.1 5hy  42
+i1.adc1    1b.x.1 2cy  13
+i1.adc2    1c.x.1 5cy  39
+i1.adc3    1d.x.1 4jy  35
+i4.adc0    2c.x.1 4ky  36
+i4.adc1    2d.x.1 4ly  37
+i4.adc2    2e.x.1 5by  38
+i4.adc3    2f.x.1 2fy  16
+i7.adc0    4e.x.1 2dy  14
+i7.adc1    4f.x.1 2ey  15
+i7.adc2    4g.x.1 4gy  33
+i7.adc3    4h.x.1 2jy  19
+i11.adc0   3g.x.1 3dy  24
+i11.adc1   3h.x.1 3ey  25
+i11.adc2   3j.x.1 3jy  29
+i11.adc3   3l.x.1 3ly  30
+
+  
+

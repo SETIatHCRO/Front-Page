@@ -1,0 +1,151 @@
+NOTES: OpenSUSE 13.1 Server Installation
+DATE: Oct 23, 2014
+MOD:  Jan 6, 2016 - add latest on notes for susestudio
+
+SUSESTUDIO
+-Building LiveCD (for use in creating VM) or any other
+	 www.susestudio.com
+	 eklaseen/ewW$$$ (novell)
+
+	 openSUSE 13.1,Server,64-bit,ATA Server - 1/5/16
+	 openSUSE 13.2, ATA Server 64-bitx86 1/5/16
+
+
+PRE-CONDITIONS:
+- If HW RAID, then VD created. If no HW RAID controller, then system will
+  define separate partitions for each physical disks (?)
+- IP address defined within DNS
+- Firewall rules setup appropriately if necessary (DMZ servers)
+- using ISO image (autoyast), OpenSuSE 13.1 Server, 64-bit, ATA Server
+  created in susestudio 
+    0.0.1  -  install w/ automatic update of config files (problematic)
+    0.0.2  - install w/o updated config files (11/17/14)
+YAST:
+Initial boot will be to autoyast. Yast commands are alt-<letter>. 
+Yast doesn't seem to be supported like it once was. There are bugs and
+incompleteness in the script. May have to edit files directly.
+
+
+FIRSTBOOT:
+  Network Setup (within autoyast). See /etc/sysconfig/network)
+    1. Hostname: <host> Domain: hcro.org [/etc/hosts ] - note there is a bug
+  in yast script here...does not enter fqdn. see step below
+    2. uncheck "change hostname via DHCP. Ensure all global DHCP options are off
+    3. Host, Routing, Eth card configurations
+       name servers: 10.3.0.41 10.3.0.42 [/etc/resolv.conf]
+	 IPv4 gw: 10.3.0.1
+	 mask: 255.255.0.0
+
+
+INITIAL LOGIN:
+    - passwd (root password will be "linux". Set to standard password
+    - ifconfig to check network interface
+      	       systemctl status network.service
+    - check date
+      TZ=US/Pacific
+    - ensure ethernet interface device name is consistent in network settings.
+       	 i.e., "eno1" for consistency across servers (ensure there is no "-"
+	 left in the entry field.
+	 [/etc/sysconfig/network/ifcfg-eno1]
+    - check /etc/hosts for fqdn on the local host entries...possibly one of the
+      yast scripts is culprit in not correctly writing out this file at some
+      point. This will cause processes like automount to fail.
+
+CONFIGURATION:
+    1. get tar'ed config files from tumulus:/root/admin/opensuse13_1_files.tar
+        mkdir tmp; cd tmp
+        tar -xvf <file> 
+      [NOTE - originally had this automatically installed, but there is a startup
+      dependency order that breaks. Also, the config files are for obs subnet
+      hosts only, i.e., those utilizing ldap)
+    2. Copy the config files
+       - NB: the resolv.conf  should be
+    the same if the autoyast setup went correctly.
+
+
+  Services
+    - All nodes
+      	  - ensure that services are running: service <service> status
+	  xinetd
+	  nfsserve
+	  rpcbind
+	  rsyncd
+	  autofs
+    - DMZ nodes
+        disable LDAP client
+        modify /etc/resolv.conf to use ns1 (74.43.140.11) instead of 10.3 ns servers
+
+DATA Disk config (i.e., VD1)
+  1. create mount point directories
+      /data - e.g., a dmz machine
+      # mkdir /exports/<hostname> - e.g., machine that will export its data disk
+
+  2. Create disk partition
+      # 
+      # fdisk /dev/sdb
+         Command (m for help): n            ! add a new partition
+         Partition type:
+           p   primary (0 primary, 0 extended, 4 free)
+           e   extended
+      Select (default p): p
+      Partition number (1-4, default 1):
+      First sector (2048-570949631, default 2048):
+      Last sector, +sectors or +size{K,M,G} (2048-570949631, default 570949631):
+      Command (m for help): w               ! write table to disk and exit
+  3. Format disk
+       # mkfs.xfs /dev/sdb1
+  4. Create fstab entry
+  DMZ:  /dev/disk/by-id/scsi-360019b90b48722001bdbf5c96527dc77-part1 /data xfs defaults 1 2   
+  OBS:  /dev/disk/by-id/scsi-360019b90b48722001bdbf5c96527dc77-part1
+			/exports/<host> xfs defaults,noatime,nodiratime 0 0   
+  5. IF DMZ  then mount /data 
+  6. IF OBS then mounted via automounter. See II.1 of NOTES-ldap.txt (repeated here)
+     - create a <host>.auto.data.ldif (see examples in NOTEs/ldap/
+       NOTE the syntax of ldif file is very particular. Best to copy a working
+  one and edit.
+      - (on basalt) service ldap reload
+     # ldapadd -x -D 'cn=Administrator,dc=obs,dc=hcro,dc=org' -W -f <host>.auto.data.ldif
+     # service ldap force-reload
+
+    
+  7. (OBS) edit the /etc/exports file
+     /exports/<host>
+     127.0.0.2/8(rw,root_squash,no_subtree_check,async,wdelay,insecure)
+     10.3.0.0/16(rw,root_squash,no_subtree_check,async,wdelay,insecure)
+     - restart the nfsserver
+
+DELL DRAC4     - remote access over the remote access eth port on Dell 2950
+     Hosts RAC interface accessed on 10.3.6.##  where ## is the same last
+     number as in IP address
+
+     RAC FW Version
+     	 1.0 - activeX  (working) -- on subr150 10.3.6.56
+	 1.6 - uses java  (haven't gotten working yet) -- on subr072 10.3.6.55
+
+
+     racsvc service
+
+     racadm help
+
+     IE -- for active X
+        Dell VKVM plugin
+        Tools->Internet Options->Security tab->select 'Local Internet' 
+
+		-> Custom Level (button) -> Activate control and plug-ins --> Automatic
+        prompting for ActiveX control --> set to Enable
+		  -> Sites -> select 'Automatically detect intranet network'
+		  
+        look for popup about security warning and add site to list of
+        exceptions (i.e., have no certificate)
+
+	Outside 10.3.0??
+        Tools->Internet Options->Security tab->select 'Internet' -> Custom
+        Level (button) -> Activate control and plug-ins --> Automatic
+        prompting for ActiveX control --> set to Enable
+
+
+
+PROBLEMS
+	- network doesn't come up after reboot - check that the
+	network.service is running
+	- nfsserver not present - requires autofs, rpcbind to be running.

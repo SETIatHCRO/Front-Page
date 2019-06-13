@@ -1,0 +1,8 @@
+# dn:			dc=obs,dc=hcro,dc=org
+objectClass:		top
+objectClass:		domain
+objectClass:		domainRelatedObject
+objectClass:		nisDomainObject
+domainComponent:	hcro
+associatedDomain:	hcro.org
+nisDomain:		hcro.org

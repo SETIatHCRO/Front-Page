@@ -1,0 +1,230 @@
+NOTES:  Force 10 Configuration
+DATE:   21 Jan 2014
+AUTHOR: ELK
+MODIFICATIONS:
+	2019-05-13  Force10 fuse failure.
+	   Add latest changes into the backup netgear
+
+
+System Name            : S50N
+System Mode            : 1.0
+Software Version       : 7.7.1.0d
+
+Unit Type               Serial Number  Part Number  Revision
+--------------------------------------------------------------
+* 0  S50-01-GE-48T-AC   DL258300206    7590005601   B
+  0  S50-PWR-AC         N/A            N/A          N/A
+  0  S50-FAN            N/A            N/A          N/A
+
+     * - Management Unit
+
+
+Login to console port
+  ssh 10.3.1.1  admin/ad021314
+
+Enter Exec Priv mode
+  > enable  mh@llwfww@s
+
+  Save the current running configuration
+  # write memory
+    The functionality of this command is the same as for the copy system:running-config
+    nvram:startup-config command, to save the running configuration to NVRAM, which would be
+    used while the system is rebooted the next time. The write command defaults to write memory.
+
+BACKUP DEVICE
+!Current Configuration:
+!
+!System Description "GSM7248V2 - ProSafe 48G"
+!System Software Version "8.0.1.4"
+!System Up Time          "0 days 4 hrs 26 mins 21 secs"
+!Additional Packages     FASTPATH QOS
+!Current SNTP Synchronized Time: Not Synchronized
+!
+
+Add a LAG - STATIC
+1. Remove ports from all VLANs (e.g., use ports 
+# show vlan
+Force10>show vlan
+
+Codes: * - Default VLAN, G - GVRP VLANs
+Q: U - Untagged, T - Tagged
+   x - Dot1x untagged, X - Dot1x tagged
+      G - GVRP tagged, M - Vlan-stack
+
+          NUM    Status    Description                 Q Ports
+          *   1      Inactive                          U Gi 0/4
+              10     Active    Admin Network           T Po1(Gi 0/1-3)
+                                                       T Po2(Gi 0/5-7)
+                                                       U Gi 0/10-13
+              20     Active    Obs Network             T Po1(Gi 0/1-3)
+                                                       T Po2(Gi 0/5-7)
+                                                       U Po3(Gi 0/25-26)
+                                                       U Gi 0/27-48
+              30     Active    SonATA Network          T Po1(Gi 0/1-3)
+                                                       T Po2(Gi 0/5-7)
+                                                       U Po4(Gi 0/14-15)
+                                                       U Gi 0/16-1
+              40     Active    SRI LAN                 T Po1(Gi 0/1-3)
+                                                       T Po2(Gi 0/5-7)
+                                                       U Gi 0/19-24
+              50     Active    DMZ                     T Po1(Gi 0/1-3)
+                                                       T Po2(Gi 0/5-7)
+                                                       U Gi 0/9
+Force10#config
+Force10(conf)#interface vlan 30
+Force10(conf-if-vl-30)#show config
+!
+interface Vlan 30
+ description SonATA Network
+  no ip address
+   tagged Port-channel 1-2
+    untagged GigabitEthernet 0/16-18
+     untagged Port-channel 4
+      no shutdown
+
+  no untagged gigabitethernet 0/X    !remove port X from VLAN
+
+2. designate ports as no switchport 
+#interface gig 0/X
+  no switchport
+
+3. Define the new LAG
+interface port-channel Y
+!
+  channel-member gigabitethernet 0/X
+mtu 9252
+int gig 0/X
+mtu 9252
+switchport
+
+4. Add LAG to VLAN
+int vlan 30
+untagged port-channel 4
+end
+
+5. Save configuration
+wr mem
+
+---------------------------------------------------
+Add a new LAG (remove ports from VLAN, create LAG w/ ports, put LAG into vlan)
+
+0. Example of existing LAG
+   configure
+   show interfaces port-channel 3 brief
+
+
+
+1. Create port group (LAG) - initially empty
+   enable
+   configure
+   interface port-channel 4
+   	     no shutdown
+ 	     description "SETI NAS"
+
+2. Remove ports from VLAN group (if necessary)
+   configure
+   interface vlan 30
+   	     no untagged gigabitethernet 0/14
+   	     no untagged gigabitethernet 0/15
+	     show vlan
+   interface vlan 1   !port will be moved into vlan 1
+   	     show vlan
+
+3. Modify ports to no switchport - (?)
+   configure
+   interface gigabitethernet 0/14
+ 	no switchport
+
+   interface gigabitethernet 0/15
+ 	no switchport
+ 
+4. Add ports to port Group (LAG)
+   interface port-channel 4
+   	channel-member gigabitethernet 0/14
+
+interface port-channel 4
+ channel-member gigabitethernet 0/14
+ mtu 9252]by admin from vty0 (10.3.0.20)
+
+interface gigabitethernet 0/14]by admin from vty0 (10.3.0.20)
+ mtu 9252]by admin from vty0 (10.3.0.20)
+interface gigabitethernet 0/15]by admin from vty0 (10.3.0.20)
+ mtu 9252]by admin from vty0 (10.3.0.20)
+interface vlan 30]by admin from vty0 (10.3.0.20)
+ untagged port-channel 4]by admin from vty0 (10.3.0.20)
+
+interface vlan 30
+ show config
+ untagged port-channel 4
+interface port-channel 4
+ switchport]by admin from vty0 (10.3.0.20)
+
+Add LAG to vlan
+interface vlan 30
+ untagged port-channel 4
+write memory
+
+
+ show interfaces port-channel brief]by admin from vty0 (10.3.0.20)
+
+
+interface gigabitethernet 0/14
+ port-channel-protocol lacp
+ port-channel 4 mode active
+ no shutdown
+
+interface gigabitethernet 0/15
+ port-channel-protocol lacp
+ port-channel 4 mode active
+ no shutdown
+
+
+interface gigabitethernet 0/14
+ show config
+ description NAS-01
+
+
+
+write memory
+exit
+
+
+REMOVE ports from port group
+
+enable
+configure
+interface port-channel 4
+ show config
+ no channel-member gigabitethernet 0/15
+ no channel-member gigabitethernet 0/15
+ shutdown
+
+
+interface gigabitethernet 0/14
+ show config
+ shutdown
+interface gigabitethernet 0/15
+ show config
+ shutdown
+
+
+-----------
+2019-05-13 Configurations on backup Netgear GSM7248 V2- Prosafe
+
+Use null modem cable (com5 9600 baud 8 data bits 1 stop no parity no flow
+control)
+Same accounts/pwds as the force10
+
+enable  -- privileged executive mode
+vlan 60 
+vlan name 60 Guest
+
+! move the 21-25 ports from vlan40 into the obs (vlan 20)
+interface range 0/21-0/24
+   vlan participation include 20
+   vlan pvid 20
+
+! move the 43-48 ports from obs (vlan 20) to vlan 60
+interface range 0/43-0/48
+   vlan participation include 60
+   vlan pvid 60

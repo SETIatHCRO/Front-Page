@@ -1,0 +1,329 @@
+/etc/init.d/ntop
+#!/sbin/runscript
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+depend() {
+        need net
+}
+
+checkconfig() {
+        if [ ! -e /var/lib/ntop/ntop_pw.db ]; then
+                eerror "You need to set a password first by running"
+                eerror "ntop --set-admin-password"
+                return 1
+        fi
+}
+
+start() {
+        checkconfig || return 1
+        ebegin "Starting ntop"
+        start-stop-daemon --start --exec /usr/bin/ntop -- -d -L ${NTOP_OPTS}
+        eend $?
+}
+
+stop() {
+        ebegin "Stopping ntop"
+        start-stop-daemon --stop --retry 5 --pidfile /var/lib/ntop/ntop.pid
+        eend $?
+}
+
+mingus init.d # more /etc/conf.d/ntop
+# Config file for /etc/init.d/ntop
+
+# Set preferred options here
+#NTOP_OPTS="--http-server 3000 --https-server 0 --interface eth0"
+
+# suggestions from bug #136983 (use it in case you experience ntop hangs)
+#NTOP_OPTS="u ntop -P /var/lib/ntop --disable-schedyield --http-server 3000 --https-server 3001
+"
+
+NTOP_OPTS="-u ntop -P /var/lib/ntop"
+
+
+mingus init.d # Fri Oct 26 08:51:54 2012  **ERROR** ....open of /var/lib/ntop/prefsCache.db failed: Can't be writer
+> Fri Oct 26 08:51:54 2012  Possible solution: please use '-P <directory>'
+> Fri Oct 26 08:51:54 2012  **FATAL_ERROR** GDBM open failed, ntop shutting down...
+> Fri Oct 26 08:51:54 2012  CLEANUP[t2622092992]: ntop caught signal 2
+> Fri Oct 26 08:51:54 2012  THREADMGMT[t2622092992]: ntop RUNSTATE: SHUTDOWN(7)
+> Fri Oct 26 08:51:54 2012  CLEANUP[t2622092992] catching thread is MAIN
+> Fri Oct 26 08:51:54 2012  CLEANUP: Running threads
+> Fri Oct 26 08:51:54 2012  CLEANUP: Locking purge mutex (may block for a little while)
+> Fri Oct 26 08:51:54 2012  CLEANUP: Locked purge mutex, continuing shutdown
+> Fri Oct 26 08:51:54 2012  CLEANUP: Continues
+> Fri Oct 26 08:51:54 2012  PLUGIN_TERM: Unloading plugins (if any)
+> Fri Oct 26 08:51:54 2012  CLEANUP: Clean up complete
+> Fri Oct 26 08:51:54 2012  THREADMGMT[t2622092992]: ntop RUNSTATE: TERM(8)
+> Fri Oct 26 08:51:54 2012  ===================================
+> Fri Oct 26 08:51:54 2012          ntop is shutdown...
+> Fri Oct 26 08:51:54 2012  ===================================
+
+mingus init.d # ls /var/lib/ntop/
+.keep_net-analyzer_ntop-0  fingerprint.db             prefsCache.db
+LsWatch.db                 macPrefix.db               rrd/
+addressQueue.db            ntop.pid
+dnsCache.db                ntop_pw.db
+
+ more /etc/conf.d/net
+# This blank configuration will automatically use DHCP for any net.*
+# scripts in /etc/init.d.  To create a more complete configuration,
+# please review /etc/conf.d/net.example and save your configuration
+# in /etc/conf.d/net (this file :]!).
+
+slaves_bond0=" eth0 eth1 eth3 "
+config_bond0=("null")
+mtu_bond0=1500
+depend_bond0=(" need net.eth0 net.eth1 net.eth3 ")
+config_eth0=("null")
+config_eth1=("null")
+#config_eth2=("65.119.34.20/24" ) # ("74.43.140.65/26")
+#config_eth2=("74.43.140.26/26")
+config_eth2=("70.100.31.22/30")
+routes_eth2=("default via 70.100.31.21")
+config_eth3=("null")
+
+vlans_bond0="1 10 20 30 50"
+vconfig_bond0=("set_name_type VLAN_PLUS_VID_NO_PAD")
+config_vlan10=("10.10.10.1/24")
+config_vlan20=("10.3.0.1/16")
+config_vlan30=("10.1.49.1/24")
+config_vlan50=("74.43.140.1/26")
+
+nit.d # netstat -i
+Kernel Interface table
+Iface     MTU Met   RX-OK RX-ERR RX-DRP RX-OVR   TX-OK TX-ERR TX-DRP TX-OVR Flg
+bond0      1500   0790151179      0      0      0682278827      0      0      0 BMmRU
+eth0       1500   0286198034      0      0      0260296069      0      0      0 BMsRU
+eth1       1500   0189549644      0      0      0189731085      0      0      0 BMsRU
+eth2       1500   0326670011      0      0      0430407444      0      0      0 BMRU
+eth3       1500   0314403501      0      0      0232251673      0      0      0 BMsRU
+lo        16436   0  514626      0      0      0  514626      0      0      0 LRU
+vlan1      1500   0       0      0      0      0 1226659      0      0      0 BMmRU
+vlan10     1500   0 1437739      0      0      0 1647210      0      0      0 BMmRU
+vlan20     1500   0281393110      0      0      0188952806      0      0      0 BMmRU
+vlan30     1500   063746004      0      0      064391583      0      0      0 BMmRU
+vlan50     1500   0433960012      0      0      0416541936      0      0      0 BMmRU
+
+mingus init.d # ifconfig -a
+bond0     Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          inet6 addr: fe80::21b:21ff:fe17:b56e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:790278759 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:682386376 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:506210528 (482.7 Mb)  TX bytes:4048420099 (3860.8 Mb)
+
+eth0      Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:286199527 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:260297247 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2911190318 (2776.3 Mb)  TX bytes:1226271881 (1169.4 Mb)
+          Base address:0xe8c0 Memory:fe9c0000-fe9e0000
+
+eth1      Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:189631806 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:189835951 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3916072422 (3734.6 Mb)  TX bytes:1702767331 (1623.8 Mb)
+          Base address:0xe880 Memory:fe960000-fe980000
+
+eth2      Link encap:Ethernet  HWaddr 00:14:22:20:C5:97
+          inet addr:70.100.31.22  Bcast:70.100.31.23  Mask:255.255.255.252
+          inet6 addr: fe80::214:22ff:fe20:c597/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:326700157 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:430457794 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100
+          RX bytes:2875247521 (2742.0 Mb)  TX bytes:1245220052 (1187.5 Mb)
+          Base address:0xdcc0 Memory:fe6e0000-fe700000
+
+eth3      Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:314447426 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:232253178 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2268882380 (2163.7 Mb)  TX bytes:1119380887 (1067.5 Mb)
+          Base address:0xccc0 Memory:fe4e0000-fe500000
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:514646 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:514646 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:69425883 (66.2 Mb)  TX bytes:69425883 (66.2 Mb)
+
+sit0      Link encap:IPv6-in-IPv4
+          NOARP  MTU:1480  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+vlan1     Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          inet addr:169.254.81.250  Bcast:169.254.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::21b:21ff:fe17:b56e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1226715 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 b)  TX bytes:267627104 (255.2 Mb)
+
+vlan10    Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          inet addr:10.10.10.1  Bcast:10.10.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::21b:21ff:fe17:b56e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:1438548 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1647660 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:170727406 (162.8 Mb)  TX bytes:1828252849 (1743.5 Mb)
+
+vlan20    Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          inet addr:10.3.0.1  Bcast:10.3.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::21b:21ff:fe17:b56e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:281442403 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:188986223 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:3213358714 (3064.4 Mb)  TX bytes:1463963951 (1396.1 Mb)
+
+vlan30    Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          inet addr:10.1.49.1  Bcast:10.1.49.255  Mask:255.255.255.0
+          inet6 addr: fe80::21b:21ff:fe17:b56e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:63746453 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:64392143 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:495788548 (472.8 Mb)  TX bytes:2744761268 (2617.6 Mb)
+
+vlan50    Link encap:Ethernet  HWaddr 00:1B:21:17:B5:6E
+          inet addr:74.43.140.1  Bcast:74.43.140.63  Mask:255.255.255.192
+          inet6 addr: fe80::21b:21ff:fe17:b56e/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:434037243 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:416615131 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:3991734899 (3806.8 Mb)  TX bytes:3839359225 (3661.4 Mb)
+
+FROM ntopsupport.com/faq.html
+Q.  What about VLANs?
+
+A.  VLAN traffic is also a special case. ntop treats all traffic within your machine's netmask definition as 'Local'. For instance, you may have a /16 network (netmask of 255.255.0.0), and you are using VLANs to distribute the traffic. In this case ntop will see the a.b.c.d/16 address and classify all traffic within this /16 network as 'Local'.
+
+Don't design your network that way.
+
+Q.  But they did!
+
+A.  This MIGHT work:
+
+Use an un-numbered interface, so that ntop doesn't assign any implicit 'Local' addresses. Then use the -m | --local-subnets parameter to define what is truly 'Local'. As long as there aren't too many 'Local' networks, this should work. I run something sort of like this (but using /24s not subdividing a /16) for my development network.
+
+
+
+PROTOCOLS
+
+Defaults:
+          FTP=ftp|ftp-data
+          HTTP=http|www|https|3128     3128 is Squid, the HTTP cache
+          DNS=name|domain
+          Telnet=telnet|login
+          NBios-IP=netbios-ns|netbios-dgm|netbios-ssn
+          Mail=pop-2|pop-3|pop3|kpop|smtp|imap|imap2
+          DHCP-BOOTP=67-68
+          SNMP=snmp|snmp-trap
+          NNTP=nntp
+          NFS=mount|pcnfs|bwnfs|nfsd|nfsd-status
+          X11=6000-6010
+          SSH=22
+
+          Peer-to-Peer Protocols
+          ----------------------
+          Gnutella=6346|6347|6348
+          Kazaa=1214
+          WinMX=6699|7730
+          DirectConnect=0      Dummy port as this is a pure P2P protocol
+          eDonkey=4661-4665
+
+          Instant Messenger
+          -----------------
+          Messenger=1863|5000|5001|5190-5193
+
+     BitTorrent 6881-6999 6969
+     Messenger  1863 5000 5001 5190-5193
+
+PROTOCOLS- ADDITIONAL?
+	LDAPS	LDAP over SSL 636/tcp
+	ldap
+	rsync
+	telnet
+	mysql	3306/tcp 3306/udp
+
+NTOP_ARGS="-K -W 2323 -i eth0,wlan0 -M -s -4 -6 -s -u ntop -c -r 30 -w3c -t 3 -a /var/log/ntop/http.log -O /var/log/ntop/ -q --skip-version-check 0"
+
+  -K | --enable-debug
+        Use  this  parameter to simplify application debug.  It does three things: 1.
+        Does not fork() on the "read only" html pages.  2. Displays mutex  values  on
+        the  configuration (info.html) page.  3. (If available - glibc/gcc) Activates
+        an automated backtrace on application errors.
+
+
+       -w | --http-server
+
+       -W | --https-server
+        ntop  offers  an embedded web server to present the information that has been
+        so painstakingly gathered.  An external HTTP server is NOT required NOR  sup-
+        ported.  The ntop web server is embedded into the application.  These parame-
+        ters specify the port (and optionally the address (i.e.  interface))  of  the
+        ntop web server.
+
+        For  example,  if  started with -w 3000 (the default port), the URL to access
+        ntop is http://hostname:3000/.  If started with a full specification, e.g. -w
+        192.168.1.1:3000, ntop listens on only that address/port combination.
+
+        If -w is set to 0 the web server will not listen for http:// connections.
+
+        -W operates similarly, but controls the port for the https:// connections.
+
+        Some examples:
+
+        ntop  -w  3000  -W 0 (this is the default setting) HTTP requests on port 3000
+        and no HTTPS.
+
+        ntop -w 80 -W 443 Both HTTP and HTTPS have been enabled on their most  common
+        ports.
+
+        ntop -w 0 -W 443 HTTP disabled, HTTPS enabled on the common port.
+
+        Certain  sensitive,  configuration pages of the ntop web server are protected
+        by a userid/password.  By default, these  are  the  user/URL  administration,
+        filter, shutdown and reset stats are password protected
+         and  are  accessible initially only to user admin with a password set during
+        the first run of ntop.
+      Users can modify/add/delete users/URLs using ntop itself - see the Admin tab.
+
+        The  passwords,  userids  and  URLs to protect with passwords are stored in a
+        database file.  Passwords are stored in an encrypted form in the database for
+        further  security.   Best  practices  call for securing that database so that
+        only the ntop user can read it.
+
+        There is a discussion in docs/FAQ about further securing  the  ntop  environ-
+        ment.
+
+ -z | --disable-sessions
+
+     This flag disables tcp session tracking. Use it for better performance or
+     when you don't really need the tracking of sessions.
+
+
+
+9/27/13
+This is taken from the ntop configuration (http://10.3.0.1:3000/
+/usr/bin/ntop -d -L -u ntop -P /var/lib/ntop --disable-schedyield -i eth2,vlan10,vlan20,vlan30,vlan40,vlan50 -m -M --http-server 3000 --https-server 0
+It is not clear that it is gathering any host-specific data
+2015-03-11
+Removed the -i and -M and -m as it seems that the host addresses to be considered local is derived
+from the first NIC which is the bonded I/F (or eth0)
+/usr/bin/ntop -d -L -u ntop -P /var/lib/ntop --disable-schedyield  --http-server 3000 --https-server 0

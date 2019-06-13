@@ -1,0 +1,1251 @@
+dn: dc=obs,dc=hcro,dc=org
+dc: obs
+o: obs
+objectClass: organization
+objectClass: dcObject
+
+dn: ou=ldapconfig,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: ldapconfig
+
+dn: ou=group,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: group
+
+dn: ou=people,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: cn=grouptemplate,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+cn: grouptemplate
+objectClass: top
+objectClass: suseObjectTemplate
+objectClass: suseGroupTemplate
+suseNamingAttribute: cn
+susePlugin: UsersPluginLDAPAll
+
+dn: cn=usertemplate,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+cn: usertemplate
+objectClass: top
+objectClass: suseObjectTemplate
+objectClass: suseUserTemplate
+suseDefaultValue: homedirectory=/home/%uid
+suseDefaultValue: loginshell=/bin/bash
+suseNamingAttribute: uid
+susePlugin: UsersPluginLDAPAll
+
+dn: cn=groupconfiguration,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+cn: groupconfiguration
+objectClass: top
+objectClass: suseModuleConfiguration
+objectClass: suseGroupConfiguration
+suseDefaultBase: ou=group,dc=obs,dc=hcro,dc=org
+suseDefaultTemplate: cn=grouptemplate,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+suseMaxUniqueId: 60000
+suseMinUniqueId: 1000
+suseSearchFilter: objectclass=posixgroup
+suseNextUniqueId: 1002
+
+dn: cn=userconfiguration,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+cn: userconfiguration
+objectClass: top
+objectClass: suseModuleConfiguration
+objectClass: suseUserConfiguration
+suseDefaultBase: ou=people,dc=obs,dc=hcro,dc=org
+suseDefaultTemplate: cn=usertemplate,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+suseMaxPasswordLength: 8
+suseMaxUniqueId: 60000
+suseMinPasswordLength: 5
+suseMinUniqueId: 1000
+susePasswordHash: CRYPT
+suseSearchFilter: objectclass=posixaccount
+suseSkelDir: /etc/skel
+suseNextUniqueId: 10272
+
+dn: uid=colby,ou=people,dc=obs,dc=hcro,dc=org
+cn: Colby Gutierrez-Kraybill
+givenName: Colby
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Gutierrez-Kraybill
+uid: colby
+uidNumber: 10243
+homeDirectory: /home/colby
+gidNumber: 1001
+shadowLastChange: 14499
+
+dn: cn=defaultDNS,ou=ldapconfig,dc=obs,dc=hcro,dc=org
+cn: defaultDNS
+objectClass: top
+objectClass: suseDnsConfiguration
+suseDefaultBase: ou=DNS,dc=obs,dc=hcro,dc=org
+
+dn: ou=DNS,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: DNS
+
+dn: uid=rick,ou=people,dc=obs,dc=hcro,dc=org
+cn: Rick Forster
+gidNumber: 1000
+givenName: Rick
+loginShell: /bin/tcsh
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 13457
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Forster
+uid: rick
+uidNumber: 1001
+homeDirectory: /home/rick
+shadowExpire: 0
+
+dn: uid=obs,ou=people,dc=obs,dc=hcro,dc=org
+cn: ATA Obs
+gidNumber: 1000
+givenName: ATA
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Obs
+uid: obs
+uidNumber: 1000
+homeDirectory: /home/obs
+shadowLastChange: 15224
+loginShell: /bin/bash
+
+dn: cn=admin,ou=group,dc=obs,dc=hcro,dc=org
+cn: admin
+gidNumber: 1001
+member: uid=tkoumrian,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=elin,ou=people,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: posixGroup
+objectClass: groupOfNames
+
+dn: cn=obs,ou=group,dc=obs,dc=hcro,dc=org
+cn: obs
+gidNumber: 1000
+member: uid=tkoumrian,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=pkwill,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=ddeboer,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=kilsdonk,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=karto,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=elin,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=testuser,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=atasys,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=sblair,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=jrichards,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=siemion,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=dceperley,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=rick,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=claw,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=gharp,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=ackermann,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=obs,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=colby,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=obsri,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=gary,ou=people,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: posixGroup
+objectClass: groupOfNames
+
+dn: uid=atasys,ou=people,dc=obs,dc=hcro,dc=org
+cn: ATA System Software
+gidNumber: 1000
+givenName: ATA
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: System Software
+uid: atasys
+uidNumber: 1002
+homeDirectory: /opt/atasys
+shadowLastChange: 15217
+
+dn: ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: organizationalUnit
+ou: AUTOFS
+
+dn: nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.master
+
+dn: cn=/data,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName:: YXV0by5tYXN0ZXIg
+cn: /data
+nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcr
+ o,dc=org
+
+dn: nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.data
+
+dn: cn=tumulus,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: tumulus
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 tumulus.h
+ cro.org:/exports/tumulus
+
+dn: cn=peridot,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: peridot
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 peridot.h
+ cro.org:/exports/peridot
+
+dn: cn=/home,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.master
+cn: /home
+nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcr
+ o,dc=org
+
+dn: nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.home
+
+dn: cn=basalt,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: basalt
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home
+
+dn: cn=peridot,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: peridot
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 peridot.h
+ cro.org:/exports/peridot/home
+
+dn: cn=obs,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: obs
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/obs
+
+dn: cn=colby,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: colby
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 basalt.hcro.org:/expo
+ rts/basalt/home/colby
+
+dn: cn=rick,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: rick
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 peridot.h
+ cro.org:/exports/peridot/home/rick
+
+dn: cn=/hcro,nisMapName=auto.master,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.master
+cn: /hcro
+nisMapEntry: ldap basalt.hcro.org:nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcr
+ o,dc=org
+
+dn: nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.hcro
+
+dn: cn=opt,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: opt
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 basalt.hcro.org:/expo
+ rts/basalt/hcro/$OSNAME/$CPU/opt
+
+dn: cn=gharp,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: gharp
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/gharp
+
+dn: uid=gharp,ou=people,dc=obs,dc=hcro,dc=org
+cn: Gerry Harp
+gidNumber: 1000
+givenName: Gerry
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Harp
+uid: gharp
+uidNumber: 10244
+shadowLastChange: 14166
+homeDirectory: /home/gharp
+
+dn: cn=tohru,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: tohru
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 tohru.hcr
+ o.org:/exports/tohru
+
+dn: cn=weather,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: weather
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 weather.h
+ cro.org:/exports/weather
+
+dn: uid=wright,ou=people,dc=obs,dc=hcro,dc=org
+cn: Melvyn Wright
+gidNumber: 1000
+givenName: Melvyn
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Wright
+uid: wright
+uidNumber: 10245
+homeDirectory: /home/wright
+shadowLastChange: 13679
+loginShell: /bin/tcsh
+shadowExpire: 0
+
+dn: cn=wright,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: wright
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 tumulus.h
+ cro.org:/exports/tumulus/wright
+
+dn: cn=jonah,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: jonah
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/jonah
+
+dn: cn=user1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user1.hcr
+ o.org:/exports/user1
+
+dn: cn=user1a,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user1a
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user1.hcr
+ o.org:/exports/user1a
+
+dn: cn=user1b,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user1b
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user1.hcr
+ o.org:/exports/user1b
+
+dn: uid=davidm,ou=people,dc=obs,dc=hcro,dc=org
+cn: David MacMahon
+gidNumber: 1000
+givenName: David
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 13690
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: MacMahon
+uid: davidm
+uidNumber: 10247
+homeDirectory: /home/davidm
+shadowExpire: 0
+
+dn: uid=ataant,ou=people,dc=obs,dc=hcro,dc=org
+cn: ATA Antennas
+gidNumber: 100
+givenName: ATA
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Antennas
+uid: ataant
+uidNumber: 10248
+homeDirectory: /opt/ataant
+shadowLastChange: 15217
+
+dn: uid=cactiuser,ou=people,dc=obs,dc=hcro,dc=org
+cn: cacti user
+gidNumber: 100
+givenName: cacti
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowExpire: 0
+shadowInactive: -1
+shadowLastChange: 13720
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: user
+uid: cactiuser
+uidNumber: 10249
+homeDirectory: /export/auxcntl/home/cactiuser
+
+dn: cn=basalt,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: basalt
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt
+
+dn: cn=tumulus-usb1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: tumulus-usb1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 tumulus.h
+ cro.org:/exports/tumulus-usb1
+
+dn: ou=profile,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: profile
+
+dn: cn=Solaris,ou=profile,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: DUAConfigProfile
+cn: Solaris
+defaultServerList: basalt.example.com
+defaultSearchBase: dc=obs,dc=hcro,dc=org
+defaultSearchScope: one
+searchTimeLimit: 30
+bindTimeLimit: 2
+credentialLevel: anonymous
+authenticationMethod: simple
+followReferrals: TRUE
+profileTTL: 43200
+
+dn: nisMapName=auto.atarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.atarchive
+
+dn: cn=2006,nisMapName=auto.atarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.atarchive
+cn: 2006
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 hornito.h
+ cro.org:/atarchive/2006
+
+dn: cn=2007,nisMapName=auto.atarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.atarchive
+cn: 2007
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 hornito.h
+ cro.org:/atarchive/2007
+
+dn: cn=tumulus-usb2,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: tumulus-usb2
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 tumulus.h
+ cro.org:/exports/tumulus-usb2
+
+dn: uid=pkwill,ou=people,dc=obs,dc=hcro,dc=org
+cn: Peter Williams
+givenName: Peter
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Williams
+uid: pkwill
+uidNumber: 10250
+homeDirectory: /home/pkwill
+gidNumber: 1000
+shadowLastChange: 14499
+shadowExpire: 0
+
+dn: cn=pkwill,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: pkwill
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/pkwill
+
+dn: cn=maincntl,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: maincntl
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 maincntl.
+ hcro.org:/export/maincntl
+
+dn: cn=auxcntl,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: auxcntl
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 auxcntl.h
+ cro.org:/export/auxcntl
+
+dn: cn=antcntl,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: antcntl
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 antcntl.h
+ cro.org:/export/antcntl
+
+dn: nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto.ataarchive
+
+dn: cn=davidm,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: davidm
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/davidm
+
+dn: cn=ata,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: ata
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 basalt.hcro.org:/expo
+ rts/basalt/hcro/ata
+
+dn: cn=strato,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: strato
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 strato.hc
+ ro.org:/export/strato
+
+dn: cn=2006,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2006
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 st
+ rato.hcro.org:/ataarchive/2006
+
+dn: cn=2007,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2007
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=32768,wsize=32768 
+ strato.hcro.org:/ataarchive/2007
+
+dn: cn=2008,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2008
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 st
+ rato.hcro.org:/ataarchive/2008
+
+dn: cn=boot2,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: boot2
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 boot2.hcr
+ o.org:/export/boot2
+
+dn: cn=atadb,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: atadb
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 atadb.hcr
+ o.org:/export/atadb
+
+dn: uid=gary,ou=people,dc=obs,dc=hcro,dc=org
+cn: Gary Gamblin
+gidNumber: 1000
+givenName: Gary
+loginShell: /bin/tcsh
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 13942
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Gamblin
+uid: gary
+uidNumber: 10251
+homeDirectory: /home/gary
+shadowExpire: 0
+
+dn: cn=jeff,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: jeff
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/jeff
+
+dn: cn=gary,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: gary
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/gary
+
+dn: cn=willyj,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: willyj
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/willyj
+
+dn: cn=renee,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: renee
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/renee
+
+dn: uid=karto,ou=people,dc=obs,dc=hcro,dc=org
+cn: Garrett Keating
+gidNumber: 1000
+givenName: Garrett
+loginShell: /bin/tcsh
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 13972
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Keating
+uid: karto
+uidNumber: 10255
+homeDirectory: /home/karto
+
+dn: cn=karto,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: karto
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/karto
+
+dn: cn=scratch,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: scratch
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 st
+ rato.hcro.org:/ataarchive/scratch
+
+dn: uid=jrichards,ou=people,dc=obs,dc=hcro,dc=org
+cn: Jon Richards
+gidNumber: 100
+givenName: Jon
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 14131
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Richards
+uid: jrichards
+uidNumber: 10256
+homeDirectory: /home/jrichards
+
+dn: cn=jrichards,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: jrichards
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/jrichards
+
+dn: cn=cinder,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: cinder
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 cinder.hc
+ ro.org:/export/cinder
+
+dn: cn=miriad,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: miriad
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 $OSNAME-$CPU.hcro.org
+ :/export/miriad
+
+dn: cn=sprmon-data,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: sprmon-data
+nisMapEntry: -fstype=smbfs,ro,guest //SPRMON/DATA
+
+dn: cn=atasys,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: atasys
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 boot2.hcro.org:/expor
+ t/boot2/atasys
+
+dn: uid=kilsdonk,ou=people,dc=obs,dc=hcro,dc=org
+cn: Tom Kilsdonk
+gidNumber: 100
+givenName: Tom
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Kilsdonk
+uid: kilsdonk
+uidNumber: 10257
+homeDirectory: /home/kilsdonk
+loginShell: /bin/tcsh
+shadowLastChange: 14543
+shadowExpire: 0
+
+dn: cn=kilsdonk,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: kilsdonk
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/kilsdonk
+
+dn: cn=pulsar-1-data2,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pulsar-1-data2
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.
+ hcro.org:/export/data2
+
+dn: cn=pulsar-1-data1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pulsar-1-data1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.
+ hcro.org:/export/data1
+
+dn: cn=pulsar-2-data2,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pulsar-2-data2
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-2.
+ hcro.org:/export/data2
+
+dn: cn=pulsar-2-data1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pulsar-2-data1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-2.
+ hcro.org:/export/data1
+
+dn: ou=solarisAutoMount,dc=obs,dc=hcro,dc=org
+objectClass: organizationalUnit
+ou: solarisAutoMount
+
+dn: nisMapName=auto_master,ou=solarisAutoMount,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto_master
+
+dn: ou=auto_mount,dc=obs,dc=hcro,dc=org
+objectClass: organizationalUnit
+ou: auto_mount
+
+dn: nisMapName=auto_master,ou=auto_mount,dc=obs,dc=hcro,dc=org
+objectClass: nisMap
+nisMapName: auto_master
+
+dn: ou=auto_home,dc=obs,dc=hcro,dc=org
+objectClass: organizationalUnit
+ou: auto_home
+
+dn: uid=ackermann,ou=people,dc=obs,dc=hcro,dc=org
+cn: Rob Ackerman
+gidNumber: 1000
+givenName: Rob
+loginShell: /bin/csh
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Ackerman
+uid: ackermann
+uidNumber: 10258
+homeDirectory: /home/ackermann
+shadowLastChange: 15925
+
+dn: cn=ackermann,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: ackermann
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/ackermann
+
+dn: cn=cinder1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: cinder1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 cinder.hc
+ ro.org:/export/cinder1
+
+dn: cn=2009,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2009
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 st
+ rato.hcro.org:/ataarchive/2009
+
+dn: uid=sblair,ou=people,dc=obs,dc=hcro,dc=org
+cn: Samantha Blair
+gidNumber: 1000
+givenName: Samantha
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 14271
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Blair
+uid: sblair
+uidNumber: 10259
+homeDirectory: /home/sblair
+shadowExpire: 0
+
+dn: cn=sblair,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: sblair
+nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/ex
+ ports/basalt/home/sblair
+
+dn: uid=claw,ou=people,dc=obs,dc=hcro,dc=org
+cn: Casey Law
+gidNumber: 1000
+givenName: Casey
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Law
+uid: claw
+uidNumber: 10260
+homeDirectory: /home/claw
+shadowLastChange: 14278
+shadowExpire: 0
+
+dn: cn=claw,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: claw
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/claw
+
+dn: cn=shield,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: shield
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 shield.hc
+ ro.org:/exports/shield
+
+dn: cn=caldera,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 caldera.h
+ cro.org:/export/caldera
+cn: caldera
+
+dn: cn=jrseti,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: jrseti
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 jrseti.hc
+ ro.org:/export/jrseti
+
+dn: cn=2010,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2010
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 st
+ rato.hcro.org:/ataarchive/2010
+
+dn: cn=atasys,ou=group,dc=obs,dc=hcro,dc=org
+cn: atasys
+gidNumber: 1002
+member: uid=jrichards,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=tkoumrian,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=pkwill,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=ddeboer,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=dceperley,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=davidm,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=kilsdonk,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=karto,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=elin,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=gharp,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=ackermann,ou=people,dc=obs,dc=hcro,dc=org
+member: uid=colby,ou=people,dc=obs,dc=hcro,dc=org
+objectClass: top
+objectClass: posixGroup
+objectClass: groupOfNames
+
+dn: cn=lab,nisMapName=auto.hcro,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.hcro
+cn: lab
+nisMapEntry: -fstype=nfs,hard,intr,rsize=8129,wsize=8129 caldera.hcro.org:/exp
+ ort/caldera/lab
+
+dn: cn=foid,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: foid
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 foid.hcro
+ .org:/export/foid
+
+dn: uid=siemion,ou=people,dc=obs,dc=hcro,dc=org
+cn: Andrew Siemion
+gidNumber: 1000
+givenName: Andrew
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Siemion
+uid: siemion
+uidNumber: 10261
+homeDirectory: /home/siemion
+shadowLastChange: 14646
+shadowExpire: 0
+
+dn: cn=siemion,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: siemion
+nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/ex
+ ports/basalt/home/siemion
+
+dn: uid=kburns,ou=people,dc=obs,dc=hcro,dc=org
+cn: Keaton Burns
+gidNumber: 1000
+givenName: Keaton
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Burns
+uid: kburns
+uidNumber: 10262
+homeDirectory: /home/kburns
+shadowLastChange: 14680
+shadowExpire: 0
+
+dn: cn=kburns,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: kburns
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/kburns
+
+dn: cn=pulsar-1-mirror1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pulsar-1-mirror1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.
+ hcro.org:/export/mirror1
+
+dn: cn=pigss-store,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pigss-store
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.
+ hcro.org:/export/pigss-store
+
+dn: cn=pigss-processing,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: pigss-processing
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 pulsar-1.
+ hcro.org:/export/pigss-processing
+
+dn: uid=ddeboer,ou=people,dc=obs,dc=hcro,dc=org
+cn: Dave Deboer
+gidNumber: 1000
+givenName: Dave
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Deboer
+uid: ddeboer
+uidNumber: 10263
+homeDirectory: /home/ddeboer
+shadowLastChange: 14902
+shadowExpire: 0
+
+dn: cn=ddeboer,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: ddeboer
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/ddeboer
+
+dn: cn=crater,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: crater
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 crater.hc
+ ro.org:/export/crater
+
+dn: cn=2011,nisMapName=auto.ataarchive,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.ataarchive
+cn: 2011
+nisMapEntry: -fstype=nfs,vers=3,hard,intr,root_squash,rsize=8129,wsize=8129 st
+ rato.hcro.org:/ataarchive/2011
+
+dn: uid=dceperley,ou=people,dc=obs,dc=hcro,dc=org
+cn: Dan Ceperley
+gidNumber: 1000
+givenName: Dan
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMin: 0
+shadowWarning: 7
+sn: Ceperley
+uid: dceperley
+uidNumber: 10264
+homeDirectory: /home/dceperley
+shadowMax: 99999
+shadowLastChange: 15218
+
+dn: cn=dceperley,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: dceperley
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/dceperley
+
+dn: uid=tkoumrian,ou=people,dc=obs,dc=hcro,dc=org
+cn: Todd Koumrian
+givenName: Todd
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Koumrian
+uid: tkoumrian
+uidNumber: 10265
+homeDirectory: /home/tkoumrian
+gidNumber: 1000
+shadowLastChange: 15944
+
+dn: cn=tkoumrian,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: tkoumrian
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/tkoumrian
+
+dn: cn=user2,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: user2
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 user2.hcr
+ o.org:/exports/user2
+
+dn: uid=obsri,ou=people,dc=obs,dc=hcro,dc=org
+cn: Obs SRI
+givenName: Obs
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 15496
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: SRI
+uid: obsri
+uidNumber: 10266
+homeDirectory: /home/obsri
+gidNumber: 1000
+
+dn: cn=obsri,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: obsri
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 basalt.hc
+ ro.org:/exports/basalt/home/obsri
+
+dn: uid=elin,ou=people,dc=obs,dc=hcro,dc=org
+cn: Elin Klaseen
+gidNumber: 100
+givenName: Elin
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Klaseen
+uid: elin
+uidNumber: 10268
+homeDirectory: /home/elin
+shadowLastChange: 15502
+
+dn: cn=elin,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn: elin
+nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/ex
+ ports/basalt/home/elin
+
+dn: uid=jdoe,ou=people,dc=obs,dc=hcro,dc=org
+cn: John Doe
+gidNumber: 1000
+givenName: John
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 16022
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: Doe
+uid: jdoe
+uidNumber: 10271
+homeDirectory: /home/jdoe
+
+dn: uid=testuser,ou=people,dc=obs,dc=hcro,dc=org
+cn: Test User
+gidNumber: 1000
+givenName: Test
+loginShell: /bin/bash
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+shadowInactive: -1
+shadowLastChange: 16022
+shadowMax: 99999
+shadowMin: 0
+shadowWarning: 7
+sn: User
+uid: testuser
+uidNumber: 10272
+homeDirectory: /home/testuser
+
+dn: cn=jdoe,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/ex
+ ports/basalt/home/jdoe
+cn: jdoe
+
+dn: cn=testuser,nisMapName=auto.home,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.home
+cn:: dGVzdHVzZXIg
+nisMapEntry: -fstype=nfs,hard,intr,rsize=65536,wsize=65536 basalt.hcro.org:/ex
+ ports/basalt/home/testuser
+

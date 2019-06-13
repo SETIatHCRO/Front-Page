@@ -1,0 +1,169 @@
+INSTALL MIRDL
+
+[starting place taken from
+http://log.hcro.org/content/installing-mirdl-mac-os-105-leopard]
+
+ > which gem ruby rails
+/hcro/opt/bin/gem
+/hcro/opt/bin/ruby
+/hcro/opt/bin/rails
+
+1 [as obs on tumulus] Build the mirdl
+  cd ~/mmm/davidm/mirdl/ext
+  rake gem
+  cd ..
+
+2. [as obs on tumulus] Install the mirdl
+
+  gem install pkg/mirdl-0.0.7.gem --no-update-sources
+ 
+  -->  > gem install pkg/mirdl-0.0.7.gem --no-update-sources
+ERROR:  While executing gem ... (Gem::FilePermissionError)
+    You don't have write permissions into the /hcro/opt/lib/ruby/gems/1.8 directory.
+
+3.  [as root on tumulus] Install the mirdl
+  cd /home/obs/mmm/davidm/mirdl
+  /hcro/opt/bin/gem install pkg/mirdl-0.0.7.gem --no-update-sources
+
+  -->   # /hcro/opt/bin/gem install pkg/mirdl-0.0.7.gem --no-update-sources
+ERROR:  Error installing pkg/mirdl-0.0.7.gem:
+        mirdl requires astroutil (>= 2009.1.0, runtime)
+
+4. [as root on tumulus] Install the astroutil
+   cd ~/mmm/davidm/astroutil
+   # /hcro/opt/bin/gem install pkg/astroutil-2009.1.6.gem --no-update-sources
+Successfully installed astroutil-2009.1.6
+1 gem installed
+Installing ri documentation for astroutil-2009.1.6...
+Installing RDoc documentation for astroutil-2009.1.6...
+
+5.   [REPEAT the install of the mirdl - step 3]
+
+
+ # /hcro/opt/bin/gem install pkg/mirdl-0.0.7.gem --no-update-sources
+Building native extensions.  This could take a while...
+ERROR:  Error installing pkg/mirdl-0.0.7.gem:
+        ERROR: Failed to build gem native extension.
+
+/hcro/opt/bin/ruby extconf.rb
+checking for narray.h... yes
+checking for miriad.h... no
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+
+Provided configuration options:
+        --with-opt-dir
+        --without-opt-dir
+        --with-opt-include
+        --without-opt-include=${opt-dir}/include
+        --with-opt-lib
+        --without-opt-lib=${opt-dir}/lib
+        --with-make-prog
+        --without-make-prog
+        --srcdir=.
+        --curdir
+        --ruby=/hcro/opt/bin/ruby
+        --with-miriad-dir
+        --without-miriad-dir
+        --with-miriad-include
+        --without-miriad-include=${miriad-dir}/include
+        --with-miriad-lib
+        --without-miriad-lib=${miriad-dir}/lib
+
+
+Gem files will remain installed in /hcro/opt/lib/ruby/gems/1.8/gems/mirdl-0.0.7 for inspection.
+Results logged to /hcro/opt/lib/ruby/gems/1.8/gems/mirdl-0.0.7/ext/gem_make.out
+
+
+SEEMS to be unable to find miriad.h
+obs@tumulus /hcro/miriad 11:49:48 > find . -name 'miriad.h'
+./build/include/miriad-c/miriad.h
+./src/subs/miriad.h
+
+FOUND narray.h here:
+ /hcro/opt 14:31:49 > find . -name 'narray.h'
+./lib/ruby/site_ruby/1.8/x86_64-linux/narray.h
+./lib/ruby/gems/1.8/gems/narray-0.5.9.6/src/narray.h
+./lib/ruby/gems/1.8/gems/narray-0.5.9.6/narray.h
+./lib/ruby/gems/1.8/gems/narray-0.5.9.7/src/narray.h
+./lib/ruby/gems/1.8/gems/narray-0.5.9.7/narray.h
+./lib/ruby/gems-bak/1.8/gems/narray-0.5.9.6/src/narray.h
+./lib/ruby/gems-bak/1.8/gems/narray-0.5.9.6/narray.h
+./lib/ruby/gems-bak/1.8/gems/narray-0.5.9.7/src/narray.h
+./lib/ruby/gems-bak/1.8/gems/narray-0.5.9.7/narray.h
+./jruby-1.5.0/lib/ruby/gems/1.8/gems/narray-0.6.0.1/src/narray.h
+
+FOUND miriad.h here:
+/hcro/opt 14:32:45 > find . -name 'miriad.h'
+./lib/ruby/gems/1.8/gems/miriad-4.1.0.14/ext/miriad.h
+./lib/ruby/gems-bak/1.8/gems/miriad-4.1.0.14/ext/miriad.h
+
+FOUND miriad.h here:
+ find /hcro/miriad -name 'miriad.h'
+/hcro/miriad/build/include/miriad-c/miriad.h
+/hcro/miriad/src/subs/miriad.h
+
+
+6. RETRY install using  --with-miriad-include, 
+   both with (/hcro/opt/miriad/build/include/miriad-c)
+   and w/o explicit path
+ # /hcro/opt/bin/gem install pkg/mirdl-0.0.7.gem --no-update-sources -- --with-miriad-include
+
+7. RETRY using --with-miriad-lib
+8. RETRY using         [GOT past the miriad.h include but not sure if correct reference]
+
+ # /hcro/opt/bin/gem install pkg/mirdl-0.0.7.gem --no-update-sources -- --with-miriad-include=/hcro/opt/lib/ruby/gems/1.8/gems/miriad-4.1.0.14/ext
+Building native extensions.  This could take a while...
+ERROR:  Error installing pkg/mirdl-0.0.7.gem:
+        ERROR: Failed to build gem native extension.
+
+/hcro/opt/bin/ruby extconf.rb --with-miriad-include=/hcro/opt/lib/ruby/gems/1.8/gems/miriad-4.1.0.14/ext
+checking for narray.h... yes
+checking for miriad.h... yes
+checking for options_() in -lmir... no
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+
+Provided configuration options:
+        --with-opt-dir
+        --without-opt-dir
+        --with-opt-include
+        --without-opt-include=${opt-dir}/include
+        --with-opt-lib
+        --without-opt-lib=${opt-dir}/lib
+        --with-make-prog
+        --without-make-prog
+        --srcdir=.
+        --curdir
+        --ruby=/hcro/opt/bin/ruby
+        --with-miriad-dir
+        --without-miriad-dir
+        --with-miriad-include=${miriad-dir}/include
+        --with-miriad-lib
+        --without-miriad-lib=${miriad-dir}/lib
+        --with-mirlib
+        --without-mirlib
+
+
+Gem files will remain installed in /hcro/opt/lib/ruby/gems/1.8/gems/mirdl-0.0.7 for inspection.
+Results logged to /hcro/opt/lib/ruby/gems/1.8/gems/mirdl-0.0.7/ext/gem_make.out
+
+
+9. added --with-miriad-lib
+failed in same way as RETRY 7
+
+10. added
+--with-miriad-lib=/hcro/opt/lib/ruby/gems/1.8/gems/miriad-4.1.0.14/lib
+failed in same wasy as RETRY 8
+
+gcc -l switch is a search for library by name. -L is by library
+directory. Other -l in the failing command are:
+ruby-static   --- found in 
+	      /hcro/opt/lib/libruby-static.a
+	      /hcro/opt/ruby-1.8.7/lib/libruby-static.a
+
+mir

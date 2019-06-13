@@ -1,0 +1,8 @@
+
+# tumulus data disk
+dn: cn=tumulus-usb1,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: tumulus-usb1
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 tumulus.hcro.org:/exports/tumulus-usb1
+

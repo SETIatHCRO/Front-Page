@@ -1,0 +1,73 @@
+NOTES: MetaDataServer
+DATE:  2017-09-28
+
+atadb
+
+config:		$ATA_HOME/ata/src/ata/metaData/metadata_config.xml
+database: 	user: atasys  pwd: madeline, metadata
+tables: 	stored daily as "meta_YYMMDD"
+columns:	device_id,item_id, timestamp, data_<type>
+
+Data gathering is driven by the items. Devices contain item attributes.
+
+Obsoleted devices (dkeyNN):	   
+56-59 	  fboard[0-3].f1.fxb	   - NO items were being gathered for these
+60-63 	  fboard[0-3].f2.fxb	   - NO items were being gathered for these
+72-75 	  fboard[0-3].f1.fxd	   - NO items were being gathered for these
+76-79 	  fboard[0-3].f2.fxd	   - NO items were being gathered for these
+
+91-94 	  {x,f}[1-2].fxb	   - only NTPTimeOffset item (85) (~15 minutes)
+99-102 	  {x,f}[1-2].fxd
+
+80	  strato	   - only NTPTimeOffset item (85) gathered
+81	  maincntl	   - only NTPTimeOffset item (85) gathered
+83	  auxcntl	   - only NTPTimeOffset item (85) gathered
+104	  weather	   - items 66-75 and 142 gathered (~every 5 sec)
+
+BEFORE CHANGE 9/28/17:
+mysql> select distinct item_id from meta_170928;
++---------+
+| item_id |
++---------+
+|      66 |
+|      67 |
+|      68 |
+|      69 |
+|      70 |
+|      71 |
+|     142 |
+|      72 |
+|      73 |
+|      75 |
+|      85 |
++---------+
+
+mysql> select distinct device_id from meta_170928;
++-----------+
+| device_id |
++-----------+
+|        47 |
+|        80 |
+|        81 |
+|        82 |
+|        88 |
+|       100 |
+|        83 |
+|        85 |
+|        91 |
+|        92 |
+|        84 |
+|        97 |
+|        99 |
+|        98 |
+|        86 |
+|        96 |
+|        90 |
+|        94 |
+|       101 |
+|        93 |
+|        95 |
+|       102 |
+|        87 |
+|       104 |
++-----------+

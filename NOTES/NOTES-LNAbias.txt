@@ -1,0 +1,120 @@
+NOTES:  LNA Bias settings
+Date: 2015-04-02
+Modified: 2015-08-20
+	  2017-07-17 - update location of config files. add reference to
+	  python libraries (end of this file)
+
+LNA SET/GET commands
+	(from obs - see command help for more options)
+	atagetlnas <ant>
+	atasetlnas <ant>
+
+LNA Bias adjust (Manual)
+    >ssh ataant@antcntl
+    > ssh <ant>
+    > netcat pax 23
+      
+
+  commands are:
+  	   getid [x|y]
+	   [get|set]vm [x|y]
+	   [get|set]vd [x|y]
+	   [get|set]vg [x|y]
+
+  LNA Bias settings are based on the Feed that the Pax is installed in.
+  For any given Feed there should be a Feed Info Sheet supplied by the
+  factory (Minex).
+
+  Historically, these feed reports are stored in the log under
+  Engineering/Feed Swap Database)
+
+  Feeds have been repaired many times, old Feed Info Sheets should be 
+  deleted or stored separately from current Feed Info Sheets.
+  The feed report delivered with the feed provides the optimium LNA settings
+
+vg - gain voltage
+vd - drain voltage
+vm - mean voltage
+id - power output
+
+
+  Quotes below are from Rob Spencer email feedback.
+Basic Rules (4/10/15):
+  1st rule  When you enter a value you will always get a different value, 
+  so you should anticipate this by starting with an ajusted value. (example 
+  -1.0 gets you -.97).
+
+  2nd rule  Always start with Vm, then adjust Vd, last adjust Vg, you will 
+  need to play with Vd & Vg a little to hit your target Id.
+
+  3rd rule  All Fraunhofer LNAs (r at end of SN) must have Vm set at -.80 
+  and Vd set at 1.50, only Vg is adjusted to get Id at or around 60.0.
+
+  4th rule  All Northrop-Grumman LNAs have Vm set at just below -1.0, some 
+  older LNAs will still be using Vm setting lower that than -1.0 (example 
+  -1.20).
+
+  5th rule  If you can.t get Vm, Vd, Vg + Id to adjust, then something is 
+  wrong with the LNA.
+
+  6th rule  If you are adjusting Vd & Vg with values that are way off from 
+  the Report and getting Id values close to the Report values something is 
+  wrong.
+
+  7th rule If something is wrong/not working wright check LNA/Dewar temp, 
+  if temp is above 70-75K LNA biasing changes drastically.
+
+Basic Rules (pre 4/15):
+1. LNAs  have an # designating vendor type, revision. Vendors are Northrup-G 
+  (older, ABB-XXX) and Fraunhofer (newer, ABB-XXXr).
+
+2. The ABB-XXXb is an old LNA # from the first Feeds built (2006). These are Northrop-G LNA.s. 
+  There may not be any of these left. The Vm -.96 & -.97 give them away.
+
+3. "Northrop-G.s you can play with (adjust values) more than Fraunhofer.s" (???).
+  "On Northrup-G LNAs for Vm just type in -1 and go with what you get."
+
+4. If the LNA # has the r at its end, you need to set Vm to -.80, Vd to 1.50 & 
+  then adjust Vg until Id is around the 60.00 value.
+
+5. If the LNA # doesn.t have the r at its end, the new standard(2009>) is set Vm 
+  at -.98, adjust Vg & Vd as needed to get to the Id value
+
+6. We are trying to keep Id lower/less heat).
+
+7. You shouldn't have to go beyond the reports Vd & Vg settings (+/-.05)
+
+8. "If things are not adjusting correctly something is wrong, double check what you.re doing, back track, in the end the lna could be damaged."
+
+9. "Only extreme Vm (-1.2+) and Vd (2.0+) settings could over drive an LNA, 
+  it would start oscillating first & performance would drop noticeably, then 
+  at some point it may get damaged."
+
+10. "Probing the tip circuit board at the end of the arms, with a Multi-meter, 
+  out on an antenna will toast an LNA !"
+
+
+Adjusting Values:
+
+-The goal is to hit the numbers provided in the feed sheet (taking into account
+   general rules above). i.e., first adjust Vm, then set Vd, then set Vg a little.
+   Vd & Vg include each other, jump back and forth between them until Id is close.
+   Vg + Vd  to feed sheet values should 
+  get you roughly the feed sheet Id value.
+- May have to tweak Vg + Vd a little to get there.
+
+CONFIG FILES:
+Feed config report data (feed-config) and feed location (feed-location) is in $ATA_HOME/ata/etc. Currently
+stored in xml format. NOTE - this may change in future. Use low-level APIs for
+access instead of direct access to file.
+
+See 
+
+~/elin/arrayhealth/ah/lib/attributes
+    get_lnabiasid
+
+~/elin/arrayhealth/ah/lib/components
+    get_lna
+
+
+

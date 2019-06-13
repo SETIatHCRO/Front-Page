@@ -1,0 +1,21 @@
+NOTES: Avaya Phone system - Frontier
+DATE: 25 April 2017
+
+John Hite 916-224-1603
+
+DNS
+  ft-iview.hcro.org.              IN      A       74.43.140.20
+  ft-avaya.hcro.org.              IN      A       74.43.140.19
+
+Shorewall (FIREWALL)
+  params
+	# FT 2015-12-01 Avaya, Iview access
+	FT_EXT=50.112.180.251,50.112.181.23,107.23.46.137,107.23.70.57
+	FT_IVIEW=74.43.140.19,74.43.140.20
+        WWWSSL_PORT=443
+
+  rules
+	ACCEPT net:$FT_EXT          dmz:$FT_IVIEW     tcp $WWWSSL_PORT
+	ACCEPT dmz:$FT_IVIEW        net:$FT_EXT         tcp $WWWSSL_PORT
+
+4/25/17 - a problem reported is that the iview can't talk to the avaya.

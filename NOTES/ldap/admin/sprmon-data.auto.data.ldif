@@ -1,0 +1,8 @@
+
+# sprmon-data disk
+dn: cn=sprmon-data,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: sprmon-data
+nisMapEntry: -fstype=smbfs,ro,guest //SPRMON/DATA
+

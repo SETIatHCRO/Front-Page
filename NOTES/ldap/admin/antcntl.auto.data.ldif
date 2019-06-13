@@ -1,0 +1,8 @@
+
+# antcntl data disk
+dn: cn=antcntl,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: antcntl
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 antcntl.hcro.org:/export/antcntl
+

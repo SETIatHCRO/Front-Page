@@ -1,0 +1,8 @@
+
+# peridot data disk
+dn: cn=peridot,nisMapName=auto.data,ou=AUTOFS,dc=obs,dc=hcro,dc=org
+objectClass: nisObject
+nisMapName: auto.data
+cn: peridot
+nisMapEntry: -fstype=nfs,hard,intr,root_squash,rsize=8129,wsize=8129 peridot.hcro.org:/exports/peridot
+
