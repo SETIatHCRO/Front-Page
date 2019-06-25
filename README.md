@@ -29,4 +29,10 @@ Contents:
 
 [**NOTES:**](NOTES) The NOTES stored on tumulus. General operating procedures.
 
+*Librarian: Jon Richards*
+
+[**Network:**](Network) Documents and drawings related to network and computer access..
+
+*Librarian: Jon Richards*
+
 Go to the [-> head over to wiki](https://github.com/SETIatHCRO/ata_docs/wiki)
