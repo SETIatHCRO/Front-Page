@@ -1,0 +1,13 @@
+This is from an email dated October 01, 2009 by Rob Ackermann. It references images contained in this directory.
+
+Jon Richards - August 13, 2019
+
+**************
+
+Attached PAX schematic image "pax-schematic.jpg" shows bits leaving microcontroller enter back attenuator shift-register at (A), leave at (B), and enter front attenuator shift-register at (C).  Also note that on/off bit (red circle) is associated with back attenuator shift-register.
+
+Attached microcontroller source code image "set-pam-cmnd.png" shows first argument, back_atten, assigned to high byte of pam_data (green background highlight).  Second argument, front_atten, assigned to low byte of pam_data (blue background highlight).  On/off bit set in high byte, therefore, associated with back_atten (red background highlight).
+
+Attached microcontroller source code image "set-pam-poll-data.png" shows setpam_data bits shifted from microcontroller to PAX shift-registers in order least significant bits (front attenuator) to most significant bits (yellow and orange background highlights).
+
+Final image "pam-test-bench.jpg" shows PAM controller test bench setup with front and back attenuator bits represented by bar-graph LEDs
