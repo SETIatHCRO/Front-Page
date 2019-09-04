@@ -10,6 +10,7 @@ There are a few things I want to address:
 * Unwieldy names (e.g. dsa-ata-5-ipmi)
 
 At breakthrough listen, then have a short and sweet naming scheme: 
+
 | Name | Purpose | 
 |---|---|
 | blh |  headnode |
@@ -17,6 +18,7 @@ At breakthrough listen, then have a short and sweet naming scheme:
 | blc02 |  The third compute engine  | 
 
 I think we should follow a similar scheme with `si` (SETI Institute) instead of `bl` (Breakthrough Listen) and possibly `frb` (Jonathan's FRB machines)
+
 | Name | Purpose | 
 |---|---|
 | sihead |  headnode (head instead of h is less confusing I think?) |
@@ -53,6 +55,7 @@ I think `si-snapNN` and `frb-snapNN` makes sense but I'm not crazy about hyphens
 ## Mapping Old to New Scheme
 
 Current names (from arp) and purposed names.
+
 | New Hostname | Old Hostname | Example | 
 |--|--|--|
 | sihead | nsg-head | |
