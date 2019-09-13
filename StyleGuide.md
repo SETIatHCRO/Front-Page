@@ -8,6 +8,8 @@ You must adhear to the [PEP8 Style Guide](https://www.python.org/dev/peps/pep-00
 
 ### Linting
 
+> TLDR; running `pylint` on your files should have a score >= 9 
+
 Lint your code with [pylint](https://www.pylint.org/). Install pylint with:
 ```
 $ pip install pylint
@@ -16,7 +18,7 @@ And run it on your file with:
 ```
 $ pylint myscript.py
 ```
-Unless you are a statistical anomaly, this will show you dozens or hundreds or warnings and fixes along with a score. As a basic rule of thumb, ** any score >= 9.0 passes ** muster. If you find these warnings to be a little too pedantic, there are several things you can add to your config file `~/.pylintrc`.
+Unless you are a statistical anomaly, this will show you dozens or hundreds or warnings and fixes along with a score. As a basic rule of thumb, **any score >= 9.0 passes** muster. If you find these warnings to be a little too pedantic, there are several things you can add to your config file `~/.pylintrc`.
 * disable=invalid-name  This will allow you to use variable names like `ra` and `el` but use them sparingly.
 * Want to disable the warnings about tabs? Too bad, don't.
 
