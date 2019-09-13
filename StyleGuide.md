@@ -47,3 +47,11 @@ $ mylint myscript.py
 ```
 
 //TODO add section on git-hooks?
+
+### Note to Scientists 
+
+A few pices of advice for those not trained in programming:
+
+* Complexity is unavoidable but complicated code is optional. Try to avoid uniformly procedural programming which is programming where the execution runs through the program line by line (like how a jupyter notebook works). General advice is to write a class or function, make damn sure it works, then forget about it. This will make your programs readable and will help debugging. If you can reduce frustration while debugging, it will help you, your blood pressure, your relationships, the list goes on...
+* It is much better to be over descriptive than under descriptive. Laziness isn't an excuse with modern text editors and IDEs which have auto-complete. `time_in_ms_since_jan_1970` is preferable to `t` although `time_utc` is probably ideal in this situation.
+* The Python dictionary is the king of data types, know how to use them and your programs will be simpler and faster. 
