@@ -3,7 +3,8 @@ Documentation related to the Allen Telescope Array at the Hat Creek Radio Observ
 
 Contents:
 
-.[**ANTENNA:**].(ANTENNA) Documents relating to Antenna geometry and optical design
+[**ANTENNA:**](ANTENNA) Documents relating to Antenna geometry and optical design
+
 *Librarian: Jaz Hill-Valler*
 
 [**Beamformer:**](Beamformer) Documents related to the first ATA beamformer
