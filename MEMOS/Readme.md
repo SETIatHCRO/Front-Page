@@ -4,7 +4,7 @@ Documentation related to the Allen Telescope Array at the Hat Creek Radio Observ
 
 Contents:
 
-[**Interface Document:**](Interface_Document) Documents relating to the telescope top level information
+[**Interface Document:**](MEMOS/Interface_Document) Documents relating to the telescope top level information
 
 *Librarian: Alexander Pollak*
 
