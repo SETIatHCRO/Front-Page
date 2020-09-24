@@ -1,12 +1,14 @@
-README.md
-MEMOS
+# MEMOS
+
 
 Documentation related to the Allen Telescope Array at the Hat Creek Radio Observatory in Hat Creek, California
 
 Contents:
 
-Interface Document: Documents providing an overview of the Instrument.
+[**Interface Document:**](Interface Document) Documents relating to the telescope top level information
 
-Librarian: Alexander Pollak
+*Librarian: Alexander Pollak*
+
+
 
 
