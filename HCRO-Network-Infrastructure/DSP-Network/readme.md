@@ -1,6 +1,6 @@
 ## DSP Network Overview ##
 
 
-![Alt Text](DSP-Network-Switch.png)
+![Alt Text](DSP-Network-Configuration.png)
 
 
