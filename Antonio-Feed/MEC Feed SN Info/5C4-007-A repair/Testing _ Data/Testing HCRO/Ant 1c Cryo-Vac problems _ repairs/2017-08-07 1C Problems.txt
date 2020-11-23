@@ -1,0 +1,71 @@
+From:	  Elin Klaseen <elin.klaseen@sri.com>
+Sent:	  Monday, August 07, 2017 4:08 PM
+To:	  Robert Spencer
+Subject:  Re: Fwd: RE: 1C Problems
+
+Rob-  Mark reset 48v at 12:03PM today. And I followed w/changes to PID and PWOUT and 
+      confirmed that the ERROR was reset to 0. See below of current queries however.
+      It has gone back to fault state. Here is data gather and the current ERROR,
+      E info and lastly a read of all the feed control board values 
+         
+2017-08-07 11:15  ant1c  CryoTemp 296  CryoPower 0    CryoLNATemp 301  CryoTurboPower 15 
+2017-08-07 11:30  ant1c  CryoTemp 297  CryoPower 0    CryoLNATemp 302  CryoTurboPower 15 
+2017-08-07 11:45  ant1c  CryoTemp 298  CryoPower 0    CryoLNATemp 303  CryoTurboPower 15 
+2017-08-07 12:03  ant1c  CryoTemp 299  CryoPower 0    CryoLNATemp 305  CryoTurboPower 15 
+2017-08-07 12:15  ant1c  CryoTemp 236  CryoPower 111  CryoLNATemp 297  CryoTurboPower 15 
+2017-08-07 12:33  ant1c  CryoTemp 213  CryoPower 132  CryoLNATemp 278  CryoTurboPower 16 
+2017-08-07 12:45  ant1c  CryoTemp 195  CryoPower 156  CryoLNATemp 258  CryoTurboPower 15 
+2017-08-07 13:00  ant1c  CryoTemp 193  CryoPower 149  CryoLNATemp 240  CryoTurboPower 15 
+2017-08-07 13:15  ant1c  CryoTemp 184  CryoPower 156  CryoLNATemp 225  CryoTurboPower 15 
+2017-08-07 13:30  ant1c  CryoTemp 171  CryoPower 168  CryoLNATemp 211  CryoTurboPower 16 
+2017-08-07 13:45  ant1c  CryoTemp 163  CryoPower 174  CryoLNATemp 198  CryoTurboPower 17 
+2017-08-07 14:00  ant1c  CryoTemp 192  CryoPower 0    CryoLNATemp 194  CryoTurboPower 15 
+2017-08-07 14:15  ant1c  CryoTemp 198  CryoPower 0    CryoLNATemp 200  CryoTurboPower 15 
+2017-08-07 14:30  ant1c  CryoTemp 203  CryoPower 0    CryoLNATemp 204  CryoTurboPower 15 
+2017-08-07 14:45  ant1c  CryoTemp 208  CryoPower 0    CryoLNATemp 209  CryoTurboPower 15 
+2017-08-07 15:00  ant1c  CryoTemp 212  CryoPower 0    CryoLNATemp 214  CryoTurboPower 15 
+2017-08-07 15:15  ant1c  CryoTemp 216  CryoPower 0    CryoLNATemp 218  CryoTurboPower 16 
+2017-08-07 15:30  ant1c  CryoTemp 220  CryoPower 0    CryoLNATemp 222  CryoTurboPower 15 
+2017-08-07 15:45  ant1c  CryoTemp 223  CryoPower 0    CryoLNATemp 226  CryoTurboPower 15
+
+ERROR     |000001 
+E         |000.00|000.00|000.00 
+SET PID   |000.00 
+SET PWOUT |200.00 
+ 
+Feed Control Board Commands 
+getfanpwm         100 
+getfanspeed       3058 
+getcryoattemp     no 
+gettemp a0        32.1 
+gettemp a1        31.1 
+gettemp a2        32.0 
+gettemp a3        32.0 
+gettemp a5        32.4 
+gettemp a6        32.7 
+gd                230.2 
+gd -v             0.686 
+gv                sensor error 
+gv -v             0.00 
+getaccel         -0.502 -0.106 0.013 1.030|0.382 1.026 0.019 1.332|-0.574 0.023 0.036 0.594 
+getrelay          off 
+getfeedstartmode  auto 
+get24v            23.2 
+get48v            0.0    (apparently not connected per document) 
+getversion        3.12 
+ 
+Cooler Control Board Commands (Sunpower) 
+SET SSTOPM    0 
+SET SSTOP     0 
+SET MAX       240 
+SET MIN       70 
+SET PID       0 
+SET TTARGET   65.0 
+SET PWOUT     200 
+TC            228.50 
+P             0 
+E             E|000.00|000.00|000.00 
+SHOW MX       070.00|240.00 
+STATE         MODE= 002.00|TSTATM= 000.00|TSTAT= 000.00|SSTOPM= 000.00|SSTOP= 000.00|PID= 
+ERROR         000001 
+ 

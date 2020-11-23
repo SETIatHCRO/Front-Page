@@ -1,0 +1,48 @@
+From:	Cliff Fralick <cliff.fralick@ametek.com>
+Sent:	Wednesday, September 13, 2017 12:15 PM
+To:	Robert Spencer
+Subject:	RE: Minex GT Cooler Over Current Error Code
+Attachments:  527022695.jpg
+
+Thanks for getting back to me Rob.
+I’m sorry you had a failure but at least it was something familiar and hopefully something we have 
+eliminated by added quality controls on the molded connector.
+
+This issue was the result of some overflow of the molded plastic which begins to melt and eventually 
+leads to arcing from the feedthrough to the PV wall I believe.  We improved our inspection techniques 
+and informed our vendor of this issue so anytime I hear about this occurring is with older systems 
+shipped before the power cable quality controls were improved.
+
+So I don’t think there’s really an action necessary to prevent it from happening again. Although when 
+you modify the cable you might add an additional step of inspecting the molded connector to confirm 
+nothing looks odd with the molded plastic to where it might get in too close and contact the 
+feedthrough.  If you look at the attached picture.  The receptacle on the left is probably OK and the 
+plastic is thermally isolated from the receptacle.  On the right the mold comes over some and would be 
+likely to eventually cause a problem.
+
+I hope this helps.  If you need anything else let me know.
+
+Thanks, 
+Cliff
+
+From: Robert Spencer [mailto:rob@minex-engineering.com]  
+Sent: Wednesday, September 13, 2017 2:59 PM 
+To: Cliff Fralick <cliff.fralick@ametek.com> 
+Subject: Minex GT Cooler Over Current Error Code
+
+***NOTICE*** This came from an external source. Use caution when replying, clicking links, or opening attachments.
+Hello Cliff
+
+In late Aug I e-mailed you about a Cooler on an antenna at Hat Creek Radio Observatory that 
+   would shout down on its own, error code was 000001 over current.
+I went up to Hat Creek yesterday & removed the Feed from its antenna.
+In the E-shop I removed & replaced the cooler, we re-installed it on the antenna & it is working fine now.
+Attached are some photos of what caused the problems with the cooler.
+You had suggested that we check this connection, what happened there & what can we do to 
+   prevent this from happening again.
+I do remove this cable & modify it before the cooler is installed (see photo).
+
+Rob Spencer
+Minex Engineering Corp. Antioch, CA, USA
+P: 925 757-6785  F: 925 757-1083
+

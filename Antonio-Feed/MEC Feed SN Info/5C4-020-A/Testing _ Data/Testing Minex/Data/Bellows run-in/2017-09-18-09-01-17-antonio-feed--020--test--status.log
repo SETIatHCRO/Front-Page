@@ -1,0 +1,5 @@
+        cld hd  LNA    Vac   Turbo Turbo Turbo elec.  botm  brng motor board inlet  pax  exhst rjctn housn  Fan  crnt  max   min   
+  Time    (K)   (K)    mbar   RPM   amps watts  (C)   (C)   (C)   (C)   (C)   (C)   (C)   (C)   (C)   (C)   RPM watts watts watts  
+09:01:19  65.0 ----- ------- 90015   0.7    18    45    37    37    43  27.4  24.9  27.0  29.6  39.4  45.2 2926 191.3 240.0  70.0 Y
+09:01:42  65.0 ----- ------- 90013   0.7    18    45    37    37    43  27.5  24.9  27.0  29.6  39.7  45.4 2926 189.9 240.0  70.0 Y
+09:02:10  65.0 ----- ------- 90010   0.7    18    45    37    37    43  27.4  25.0  26.9  29.8  39.5  45.3 2925 189.9 240.0  70.0 Y

@@ -1,0 +1,43 @@
+
+
+From: Franklin Antonio [mailto:antonio@qti.qualcomm.com]  
+Sent: Saturday, September 01, 2018 4:13 PM 
+To: Barott, William Chauncey; Jill Tarter; siemion@berkeley.edu; Jon Richards; Dave DeBoer; Pierre R. 
+Schwob; Eliot Gillum 
+Subject: Re: [EXTERNAL] RE: 8 MHz comb is coming from controller board
+
+The wires going to the crystal will not be the source of the problem.  They carry a clean 
+sinusoid.  Signals that would generate that comb would have sharp edges with some 8MHz 
+periodicity, in other words any and all digital signals synchronous with that clock, in other 
+words all the digital signals related to that microprocessor... memory bus, I/O, etc.  
+
+Is the board designed with some reasonable RF hygiene?    Does the board have a ground 
+plane?  Are signals coming off the board twisted pairs or single wires or what?
+
+First step is to establish how the signal is coupled out of the board.  Make an RF probe by taking 
+two or 3 turns of wire around a pencil, soldered to an SMA connector.  Connect that to a 
+spectrum analyzer.  May need an amplifier in the cable.  Wave it near the board and the various 
+cables coming off the board.    It is common for cables coming off of such a board to be the 
+major problem area.   Power wires can be the source of such problems as well.  That's why its 
+good to begin by sniffing.  If most of the problem is limited to a few wires, then localized 
+treatment may solve the problem.  
+
+Engineers tend to think of digital signals in terms of their voltage (ie 0 or 1) but to think 
+correctly about EMI one has to think about the current.  Each time a digital signal makes a 
+transition from 0 to 1 or 1 to 0, a pulse of current goes down the wire.  The current has to get 
+back to the source.  The critical question is: What path does the return current take?  If the 
+return path is uncontrolled, then you have these pulses going everywhere, thru chassis, thru 
+unexpected return paths, and the result is that the entire structure radiates.  
+
+Controlling the current return path is the first step.  Techniques for doing this include things like 
+using twisted pairs, where the mutual inductance of the pair encourages the return current to 
+come back on the return wire in the pair, or flat cables with gnd-signal-gnd arrangement, which 
+does the same thing.   Additional encouragement can take the form of a ferrite bead over such 
+a pair.  This increases the mutual inductance, and also is lossy at high frequencies.  I/O signals 
+can also be filtered, but this only works when initial RF hygiene is good.  Otherwise, filter 
+circuits just add noise.  
+
+Depending on the results of sniffing, the solution might be as simple as improving the situation 
+on one cable, perhaps with a bead.  On the other hand, if the board starts out with bad RF 
+hygiene, then it may be difficult to fix with patchwork.  Shielding, for example, is very difficult to 
+make work if you start with bad RF hygiene.   

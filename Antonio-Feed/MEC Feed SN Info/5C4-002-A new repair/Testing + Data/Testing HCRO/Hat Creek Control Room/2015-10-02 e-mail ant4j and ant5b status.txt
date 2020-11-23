@@ -1,0 +1,15 @@
+From:	Robert Ackermann [rob@ackrman.net]
+Sent:	Friday, October 02, 2015 8:57 PM
+To:	Chris Munson; Matt Fleming; Rob Spencer
+Subject:	ant4j and ant5b status
+Attachments:	2015-10-02-12-06-ant4j-status.txt; 2015-10-02-12-07-ant5b-status.txt
+
+I checked in on the feeds today, recording from noon until about 8:30 pm.  
+ant4j was out of regulation during the day.  ant5b reached 240 watts and 
+teetered on the edge of regulation ~ 3:30 in the afternoon.  
+They are both fine this evening.  Weather Underground recorded temperatures in 
+the high 70s Fahrenheit in Hat Creek this afternoon.
+
+Best,
+Rob
+

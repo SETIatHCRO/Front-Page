@@ -1,0 +1,104 @@
+
+From:	Niklas Wadefalk <wadefalk@lownoisefactory.com>
+Yes is was to improve contact. It was our experience with the new ones that it was not needed.
+/Niklas
+
+
+
+From: Robert Spencer [mailto:rob@minex-engineering.com]  
+Niklas
+On the older lna’s, before the cooled feed you use to put indium between the cover & base plate.
+Was that related to improving contact between the cover & base plate?
+This will probably be the last question on this subject.
+Rob
+
+
+
+From: Niklas Wadefalk [mailto:wadefalk@lownoisefactory.com]  
+Hi Rob,
+I doubt the center conductor would break in the middle of the line and if it happened I don’t think the 
+LNA would oscillate, but I am not sure.
+I was thinking that maybe the solder joint to the feed was bad, but I am guessing you have this under 
+control.
+
+If the LNA lids are in poor contact with the module, we could see oscillations. I am not sure what to 
+advise you. I can guess that your attempts trying to solve the problem quickly become more expensive 
+than the cost of the LNAs. Maybe you should pick two new LNAs and see if it solves the problem and 
+then we decide what to do?
+/Niklas
+
+
+
+From: Robert Spencer [mailto:rob@minex-engineering.com]  
+Hi Niklas
+A couple of weeks ago we pulled the lna assemblies out, removed the covers & looked everything over 
+under the microscope.
+Soldering, traces, chips, components & wire bonds looked fine.
+
+If there was a break in a center conductor of the 034 coax, inside the jacket, at 280K the center 
+conductor ends where touching but by 70K they had moved apart.
+Could this be happening, what would we see in testing?
+Rob 
+
+
+
+From: Niklas Wadefalk [mailto:wadefalk@lownoisefactory.com]  
+Hi Rob,
+Yes, I referred to the two input coaxial lines. Is it easy to see if they are attached on the feed side 
+without having to take everything apart? I think that is where to look first anyway. It is possible that the 
+lines would come off inside the LNA too. The connectorless solution is not the best.
+/Niklas
+
+
+
+From: Robert Spencer [mailto:rob@minex-engineering.com]  
+Hi Niklas
+This was a new build(5C4-016-A), attached are 2 screen images of the first hot/cold tests just after it was 
+built, y pole only had poor performance.
+We set this feed aside & concentrated on other feeds that would be going to Hat Creek RO.
+After installing feeds at Hat Creek RO we took a 2nd look at -016 feed & that’s when out of the blue this 
+all started.
+You mentioned “coax not properly attached”, that would be the .034 input coax, not the output coax ?
+I hope this info is of some help.
+Rob S.
+
+
+
+From: Niklas Wadefalk [mailto:wadefalk@lownoisefactory.com]  
+Hi Rob,
+Sorry for the late reply. Looking at the pictures you attached it seems clear that the LNAs are oscillating. 
+It’s very hard for me to guess why. Can you give some more information? Is this a feed that has been in 
+operation that was returned due to problems or is it a newly built feed? I can imagine that you would 
+get stability problems if one of the coaxial lines is not properly attached in either end, but there are 
+many other possible reasons.
+/Niklas
+
+
+
+From: Robert Spencer [mailto:rob@minex-engineering.com]  
+Hi Niklas
+I hope you can help with this LNA problem.
+I’m desperate to try and salvage 2 LNA’s in one of our Feeds.
+When I build up a new Feed I check the LNA’s during the process.
+Before we pumpdown & cooldown I do a quick check of the Feeds LNA’s in the Screen Room, in the hot 
+load.
+I use biasing similar to your 296K recommendations on the data sheets.
+I remove the Feed from the Screen Room & back into the lab & I start the Pumpdown & Cooldown.
+When the Feed is Pumpdown & Cooled I move it back to the Screen Room to check the LNA’s.
+Here is when things have gone wrong.
+Attached are some photos:
+(1) is room temp & things look good.
+(2) is X pole at 68K, biasing normal but low gain & lots of structure.
+(3) is Y pole at 68K, low gain & lots of structure & if I adjust id above 20ma the trace drops off the 
+screen.
+(4) is both LNA’s bias adjusted to remove structure & best gain, but still overall low gain, a Hot/Cold test 
+will be very low dB diff.
+Other photos are of set-up.
+We left the Feed in the hot load with the LNA’s on during warm-up, at 125K the structure went away on 
+both LNA’s.
+Do you have any ideas about what’s going on & what we could look for that’s causing this.
+
+Rob Spencer
+Minex Engineering Corp. Antioch, CA, USA
+P: 925 757-6785  F: 925 757-1083
+
