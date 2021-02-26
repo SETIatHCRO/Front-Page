@@ -8,11 +8,11 @@ ant = '3c'
 nm = '1'
 date1= '23/02/21 09:40'
 
-t_hot2 = 287
+t_hot2 = 289
 t_cold2 = 12
 ant2 = '3c'
-nm2 = '3'
-date2='23/02/21 18:10'
+nm2 = '8'
+date2='25/02/21 13:30'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -87,8 +87,8 @@ plt.grid(1)
 plt.subplot(212)
 plt.plot(freq_0,Y_Y)
 plt.plot(freq_02,Y_Y2)
-plt.xlim(0.1, 16)
-plt.ylim(0, 12)
+plt.xlim(0.1, 12)
+plt.ylim(0, 16)
 plt.ylabel('unit')
 plt.xlabel('frequency in GHz')
 plt.grid(1)
