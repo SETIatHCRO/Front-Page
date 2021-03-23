@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 282
-t_cold = 14
+t_hot = 290
+t_cold = 12
 ant = '2e'
-nm = '1'
+nm = '2'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -59,8 +59,8 @@ plt.grid(1)
 plt.subplot(212)
 plt.title('Y for Y-pol')
 plt.plot(freq_0,Y_Y)
-plt.xlim(0.1, 16)
-plt.ylim(0, 12)
+plt.xlim(0.1, 12)
+plt.ylim(0, 16)
 plt.ylabel('unit')
 plt.xlabel('frequency in GHz')
 plt.grid(1)
