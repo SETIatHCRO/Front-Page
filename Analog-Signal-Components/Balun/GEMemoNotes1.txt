@@ -1,0 +1,5 @@
+I guess you can average TXT100.CSV and TXT101.CSV to get Fig8.
+Fig9 will be simulation of odd/even mode return loss for shielded balun,
+but that could be put in a revision. Otherwise this memeo looks
+done.
+

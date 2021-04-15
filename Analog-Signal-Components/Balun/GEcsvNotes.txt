@@ -1,0 +1,7 @@
+TXT100.CSV   balun phase (straight - flip)  -- GEphasesf.csv
+TXT101.CSV   balun phase (flip - straight)  -- GEphasefs.csv
+TXT102.CSV   S21 (straight-flip)            -- GES21sf.csv
+TXT103.CSV   S21 (flip)  this is what we measured for S21: much better
+			  than our previous measurement -- no editing
+			   necessary.       -- GES21f.csv
+			   

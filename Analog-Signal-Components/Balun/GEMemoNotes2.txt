@@ -1,0 +1,16 @@
+Oh, and one other thing about figure 9. You drew the resistive card
+too close to the antenna tip. The "peak" should appear immediately
+over the throat (where twin-lead and transducer sections meet).
+That is, where the lines are broadside coupled.
+
+The shielded balun simulation ran. It predicts that the twin lead
+impedance drops by 20 Ohms. Resonances appear only if the ports
+are badly mismatched -- just like we see on the test balun, when
+we press down on the metal ruler. I'm reruning the simulations with smaller
+frequency steps. Also, running an even mode excitation.
+
+Both simulations will probably take until Monday to finish, and
+I won't get to see the results until Friday. If you want to
+post the memo on Monday go ahead. We can append the simulation results
+later.
+
