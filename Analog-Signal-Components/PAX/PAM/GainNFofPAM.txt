@@ -1,0 +1,21 @@
+Date: Fri, 9 Aug 2002 19:35:08 -0700 (PDT)
+From: dick plambeck 449 <plambeck@astron.berkeley.edu>
+To: dbock@astron.Berkeley.EDU, ddeboer@astron.Berkeley.EDU
+Subject: postamp picture, gain
+Parts/Attachments:
+   1 Shown      3 lines  Text
+   2          196 KB     Image, "DCP00921.jpg"
+   3           55 KB     Image, "SCRN00.JPG"
+----------------------------------------
+
+gain 50 dB
+noise temp measured to be 1060 K.
+
+
+    [ Part 2, "DCP00921.jpg"  Image/JPEG  262KB. ]
+    [ Cannot display this part. Press "V" then "S" to save in a file. ]
+
+
+    [ Part 3, "SCRN00.JPG"  Image/JPEG  74KB. ]
+    [ Cannot display this part. Press "V" then "S" to save in a file. ]
+
