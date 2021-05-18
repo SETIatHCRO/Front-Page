@@ -1,0 +1,40 @@
+Drill Station Info File: /home/rackerma/rfa/SETI/ATA/AntennaControl/PAX/pcb/PAXController.dri
+
+ Date              :  6/20/2006 12:32:31 
+ Drills            : generated
+ Device            : Excellon drill station
+
+Parameter settings:
+
+ Tolerance Drill + :  2.50 %
+ Tolerance Drill - :  2.50 %
+ Rotate            : no
+ Mirror            : no
+ Optimize          : yes
+ Auto fit          : yes
+ OffsetX           : 0inch
+ OffsetY           : 0inch
+ Layers            : Drills Holes
+
+Drill File Info:
+
+ Data Mode         : Absolute
+ Units             : 1/1000 Inch
+
+Drills used:
+
+ Code  Size       used
+
+ T01   0.1910inch     4
+ T02   0.0787inch     4
+ T03   0.1260inch     2
+ T04   0.0330inch     3
+ T05   0.0315inch    30
+ T06   0.0354inch   121
+ T07   0.0276inch   259
+
+Total number of drills: 423
+
+Plotfiles:
+
+ /home/rackerma/rfa/SETI/ATA/AntennaControl/PAX/pcb/PAXController.drd
