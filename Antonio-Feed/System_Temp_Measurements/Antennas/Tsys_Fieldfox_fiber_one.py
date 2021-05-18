@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 299
+t_hot = 300
 t_cold = 12
-ant = '5b'
-nm = '1'
+ant = '2c'
+nm = '2'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -57,7 +57,7 @@ plt.ylim(0, 16)
 plt.ylabel('unit')
 plt.grid(1)
 plt.subplot(212)
-plt.title('Y for Y-pol')
+#plt.title('Y for Y-pol')
 plt.plot(freq_0,Y_Y)
 plt.xlim(0.1, 12)
 plt.ylim(0, 16)
@@ -77,7 +77,7 @@ plt.ylim(-70, -20)
 plt.ylabel('measurement value in dBm')
 plt.grid(1)
 plt.subplot(212)
-plt.title('Hot/Cold for Y-pol')
+#plt.title('Hot/Cold for Y-pol')
 plt.plot(freq_0,cold_Y_db)
 plt.plot(freq_0,hot_Y_db)
 plt.xlim(0.1, 12)
