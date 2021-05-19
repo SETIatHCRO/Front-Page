@@ -1,0 +1,20 @@
+From Rob's e-mail:
+Schematic (2006Jun13PAXBoardSchem.pdf),  and CadSoft Eagle board file (PAXController.brd), and PCB Gerber layout and drill files (PAXControllerV12.zip) attached.
+
+Contents of ZIP file (PAXControllerV12.zip):
+
+PAXController.drd - drill file (center position of holes)
+PAXController.dri - drill info (references drd and drl)
+PAXController.drl - drill tool list (drill sizes)
+PAXController.oln - board outline and mounting holes
+PAXController.slk - top silkscreen
+PAXController.smt - top solder mask
+PAXController.L1 - top layer
+PAXController.L2 - second to top layer
+PAXController.L3 - third to top layer
+PAXController.L4 - third to bottom layer
+PAXController.L5 - second to bottom layer
+PAXController.L6 - bottom layer
+PAXController.smb - bottom solder mask
+
+units are imperial (inches) not metric!

@@ -1,0 +1,26 @@
+*ATF-34143 packaged FET model
+.SUBCKT ATF34143  16   14   15
+
+RR2     2       1       0.1  
+RR9     4       3       0.1  
+RR5     1       5       0.1  
+LL2     5       SOURCE  0.1nH  
+LL7     SOURCE  7       0.1nH  
+LL6     SOURCE  8       0.1nH  
+RR6     8       2       0.1  
+RR7     7       2       0.1  
+RR8     DRAIN   9       0.1  
+LL5     9       11      0.1nH  
+LL8     2       15      0.05nH  
+LL10    15      1       0.1nH  
+LL1     14      4       0.8nH  
+LL9     11      16      0.6nH  
+CC3     11      2       0.15e-12  
+CC4     1       4       0.15e-12  
+LL4     3       GATE    0.1nH  
+
+*CALL DIE MODEL
+XDIE    DRAIN   GATE    SOURCE  BATF34143
+.ENDS
+
+
