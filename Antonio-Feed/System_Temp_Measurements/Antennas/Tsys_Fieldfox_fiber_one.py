@@ -4,7 +4,7 @@ import pandas as pd
 
 t_hot = 300
 t_cold = 12
-ant = '2c'
+ant = '007'
 nm = '2'
 
 
@@ -95,14 +95,14 @@ fig=plt.figure(4)
 plt.subplot(211)
 plt.title(ant+'\n System Temperature for X-pol (UP) and Y-pol (DOWN)')
 plt.plot(freq_0,t_sys_X)
-plt.ylim(-25,150)
+plt.ylim(-25,300)
 plt.xlim(0.1, 12)
 plt.yticks([-25,0,25,50,75,100,125,150],[-25,0,25,50,75,100,125,150])
 plt.grid(1)
 plt.ylabel('temperature in K')
 plt.subplot(212)
 plt.plot(freq_0,t_sys_Y)
-plt.ylim(-25,150)
+plt.ylim(-25,300)
 plt.xlim(0.1, 12)
 plt.yticks([-25,0,25,50,75,100,125,150],[-25,0,25,50,75,100,125,150])
 plt.grid(1)
