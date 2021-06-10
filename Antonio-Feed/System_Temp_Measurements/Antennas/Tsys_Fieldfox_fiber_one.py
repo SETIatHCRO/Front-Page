@@ -4,8 +4,8 @@ import pandas as pd
 
 t_hot = 292
 t_cold = 12
-ant = '2h'
-nm = '2'
+ant = '2b'
+nm = '3'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
