@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 294
+t_hot = 309
 t_cold = 12
-ant = '2b'
+ant = '1e'
 nm = '1'
 date1= '08/06/21 11:15'
 
