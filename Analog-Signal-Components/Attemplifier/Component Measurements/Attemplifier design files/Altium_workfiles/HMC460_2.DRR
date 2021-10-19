@@ -1,0 +1,16 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: HMC460_2.PcbDoc   11/17/2010  1:19:41 PM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : HMC460_2.TXT
+EIA File   : HMC460_2.DRL
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        10mil (0.254mm)          Round          195              13.44 Inch (341.31 mm)
+T2        90mil (2.286mm)          Round          6                4.06 Inch (103.13 mm)
+---------------------------------------------------------------------------
+Totals                                            201              17.50 Inch (444.45 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

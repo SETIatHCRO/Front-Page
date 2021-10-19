@@ -1,0 +1,27 @@
+Bill of Material for atten-F6.PcbDoc
+On 2/22/2008 at 10:36:41 AM
+
+ Comment             Pattern     Quantity  Components
+------------------------------------------------------------------------------
+                     0402             1    A1                                                
+                     0603             1    C21                                               
+                     0805             1    L7                                                
+                     FEEDTHOU6-32     4    b3, b4, b5, b6                                    
+ 0.01                0402             7    C3, C5, C6, C17, C18, C19                         
+                                           C20
+ 100K                0402             1    R4                                                
+ 100pf               0402             4    C7, C8, C9, C10                                   
+ 1uf                 0603             3    C1, C2, C4                                        
+ 220pf               0402             6    C11, C12, C13, C14, C15, C16                      
+ 22nh                0805             1    L2                                                
+ 27                  0603             1    R1                                                
+ 3386                SOT-86(MICO X)    1    U6                                                
+ 68pf                0402             1    C22                                               
+ 6db                 PAT1220          1    AR1                                               
+ 74LVC1G79           SC70-5           1    U7                                                
+ 74LVC2G14           SOT363-6N        2    U3, U4                                            
+ hmc199              TSOP65P490-8AN    1    U5                                                
+ HMC624              QFN50P400X400-24W2L    1    U1                                                
+ L                   0805             3    L1, L3, L5                                        
+ TPS79733            SC70-5           1    U2                                                
+ TSA630-20M          TEMWELL5W        1    F1                                                
