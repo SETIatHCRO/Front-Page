@@ -1,0 +1,170 @@
+FYI: https://webfiles.berkeley.edu/obm/public_html/digibee_plate2.pdf
+
+
+---------------------------- Original Message ----------------------------
+Subject: attenuator/amplifier/iadc  pcb backplate design
+From:    "Oren Milgrome" <obm@berkeley.edu>
+Date:    Tue, November 6, 2007 5:03 pm
+To:      davidm@astro.berkeley.edu
+         urry@astro.berkeley.edu
+         melvyn.wright@gmail.com
+         mdexter@calmail.berkeley.edu
+Cc:      danw@milkyway.ssl.berkeley.edu
+         hchen05@ssl.berkeley.edu
+         welch@astro.berkeley.edu
+         barottw@erau.edu
+--------------------------------------------------------------------------
+
+Hi, check out the quick sketch of a iBOB 2x2 channel ADC with 4 channel 6
+bit attenuator/amplifier pcb backplate design:
+
+https://webfiles.berkeley.edu/obm/public_html/digibee_plate2.pdf
+
+We would connect the amplifiers to the ADCs with short cables and edge
+mount sma connectors. The indvidual channels will be shielded with the
+same can foil as the filter boards.
+
+Sincerely, Oren
+>
+> I think extension idea is OK.
+> I recommend we design the extension so as to avoid the upper and lower
+> card guides.  I think the alignment for smooth install/remove would be
+> too hard to get so maybe better to just avoid altogether.
+> At first glance I don't think this imposes too many restrictions.
+>
+>
+> On Tue, 6 Nov 2007, Oren Milgrome wrote:
+>
+>> Hi, I'll draw it up as a 4" plate extension holding a 3x?" 4 channel
+>> attenplifer pcb. Is the length overhange ok? Looks like a plan.
+>> Thanks, Oren
+>> > Yep.
+>> >
+>> > Maybe having lots of spares would help in the sense that we could
+>> > drill extra holes and such into "spare" plate and then just dismount
+>> the
+>> > iBob+2ADC from existing plate, mount to new super-plate and then
+>> reinstall
+>> > into chassis.  This would minimize the disruption at HCRO.
+>> >
+>> > Many spare plates are in the left filing cabinet in the office.
+>> >
+>> > Matt
+>> >
+>> > On Tue, 6 Nov 2007, Oren Milgrome wrote:
+>> >
+>> >> Hi, maybe we could make a extender for the back plate? We could add a
+>> >> few
+>> >> holes to the existing parts.
+>> >> The 4 channel attenplifier pcb could mount to the extender plate, and
+>> >> connect to ADC vis short smas? Regards, Oren
+>> >>
+>> >> > Oren,
+>> >> >
+>> >> > See attached.
+>> >> > First round of ~10 boards were made by frontpanelexpress.com
+>> >> > can download simple software to design and order.
+>> >> >
+>> >> > It's not that critical but for better or worse we do have a large
+>> >> stock
+>> >> > of  these plates.  probably have about 100 spare.
+>> >> >
+>> >> > Vendor: Protofab Inc.
+>> >> >    Sheryl Eiberg
+>> >> >    Assistant Project Manager
+>> >> >    1310 Stub Road
+>> >> >    Petaluma, CA 94954
+>> >> >    707 782 9669
+>> >> >
+>> >> >                                                unit
+>> >> > description                              QTY   price     price
+>> >> >
+>> >> > Digibee (iBob) aluminum plate            249  $19.21686  $4,785.00
+>> >> > holes cut w/ water jet.
+>> >> > then counter sunk on CNC machine.
+>> >> >   9.1850" x 10.2750"
+>> >> >   thickness 2.0 mm
+>> >> >   corner radius 0.00"
+>> >> >   material: aluminum
+>> >> >   finish: alodine MIL-C-5541 Class 3
+>> >> >   color: natural (clear to light yellow from alodine finish)
+>> >> > 3 weeks.
+>> >> >
+>> >> >
+>> >> > Matt
+>> >> >
+>> >> > On Tue, 6 Nov 2007, Oren Milgrome wrote:
+>> >> >
+>> >> >> Hi Matt, do you have any cad files or drawings for the IBOB/ADC
+>> >> >> Backplates?
+>> >> >> Maybe we could make new plates to hold the attenplifiers pcbs?
+>> >> >>
+>> >> >>
+>> >> >>
+>> >> >> --
+>> >> >> Oren Milgrome
+>> >> >> University of California - Berkeley
+>> >> >> Radio Astronomy Lab 601 Campbell Hall
+>> >> >> Berkeley, CA 94720-3411
+>> >> >> mobile: 510 368 6857 office: 510 642 5509
+>> >> >> lab: 510 642 0381 fax: 510 642 3411
+>> >> >> email: obm@berkeley.edu
+>> >> >>
+>> >> >>
+>> >>
+>> >>
+>> >> --
+>> >> Oren Milgrome
+>> >> University of California - Berkeley
+>> >> Radio Astronomy Lab 601 Campbell Hall
+>> >> Berkeley, CA 94720-3411
+>> >> mobile: 510 368 6857 office: 510 642 5509
+>> >> lab: 510 642 0381 fax: 510 642 3411
+>> >> email: obm@berkeley.edu
+>> >>
+>> >>
+>> >
+>>
+>>
+>> --
+>> Oren Milgrome
+>> University of California - Berkeley
+>> Radio Astronomy Lab 601 Campbell Hall
+>> Berkeley, CA 94720-3411
+>> mobile: 510 368 6857 office: 510 642 5509
+>> lab: 510 642 0381 fax: 510 642 3411
+>> email: obm@berkeley.edu
+>>
+>>
+>
+
+
+-- 
+Oren Milgrome
+University of California - Berkeley
+Radio Astronomy Lab 601 Campbell Hall
+Berkeley, CA 94720-3411
+mobile: 510 368 6857 office: 510 642 5509
+lab: 510 642 0381 fax: 510 642 3411
+email: obm@berkeley.edu
+
+
+-- 
+Oren Milgrome
+University of California - Berkeley
+Radio Astronomy Lab 601 Campbell Hall
+Berkeley, CA 94720-3411
+mobile: 510 368 6857 office: 510 642 5509
+lab: 510 642 0381 fax: 510 642 3411
+email: obm@berkeley.edu
+
+
+-- 
+Oren Milgrome
+University of California - Berkeley
+Radio Astronomy Lab 601 Campbell Hall
+Berkeley, CA 94720-3411
+mobile: 510 368 6857 office: 510 642 5509
+lab: 510 642 0381 fax: 510 642 3411
+email: obm@berkeley.edu
+
