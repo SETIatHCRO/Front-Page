@@ -1,0 +1,26 @@
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ GRASP found  16 CPU cores
+ 
+ Program started at 12:48:35 on 12 April 2019
+GRASP>COMMAND OBJECT ata01_sub_po get_currents ( source : sequence(ref(ata01_feed)),   auto_convergence_of_po : on, convergence_on_scatterer :   sequence(ref(ata01_main_reflector)), convergence_on_output_grid :   sequence(ref(ata01_cut))) ata01_po_sub 
+ ----- TASK No. 1 -----     Started at 12:48:35 on April 12, 2019                
+  PO1 =  113  PO2 =  380  Face =    1, Final PO-values from auto-convergence
+  PTD =  370              Edge =    1, Final PTD-value from auto-convergence.
+ Total task time:  1.28 sec               
+GRASP>COMMAND OBJECT ata01_main_po get_currents ( source :   sequence(ref(ata01_sub_po), ref(ata01_feed)), auto_convergence_of_po : on,   convergence_on_output_grid : sequence(ref(ata01_cut))) ata01_po_main 
+ ----- TASK No. 2 -----     Started at 12:48:36 on April 12, 2019                
+  PO1 =  450  PO2 = 1360  Face =    1, Final PO-values from auto-convergence
+  PTD =    0              Edge =    1, Final PTD-value from auto-convergence.
+ Total task time: 43.28 sec               
+GRASP>COMMAND OBJECT ata01_cut get_field ( source : sequence(ref(ata01_main_po)))   ata01_get_field 
+ ----- TASK No. 3 -----     Started at 12:49:19 on April 12, 2019                
+ Total task time: 29.09 sec               
+GRASP>COMMAND OBJECT ata01_cut add_field ( source : sequence(ref(ata01_feed),   ref(ata01_sub_po))) ata01_add_field_feed 
+ ----- TASK No. 4 -----     Started at 12:49:48 on April 12, 2019                
+ Total task time:  5.31 sec               
+GRASP>QUIT 
+ ----- END OF TASKS -----     Completed at 12:49:54 on April 12, 2019            
+ Total time was 1:19 min
+ Program stopped at 12:49:54 on 12 April 2019

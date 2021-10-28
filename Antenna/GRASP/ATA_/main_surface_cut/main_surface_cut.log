@@ -1,0 +1,18 @@
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ GRASP found  16 CPU cores
+ 
+ Program started at 12:01:46 on 25 April 2019
+GRASP>COMMAND OBJECT ata01_sub_po get_currents ( source :   sequence(ref(hybrid_mode_conical_horn)), auto_convergence_of_po : on,   convergence_on_scatterer : sequence(ref(ata01_main_reflector)),   convergence_on_output_grid : sequence(ref(ata01_main_reflector_surface_cut)))   cmd_1 
+ ----- TASK No. 1 -----     Started at 12:01:46 on April 25, 2019                
+  PO1 =   75  PO2 =  200  Face =    1, Final PO-values from auto-convergence
+  PTD =  195              Edge =    1, Final PTD-value from auto-convergence.
+ Total task time:  0.93 sec               
+GRASP>COMMAND OBJECT ata01_main_reflector_surface_cut get_field ( source :   sequence(ref(ata01_sub_po))) cmd_4 
+ ----- TASK No. 2 -----     Started at 12:01:47 on April 25, 2019                
+ Total task time:  0.98 sec               
+GRASP>QUIT 
+ ----- END OF TASKS -----     Completed at 12:01:48 on April 25, 2019            
+ Total time was 2.56 sec
+ Program stopped at 12:01:48 on 25 April 2019

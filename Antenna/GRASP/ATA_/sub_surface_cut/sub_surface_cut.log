@@ -1,0 +1,13 @@
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ GRASP found  16 CPU cores
+ 
+ Program started at 12:02:00 on 25 April 2019
+GRASP>COMMAND OBJECT ata01_sub_reflector_surface_cut get_field ( source :   sequence(ref(hybrid_mode_conical_horn))) cmd_3 
+ ----- TASK No. 1 -----     Started at 12:02:00 on April 25, 2019                
+ Total task time:  0.18 sec               
+GRASP>QUIT 
+ ----- END OF TASKS -----     Completed at 12:02:00 on April 25, 2019            
+ Total time was 0.76 sec
+ Program stopped at 12:02:00 on 25 April 2019

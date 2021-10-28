@@ -1,0 +1,587 @@
+ 
+ 
+                                       G R A S P
+                                       ==========
+ 
+  General multi-reflector analysis program
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ 
+ GRASP found  16 CPU cores
+ 
+  Reading tor-file: sub_surface_cut.tor
+ 
+ 
+  *** Object name:  ata01_main_reflector
+  *** Class name :  reflector
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_reflector
+  *** Class name :  reflector
+  *** Message    :  New values in object
+ 
+  Coordinate system: ata01_global_coor
+  Surface: ata01_main_surface
+  Rim: ata01_main_rim
+ 
+ 
+  *** Object name:  ata01_global_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_global_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Z_axis :     0.000000    0.000000    1.000000
+ 
+ 
+  *** Object name:  ata01_main_surface
+  *** Class name :  paraboloid
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_surface
+  *** Class name :  paraboloid
+  *** Message    :  New values in object
+ 
+ 
+  Focal length     :    2.43593 m
+   and in SI units :    2.43593 meter
+ 
+ 
+  *** Object name:  ata01_main_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Definition of elliptical_rim
+ 
+  The rim centre is placed at
+    x :    3.36749 m
+    y :    0.00000 m
+  and in SI units
+    x :    3.36749     meter
+    y :    0.00000     meter
+ 
+  The half axes of the ellipse are defined by
+    in x-direction :    3.04491 m
+    in y-direction :    3.04491 m
+  and in SI units
+    in x-direction :    3.04491     meter
+    in y-direction :    3.04491     meter
+ 
+  The rim limits in radii are
+    minimum :    3.04491     meter
+    maximum :    3.04491     meter
+ 
+  The rim limits in x direction are
+    minimum :   0.322576     meter
+    maximum :    6.41240     meter
+ 
+  The rim limits in y direction are
+    minimum :   -3.04491     meter
+    maximum :    3.04491     meter
+ 
+ 
+  *** Object name:  ata01_sub_reflector
+  *** Class name :  reflector
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_reflector
+  *** Class name :  reflector
+  *** Message    :  New values in object
+ 
+  Coordinate system: ata01_sub_coor
+  Surface: ata01_sub_surface
+  Rim: ata01_sub_rim
+ 
+ 
+  *** Object name:  ata01_sub_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Origin :   0.000000E+00 m     0.000000E+00 m     0.243593E+01 m
+  Base name : ata01_global_coor
+  X_axis :     0.720874    0.000000    0.693067
+  Y_axis :     0.000000   -1.000000    0.000000
+  Z_axis :     0.693067    0.000000   -0.720874
+ 
+ 
+  *** Object name:  ata01_sub_surface
+  *** Class name :  ellipsoid
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_surface
+  *** Class name :  ellipsoid
+  *** Message    :  New values in object
+ 
+ 
+  Distance between the vertices, 2a :    3.38618 m
+   and in SI units                  :    3.38618 meter
+ 
+  Distance between the foci, 2c     :    1.16382 m
+   and in SI units                  :    1.16382 meter
+ 
+  Angle between z-axis and ellipsoid axis:    76.8733 degrees
+ 
+    giving the eccentricity         :   0.343697
+ 
+ 
+  *** Object name:  ata01_sub_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Definition of elliptical_rim
+ 
+  The rim centre is placed at
+    x :  -0.534740 m
+    y :    0.00000 m
+  and in SI units
+    x :  -0.534740     meter
+    y :    0.00000     meter
+ 
+  The half axes of the ellipse are defined by
+    in x-direction :    1.23564 m
+    in y-direction :    1.16436 m
+  and in SI units
+    in x-direction :    1.23564     meter
+    in y-direction :    1.16436     meter
+ 
+  The rim limits in radii are
+    minimum :    1.16436     meter
+    maximum :    1.23564     meter
+ 
+  The rim limits in x direction are
+    minimum :   -1.77038     meter
+    maximum :   0.700897     meter
+ 
+  The rim limits in y direction are
+    minimum :   -1.16436     meter
+    maximum :    1.16436     meter
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Coor_sys : ata01_feed_coor
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Definition of common feed attributes
+ 
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Definition of gaussian feed
+ 
+ 
+  Taper angle :   42.0000 degrees
+ 
+  Taper compared to on-axis level :  -12.0000 dB
+ 
+  The imaginary displacement along the negative z-axis
+    is  0.770877 wavelengths
+ 
+ 
+  *** Object name:  ata01_frequencies
+  *** Class name :  frequency
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_frequencies
+  *** Class name :  frequency
+  *** Message    :  New values in object
+ 
+  Frequency No.    1  :   0.110000E+02 GHz
+ 
+ 
+  *** Object name:  ata01_feed_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_feed_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Origin :  -0.113341E+01 m     0.000000E+00 m     0.264309E+00 m
+  Base name : ata01_sub_coor
+  X_axis :     0.968570    0.000000    0.248743
+  Y_axis :     0.000000   -1.000000    0.000000
+  Z_axis :     0.248743    0.000000   -0.968570
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Coor_sys : ata01_cut_coor
+  Theta range : start-180.00000    end 180.00000    points 18001
+  Phi range : start   0.00000    end  90.00000    points     3
+ 
+ 
+  *** Object name:  ata01_cut_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_cut_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Origin :   0.336749E+01 m     0.000000E+00 m     0.116382E+01 m
+  Base name : ata01_global_coor
+  Z_axis :     0.000000    0.000000    1.000000
+ 
+ 
+  *** Object name:  ata01_main_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Scatterer : ata01_main_reflector
+  Coordinate system : ata01_global_coor
+ 
+ 
+  *** Object name:  ata01_sub_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Scatterer : ata01_sub_reflector
+  Coordinate system : ata01_global_coor
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Coor_sys : ata01_feed_coor
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Definition of common feed attributes
+ 
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Definition of HYBRID feed
+ 
+ 
+  Waveguide_radius :    13.0201 mm
+   and in SI units         :   0.130201E-01 meter
+ 
+  Circular aperture radius :    70.9090 mm
+   and in SI units         :   0.709090E-01 meter
+ 
+  Semi flare angle is  :    12.0000 degrees
+  mode power normalization is : on
+ 
+  Axial length of horn :   0.333601     meter
+  Flare length of horn :   0.341053     meter
+ 
+  Cut-off data for waveguide with wl/4 corrugations
+    NO.   TYPE   CUT-OFF FREQ.(Hz)   CUT-OFF WAV.(m)
+     1    HE11   0.8285343421E+10    0.3618346793E-01
+ 
+ 
+  *** Object name:  ata01_sub_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Scatterer : ata01_sub_reflector
+  Rho range : start -0.200000E+01 m   end  0.200000E+01 m   points  2001
+  Phi range : start   0.00000    end  90.00000    points     3
+ 
+ 
+  *** Object name:  ata01_main_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Scatterer : ata01_main_reflector
+  Rho range : start -0.310000E+01 m   end  0.310000E+01 m   points  6201
+  Phi range : start   0.00000    end  90.00000    points     3
+ 
+ 
+  *** Object name:  view_1
+  *** Class name :  view
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1
+  *** Class name :  view
+  *** Message    :  New values in object
+ 
+ 
+  Number of objects :      5
+ 
+  Definition of objects   :
+   No.  Name
+     1  view_1_reflector_plot
+     2  view_1_coor_sys_plot
+     3  view_1_feed_plot
+     4  view_1_output_points_plot
+     5  rays_from_point_sources
+ 
+ 
+ 
+  *** Object name:  view_1_reflector_plot
+  *** Class name :  reflector_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_reflector_plot
+  *** Class name :  reflector_plot
+  *** Message    :  Definition of reflector_plot
+ 
+ 
+ 
+  *** Object name:  view_1_coor_sys_plot
+  *** Class name :  coor_sys_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_coor_sys_plot
+  *** Class name :  coor_sys_plot
+  *** Message    :  Definition of coor_sys_plot
+ 
+ 
+ 
+  *** Object name:  view_1_feed_plot
+  *** Class name :  feed_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_feed_plot
+  *** Class name :  feed_plot
+  *** Message    :  Definition of feed_plot
+ 
+ 
+ 
+  *** Object name:  view_1_output_points_plot
+  *** Class name :  output_points_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_output_points_plot
+  *** Class name :  output_points_plot
+  *** Message    :  Definition of output_points_plot
+ 
+ 
+ 
+  *** Object name:  rays_from_point_sources
+  *** Class name :  rays_from_point_sources
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  rays_from_point_sources
+  *** Class name :  rays_from_point_sources
+  *** Message    :  Definition of ray_plot
+ 
+ 
+  Theta range : start -42.00000    end  42.00000    points    42
+ 
+  Phi range : start   0.00000    end  90.00000    points     1
+ 
+  Ray path range :
+  Start:    0.00000 m
+  End  :    20.0000 m
+   and in SI units
+  Start:    0.00000     meter
+  End  :    20.0000     meter
+ 
+  number of objects: 1
+ 
+    No.  Plot objects
+     1   hybrid_mode_conical_horn
+ Program started at 12:02:00 on 25 April 2019
+ 
+ 
+ ----- TASK No. 1 -----     Started at 12:02:00 on April 25, 2019
+ ata01_sub_reflector_surface_cut get_field ( source :
+ sequence(ref(hybrid_mode_conical_horn)))
+ 
+ 
+  *** Object name:  ata01_sub_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  Get_field message received
+ 
+  Source : hybrid_mode_conical_horn
+ 
+  Spherical wave expansion with sphere samples:
+     n_phi   = 4
+     n_theta = 28
+ 
+  Power of internal spherical wave expansion modes:
+ 
+       Power/(4*pi watt) in each Azimuthal mode
+        M       Power        Accumulated
+        0   1.5748931E-30   1.5748931E-30
+        1   9.9996283E-01   9.9996283E-01
+ 
+       Power in each Polar mode
+        N       Power        Accumulated    Total-Accumulated
+        1   4.0156221E-02   4.0156221E-02   9.5980661E-01
+        2   6.8826177E-02   1.0898240E-01   8.9098043E-01
+        3   8.8167528E-02   1.9714993E-01   8.0281290E-01
+        4   1.0168526E-01   2.9883518E-01   7.0112765E-01
+        5   1.1054978E-01   4.0938496E-01   5.9057787E-01
+        6   1.1277656E-01   5.2216152E-01   4.7780131E-01
+        7   1.1149198E-01   6.3365350E-01   3.6630933E-01
+        8   1.0844673E-01   7.4210023E-01   2.5786260E-01
+        9   9.0524165E-02   8.3262439E-01   1.6733844E-01
+       10   7.2645442E-02   9.0526984E-01   9.4692995E-02
+       11   4.8174144E-02   9.5344398E-01   4.6518851E-02
+       12   2.5693876E-02   9.7913786E-01   2.0824974E-02
+       13   1.3732630E-02   9.9287049E-01   7.0923447E-03
+       14   4.4607265E-03   9.9733121E-01   2.6316182E-03
+       15   2.0305746E-03   9.9936179E-01   6.0104357E-04
+       16   4.0618068E-04   9.9976797E-01   1.9486289E-04
+       17   1.6491560E-04   9.9993288E-01   2.9947287E-05
+       18   2.1122778E-05   9.9995401E-01   8.8245090E-06
+       19   7.8940557E-06   9.9996190E-01   9.3045335E-07
+       20   6.7451304E-07   9.9996258E-01   2.5594030E-07
+       21   2.3697211E-07   9.9996281E-01   1.8968190E-08
+       22   1.4011308E-08   9.9996283E-01   4.9568818E-09
+       23   4.6919493E-09   9.9996283E-01   2.6493252E-10
+       24   1.9704566E-10   9.9996283E-01   6.7886807E-11
+       25   6.4804539E-11   9.9996283E-01   3.0823122E-12
+       26   2.4290019E-12   9.9996283E-01   6.5325523E-13
+       27   6.5328902E-13   9.9996283E-01   0.0000000E+00
+ 
+ 
+  *** Object name:  ata01_sub_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  Cut calculated
+ 
+  Frequency No. :     1
+  Beam No. :     1
+  Phi angle :    0.00000 deg.
+  Field type : Incident E-field
+  Polarisation type : linear
+ 
+ 
+  *** Object name:  ata01_sub_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  Cut calculated
+ 
+  Frequency No. :     1
+  Beam No. :     1
+  Phi angle :   45.00000 deg.
+  Field type : Incident E-field
+  Polarisation type : linear
+ 
+ 
+  *** Object name:  ata01_sub_reflector_surface_cut
+  *** Class name :  surface_cut
+  *** Message    :  Cut calculated
+ 
+  Frequency No. :     1
+  Beam No. :     1
+  Phi angle :   90.00000 deg.
+  Field type : Incident E-field
+  Polarisation type : linear
+ 
+ ----- END OF TASKS -----     Completed at 12:02:00 on April 25, 2019
+ Total time was 0.76 sec
+ 
+ GRASP SN: 006720
+ Program stopped at 12:02:00 on 25 April 2019
+ 

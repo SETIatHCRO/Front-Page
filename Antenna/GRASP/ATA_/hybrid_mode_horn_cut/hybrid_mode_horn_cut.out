@@ -1,0 +1,711 @@
+ 
+ 
+                                       G R A S P
+                                       ==========
+ 
+  General multi-reflector analysis program
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ 
+ GRASP found  16 CPU cores
+ 
+  Reading tor-file: hybrid_mode_horn_cut.tor
+ 
+ 
+  *** Object name:  ata01_main_reflector
+  *** Class name :  reflector
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_reflector
+  *** Class name :  reflector
+  *** Message    :  New values in object
+ 
+  Coordinate system: ata01_global_coor
+  Surface: ata01_main_surface
+  Rim: ata01_main_rim
+ 
+ 
+  *** Object name:  ata01_global_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_global_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Z_axis :     0.000000    0.000000    1.000000
+ 
+ 
+  *** Object name:  ata01_main_surface
+  *** Class name :  paraboloid
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_surface
+  *** Class name :  paraboloid
+  *** Message    :  New values in object
+ 
+ 
+  Focal length     :    2.43593 m
+   and in SI units :    2.43593 meter
+ 
+ 
+  *** Object name:  ata01_main_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Definition of elliptical_rim
+ 
+  The rim centre is placed at
+    x :    3.36749 m
+    y :    0.00000 m
+  and in SI units
+    x :    3.36749     meter
+    y :    0.00000     meter
+ 
+  The half axes of the ellipse are defined by
+    in x-direction :    3.04491 m
+    in y-direction :    3.04491 m
+  and in SI units
+    in x-direction :    3.04491     meter
+    in y-direction :    3.04491     meter
+ 
+  The rim limits in radii are
+    minimum :    3.04491     meter
+    maximum :    3.04491     meter
+ 
+  The rim limits in x direction are
+    minimum :   0.322576     meter
+    maximum :    6.41240     meter
+ 
+  The rim limits in y direction are
+    minimum :   -3.04491     meter
+    maximum :    3.04491     meter
+ 
+ 
+  *** Object name:  ata01_sub_reflector
+  *** Class name :  reflector
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_reflector
+  *** Class name :  reflector
+  *** Message    :  New values in object
+ 
+  Coordinate system: ata01_sub_coor
+  Surface: ata01_sub_surface
+  Rim: ata01_sub_rim
+ 
+ 
+  *** Object name:  ata01_sub_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Origin :   0.000000E+00 m     0.000000E+00 m     0.243593E+01 m
+  Base name : ata01_global_coor
+  X_axis :     0.720874    0.000000    0.693067
+  Y_axis :     0.000000   -1.000000    0.000000
+  Z_axis :     0.693067    0.000000   -0.720874
+ 
+ 
+  *** Object name:  ata01_sub_surface
+  *** Class name :  ellipsoid
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_surface
+  *** Class name :  ellipsoid
+  *** Message    :  New values in object
+ 
+ 
+  Distance between the vertices, 2a :    3.38618 m
+   and in SI units                  :    3.38618 meter
+ 
+  Distance between the foci, 2c     :    1.16382 m
+   and in SI units                  :    1.16382 meter
+ 
+  Angle between z-axis and ellipsoid axis:    76.8733 degrees
+ 
+    giving the eccentricity         :   0.343697
+ 
+ 
+  *** Object name:  ata01_sub_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_rim
+  *** Class name :  elliptical_rim
+  *** Message    :  Definition of elliptical_rim
+ 
+  The rim centre is placed at
+    x :  -0.534740 m
+    y :    0.00000 m
+  and in SI units
+    x :  -0.534740     meter
+    y :    0.00000     meter
+ 
+  The half axes of the ellipse are defined by
+    in x-direction :    1.23564 m
+    in y-direction :    1.16436 m
+  and in SI units
+    in x-direction :    1.23564     meter
+    in y-direction :    1.16436     meter
+ 
+  The rim limits in radii are
+    minimum :    1.16436     meter
+    maximum :    1.23564     meter
+ 
+  The rim limits in x direction are
+    minimum :   -1.77038     meter
+    maximum :   0.700897     meter
+ 
+  The rim limits in y direction are
+    minimum :   -1.16436     meter
+    maximum :    1.16436     meter
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Coor_sys : ata01_feed_coor
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Definition of common feed attributes
+ 
+ 
+ 
+  *** Object name:  ata01_feed
+  *** Class name :  gaussian_beam_pattern
+  *** Message    :  Definition of gaussian feed
+ 
+ 
+  Taper angle :   42.0000 degrees
+ 
+  Taper compared to on-axis level :  -12.0000 dB
+ 
+  The imaginary displacement along the negative z-axis
+    is  0.770877 wavelengths
+ 
+ 
+  *** Object name:  ata01_frequencies
+  *** Class name :  frequency
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_frequencies
+  *** Class name :  frequency
+  *** Message    :  New values in object
+ 
+  Frequency No.    1  :   0.110000E+02 GHz
+ 
+ 
+  *** Object name:  ata01_feed_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_feed_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Origin :  -0.113341E+01 m     0.000000E+00 m     0.264309E+00 m
+  Base name : ata01_sub_coor
+  X_axis :     0.968570    0.000000    0.248743
+  Y_axis :     0.000000   -1.000000    0.000000
+  Z_axis :     0.248743    0.000000   -0.968570
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Coor_sys : ata01_cut_coor
+  Theta range : start-180.00000    end 180.00000    points 18001
+  Phi range : start   0.00000    end  90.00000    points     3
+ 
+ 
+  *** Object name:  ata01_cut_coor
+  *** Class name :  coor_sys
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_cut_coor
+  *** Class name :  coor_sys
+  *** Message    :  New values in object
+ 
+  Origin :   0.336749E+01 m     0.000000E+00 m     0.116382E+01 m
+  Base name : ata01_global_coor
+  Z_axis :     0.000000    0.000000    1.000000
+ 
+ 
+  *** Object name:  ata01_main_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_main_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Scatterer : ata01_main_reflector
+  Coordinate system : ata01_global_coor
+ 
+ 
+  *** Object name:  ata01_sub_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  ata01_sub_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Scatterer : ata01_sub_reflector
+  Coordinate system : ata01_global_coor
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  New values in object
+ 
+  Frequency : ata01_frequencies
+  Coor_sys : ata01_feed_coor
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Definition of common feed attributes
+ 
+ 
+ 
+  *** Object name:  hybrid_mode_conical_horn
+  *** Class name :  hybrid_mode_conical_horn
+  *** Message    :  Definition of HYBRID feed
+ 
+ 
+  Waveguide_radius :    13.0201 mm
+   and in SI units         :   0.130201E-01 meter
+ 
+  Circular aperture radius :    70.9090 mm
+   and in SI units         :   0.709090E-01 meter
+ 
+  Semi flare angle is  :    12.0000 degrees
+  mode power normalization is : on
+ 
+  Axial length of horn :   0.333601     meter
+  Flare length of horn :   0.341053     meter
+ 
+  Cut-off data for waveguide with wl/4 corrugations
+    NO.   TYPE   CUT-OFF FREQ.(Hz)   CUT-OFF WAV.(m)
+     1    HE11   0.8285343421E+10    0.3618346793E-01
+ 
+ 
+  *** Object name:  view_1
+  *** Class name :  view
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1
+  *** Class name :  view
+  *** Message    :  New values in object
+ 
+ 
+  Number of objects :      4
+ 
+  Definition of objects   :
+   No.  Name
+     1  view_1_reflector_plot
+     2  view_1_coor_sys_plot
+     3  view_1_feed_plot
+     4  view_1_output_points_plot
+ 
+ 
+ 
+  *** Object name:  view_1_reflector_plot
+  *** Class name :  reflector_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_reflector_plot
+  *** Class name :  reflector_plot
+  *** Message    :  Definition of reflector_plot
+ 
+ 
+ 
+  *** Object name:  view_1_coor_sys_plot
+  *** Class name :  coor_sys_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_coor_sys_plot
+  *** Class name :  coor_sys_plot
+  *** Message    :  Definition of coor_sys_plot
+ 
+ 
+ 
+  *** Object name:  view_1_feed_plot
+  *** Class name :  feed_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_feed_plot
+  *** Class name :  feed_plot
+  *** Message    :  Definition of feed_plot
+ 
+ 
+ 
+  *** Object name:  view_1_output_points_plot
+  *** Class name :  output_points_plot
+  *** Message    :  Object created
+ 
+ 
+ 
+  *** Object name:  view_1_output_points_plot
+  *** Class name :  output_points_plot
+  *** Message    :  Definition of output_points_plot
+ 
+ Program started at 12:48:35 on 12 April 2019
+ 
+ 
+ ----- TASK No. 1 -----     Started at 12:48:35 on April 12, 2019
+ ata01_sub_po get_currents ( source : sequence(ref(ata01_feed)),
+ auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_reflector)), convergence_on_output_grid :
+ sequence(ref(ata01_cut)))
+ 
+ 
+  *** Object name:  ata01_sub_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Get_currents message received
+ 
+  Source : ata01_feed
+  PO-auto-convergence selection : on
+  Convergence test on scatterer object : ata01_main_reflector
+  Convergence test on output grid : ata01_cut
+ 
+ 
+  *** Object name:  ata01_sub_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Initialization
+ 
+ 
+  Auto-convergence with desired accuracy of -80.00 dB.
+ 
+  Face 1:
+  Max. values: po1/po2 = 2930/7040
+ 
+ PO convergence
+  Test-grid  Ref-grid    Freq  Beam  Grid       P_max   P_level  Accuracy
+    po1/po2   po1/po2                           [dBi]     [dBi]      [dB]
+      20/10     10/10       1     1     1      -23.38    -23.38      2.41
+      20/10     10/10       1     1     2       39.39     39.39      0.39
+      40/10     20/10       1     1     1      -26.97    -26.97      3.57
+      40/10     20/10       1     1     2       33.94     33.94     -0.44
+      80/10     40/10       1     1     1      -31.32    -31.32      1.45
+      80/10     40/10       1     1     2       29.09     29.09      6.28
+     160/10     80/10       1     1     1      -32.39    -32.39   -161.10  *
+     160/10     80/10       1     1     2       30.27     30.27     -1.56
+     320/10    160/10       1     1     2       28.23     28.23   -235.13  *
+     120/10    320/10       1     1     2       28.23     28.23   -141.11  *
+     100/10    320/10       1     1     2       28.23     28.23    -19.99
+     110/10    320/10       1     1     2       28.23     28.23    -60.25
+     115/10    320/10       1     1     2       28.23     28.23    -96.27  *
+     113/10    320/10       1     1     2       28.23     28.23    -80.68  *
+ 
+ PO convergence
+  Test-grid  Ref-grid    Freq  Beam  Grid       P_max   P_level  Accuracy
+    po1/po2   po1/po2                           [dBi]     [dBi]      [dB]
+      10/20     10/10       1     1     1      -23.38    -23.38      2.56
+      10/20     10/10       1     1     2       39.39     39.39     -1.31
+      10/40     10/20       1     1     1      -24.46    -24.46      0.17
+      10/40     10/20       1     1     2       33.04     33.04      2.04
+      10/80     10/40       1     1     1      -25.71    -25.71      0.63
+      10/80     10/40       1     1     2       32.70     32.70     -1.78
+     10/160     10/80       1     1     1      -27.64    -27.64     -7.05
+     10/160     10/80       1     1     2       31.58     31.58     -0.77
+     10/320    10/160       1     1     1      -27.64    -27.64    -18.04
+     10/320    10/160       1     1     2       31.44     31.44     -6.83
+     10/640    10/320       1     1     1      -27.64    -27.64   -262.54  *
+     10/640    10/320       1     1     2       31.44     31.44    -21.14
+    10/1280    10/640       1     1     2       31.44     31.44   -265.27  *
+     10/480   10/1280       1     1     2       31.44     31.44   -266.79  *
+     10/400   10/1280       1     1     2       31.44     31.44   -198.79  *
+     10/360   10/1280       1     1     2       31.44     31.44    -48.85
+     10/380   10/1280       1     1     2       31.44     31.44   -108.30  *
+     10/370   10/1280       1     1     2       31.44     31.44    -72.82
+  PO1 =  113  PO2 =  380  Face =    1, Final PO-values from auto-convergence
+ 
+  Edge 1:
+  Max. value: ptd = 7040
+ 
+ PO convergence
+  Test-grid  Ref-grid    Freq  Beam  Grid       P_max   P_level  Accuracy
+        ptd       ptd                           [dBi]     [dBi]      [dB]
+         20        10       1     1     1      -74.86    -27.64    -47.23
+         20        10       1     1     2       -7.87     31.44    -42.30
+         40        20       1     1     1      -75.79    -27.64    -48.25
+         40        20       1     1     2      -10.49     31.44    -45.55
+         80        40       1     1     1      -78.07    -27.64    -53.32
+         80        40       1     1     2      -11.32     31.44    -48.05
+        160        80       1     1     1      -78.39    -27.64    -55.98
+        160        80       1     1     2      -11.80     31.44    -45.44
+        320       160       1     1     1      -78.50    -27.64    -51.00
+        320       160       1     1     2      -19.36     31.44    -57.78
+        640       320       1     1     1      -81.63    -27.64   -317.14  *
+        640       320       1     1     2      -19.36     31.44    -61.67
+       1280       640       1     1     2      -19.36     31.44   -155.24  *
+        480      1280       1     1     2      -19.36     31.44   -137.93  *
+        400      1280       1     1     2      -19.36     31.44   -128.83  *
+        360      1280       1     1     2      -19.36     31.44    -71.94
+        380      1280       1     1     2      -19.36     31.44   -123.97  *
+        370      1280       1     1     2      -19.36     31.44    -91.68  *
+  PTD =  370              Edge =    1, Final PTD-value from auto-convergence.
+ 
+ ----- TASK No. 2 -----     Started at 12:48:36 on April 12, 2019
+ ata01_main_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed)), auto_convergence_of_po : on, convergence_on_output_grid :
+ sequence(ref(ata01_cut)))
+ 
+ 
+  *** Object name:  ata01_main_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Get_currents message received
+ 
+  Source : ata01_sub_po
+  Source : ata01_feed
+  PO-auto-convergence selection : on
+  Convergence test on output grid : ata01_cut
+ 
+ 
+  *** Object name:  ata01_main_po
+  *** Class name :  po_single_face_scatterer
+  *** Message    :  Initialization
+ 
+ 
+  Auto-convergence with desired accuracy of -80.00 dB.
+ 
+  Face 1:
+  Max. values: po1/po2 = 7440/17870
+ 
+  Name of currents file: tmp_0000
+ 
+  Control values found in the file:
+    No. of frequencies: 1
+    No. of beams      : 1
+    No. of faces      : 1
+    No. of edges      : 1
+    No. of gaps       : 0
+ 
+  Frequency number  1 :  11.000 GHz
+ 
+    Face No.      PO1       PO2     Partitions
+          1       113       380         1
+ 
+    Edge No.     PTD1
+          1       370
+ 
+ 
+ PO convergence
+  Test-grid  Ref-grid       P_max   P_level  Accuracy
+    po1/po2   po1/po2       [dBi]     [dBi]      [dB]
+      20/10     10/10       55.76     55.76     -8.98
+      40/10     20/10       55.66     55.66    -10.22
+      80/10     40/10       55.71     55.71    -16.85
+     160/10     80/10       55.70     55.70    -17.76
+     320/10    160/10       55.70     55.70    -16.93
+     640/10    320/10       55.70     55.70    -23.21
+    1280/10    640/10       55.70     55.70   -224.39  *
+     480/10   1280/10       55.70     55.70   -194.50  *
+     400/10   1280/10       55.70     55.70    -37.47
+     440/10   1280/10       55.70     55.70    -73.26
+     460/10   1280/10       55.70     55.70   -123.35  *
+     450/10   1280/10       55.70     55.70   -100.38  *
+ 
+ PO convergence
+  Test-grid  Ref-grid       P_max   P_level  Accuracy
+    po1/po2   po1/po2       [dBi]     [dBi]      [dB]
+      10/20     10/10       55.76     55.76     -9.86
+      10/40     10/20       55.75     55.75    -12.04
+      10/80     10/40       55.73     55.73    -14.70
+     10/160     10/80       55.73     55.73    -16.46
+     10/320    10/160       55.73     55.73    -17.96
+     10/640    10/320       55.73     55.73    -25.50
+    10/1280    10/640       55.73     55.73    -28.60
+    10/2560   10/1280       55.73     55.73    -60.49
+    10/5120   10/2560       55.73     55.73   -282.88  *
+    10/1920   10/5120       55.73     55.73   -277.09  *
+    10/1600   10/5120       55.73     55.73   -279.28  *
+    10/1440   10/5120       55.73     55.73   -108.22  *
+    10/1360   10/5120       55.73     55.73    -97.12  *
+    10/1320   10/5120       55.73     55.73    -73.50
+  PO1 =  450  PO2 = 1360  Face =    1, Final PO-values from auto-convergence
+ 
+  Edge 1:
+  Max. value: ptd = 17870
+ 
+ PO convergence
+  Test-grid  Ref-grid       P_max   P_level  Accuracy
+        ptd       ptd       [dBi]     [dBi]      [dB]
+         20        10      -16.61     55.73    -74.88
+         40        20      -19.96     55.73    -77.69
+         80        40      -22.25     55.73    -79.76
+        160        80      -24.79     55.73    -85.15  *
+        320       160      -25.43     55.73    -82.42  *
+        640       320      -25.89     55.73    -90.60  *
+       1280       640      -25.89     55.73    -90.70  *
+       2560      1280      -25.89     55.73   -103.55  *
+  PTD =    0              Edge =    1, Final PTD-value from auto-convergence.
+ 
+ ----- TASK No. 3 -----     Started at 12:49:19 on April 12, 2019
+ ata01_cut get_field ( source : sequence(ref(ata01_main_po)))
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Get_field message received
+ 
+  Source : ata01_main_po
+ 
+  Name of currents file: tmp_0001
+ 
+  Control values found in the file:
+    No. of frequencies: 1
+    No. of beams      : 1
+    No. of faces      : 1
+    No. of edges      : 1
+    No. of gaps       : 0
+ 
+  Frequency number  1 :  11.000 GHz
+ 
+    Face No.      PO1       PO2     Partitions
+          1       450      1360         1
+ 
+    Edge No.     PTD1
+          1         0
+ 
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Field calculated
+ 
+  Frequency No. :     1
+  Beam No. :     1
+ 
+ ----- TASK No. 4 -----     Started at 12:49:48 on April 12, 2019
+ ata01_cut add_field ( source : sequence(ref(ata01_feed), ref(ata01_sub_po)))
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Add_field message received
+ 
+  Source : ata01_feed
+  Source : ata01_sub_po
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Field calculated
+ 
+  Frequency No. :     1
+  Beam No. :     1
+ 
+  Name of currents file: tmp_0000
+ 
+  Control values found in the file:
+    No. of frequencies: 1
+    No. of beams      : 1
+    No. of faces      : 1
+    No. of edges      : 1
+    No. of gaps       : 0
+ 
+  Frequency number  1 :  11.000 GHz
+ 
+    Face No.      PO1       PO2     Partitions
+          1       113       380         1
+ 
+    Edge No.     PTD1
+          1       370
+ 
+ 
+ 
+  *** Object name:  ata01_cut
+  *** Class name :  spherical_cut
+  *** Message    :  Field calculated
+ 
+  Frequency No. :     1
+  Beam No. :     1
+ 
+ ----- END OF TASKS -----     Completed at 12:49:54 on April 12, 2019
+ Total time was 1:19 min
+ 
+ GRASP SN: 006720
+ Program stopped at 12:49:54 on 12 April 2019
+ 

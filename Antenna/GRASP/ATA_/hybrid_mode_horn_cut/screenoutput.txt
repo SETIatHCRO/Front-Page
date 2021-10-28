@@ -1,0 +1,65 @@
+ Tci file: hybrid_mode_horn_cut.tci
+ Out file: hybrid_mode_horn_cut.out
+ Log file: hybrid_mode_horn_cut.log
+ 
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ 
+ GRASP found  16 CPU cores
+ 
+ ----- TASK No. 1 -----     Started at 12:48:35 on April 12, 2019
+ 
+ ata01_sub_po get_currents ( source : sequence(ref(ata01_feed)),
+ auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_reflector)), convergence_on_output_grid :
+ sequence(ref(ata01_cut)))
+ 
+  PO1 =  113  PO2 =  380  Face =    1, Final PO-values from auto-convergence 
+  PTD =  370              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):              27774                               
+  No. of PTD points (target):               370 
+ Total task time:  1.28 sec
+ 
+ ----- TASK No. 2 -----     Started at 12:48:36 on April 12, 2019
+ 
+ ata01_main_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed)), auto_convergence_of_po : on, convergence_on_output_grid :
+ sequence(ref(ata01_cut)))
+ 
+  PO1 =  450  PO2 = 1360  Face =    1, Final PO-values from auto-convergence 
+  PTD =    0              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):             391345                               
+  No. of sources:                             2 
+  No. of PO points (source):              27774 
+  No. of PTD points (source):               370                      
+                                                                      
+ Total task time: 43.28 sec
+ 
+ ----- TASK No. 3 -----     Started at 12:49:19 on April 12, 2019
+ 
+ ata01_cut get_field ( source : sequence(ref(ata01_main_po)))
+ 
+  No. of field points:                    54003 
+  No. of PO points (source):             391345 
+                                                                      
+ Total task time: 29.09 sec
+ 
+ ----- TASK No. 4 -----     Started at 12:49:48 on April 12, 2019
+ 
+ ata01_cut add_field ( source : sequence(ref(ata01_feed), ref(ata01_sub_po)))
+ 
+  No. of field points:                    54003 
+  No. of field points:                    54003 
+  No. of PO points (source):              27774 
+  No. of PTD points (source):               370                      
+                                                                      
+ Total task time:  5.31 sec
+ 
+ ----- END OF TASKS -----     Completed at 12:49:54 on April 12, 2019
+ 
+ Total time was 1:19 min
