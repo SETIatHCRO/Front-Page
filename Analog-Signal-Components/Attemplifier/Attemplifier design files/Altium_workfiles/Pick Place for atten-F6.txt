@@ -1,0 +1,46 @@
+Designator Footprint               Mid X         Mid Y         Ref X         Ref Y         Pad X         Pad Y TB      Rotation Comment        
+
+C21        0603                1448.5mil       -380mil       1421mil       -380mil       1421mil       -380mil  T        360.00                
+C4         0603                  1328mil     -547.5mil       1328mil       -520mil       1328mil       -520mil  T        270.00 1uf            
+C22        0402                  1470mil       -485mil       1445mil       -485mil       1445mil       -485mil  T        360.00 68pf           
+L5         0805                  1375mil       -414mil       1375mil       -369mil       1375mil       -369mil  T        270.00 L              
+L7         0805                  1322mil       -465mil       1367mil       -465mil       1367mil       -465mil  T        180.00                
+U7         SC70-5                 804mil       -459mil        804mil       -459mil    769.551mil   -433.409mil  T        270.00 74LVC1G79      
+b5         FEEDTHOU6-32          -771mil      -2001mil       1390mil         78mil       -771mil      -2001mil  T        360.00                
+b3         FEEDTHOU6-32          -771mil      -2001mil        750mil         80mil       -771mil      -2001mil  T        360.00                
+F1         TEMWELL5W              531mil       -767mil        460mil       -874mil        603mil       -730mil  T          0.00 TSA630-20M     
+C18        0402                  1000mil       -409mil       1000mil       -434mil       1000mil       -434mil  T         90.00 0.01           
+C6         0402                  1474mil     -456.5mil       1449mil       -456mil       1449mil       -457mil  T        360.00 0.01           
+R1         0603                1401.5mil       -519mil       1435mil       -519mil       1435mil       -519mil  T        180.00 27             
+C1         0603                  1164mil     -286.5mil       1164mil       -314mil       1164mil       -314mil  T         90.00 1uf            
+L2         0805                  1430mil       -631mil       1430mil       -586mil       1430mil       -586mil  T        270.00 22nh           
+L1         0805                  1177mil       -562mil       1177mil       -517mil       1177mil       -517mil  T        270.00 L              
+U4         SOT363-6N              639mil       -335mil        639mil       -335mil    664.591mil   -297.599mil  T        270.00 74LVC2G14      
+U3         SOT363-6N              928mil       -438mil        928mil       -438mil    953.591mil   -400.599mil  T        270.00 74LVC2G14      
+C10        0402                   811mil       -714mil        786mil       -714mil        786mil       -714mil  T        360.00 100pf          
+AR1        PAT1220            275.527mil   -683.378mil        246mil       -707mil        246mil       -707mil  T          0.00 6db            
+C17        0402                   817mil       -395mil        792mil       -395mil        792mil       -395mil  T        360.00 0.01           
+C3         0402                  1225mil       -543mil       1225mil       -518mil       1225mil       -518mil  T        270.00 0.01           
+C5         0402                  1121mil       -578mil       1121mil       -603mil       1121mil       -603mil  T         90.00 0.01           
+C12        0402                   931mil       -825mil        931mil       -800mil        931mil       -800mil  T        270.00 220pf          
+C16        0402                  1074mil       -819mil       1074mil       -794mil       1074mil       -794mil  T        270.00 220pf          
+C15        0402                  1035mil       -819mil       1035mil       -794mil       1035mil       -794mil  T        270.00 220pf          
+C14        0402                  1000mil       -819mil       1000mil       -794mil       1000mil       -794mil  T        270.00 220pf          
+C7         0402                  1159mil   -715.106mil       1134mil   -715.213mil       1134mil   -715.213mil  T        360.00 100pf          
+C9         0402                   368mil       -715mil        343mil       -715mil        343mil       -715mil  T        360.00 100pf          
+C2         0603                1136.5mil       -417mil       1164mil       -417mil       1164mil       -417mil  T        180.00 1uf            
+C11        0402                   897mil       -822mil        897mil       -797mil        897mil       -797mil  T        270.00 220pf          
+U2         SC70-5                1223mil       -363mil       1223mil       -363mil   1257.449mil   -388.591mil  T         90.00 TPS79733       
+U1         QFN50P400X400-24W2L    992.996mil       -666mil        993mil       -666mil    916.221mil   -616.772mil  T        360.00 HMC624         
+C13        0402                   964mil       -824mil        964mil       -799mil        964mil       -799mil  T        270.00 220pf          
+U6         SOT-86(MICO_X)        1308mil       -714mil       1243mil       -714mil       1228mil       -714mil  T         90.00 3386           
+C8         0402                  1492mil       -714mil       1467mil       -714mil       1467mil       -714mil  T        360.00 100pf          
+U5         TSOP65P490-8AN         609mil       -564mil        609mil       -564mil    647.386mil   -481.323mil  T        270.00 hmc199         
+C19        0402                   699mil       -320mil        699mil       -345mil        699mil       -345mil  T         90.00 0.01           
+b6         FEEDTHOU6-32          -771mil      -2001mil        430mil         80mil       -771mil      -2001mil  T        360.00                
+R2         0402                   607mil       -407mil        632mil       -407mil        632mil       -407mil  T        180.00 0 ohm          
+L3         0805                  1060mil       -493mil       1015mil       -493mil       1015mil       -493mil  T        360.00 L              
+C20        0402                  1197mil       -284mil       1197mil       -309mil       1197mil       -309mil  T         90.00 0.01           
+R4         0402                  1295mil       -423mil       1295mil       -398mil       1295mil       -398mil  T        270.00 100K           
+b4         FEEDTHOU6-32          -771mil      -2001mil       1070mil         82mil       -771mil      -2001mil  T        360.00                
+
