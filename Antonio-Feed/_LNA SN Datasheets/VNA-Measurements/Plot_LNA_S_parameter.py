@@ -50,13 +50,13 @@ for s in range ((14+samples*4),(14+samples*5)):
 
 plt.figure(1)
 plt.title('Y for Y-pol')
-plt.plot(freq/10**9,20*np.log10(np.absolute(S11)))
+plt.plot(freq/10**9,20*np.log10(np.absolute(S21)))
 plt.ylim(-40, 0)
 plt.xlim(0, 20)
 plt.ylabel('dB')
 plt.xlabel('frequency in GHz')
 plt.grid(1)
-plt.savefig("S11.png", bbox_inches="tight")
+#plt.savefig("S21.png", bbox_inches="tight")
 plt.show()
 
 

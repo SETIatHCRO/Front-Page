@@ -1,0 +1,438 @@
+ata01_main_reflector  reflector  
+(
+  coor_sys         : ref(ata01_global_coor),
+  surface          : ref(ata01_main_surface),
+  rim              : ref(ata01_main_rim)
+)
+ 
+ata01_global_coor  coor_sys  
+(
+)
+ 
+ata01_main_surface  paraboloid  
+(
+  focal_length     : 2.43593012 m
+)
+ 
+ata01_main_rim  elliptical_rim  
+(
+  centre           : struct(x: 3.3674882997464 m, y: 0.0 m),
+  half_axis        : struct(x: 3.0449127 m, y: 3.0449127 m)
+)
+ 
+ata01_sub_reflector  reflector  
+(
+  coor_sys         : ref(ata01_sub_coor),
+  surface          : ref(ata01_sub_surface),
+  rim              : ref(ata01_sub_rim)
+)
+ 
+ata01_sub_coor  coor_sys  
+(
+  origin           : struct(x: 0.0 m, y: 0.0 m, z: 2.43593012 m),
+  x_axis           : struct(x: 0.720873591077435, y: 0.0, z: 0.693066566562782),
+  y_axis           : struct(x: 0.0, y: -1.0, z: 0.0),
+  base             : ref(ata01_global_coor)
+)
+ 
+ata01_sub_surface  ellipsoid  
+(
+  vertex_distance  : 3.38618017995213 m,
+  foci_distance    : 1.1638198 m,
+  axis_angle       : 76.8733468103805
+)
+ 
+ata01_sub_rim  elliptical_rim  
+(
+  centre           : struct(x: -0.534739699668549 m, y: 0.0 m),
+  half_axis        : struct(x: 1.23563639481942 m, y: 1.16436358914496 m)
+)
+ 
+ata01_feed  gaussian_beam_pattern  
+(
+  frequency        : ref(ata01_frequencies),
+  coor_sys         : ref(ata01_feed_coor),
+  taper_angle      : 42.0000002767702,
+  taper            : -12.0
+)
+ 
+ata01_frequencies  frequency  
+(
+  frequency_list   : sequence(11.0 GHz)
+)
+ 
+ata01_feed_coor  coor_sys  
+(
+  origin           : struct(x: -1.13340968546512 m, y: 0.0 m, z: 0.264308554091419 m),
+  x_axis           : struct(x: 0.96856960203513, y: 0.0, z: 0.248742690372017),
+  y_axis           : struct(x: 0.0, y: -1.0, z: 0.0),
+  base             : ref(ata01_sub_coor)
+)
+ 
+ata01_cut  spherical_cut  
+(
+  coor_sys         : ref(ata01_cut_coor),
+  theta_range      : struct(start: -180.0, end: 180.0, np: 18001),
+  phi_range        : struct(start: 0.0, end: 90.0, np: 3),
+  comment          : "Field data in cuts",
+  frequency        : ref(ata01_frequencies)
+)
+ 
+ata01_cut_coor  coor_sys  
+(
+  origin           : struct(x: 3.3674882997464 m, y: 0.0 m, z: 1.16382417498587 m),
+  base             : ref(ata01_global_coor)
+)
+ 
+ata01_main_po  po_single_face_scatterer  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(ata01_main_reflector),
+  coor_sys         : ref(ata01_global_coor)
+)
+ 
+ata01_sub_po  po_single_face_scatterer  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(ata01_sub_reflector),
+  coor_sys         : ref(ata01_global_coor)
+)
+ 
+hybrid_mode_conical_horn  hybrid_mode_conical_horn  
+(
+  frequency        : ref(ata01_frequencies),
+  coor_sys         : ref(ata01_feed_coor),
+  waveguide_radius : 13.0201 mm,
+  aperture_radius  : 70.909 mm,
+  semi_flare_angle : 12.0,
+  mode_power_normalization : on
+)
+ 
+ata01_sub_reflector_surface_cut  surface_cut  
+(
+  scatterer        : ref(ata01_sub_reflector),
+  rho_range        : struct(start: -2.0, end: 2.0, np: 2001, rho_unit: m),
+  phi_range        : struct(start: 0.0, end: 90.0, np: 3),
+  comment          : "Field data in cuts",
+  frequency        : ref(ata01_frequencies)
+)
+ 
+ata01_main_reflector_surface_cut  surface_cut  
+(
+  scatterer        : ref(ata01_main_reflector),
+  rho_range        : struct(start: -3.1, end: 3.1, np: 6201, rho_unit: m),
+  phi_range        : struct(start: 0.0, end: 90.0, np: 3),
+  comment          : "Field data in cuts",
+  frequency        : ref(ata01_frequencies)
+)
+ 
+ata01_main_shield  reflector  
+(
+  coor_sys         : ref(ata01_main_shield_coor),
+  surface          : ref(ata01_main_shield_surface_01),
+  rim              : ref(ata01_main_shield_outer_rim),
+  holes            : sequence(ref(ata01_main_shield_inner_rim))
+)
+ 
+ata01_main_shield_surface  paraboloid  
+(
+  focal_length     : 300.0 m
+)
+ 
+ata01_strut_coor  coor_sys_grasp_angles  
+(
+  origin           : struct(x: -0.7E-01 m, y: 0.0 m, z: 0.2E-01 m),
+  base             : ref(ata01_main_shield_coor)
+)
+ 
+ata01_sub_shield_surface  plane  
+(
+)
+ 
+ata01_sub_shield  reflector  
+(
+  coor_sys         : ref(ata01_sub_shield_coor),
+  surface          : ref(ata01_sub_shield_surface),
+  rim              : ref(ata01_sub_shield_rim),
+  holes            : sequence(ref(ata01_sub_rim))
+)
+ 
+ata01_sub_shield_rim  elliptical_rim  
+(
+  centre           : struct(x: -0.534739699668549 m, y: 0.0 m),
+  half_axis        : struct(x: "1.235636395+0.185026" m, y: "1.1643636+0.1850266" m)
+)
+ 
+ata01_sub_shield_coor  coor_sys  
+(
+  origin           : struct(x: 0.0 m, y: 0.0 m, z: -0.95 m),
+  base             : ref(ata01_sub_coor)
+)
+ 
+ata01_main_shield_surface_01  plane  
+(
+)
+ 
+ata01_main_shield_coor  coor_sys_grasp_angles  
+(
+  theta            : 34.8,
+  phi              : 180.0,
+  base             : ref(ata01_main_edge)
+)
+ 
+ata01_main_edge  coor_sys_grasp_angles  
+(
+  origin           : struct(x: 0.325 m, y: 0.0 m, z: 0.0 m),
+  base             : ref(ata01_global_coor)
+)
+ 
+ata01_main_shield_inner_rim  elliptical_rim  
+(
+  centre           : struct(x: 3.7 m, y: 0.0 m),
+  half_axis        : struct(x: 3.7 m, y: 3.044129 m)
+)
+ 
+ata01_main_shield_outer_rim  elliptical_rim  
+(
+  centre           : struct(x: 3.7 m, y: 0.0 m),
+  half_axis        : struct(x: 3.9 m, y: 3.3 m)
+)
+ 
+circular_struts  circular_struts  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  radius           : 25.4 mm,
+  end_points       : sequence
+    (    struct(point1_x: 0.0 m, point1_y: 0.0 m, point1_z: 0.0 m, point2_x: 0.0 m, point2_y: 0.0 m, 
+point2_z: 2.9 m),
+    struct(point1_x: 0.1404 m, point1_y: 0.917 m, point1_z: 0.0 m, point2_x: 0.729 m, point2_y: 1.16 m, 
+point2_z: 2.8 m),
+    struct(point1_x: 0.1404 m, point1_y: -0.917 m, point1_z: 0.0 m, point2_x: 0.729 m, point2_y: -1.16 m, 
+point2_z: 2.8 m),
+    struct(point1_x: 0.865 m, point1_y: 2.1285 m, point1_z: -0.25 m, point2_x: 0.0 m, point2_y: 0.15273 m, 
+point2_z: 2.9 m),
+    struct(point1_x: 0.865 m, point1_y: -2.1285 m, point1_z: -0.25 m, point2_x: 0.0 m, point2_y: -0.15273 m, 
+point2_z: 2.9 m),
+    struct(point1_x: 0.8999 m, point1_y: 2.174 m, point1_z: -0.25 m, point2_x: 0.8 m, point2_y: 1.13 m, 
+point2_z: 2.8 m),
+    struct(point1_x: 0.8999 m, point1_y: -2.174 m, point1_z: -0.25 m, point2_x: 0.8 m, point2_y: -1.13 m, 
+point2_z: 2.8 m),
+    struct(point1_x: 0.9448 m, point1_y: 2.21 m, point1_z: -0.3 m, point2_x: 2.07 m, point2_y: 0.99 m, 
+point2_z: 2.7 m),
+    struct(point1_x: 0.9448 m, point1_y: -2.21 m, point1_z: -0.3 m, point2_x: 2.07 m, point2_y: -0.99 m, 
+point2_z: 2.7 m),
+    struct(point1_x: 2.289 m, point1_y: "2.873+0.06" m, point1_z: -0.65 m, point2_x: 0.872 m, point2_y: 1.15 m
+, point2_z: 2.8 m),
+    struct(point1_x: 2.289 m, point1_y: "-(2.873+0.06)" m, point1_z: -0.65 m, point2_x: 0.872 m, point2_y: 
+-1.15 m, point2_z: 2.8 m)
+    )
+)
+ 
+ata01_strut_pos_coor  coor_sys_grasp_angles  
+(
+  theta            : -15.0,
+  phi              : 0.142389695438453E-29,
+  base             : ref(ata01_strut_coor)
+)
+ 
+strut_analysis_circ_cross  strut_analysis_circ_cross  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(circular_struts)
+)
+ 
+ata01_main_shield_po  po_single_face_scatterer  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(ata01_main_shield),
+  coor_sys         : ref(ata01_global_coor)
+)
+ 
+ata01_sub_shield_po  po_single_face_scatterer  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(ata01_sub_shield),
+  coor_sys         : ref(ata01_global_coor)
+)
+ 
+triangular_plate  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: 2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.0 m, y: 0.1527 m, z: 2.9 m),
+  corner_3         : struct(x: 0.14 m, y: 0.917 m, z: -0.5E-01 m)
+)
+ 
+triangular_plate_01  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.0 m, y: 0.0 m, z: 0.0 m),
+  corner_2         : struct(x: 0.0 m, y: 0.1527 m, z: 2.9 m),
+  corner_3         : struct(x: 0.14 m, y: 0.917 m, z: -0.5E-01 m)
+)
+ 
+triangular_plate_02  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.0 m, y: 0.0 m, z: 0.0 m),
+  corner_2         : struct(x: 0.0 m, y: 0.1527 m, z: 2.91 m),
+  corner_3         : struct(x: 0.2E-01 m, y: 0.1E-01 m, z: 2.91 m)
+)
+ 
+triangular_plate_03  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: 2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.0 m, y: 0.1527 m, z: 2.9 m),
+  corner_3         : struct(x: 0.3 m, y: 0.9 m, z: 2.895 m)
+)
+ 
+triangular_plate_04  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: 2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.8 m, y: 1.13 m, z: 2.83 m),
+  corner_3         : struct(x: 0.3 m, y: 0.9 m, z: 2.88 m)
+)
+ 
+triangular_plate_05  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: 2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.8 m, y: 1.13 m, z: 2.83 m),
+  corner_3         : struct(x: 0.96 m, y: 2.2 m, z: -0.25 m)
+)
+ 
+triangular_plate_06  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.8 m, y: 1.13 m, z: 2.83 m),
+  corner_2         : struct(x: 1.5 m, y: 1.24 m, z: 2.76 m),
+  corner_3         : struct(x: 0.96 m, y: 2.2 m, z: -0.25 m)
+)
+ 
+triangular_plate_07  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 2.07 m, y: 0.99 m, z: 2.7 m),
+  corner_2         : struct(x: 1.5 m, y: 1.24 m, z: 2.76 m),
+  corner_3         : struct(x: 0.96 m, y: 2.2 m, z: -0.25 m)
+)
+ 
+triangular_plate_08  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: -2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.0 m, y: -0.1527 m, z: 2.9 m),
+  corner_3         : struct(x: 0.14 m, y: -0.917 m, z: -0.5E-01 m)
+)
+ 
+triangular_plate_09  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.0 m, y: 0.0 m, z: 0.0 m),
+  corner_2         : struct(x: 0.0 m, y: -0.1527 m, z: 2.9 m),
+  corner_3         : struct(x: 0.14 m, y: -0.917 m, z: -0.5E-01 m)
+)
+ 
+triangular_plate_10  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.0 m, y: 0.0 m, z: 0.0 m),
+  corner_2         : struct(x: 0.0 m, y: -0.1527 m, z: 2.91 m),
+  corner_3         : struct(x: 0.2E-01 m, y: -0.1E-01 m, z: 2.91 m)
+)
+ 
+triangular_plate_11  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: -2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.0 m, y: -0.1527 m, z: 2.9 m),
+  corner_3         : struct(x: 0.3 m, y: -0.9 m, z: 2.895 m)
+)
+ 
+triangular_plate_12  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: -2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.8 m, y: -1.13 m, z: 2.83 m),
+  corner_3         : struct(x: 0.3 m, y: -0.9 m, z: 2.88 m)
+)
+ 
+triangular_plate_13  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.865 m, y: -2.1285 m, z: -0.25 m),
+  corner_2         : struct(x: 0.8 m, y: -1.13 m, z: 2.83 m),
+  corner_3         : struct(x: 0.96 m, y: -2.2 m, z: -0.25 m)
+)
+ 
+triangular_plate_14  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 0.8 m, y: -1.13 m, z: 2.83 m),
+  corner_2         : struct(x: 1.5 m, y: -1.24 m, z: 2.76 m),
+  corner_3         : struct(x: 0.96 m, y: -2.2 m, z: -0.25 m)
+)
+ 
+triangular_plate_15  triangular_plate  
+(
+  coor_sys         : ref(ata01_strut_pos_coor),
+  corner_1         : struct(x: 2.07 m, y: -0.99 m, z: 2.7 m),
+  corner_2         : struct(x: 1.5 m, y: -1.24 m, z: 2.76 m),
+  corner_3         : struct(x: 0.96 m, y: -2.2 m, z: -0.25 m)
+)
+ 
+//DO NOT MODIFY OBJECTS BELOW THIS LINE.
+//THESE OBJECTS ARE CREATED AND MANAGED BY THE
+//GRAPHICAL USER INTERFACE AND SHOULD NOT BE
+//MODIFIED MANUALLY!
+view_1  view  
+(
+  objects          : sequence(ref(view_1_reflector_plot),ref(view_1_coor_sys_plot),ref(view_1_feed_plot),
+ref(view_1_output_points_plot),ref(rays_from_point_sources),ref(view_1_circular_struts_plot),
+ref(view_1_triangular_plate_plot),ref(view_1_plate_plot)),
+  show_hide        : struct(reflectors: show, coordinate_systems: hide, feeds: show, output_points: hide, 
+struts: show, tabulated_meshes: show, boxes: show, plates: show, wires: show, mom_meshes: hide, 
+apertures_in_screen: show, lenses: show, tabulated_planar_sources: show, plane_waves: show, dgr_intercostals: 
+show, cad_files: show, rooftop_mirrors: show, loads: show, bors: show, mom_sources: show, reflectarray: show)
+)
+ 
+view_1_reflector_plot  reflector_plot  
+(
+)
+ 
+view_1_coor_sys_plot  coor_sys_plot  
+(
+)
+ 
+view_1_feed_plot  feed_plot  
+(
+)
+ 
+view_1_output_points_plot  output_points_plot  
+(
+)
+ 
+rays_from_point_sources  rays_from_point_sources  
+(
+  objects          : sequence(ref(hybrid_mode_conical_horn)),
+  theta_range      : struct(start: -42.0, end: 42.0, np: 42),
+  phi_range        : struct(start: 0.0, end: 90.0, np: 1),
+  ray_path_range   : struct(start: 0.0 m, end: 20.0 m)
+)
+ 
+view_1_circular_struts_plot  circular_struts_plot  
+(
+)
+ 
+view_1_triangular_plate_plot  triangular_plate_plot  
+(
+)
+ 
+view_1_plate_plot  plate_plot  
+(
+)
+ 
+ //$$ Saved at 14:31:50 on 12.06.2019 by GRASP ver. 10.4.0 SN=006720
+  

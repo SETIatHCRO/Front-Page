@@ -1,0 +1,13 @@
+<OutputFiles>
+ <File Format="Text" Path="strut_analysis.tci" Type="tci" Object="unknown" Hash="7e81785e481c166c858ceca69963b4ea"/>
+ <File Format="Text" Path="strut_analysis.tor" Type="tor" Object="unknown" Hash="631efc4f2cdce7ef66e33df128d79e55"/>
+ <File Format="Text" Path="strut_analysis.out" Type="out" Object="unknown" Hash="2294c27c29f044b7b26fd1e61a4bd6bc"/>
+ <File Format="Ticra" Path="ata01_cut.cut" Quantity="E" Type="Cut:Spherical" Object="ata01_cut" Hash="2a3fe3445d940f7a78bcdfa0189e31ba">
+  <Parameter Values=" 11.0000000000000" Unit="GHz" Name="Frequency"/>
+  <Parameter Values="[0.000000000000000E+000;90.0000000000000;3]" Unit="deg" Name="Phi"/>
+  <Parameter Values="[-180.000000000000;180.000000000000;18001]" Unit="deg" Name="Theta"/>
+  <Scan Type="polar"/>
+ </File>
+ <File Format="Text" Path="comments.txt" Type="Comments"/>
+ <File Format="Text" Path="screenoutput.txt" Type="Screen"/>
+</OutputFiles>

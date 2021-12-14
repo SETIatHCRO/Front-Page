@@ -1,0 +1,13 @@
+<OutputFiles>
+ <File Format="Text" Path="main_surface_cut.tci" Type="tci" Object="unknown" Hash="bd98bee3cf915b122d4ac31aec244a5d"/>
+ <File Format="Text" Path="main_surface_cut.tor" Type="tor" Object="unknown" Hash="54b0ef902452980680aff7bbde1c7fcd"/>
+ <File Format="Text" Path="main_surface_cut.out" Type="out" Object="unknown" Hash="cd1fc489a5da7eec3364c74925e5ef8e"/>
+ <File Format="Ticra" Path="ata01_main_reflector_surface_cut.cut" Quantity="E" Type="Cut:Surface" Object="ata01_main_reflector_surface_cut" Hash="55372324c94751a4cfdc750299177f3b">
+  <Parameter Values=" 11.0000000000000" Unit="GHz" Name="Frequency"/>
+  <Parameter Values="[0.000000000000000E+000;90.0000000000000;3]" Unit="deg" Name="Phi"/>
+  <Parameter Values="[-3.10000000000000;3.10000000000000;6201]" Unit="m" Name="Rho"/>
+  <Scan Type="radial"/>
+ </File>
+ <File Format="Text" Path="comments.txt" Type="Comments"/>
+ <File Format="Text" Path="screenoutput.txt" Type="Screen"/>
+</OutputFiles>

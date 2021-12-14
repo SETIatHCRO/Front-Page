@@ -1,0 +1,58 @@
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ GRASP found  16 CPU cores
+ 
+ Program started at 13:06:22 on 10 June 2019
+GRASP>COMMAND OBJECT ata01_sub_po get_currents ( source : sequence(ref(ata01_feed)),   auto_convergence_of_po : on, convergence_on_scatterer :   sequence(ref(ata01_main_reflector), ref(circular_struts)),   convergence_on_output_grid : sequence(ref(ata01_cut))) ata01_po_sub 
+ ----- TASK No. 1 -----     Started at 13:06:22 on June 10, 2019                 
+  PO1 =  113  PO2 =  380  Face =    1, Final PO-values from auto-convergence
+  PTD =  370              Edge =    1, Final PTD-value from auto-convergence.
+ Total task time:  1.29 sec               
+GRASP>COMMAND OBJECT ata01_main_po get_currents ( source :   sequence(ref(ata01_sub_po), ref(ata01_feed)), auto_convergence_of_po : on,   convergence_on_scatterer : sequence(ref(circular_struts)),   convergence_on_output_grid : sequence(ref(ata01_cut))) ata01_po_main 
+ ----- TASK No. 2 -----     Started at 13:06:23 on June 10, 2019                 
+  PO1 =  450  PO2 = 1520  Face =    1, Final PO-values from auto-convergence
+  PTD = 1360              Edge =    1, Final PTD-value from auto-convergence.
+ Total task time: 53.17 sec               
+GRASP>COMMAND OBJECT strut_analysis_circ_cross get_currents ( source :   sequence(ref(ata01_sub_po), ref(ata01_feed), ref(ata01_main_po)),   auto_convergence_of_po : on, convergence_on_output_grid :   sequence(ref(ata01_cut))) cmd_5 
+ ----- TASK No. 3 -----     Started at 13:07:16 on June 10, 2019                 
+  PO1 = 4550  PO2 =    3  Face =    1, Grid limit reached (acc: 0 dB).
+  PO1 =   10  PO2 =  180  Face =    1, Grid limit reached (acc: -38 dB).
+  PO1 = 4550  PO2 =  180  Face =    1, Final PO-values from auto-convergence
+  PO1 = 1260  PO2 =   65  Face =    2, Final PO-values from auto-convergence
+  PO1 = 1140  PO2 =   65  Face =    3, Final PO-values from auto-convergence
+  PO1 = 4550  PO2 =    3  Face =    4, Grid limit reached (acc: -43 dB).
+  PO1 =   10  PO2 =  180  Face =    4, Grid limit reached (acc: -79 dB).
+  PO1 = 4550  PO2 =  180  Face =    4, Final PO-values from auto-convergence
+  PO1 = 4550  PO2 =    3  Face =    5, Grid limit reached (acc: -40 dB).
+  PO1 =   10  PO2 =  180  Face =    5, Grid limit reached (acc: -78 dB).
+  PO1 = 4550  PO2 =  180  Face =    5, Final PO-values from auto-convergence
+  PO1 = 1040  PO2 =   66  Face =    6, Final PO-values from auto-convergence
+  PO1 = 1040  PO2 =   68  Face =    7, Final PO-values from auto-convergence
+  PO1 =  700  PO2 =   68  Face =    8, Final PO-values from auto-convergence
+  PO1 =  700  PO2 =   65  Face =    9, Final PO-values from auto-convergence
+  PO1 = 1400  PO2 =   63  Face =   10, Final PO-values from auto-convergence
+  PO1 = 1260  PO2 =   65  Face =   11, Final PO-values from auto-convergence
+WARNING: Message from object strut_analysis_circ_cross: 
+The integration does not converge within the allowed integration grid limit. 
+See the output-file for details. 
+ 
+ Total task time:  1:19 hrs               
+GRASP>COMMAND OBJECT ata01_cut get_field ( source : sequence(ref(ata01_main_po)))   ata01_get_field 
+ ----- TASK No. 4 -----     Started at 14:26:39 on June 10, 2019                 
+ Total task time:  1:12 min               
+GRASP>COMMAND OBJECT ata01_cut add_field ( source : sequence(ref(ata01_feed),   ref(ata01_sub_po), ref(strut_analysis_circ_cross))) ata01_add_field_feed 
+ ----- TASK No. 5 -----     Started at 14:27:51 on June 10, 2019                 
+ Total task time:  2:08 min               
+GRASP>QUIT 
+ ----- END OF TASKS -----     Completed at 14:29:59 on June 10, 2019             
+INFO: 1 WARNING ENCOUNTERED. 
+ 
+WARNING NO. 1 
+Message from object strut_analysis_circ_cross: 
+The integration does not converge within the allowed integration grid limit. 
+See the output-file for details. 
+ 
+ 
+ Total time was 1:23 hrs
+ Program stopped at 14:30:00 on 10 June 2019
