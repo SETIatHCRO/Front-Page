@@ -1,0 +1,138 @@
+ata01_main_reflector  reflector  
+(
+  coor_sys         : ref(ata01_global_coor),
+  surface          : ref(ata01_main_surface),
+  rim              : ref(ata01_main_rim)
+)
+ 
+ata01_global_coor  coor_sys  
+(
+)
+ 
+ata01_main_surface  paraboloid  
+(
+  focal_length     : 2.43593012 m
+)
+ 
+ata01_main_rim  elliptical_rim  
+(
+  centre           : struct(x: 3.3674882997464 m, y: 0.0 m),
+  half_axis        : struct(x: 3.04491265 m, y: 3.04491265 m)
+)
+ 
+ata01_sub_reflector  reflector  
+(
+  coor_sys         : ref(ata01_sub_coor),
+  surface          : ref(ata01_sub_surface),
+  rim              : ref(ata01_sub_rim)
+)
+ 
+ata01_sub_coor  coor_sys  
+(
+  origin           : struct(x: 0.0 m, y: 0.0 m, z: 2.43593012 m),
+  x_axis           : struct(x: 0.720873591077435, y: 0.0, z: 0.693066566562782),
+  y_axis           : struct(x: 0.0, y: -1.0, z: 0.0),
+  base             : ref(ata01_global_coor)
+)
+ 
+ata01_sub_surface  ellipsoid  
+(
+  vertex_distance  : 3.38618017995213 m,
+  foci_distance    : 1.1638198 m,
+  axis_angle       : 76.8733468103805
+)
+ 
+ata01_sub_rim  elliptical_rim  
+(
+  centre           : struct(x: -0.534739699668549 m, y: 0.0 m),
+  half_axis        : struct(x: 1.23563639481942 m, y: 1.16436358914496 m)
+)
+ 
+ata01_feed  gaussian_beam_pattern  
+(
+  frequency        : ref(ata01_frequencies),
+  coor_sys         : ref(ata01_feed_coor),
+  taper_angle      : 42.0000002767702,
+  taper            : -12.0
+)
+ 
+ata01_frequencies  frequency  
+(
+  frequency_list   : sequence(11.0 GHz)
+)
+ 
+ata01_feed_coor  coor_sys  
+(
+  origin           : struct(x: -1.13340968546512 m, y: 0.0 m, z: 0.264308554091419 m),
+  x_axis           : struct(x: 0.96856960203513, y: 0.0, z: 0.248742690372017),
+  y_axis           : struct(x: 0.0, y: -1.0, z: 0.0),
+  base             : ref(ata01_sub_coor)
+)
+ 
+ata01_cut  spherical_cut  
+(
+  coor_sys         : ref(ata01_cut_coor),
+  theta_range      : struct(start: -180.0, end: 180.0, np: 18001),
+  phi_range        : struct(start: 0.0, end: 90.0, np: 3),
+  comment          : "Field data in cuts",
+  frequency        : ref(ata01_frequencies)
+)
+ 
+ata01_cut_coor  coor_sys  
+(
+  origin           : struct(x: 3.3674882997464 m, y: 0.0 m, z: 1.16382417498587 m),
+  base             : ref(ata01_global_coor)
+)
+ 
+ata01_main_po  po_single_face_scatterer  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(ata01_main_reflector),
+  coor_sys         : ref(ata01_global_coor)
+)
+ 
+ata01_sub_po  po_single_face_scatterer  
+(
+  frequency        : ref(ata01_frequencies),
+  scatterer        : ref(ata01_sub_reflector),
+  coor_sys         : ref(ata01_global_coor)
+)
+ 
+hybrid_mode_conical_horn  hybrid_mode_conical_horn  
+(
+  frequency        : ref(ata01_frequencies),
+  coor_sys         : ref(ata01_feed_coor),
+  waveguide_radius : 13.0201 mm,
+  aperture_radius  : 70.909 mm,
+  semi_flare_angle : 12.0,
+  mode_power_normalization : on
+)
+ 
+//DO NOT MODIFY OBJECTS BELOW THIS LINE.
+//THESE OBJECTS ARE CREATED AND MANAGED BY THE
+//GRAPHICAL USER INTERFACE AND SHOULD NOT BE
+//MODIFIED MANUALLY!
+view_1  view  
+(
+  objects          : sequence(ref(view_1_reflector_plot),ref(view_1_coor_sys_plot),ref(view_1_feed_plot),
+ref(view_1_output_points_plot))
+)
+ 
+view_1_reflector_plot  reflector_plot  
+(
+)
+ 
+view_1_coor_sys_plot  coor_sys_plot  
+(
+)
+ 
+view_1_feed_plot  feed_plot  
+(
+)
+ 
+view_1_output_points_plot  output_points_plot  
+(
+)
+ 
+ //$$ Saved at 12:48:33 on 12.04.2019 by GRASP ver. 10.4.0 SN=006720
+  

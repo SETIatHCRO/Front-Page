@@ -1,0 +1,428 @@
+ Tci file: strut_shield_po.tci
+ Out file: strut_shield_po.out
+ Log file: strut_shield_po.log
+ 
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ 
+ GRASP found  16 CPU cores
+ 
+ ----- TASK No. 1 -----     Started at 11:47:20 on June 12, 2019
+ 
+ ata01_sub_po get_currents ( source : sequence(ref(ata01_feed)),
+ auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_reflector), ref(ata01_main_shield),
+ ref(ata01_sub_shield)), convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =  115  PO2 =  440  Face =    1, Final PO-values from auto-convergence 
+  PTD =  530              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):              32661                               
+  No. of PTD points (target):               530 
+ Total task time:  3.37 sec
+ 
+ ----- TASK No. 2 -----     Started at 11:47:24 on June 12, 2019
+ 
+ ata01_main_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed)), auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_shield), ref(ata01_sub_shield), ref(circular_struts)),
+ convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =  450  PO2 = 1520  Face =    1, Final PO-values from auto-convergence 
+  PTD = 1840              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):             437195                               
+  No. of sources:                             2 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PTD points (target):              1840                      
+  No. of sources:                             2 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+                                                                      
+ Total task time:  1:17 min
+ 
+ ----- TASK No. 3 -----     Started at 11:48:41 on June 12, 2019
+ 
+ ata01_sub_shield_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed), ref(ata01_main_po)), auto_convergence_of_po : on,
+ convergence_on_scatterer : sequence(ref(ata01_main_shield),
+ ref(circular_struts)), convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =    9  PO2 =    8  Face =    1, Final PO-values from auto-convergence of advanced mesh. 
+  PTD = 1640              Edge =    1, Final PTD-value from auto-convergence. 
+  PTD = 7040              Edge =    2, Grid limit reached (acc: -50 dB). 
+ 
+ WARNING: Message from object ata01_sub_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+  Calculating currents.
+  No. of PO-points (target):              52992                          
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of edges with PTD (target):             2                      
+    PTD points at edge 1:                  1640 
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+    PTD points at edge 2:                  7040 
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+                                                                      
+ Total task time:  6:10 min
+ 
+ ----- TASK No. 4 -----     Started at 11:54:52 on June 12, 2019
+ 
+ ata01_main_shield_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed), ref(ata01_main_po)), auto_convergence_of_po : on,
+ convergence_on_scatterer : sequence(ref(circular_struts)),
+ convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =   64  PO2 =   14  Face =    1, Final PO-values from auto-convergence of advanced mesh. 
+  PTD =10240              Edge =    1, Final PTD-value from auto-convergence. 
+  PTD =19790              Edge =    2, Grid limit reached (acc: -11 dB). 
+ 
+ WARNING: Message from object ata01_main_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+  Calculating currents.
+  No. of PO-points (target):            1498112                          
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of edges with PTD (target):             2                      
+    PTD points at edge 1:                 10240 
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530 
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+    PTD points at edge 2:                 19790                      
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+                                                                      
+ Total task time:  1:07 hrs
+ 
+ ----- TASK No. 5 -----     Started at 13:02:45 on June 12, 2019
+ 
+ strut_analysis_circ_cross get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed), ref(ata01_main_po), ref(ata01_sub_shield_po)),
+ auto_convergence_of_po : on, convergence_on_output_grid :
+ sequence(ref(ata01_cut)))
+ 
+  PO1 = 4550  PO2 =    3  Face =    1, Grid limit reached (acc: 4 dB). 
+  PO1 =   10  PO2 =  180  Face =    1, Grid limit reached (acc: 0 dB). 
+  PO1 = 4550  PO2 =  180  Face =    1, Final PO-values from auto-convergence 
+  PO1 = 1360  PO2 =   86  Face =    2, Final PO-values from auto-convergence 
+  PO1 = 1220  PO2 =   86  Face =    3, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =    3  Face =    4, Grid limit reached (acc: -43 dB). 
+  PO1 =   10  PO2 =  180  Face =    4, Grid limit reached (acc: -78 dB). 
+  PO1 = 4550  PO2 =  180  Face =    4, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =    3  Face =    5, Grid limit reached (acc: -40 dB). 
+  PO1 =   10  PO2 =  180  Face =    5, Grid limit reached (acc: -78 dB). 
+  PO1 = 4550  PO2 =  180  Face =    5, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =    3  Face =    6, Grid limit reached (acc: -19 dB). 
+  PO1 =   10  PO2 =  180  Face =    6, Grid limit reached (acc: -15 dB). 
+  PO1 = 4550  PO2 =  180  Face =    6, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =    3  Face =    7, Grid limit reached (acc: -9 dB). 
+  PO1 =   10  PO2 =  180  Face =    7, Grid limit reached (acc: -21 dB). 
+  PO1 = 4550  PO2 =  180  Face =    7, Final PO-values from auto-convergence 
+  PO1 =  940  PO2 =   68  Face =    8, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =   68  Face =    9, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =    3  Face =   10, Grid limit reached (acc: -12 dB). 
+  PO1 = 4550  PO2 =  168  Face =   10, Final PO-values from auto-convergence 
+  PO1 = 4550  PO2 =    3  Face =   11, Grid limit reached (acc: -26 dB). 
+  PO1 = 4550  PO2 =  165  Face =   11, Final PO-values from auto-convergence 
+ 
+ WARNING: Message from object strut_analysis_circ_cross:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+  Calculating currents.
+  No. of PO-faces (target):                  11                              
+    PO-points on face 1:                 819000 
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 2:                 116960                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 3:                 104920                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 4:                 819000                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 5:                 819000                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 6:                 819000                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 7:                 819000                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 8:                  63920                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 9:                 309400                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 10:                764400                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+    PO-points on face 11:                750750                      
+  No. of sources:                             4 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of PO points (source):              32661                      
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of PO points (source):              52992                      
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+                                                                      
+ Total task time:  8:19 hrs
+ 
+ ----- TASK No. 6 -----     Started at 21:21:51 on June 12, 2019
+ 
+ ata01_cut get_field ( source : sequence(ref(ata01_main_po)))
+ 
+  No. of field points:                    54003 
+  No. of PO points (source):             437195 
+  No. of PTD points (source):              1840                      
+                                                                      
+ Total task time: 59.16 sec
+ 
+ ----- TASK No. 7 -----     Started at 21:22:50 on June 12, 2019
+ 
+ ata01_cut add_field ( source : sequence(ref(ata01_feed), ref(ata01_sub_po),
+ ref(ata01_main_shield_po), ref(ata01_sub_shield_po),
+ ref(strut_analysis_circ_cross)))
+ 
+  No. of field points:                    54003 
+  No. of field points:                    54003 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of field points:                    54003                      
+  No. of PO points (source):            1498112 
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                 10240 
+    PTD-points at edge 2:                 19790                      
+  No. of field points:                    54003                      
+  No. of PO points (source):              52992 
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1640 
+    PTD-points at edge 2:                  7040                      
+  No. of field points:                    54003                      
+  No. of faces with PO (source):             11 
+    PO points on face 1:                 819000 
+    PO points on face 2:                 116960                      
+    PO points on face 3:                 104920                      
+    PO points on face 4:                 819000                      
+    PO points on face 5:                 819000                      
+    PO points on face 6:                 819000                      
+    PO points on face 7:                 819000                      
+    PO points on face 8:                  63920                      
+    PO points on face 9:                 309400                      
+    PO points on face 10:                764400                      
+    PO points on face 11:                750750                      
+                                                                      
+ Total task time:  9:28 min
+ 
+ ----- END OF TASKS -----     Completed at 21:32:18 on June 12, 2019
+ 
+ INFO: 3 WARNINGS ENCOUNTERED.
+ 
+ WARNING NO. 1
+ Message from object ata01_sub_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+ WARNING NO. 2
+ Message from object ata01_main_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+ WARNING NO. 3
+ Message from object strut_analysis_circ_cross:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+ 
+ Total time was 9:44 hrs

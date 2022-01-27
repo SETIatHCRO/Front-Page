@@ -1,0 +1,21 @@
+//COMMAND OBJECT ata01_sub_po get_currents ( source :  &
+//sequence(ref(ata01_feed)), auto_convergence_of_po : on,  &
+//convergence_on_scatterer : sequence(ref(ata01_main_reflector)),  &
+//convergence_on_output_grid : sequence(ref(ata01_cut))) ata01_po_sub 
+//COMMAND OBJECT ata01_main_po get_currents ( source :  &
+//sequence(ref(ata01_sub_po), ref(ata01_feed)), auto_convergence_of_po : on,  &
+//convergence_on_output_grid : sequence(ref(ata01_cut))) ata01_po_main 
+//COMMAND OBJECT ata01_cut get_field ( source : sequence(ref(ata01_main_po)))  &
+//ata01_get_field 
+//COMMAND OBJECT ata01_cut add_field ( source : sequence(ref(ata01_feed),  &
+//ref(ata01_sub_po))) ata01_add_field_feed 
+//COMMAND OBJECT ata01_sub_po get_currents ( source :  &
+//sequence(ref(hybrid_mode_conical_horn)), auto_convergence_of_po : on,  &
+//convergence_on_scatterer : sequence(ref(ata01_main_reflector)),  &
+//convergence_on_output_grid : sequence(ref(ata01_main_reflector_surface_cut)))  &
+//cmd_1 
+//COMMAND OBJECT ata01_main_reflector_surface_cut get_field ( source :  &
+//sequence(ref(ata01_sub_po))) cmd_4 
+COMMAND OBJECT ata01_sub_reflector_surface_cut get_field ( source :  &
+sequence(ref(hybrid_mode_conical_horn))) cmd_3 
+QUIT 
