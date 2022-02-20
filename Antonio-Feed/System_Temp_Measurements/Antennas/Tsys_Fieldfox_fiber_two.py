@@ -2,17 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 309
-t_cold = 12
-ant = '1e'
-nm = '1'
-date1= '08/06/21 11:15'
+t_hot = 287
+t_cold = 14
+ant = '4e'
+nm = '3'
+date1= '20/02/22 10:15'
 
-t_hot2 = 296
+t_hot2 = 286
 t_cold2 = 12
-ant2 = '2b'
+ant2 = '2k'
 nm2 = '2'
-date2='08/06/21 14:15'
+date2='2K'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
