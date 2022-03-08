@@ -1,0 +1,13 @@
+<OutputFiles>
+ <File Format="Text" Path="shield_po.tci" Type="tci" Object="unknown" Hash="3fc8d96fc39b5322f3476c03f7e73408"/>
+ <File Format="Text" Path="shield_po.tor" Type="tor" Object="unknown" Hash="d141694fe2441f9caff6abddb741e804"/>
+ <File Format="Text" Path="shield_po.out" Type="out" Object="unknown" Hash="0879c80a44c3065dc815cb8ae21e2e64"/>
+ <File Format="Ticra" Path="ata01_cut.cut" Quantity="E" Type="Cut:Spherical" Object="ata01_cut" Hash="aa9b3e5f1452240b179d7fbe0c492927">
+  <Parameter Values=" 11.0000000000000" Unit="GHz" Name="Frequency"/>
+  <Parameter Values="[0.000000000000000E+000;90.0000000000000;3]" Unit="deg" Name="Phi"/>
+  <Parameter Values="[-180.000000000000;180.000000000000;18001]" Unit="deg" Name="Theta"/>
+  <Scan Type="polar"/>
+ </File>
+ <File Format="Text" Path="comments.txt" Type="Comments"/>
+ <File Format="Text" Path="screenoutput.txt" Type="Screen"/>
+</OutputFiles>

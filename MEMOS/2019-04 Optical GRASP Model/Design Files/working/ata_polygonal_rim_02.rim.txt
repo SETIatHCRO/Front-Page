@@ -1,0 +1,7 @@
+polygonal rim
+	x-values	y-values
+LINE1	0., 0.		corner_point
+LINE2	0., 4.	corner_point
+LINE3	7.5691, 8.37	corner_point
+LINE4	9.7140, 6.5702	corner_point
+LINE5	8.1404, 0.6974	corner_point

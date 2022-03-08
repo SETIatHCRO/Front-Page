@@ -1,0 +1,46 @@
+ Tci file: main_surface_cut.tci
+ Out file: main_surface_cut.out
+ Log file: main_surface_cut.log
+ 
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ 
+ GRASP found  16 CPU cores
+ 
+ ----- TASK No. 1 -----     Started at 12:01:46 on April 25, 2019
+ 
+ ata01_sub_po get_currents ( source : sequence(ref(hybrid_mode_conical_horn)),
+ auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_reflector)), convergence_on_output_grid :
+ sequence(ref(ata01_main_reflector_surface_cut)))
+ 
+   expansion in spherical modes:       completed  
+ 
+  PO1 =   75  PO2 =  200  Face =    1, Final PO-values from auto-convergence 
+  PTD =  195              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):               9837                               
+  No. of PTD points (target):               195 
+ Total task time:  0.93 sec
+ 
+ ----- TASK No. 2 -----     Started at 12:01:47 on April 25, 2019
+ 
+ ata01_main_reflector_surface_cut get_field ( source :
+ sequence(ref(ata01_sub_po)))
+ 
+  No. of surface cuts:                        3 
+  No. of PO points (source):               9837 
+  No. of PTD points (source):               195 
+  No. of surface cuts:                        3 
+  No. of PO points (source):               9837 
+  No. of PTD points (source):               195 
+  No. of surface cuts:                        3 
+  No. of PO points (source):               9837 
+  No. of PTD points (source):               195 
+ Total task time:  0.98 sec
+ 
+ ----- END OF TASKS -----     Completed at 12:01:48 on April 25, 2019
+ 
+ Total time was 2.56 sec

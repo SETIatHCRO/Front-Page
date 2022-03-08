@@ -2,17 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 309
-t_cold = 12
-ant = '1e'
-nm = '1'
-date1= '08/06/21 11:15'
+t_hot = 287
+t_cold = 14
+ant = '4e'
+nm = '3'
+date1= 'QRFH prototype'
 
-t_hot2 = 296
+t_hot2 = 286
 t_cold2 = 12
-ant2 = '2b'
+ant2 = '2k'
 nm2 = '2'
-date2='08/06/21 14:15'
+date2='Log-Periodic Feed'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -121,7 +121,8 @@ plt.savefig("Spectra.png", bbox_inches="tight")
 
 fig=plt.figure(4)
 plt.subplot(211)
-plt.title(ant+'\n System Temperature for X-pol and Y-pol')
+#plt.title(ant+'\n System Temperature for X-pol and Y-pol')
+plt.title('System Temperature for X-pol and Y-pol')
 plt.plot(freq_0,t_sys_X,label='1')
 plt.plot(freq_02,t_sys_X2,label='2')
 plt.ylim(-25,150)

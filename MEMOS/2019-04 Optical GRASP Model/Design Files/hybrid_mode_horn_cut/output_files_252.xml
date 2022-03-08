@@ -1,0 +1,13 @@
+<OutputFiles>
+ <File Format="Text" Path="hybrid_mode_horn_cut.tci" Type="tci" Object="unknown" Hash="8938206089868779b4bf8afdc1c7210a"/>
+ <File Format="Text" Path="hybrid_mode_horn_cut.tor" Type="tor" Object="unknown" Hash="26367a8abcbd0a419f059a2db2e1bc21"/>
+ <File Format="Text" Path="hybrid_mode_horn_cut.out" Type="out" Object="unknown" Hash="88f5eb7c0b48e43c83057ef4bd522132"/>
+ <File Format="Ticra" Path="ata01_cut.cut" Quantity="E" Type="Cut:Spherical" Object="ata01_cut" Hash="d963968d977fb910d86bcc71af0022d0">
+  <Parameter Values=" 11.0000000000000" Unit="GHz" Name="Frequency"/>
+  <Parameter Values="[0.000000000000000E+000;90.0000000000000;3]" Unit="deg" Name="Phi"/>
+  <Parameter Values="[-180.000000000000;180.000000000000;18001]" Unit="deg" Name="Theta"/>
+  <Scan Type="polar"/>
+ </File>
+ <File Format="Text" Path="comments.txt" Type="Comments"/>
+ <File Format="Text" Path="screenoutput.txt" Type="Screen"/>
+</OutputFiles>

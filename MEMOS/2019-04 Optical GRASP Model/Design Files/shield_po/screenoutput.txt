@@ -1,0 +1,169 @@
+ Tci file: shield_po.tci
+ Out file: shield_po.out
+ Log file: shield_po.log
+ 
+ 
+ GRASP version 10.4.0 (Windows amd64/em64t 64-bit)
+ 
+ 
+ GRASP found  16 CPU cores
+ 
+ ----- TASK No. 1 -----     Started at 15:32:10 on June 10, 2019
+ 
+ ata01_sub_po get_currents ( source : sequence(ref(ata01_feed)),
+ auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_reflector), ref(ata01_main_shield),
+ ref(ata01_sub_shield)), convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =  115  PO2 =  440  Face =    1, Final PO-values from auto-convergence 
+  PTD =  530              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):              32661                               
+  No. of PTD points (target):               530 
+ Total task time:  3.25 sec
+ 
+ ----- TASK No. 2 -----     Started at 15:32:13 on June 10, 2019
+ 
+ ata01_main_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed)), auto_convergence_of_po : on, convergence_on_scatterer :
+ sequence(ref(ata01_main_shield), ref(ata01_sub_shield)),
+ convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =  450  PO2 = 1520  Face =    1, Final PO-values from auto-convergence 
+  PTD = 1840              Edge =    1, Final PTD-value from auto-convergence. 
+ 
+  Calculating currents.
+  No. of PO-points (target):             437195                               
+  No. of sources:                             2 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PTD points (target):              1840                      
+  No. of sources:                             2 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+                                                                      
+ Total task time:  1:15 min
+ 
+ ----- TASK No. 3 -----     Started at 15:33:28 on June 10, 2019
+ 
+ ata01_sub_shield_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed), ref(ata01_main_po)), auto_convergence_of_po : on,
+ convergence_on_scatterer : sequence(ref(ata01_main_shield)),
+ convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =    9  PO2 =    8  Face =    1, Final PO-values from auto-convergence of advanced mesh. 
+  PTD = 1280              Edge =    1, Final PTD-value from auto-convergence. 
+  PTD = 7040              Edge =    2, Grid limit reached (acc: -50 dB). 
+ 
+ WARNING: Message from object ata01_sub_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+  Calculating currents.
+  No. of PO-points (target):              52992                          
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of edges with PTD (target):             2                      
+    PTD points at edge 1:                  1280 
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+    PTD points at edge 2:                  7040                      
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+                                                                      
+ Total task time:  5:44 min
+ 
+ ----- TASK No. 4 -----     Started at 15:39:13 on June 10, 2019
+ 
+ ata01_main_shield_po get_currents ( source : sequence(ref(ata01_sub_po),
+ ref(ata01_feed), ref(ata01_main_po)), auto_convergence_of_po : on,
+ convergence_on_output_grid : sequence(ref(ata01_cut)))
+ 
+  PO1 =   64  PO2 =    9  Face =    1, Final PO-values from auto-convergence of advanced mesh. 
+  PTD = 3360              Edge =    1, Final PTD-value from auto-convergence. 
+  PTD =19790              Edge =    2, Grid limit reached (acc: -11 dB). 
+ 
+ WARNING: Message from object ata01_main_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+  Calculating currents.
+  No. of PO-points (target):             963072                          
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+  No. of edges with PTD (target):             2                      
+    PTD points at edge 1:                  3360 
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530 
+  No. of PO points (source):             437195                      
+  No. of PTD points (source):              1840                      
+    PTD points at edge 2:                 19790                      
+  No. of sources:                             3 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of PO points (source):             437195                      
+                                                                      
+ Total task time: 51:48 min
+ 
+ ----- TASK No. 5 -----     Started at 16:31:01 on June 10, 2019
+ 
+ ata01_cut get_field ( source : sequence(ref(ata01_main_po)))
+ 
+  No. of field points:                    54003 
+  No. of PO points (source):             437195 
+  No. of PTD points (source):              1840                      
+                                                                      
+ Total task time:  1:17 min
+ 
+ ----- TASK No. 6 -----     Started at 16:32:19 on June 10, 2019
+ 
+ ata01_cut add_field ( source : sequence(ref(ata01_feed), ref(ata01_sub_po),
+ ref(ata01_main_shield_po), ref(ata01_sub_shield_po)))
+ 
+  No. of field points:                    54003 
+  No. of field points:                    54003 
+  No. of PO points (source):              32661 
+  No. of PTD points (source):               530                      
+  No. of field points:                    54003                      
+  No. of PO points (source):             963072 
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  3360 
+    PTD-points at edge 2:                 19790                      
+  No. of field points:                    54003                      
+  No. of PO points (source):              52992 
+  No. of edges with PTD (source):             2                      
+    PTD-points at edge 1:                  1280 
+    PTD-points at edge 2:                  7040                      
+                                                                      
+ Total task time:  5:56 min
+ 
+ ----- END OF TASKS -----     Completed at 16:38:16 on June 10, 2019
+ 
+ INFO: 2 WARNINGS ENCOUNTERED.
+ 
+ WARNING NO. 1
+ Message from object ata01_sub_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+ WARNING NO. 2
+ Message from object ata01_main_shield_po:
+ The integration does not converge within the allowed integration grid limit.
+ See the output-file for details.
+ 
+ 
+ Total time was 1:06 hrs
