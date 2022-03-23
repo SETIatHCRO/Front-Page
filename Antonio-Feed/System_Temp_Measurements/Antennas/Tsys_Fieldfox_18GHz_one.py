@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 276
+t_hot = 285
 t_cold = 12
 ant = '4e'
-nm = '12'
+nm = '13'
 year='2021'
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -95,16 +95,16 @@ fig=plt.figure(4)
 plt.subplot(211)
 plt.title(ant+'\n System Temperature for X-pol (UP) and Y-pol (DOWN)')
 plt.plot(freq_0,t_sys_X)
-plt.ylim(-25,150)
+plt.ylim(0,100)
 plt.xlim(0.1, 18)
-plt.yticks([-25,0,25,50,75,100,125,150],[-25,0,25,50,75,100,125,150])
+plt.yticks([0,10,20,30,40,50,60,70,80,90,100],[0,10,20,30,40,50,60,70,80,90,100])
 plt.grid(1)
 plt.ylabel('temperature in K')
 plt.subplot(212)
 plt.plot(freq_0,t_sys_Y)
-plt.ylim(-25,150)
+plt.ylim(0,100)
 plt.xlim(0.1, 18)
-plt.yticks([-25,0,25,50,75,100,125,150],[-25,0,25,50,75,100,125,150])
+plt.yticks([0,10,20,30,40,50,60,70,80,90,100],[0,10,20,30,40,50,60,70,80,90,100])
 plt.grid(1)
 plt.xlabel('frequency in GHz')
 plt.ylabel('temperature in K')

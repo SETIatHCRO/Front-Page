@@ -2,16 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 287
-t_cold = 14
+t_hot = 276
+t_cold = 12
 ant = '4e'
-nm = '3'
+nm = '12'
 date1= 'QRFH prototype'
 
-t_hot2 = 286
+t_hot2 = 285
 t_cold2 = 12
-ant2 = '2k'
-nm2 = '2'
+ant2 = '4e'
+nm2 = '13'
 date2='Log-Periodic Feed'
 
 
