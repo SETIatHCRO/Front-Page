@@ -1,0 +1,6 @@
+
+env(BINDIR)       = /home/caluser/bin
+env(CLEODIR)      = /home/caluser/Tcl
+env(RESULTDIR)    = /home/caluser/Results
+
+Traversing down through directory /mnt/datax-netStorage-40G/calibration/2021-04-19-02:54:54

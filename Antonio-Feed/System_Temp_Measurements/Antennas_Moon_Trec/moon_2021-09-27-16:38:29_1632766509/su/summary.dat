@@ -1,0 +1,46 @@
+
+env(BINDIR)       = /home/caluser/bin
+env(CLEODIR)      = /home/caluser/Tcl
+env(RESULTDIR)    = /home/caluser/Results
+
+Traversing down through directory /mnt/datax-netStorage-40G/calibration/2021-09-27-16:38:29
+Will try to process antennae : 1a 1c 1f 1k 2a 2b 2h 3d 4g 4j 5c
+Will try to process trials : 1 2 3 4 5 6 7 8 9 10 11
+Will try to process frequencies : 1.5
+Working on antenna 1a
+Antenna: 1a Trial: 1 Freq: 1.5 Phase: on Pol: x; File: 2021-09-27-16:38:29_x.csv 
+; Frequency range:  1.24412 1.75588
+Sorting freqs...
+
+
+Calculating aperture and beam efficiencies
+Calculating L using Moon diameter 29.7 arcmin for mean JD 2459485.208
+Creating Tsys contributions...
+    Retrieving weather info for UTC 09/27/2021 16:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 268.65, 40.20, 09/27/2021 16:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 288.84, 39.98, 09/27/2021 16:00:00
+    Retrieving weather info for UTC 09/27/2021 17:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 272.22, 36.06, 09/27/2021 17:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 292.59, 35.61, 09/27/2021 17:00:00
+
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/1a_Results.csv
+Working on antenna 1c
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/1c_Results.csv
+Working on antenna 1f
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/1f_Results.csv
+Working on antenna 1k
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/1k_Results.csv
+Working on antenna 2a
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/2a_Results.csv
+Working on antenna 2b
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/2b_Results.csv
+Working on antenna 2h
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/2h_Results.csv
+Working on antenna 3d
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/3d_Results.csv
+Working on antenna 4g
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/4g_Results.csv
+Working on antenna 4j
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/4j_Results.csv
+Working on antenna 5c
+Writing results to /home/caluser/Results/moon_2021-09-27-16:38:29_1632766509/5c_Results.csv
