@@ -16,7 +16,7 @@ REDISHOST=bla
 EXEC=/usr/bin/redis-server
 CLIEXEC=/usr/bin/redis-cli
 
-PIDFILE=/var/run/redis/redis_${REDISPORT}.pid
+PIDFILE=/run/redis/redis_${REDISPORT}.pid
 CONF="/etc/redis/${REDISPORT}.conf"
 
 case "$1" in
