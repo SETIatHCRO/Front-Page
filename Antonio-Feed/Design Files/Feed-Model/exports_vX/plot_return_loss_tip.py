@@ -41,7 +41,7 @@ sns.set_context("poster")
 #HFSS=pd.read_csv('OMT_006_2.csv', sep=',')
 #file=pd.read_csv('S-Parameter-Pol-A.csv', sep=',')
 file=pd.read_csv('existing.csv', sep=',')
-print file.columns #writes the simulated values in columns
+print (file.columns) #writes the simulated values in columns
 freq = file['Freq[GHz]'].values
 S11_e = file['dB(St(Coax_D_X Coax_D_X))'].values
 S21_e = file['dB(St(Coax_D_X Arm_D_X))'].values
@@ -49,7 +49,7 @@ S12_e = file['dB(St(Arm_D_X Coax_D_X))'].values
 S22_e = file['dB(St(Arm_D_X Arm_D_X))'].values
 
 file1=pd.read_csv('Vers1.csv', sep=',')
-print file1.columns #writes the simulated values i
+print () #writes the simulated values i
 freq = file1['Freq[GHz]'].values
 S11_1 = file1['dB(St(Coax_D_X Coax_D_X))'].values
 S21_1 = file1['dB(St(Coax_D_X Arm_D_X))'].values
@@ -57,7 +57,7 @@ S12_1 = file1['dB(St(Arm_D_X Coax_D_X))'].values
 S22_1 = file1['dB(St(Arm_D_X Arm_D_X))'].values
 
 file2=pd.read_csv('Vers2.csv', sep=',')
-print file2.columns #writes the simulated values
+print (file2.columns) #writes the simulated values
 freq = file2['Freq[GHz]'].values
 S11_2 = file2['dB(St(Coax_D_X Coax_D_X))'].values
 S21_2 = file2['dB(St(Coax_D_X Arm_D_X))'].values
@@ -66,7 +66,7 @@ S22_2 = file2['dB(St(Arm_D_X Arm_D_X))'].values
 
 
 file3=pd.read_csv('Vers2_1.csv', sep=',')
-print file3.columns #writes the simulated values
+print (file3.columns) #writes the simulated values
 freq = file3['Freq[GHz]'].values
 S11_2_1 = file3['dB(St(Coax_D_X Coax_D_X))'].values
 S21_2_1 = file3['dB(St(Coax_D_X Arm_D_X))'].values

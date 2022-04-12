@@ -2,11 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 287
-t_cold = 14
-ant = '4e'
-nm = '3'
-year='2021'
+t_hot = 280
+t_cold = 16
+ant = '3c'
+nm = '1'
+year='2022'
 
 cold_l_ing = np.zeros((801), dtype=float)
 cold_r_ing = np.zeros((801), dtype=float)
