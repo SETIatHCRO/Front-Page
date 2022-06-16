@@ -41,7 +41,7 @@ sns.set_context("poster")
 #HFSS=pd.read_csv('OMT_006_2.csv', sep=',')
 #file=pd.read_csv('S-Parameter-Pol-A.csv', sep=',')
 file=pd.read_csv('V1_0.csv', sep=',')
-print file.columns #writes the simulated values in columns
+print (file.columns) #writes the simulated values in columns
 freq_e = file['Freq[GHz]'].values
 S11_e = file['dB(St(Coax_D_X Coax_D_X))'].values
 #S21_e = file['dB(St(Coax_D_X Arm_D_X))'].values
@@ -49,7 +49,7 @@ S11_e = file['dB(St(Coax_D_X Coax_D_X))'].values
 S22_e = file['dB(St(Coax_D_Y Coax_D_Y))'].values
 
 file1=pd.read_csv('V3_0.csv', sep=',')
-print file1.columns #writes the simulated values i
+print (file1.columns) #writes the simulated values i
 freq_1 = file1['Freq[GHz]'].values
 S11_1 = file1['dB(St(Coax_D_X Coax_D_X))'].values
 #S21_1 = file1['dB(St(Coax_D_X Arm_D_X))'].values
@@ -57,15 +57,15 @@ S11_1 = file1['dB(St(Coax_D_X Coax_D_X))'].values
 #S22_1 = file1['dB(St(Arm_D_X Arm_D_X))'].values
 
 file2=pd.read_csv('V4_20.csv', sep=',')
-print file2.columns #writes the simulated values
+print (file2.columns) #writes the simulated values
 freq_2 = file2['Freq[GHz]'].values
 S11_2 = file2['dB(St(Coax_D_X Coax_D_X))'].values
 #S21_2 = file2['dB(St(Coax_D_X Arm_D_X))'].values
 #S12_2 = file2['dB(St(Arm_D_X Coax_D_X))'].values
 #S22_2 = file2['dB(St(Arm_D_X Arm_D_X))'].values
 
-file3=pd.read_csv('V4_22.csv', sep=',')
-print file3.columns #writes the simulated values
+file3=pd.read_csv('V4_10.csv', sep=',')
+print (file3.columns) #writes the simulated values
 freq_3= file3['Freq[GHz]'].values
 S11_3 = file3['dB(St(Coax_D_X Coax_D_X))'].values
 #S21_3 = file3['dB(St(Coax_D_X Arm_D_X))'].values
@@ -79,7 +79,7 @@ S22_3 = file3['dB(St(Coax_D_Y Coax_D_Y))'].values
 plt.figure()
 
 plt.plot(freq_e, S11_e, linewidth=1.5,label='Return Loss Pol-X')
-plt.plot(freq_e, S22_e, linewidth=1.5,label='Return Loss Pol-Y')
+#plt.plot(freq_e, S22_e, linewidth=1.5,label='Return Loss Pol-Y')
 
 #plt.plot(freq_1, S11_1, linewidth=1.5,label='Return Loss V3_0')
 #plt.plot(freq_1, S21_1, linewidth=1.5,label='Insertion Loss V.3')
@@ -88,7 +88,7 @@ plt.plot(freq_e, S22_e, linewidth=1.5,label='Return Loss Pol-Y')
 #plt.plot(freq_2, S21_2, linewidth=1.5,label='Insertion Loss V.3 Rogers 3006')
 
 #plt.plot(freq_3, S11_3, linewidth=1.5,label='Return Loss V4_22')
-#plt.plot(freq_2, S11_3, linewidth=1.5,label='Return Loss V4_10')
+plt.plot(freq_3, S22_3, linewidth=1.5,label='Return Loss V4_10')
 
 
 #plt.annotate('',

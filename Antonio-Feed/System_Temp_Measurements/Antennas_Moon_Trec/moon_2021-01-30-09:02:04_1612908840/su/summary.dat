@@ -1,0 +1,86 @@
+
+env(BINDIR)       = /home/caluser/bin
+env(CLEODIR)      = /home/caluser/Tcl
+env(RESULTDIR)    = /home/caluser/Results
+
+Traversing down through directory /mnt/datax-netStorage-40G/calibration/2021-01-30-09:02:04
+Will try to process antennae : 1a 1c 1f 1h 1k 2a 2b 2h 3c 4g 4j 5c
+Will try to process trials : 1 2 3
+Will try to process frequencies : 2.25 2.7 3.15 3.6 4.05 4.5 4.95 5.4 5.85 6.3 6.75 7.2 7.65 8.1 8.55 9.0 9.45 9.9 10.35 10.8
+Working on antenna 1a
+Antenna: 1a Trial: 1 Freq: 2.25 Phase: on Pol: x; File: 2021-01-30-09:02:04_x.csv 
+; Frequency range:  1.99412 2.50588
+Antenna: 1a Trial: 1 Freq: 2.7 Phase: on Pol: x; File: 2021-01-30-09:08:02_x.csv 
+; Frequency range:  2.50612 2.95587
+Antenna: 1a Trial: 1 Freq: 3.15 Phase: on Pol: x; File: 2021-01-30-09:13:50_x.csv 
+; Frequency range:  2.95613 3.40587
+Antenna: 1a Trial: 1 Freq: 3.6 Phase: on Pol: x; File: 2021-01-30-09:19:25_x.csv 
+; Frequency range:  3.40612 3.85588
+Antenna: 1a Trial: 1 Freq: 4.05 Phase: on Pol: x; File: 2021-01-30-09:24:59_x.csv 
+; Frequency range:  3.85613 4.30588
+Antenna: 1a Trial: 1 Freq: 4.5 Phase: on Pol: x; File: 2021-01-30-09:30:35_x.csv 
+; Frequency range:  4.30612 4.75587
+Antenna: 1a Trial: 1 Freq: 4.95 Phase: on Pol: x; File: 2021-01-30-09:36:10_x.csv 
+; Frequency range:  4.75612 5.20587
+Antenna: 1a Trial: 1 Freq: 5.4 Phase: on Pol: x; File: 2021-01-30-09:41:33_x.csv 
+; Frequency range:  5.20613 5.65587
+Antenna: 1a Trial: 1 Freq: 5.85 Phase: on Pol: x; File: 2021-01-30-09:47:05_x.csv 
+; Frequency range:  5.65613 6.10588
+Antenna: 1a Trial: 1 Freq: 6.3 Phase: on Pol: x; File: 2021-01-30-09:52:40_x.csv 
+; Frequency range:  6.10612 6.55588
+Antenna: 1a Trial: 1 Freq: 6.75 Phase: on Pol: x; File: 2021-01-30-09:58:12_x.csv 
+; Frequency range:  6.55612 7.00587
+Antenna: 1a Trial: 1 Freq: 7.2 Phase: on Pol: x; File: 2021-01-30-10:03:50_x.csv 
+; Frequency range:  7.00612 7.45587
+Antenna: 1a Trial: 1 Freq: 7.65 Phase: on Pol: x; File: 2021-01-30-10:09:27_x.csv 
+; Frequency range:  7.45613 7.90587
+Antenna: 1a Trial: 1 Freq: 8.1 Phase: on Pol: x; File: 2021-01-30-10:15:03_x.csv 
+; Frequency range:  7.90613 8.35587
+Antenna: 1a Trial: 1 Freq: 8.55 Phase: on Pol: x; File: 2021-01-30-10:21:00_x.csv 
+; Frequency range:  8.35613 8.80588
+Antenna: 1a Trial: 1 Freq: 9.0 Phase: on Pol: x; File: 2021-01-30-10:26:43_x.csv 
+; Frequency range:  8.80612 9.25587
+Antenna: 1a Trial: 1 Freq: 9.45 Phase: on Pol: x; File: 2021-01-30-10:32:27_x.csv 
+; Frequency range:  9.25613 9.70588
+Antenna: 1a Trial: 1 Freq: 9.9 Phase: on Pol: x; File: 2021-01-30-10:38:08_x.csv 
+; Frequency range:  9.70613 10.15588
+Antenna: 1a Trial: 1 Freq: 10.35 Phase: on Pol: x; File: 2021-01-30-10:43:44_x.csv 
+; Frequency range:  10.15612 10.60588
+Antenna: 1a Trial: 1 Freq: 10.8 Phase: on Pol: x; File: 2021-01-30-10:49:18_x.csv 
+; Frequency range:  10.60612 11.05588
+Sorting freqs...
+
+
+Calculating aperture and beam efficiencies
+Calculating L using Moon diameter 31.6 arcmin for mean JD 2459244.915
+Creating Tsys contributions...
+    Retrieving weather info for UTC 01/30/2021 09:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 156.81, 62.93, 01/30/2021 09:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 177.26, 62.99, 01/30/2021 09:00:00
+    Retrieving weather info for UTC 01/30/2021 10:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 208.06, 64.19, 01/30/2021 10:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 188.50, 64.17, 01/30/2021 10:00:00
+
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/1a_Results.csv
+Working on antenna 1c
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/1c_Results.csv
+Working on antenna 1f
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/1f_Results.csv
+Working on antenna 1h
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/1h_Results.csv
+Working on antenna 1k
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/1k_Results.csv
+Working on antenna 2a
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/2a_Results.csv
+Working on antenna 2b
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/2b_Results.csv
+Working on antenna 2h
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/2h_Results.csv
+Working on antenna 3c
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/3c_Results.csv
+Working on antenna 4g
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/4g_Results.csv
+Working on antenna 4j
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/4j_Results.csv
+Working on antenna 5c
+Writing results to /home/caluser/Results/moon_2021-01-30-09:02:04_1612908840/5c_Results.csv

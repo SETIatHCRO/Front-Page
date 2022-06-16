@@ -1,0 +1,19 @@
+[Unit]
+Description=Redis
+After=network-online.target network.target slapd.service
+Requires=network-online.target
+
+[Service]
+User=redis
+Group=redis
+Type=forking
+PIDFile=/run/redis/redis_6379.pid
+#ExecStartPre=/bin/sleep 10
+ExecStart=/etc/redis/redis_6379 start
+ExecStop=/etc/redis/redis_6379 stop
+Restart=always
+RuntimeDirectory=redis
+RuntimeDirectoryMode=2755
+
+[Install]
+WantedBy=multi-user.target

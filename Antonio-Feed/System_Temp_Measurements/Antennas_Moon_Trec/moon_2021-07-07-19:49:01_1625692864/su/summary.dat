@@ -1,0 +1,80 @@
+
+env(BINDIR)       = /home/caluser/bin
+env(CLEODIR)      = /home/caluser/Tcl
+env(RESULTDIR)    = /home/caluser/Results
+
+Traversing down through directory /mnt/datax-netStorage-40G/calibration/2021-07-07-19:49:01
+Will try to process antennae : 1a 1c 1e 1f 1g 1h 1k 2a 2b 2e 2h 2j 2m 3c 3d 3l 4g 4j 5b 5c
+Will try to process trials : 1
+Will try to process frequencies : 2.25 2.8 3.35 3.9 4.45 5.0 5.55 6.1 6.65
+Working on antenna 1a
+Antenna: 1a Trial: 1 Freq: 2.25 Phase: on Pol: x; File: 2021-07-07-19:49:02_x.csv 
+; Frequency range:  1.99412 2.50588
+Antenna: 1a Trial: 1 Freq: 2.8 Phase: on Pol: x; File: 2021-07-07-19:52:17_x.csv 
+; Frequency range:  2.54413 3.05587
+Antenna: 1a Trial: 1 Freq: 3.35 Phase: on Pol: x; File: 2021-07-07-19:55:33_x.csv 
+; Frequency range:  3.09413 3.60588
+Antenna: 1a Trial: 1 Freq: 3.9 Phase: on Pol: x; File: 2021-07-07-19:58:47_x.csv 
+; Frequency range:  3.64412 4.15587
+Antenna: 1a Trial: 1 Freq: 4.45 Phase: on Pol: x; File: 2021-07-07-20:02:01_x.csv 
+; Frequency range:  4.19412 4.70587
+Antenna: 1a Trial: 1 Freq: 5.0 Phase: on Pol: x; File: 2021-07-07-20:05:15_x.csv 
+; Frequency range:  4.74413 5.25587
+Antenna: 1a Trial: 1 Freq: 5.55 Phase: on Pol: x; File: 2021-07-07-20:08:37_x.csv 
+; Frequency range:  5.29413 5.80588
+Antenna: 1a Trial: 1 Freq: 6.1 Phase: on Pol: x; File: 2021-07-07-20:11:55_x.csv 
+; Frequency range:  5.84413 6.35588
+Antenna: 1a Trial: 1 Freq: 6.65 Phase: on Pol: x; File: 2021-07-07-20:15:14_x.csv 
+; Frequency range:  6.39412 6.90587
+Sorting freqs...
+
+
+Calculating aperture and beam efficiencies
+Calculating L using Moon diameter 29.4 arcmin for mean JD 2459403.335
+Creating Tsys contributions...
+    Retrieving weather info for UTC 07/07/2021 19:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 233.84, 64.99, 07/07/2021 19:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 254.21, 64.85, 07/07/2021 19:00:00
+    Retrieving weather info for UTC 07/07/2021 20:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 238.66, 63.00, 07/07/2021 20:00:00
+    Retrieving and calculating Milky Way values for Az, El, UTC: 259.00, 62.85, 07/07/2021 20:00:00
+
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1a_Results.csv
+Working on antenna 1c
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1c_Results.csv
+Working on antenna 1e
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1e_Results.csv
+Working on antenna 1f
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1f_Results.csv
+Working on antenna 1g
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1g_Results.csv
+Working on antenna 1h
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1h_Results.csv
+Working on antenna 1k
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/1k_Results.csv
+Working on antenna 2a
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/2a_Results.csv
+Working on antenna 2b
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/2b_Results.csv
+Working on antenna 2e
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/2e_Results.csv
+Working on antenna 2h
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/2h_Results.csv
+Working on antenna 2j
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/2j_Results.csv
+Working on antenna 2m
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/2m_Results.csv
+Working on antenna 3c
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/3c_Results.csv
+Working on antenna 3d
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/3d_Results.csv
+Working on antenna 3l
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/3l_Results.csv
+Working on antenna 4g
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/4g_Results.csv
+Working on antenna 4j
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/4j_Results.csv
+Working on antenna 5b
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/5b_Results.csv
+Working on antenna 5c
+Writing results to /home/caluser/Results/moon_2021-07-07-19:49:01_1625692864/5c_Results.csv
