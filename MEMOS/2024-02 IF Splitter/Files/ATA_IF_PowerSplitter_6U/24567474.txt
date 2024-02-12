@@ -1,0 +1,14 @@
+﻿"Symbol";"Value";"Unit";
+"REFERENCE";"24567474";"";
+"TraceParts.PartVersion";"1.1.6";"";
+"SUPPLIER";"Pentair/Schroff";"";
+"TraceParts.PartStatus";"Published";"";
+"TraceParts.PartNumber";"30-07022014-089200";"";
+"TraceParts.PartLanguage";"en";"";
+"DESIGN";"Kit, ""heavy"", shielded, for backplane mounting";"";
+"TraceParts.InstanceId";"30-07022014-0892005HIZ0WY7A405UN62VUZ05UA7U";"";
+"TraceParts.PartTitle";"Kit, ""heavy"", shielded, for backplane mounting";"";
+"OMNICLASS23";"23.35.33.15";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartStatusId";"";"";
+"TraceParts.ClassPath";"SCHROFF:/F_SCHROFF/SCHROFF.1/SCHROFF.1.1./SCHROFF.1.1.1/30-07022014-089200";"";
