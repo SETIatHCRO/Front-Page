@@ -1,0 +1,140 @@
+Here is a guide to help you choose the right driver for your system.
+Copyright (C) 2023 HighPoint Technologies, Inc. All rights reserved.
+
+1. Overview
+2. File list
+3. Product list
+4. Tips for choosing the right driver
+5. Revision history
+6. Technical support and service
+
+#############################################################################
+1. Overview
+#############################################################################
+  
+  This package contains drivers for various Ubuntu systems. 
+  To help you choose the right driver, tips for selecting a driver are prepared.
+
+  NO WARRANTY
+
+  THE DRIVER SOURCE CODE HIGHPOINT PROVIDED IS FREE OF CHARGE, AND THERE IS
+  NO WARRANTY FOR THE PROGRAM. THERE ARE NO RESTRICTIONS ON THE USE OF THIS
+  FREE SOURCE CODE. HIGHPOINT DOES NOT PROVIDE ANY TECHNICAL SUPPORT IF THE
+  CODE HAS BEEN CHANGED FROM ORIGINAL SOURCE CODE.
+
+  LIMITATION OF LIABILITY
+
+  IN NO EVENT WILL HIGHPOINT BE LIABLE FOR DIRECT, INDIRECT, SPECIAL,
+  INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF OR
+  INABILITY TO USE THIS PRODUCT OR DOCUMENTATION, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGES. IN PARTICULAR, HIGHPOINT SHALL NOT HAVE
+  LIABILITY FOR ANY HARDWARE, SOFTWARE, OR DATA STORED USED WITH THE
+  PRODUCT, INCLUDING THE COSTS OF REPAIRING, REPLACING, OR RECOVERING
+  SUCH HARDWARE, OR DATA.
+
+#############################################################################
+2. File list
+#############################################################################
+
+  |- README                                                                     : this file
+  |- HighPoint_NVMe_ubuntu20.04_x86_64_v1.5.1_23_02_27.tar.gz                   : binary driver for ubuntu 20.04
+  |- HighPoint_NVMe_ubuntu20.04.1_x86_64_v1.5.1_23_02_27.tar.gz                 : binary driver for ubuntu 20.04.1
+  |- HighPoint_NVMe_ubuntu20.04.2.0_x86_64_v1.5.1_23_02_27.tar.gz               : binary driver for ubuntu 20.04.2.0 desktop
+  |- HighPoint_NVMe_ubuntu20.04.2_server_x86_64_v1.5.1_23_04_23.tar.gz          : binary driver for ubuntu 20.04.2 server
+  |- HighPoint_NVMe_ubuntu20.04.3_x86_64_v1.5.1_23_03_28.tar.gz                 : binary driver for ubuntu 20.04.3
+  |- HighPoint_NVMe_ubuntu20.04.4_LTS_x86_64_v1.5.1_23_03_28.tar.gz             : binary driver for ubuntu 20.04.4
+  |- HighPoint_NVMe_ubuntu20.04.5_LTS_x86_64_v1.5.1_23_03_28.tar.gz             : binary driver for ubuntu 20.04.5
+  |- HighPoint_NVMe_ubuntu20.10_x86_64_v1.5.1_23_02_27.tar.gz                   : binary driver for ubuntu 20.10
+  |- HighPoint_NVMe_ubuntu22.04_x86_64_v1.5.1_23_02_27.tar.gz                   : binary driver for ubuntu 22.04
+  |- HighPoint_NVMe_ubuntu22.04.1_x86_64_v1.5.1_23_02_27.tar.gz                 : binary driver for ubuntu 22.04.1
+  |- HighPoint_NVMe_ubuntu22.04.2_desktop_x86_64_v1.5.1_23_04_21.tar            : binary driver for ubuntu 22.04.2
+  |- HighPoint_NVMe_ubuntu22.10_x86_64_v1.5.1_23_02_27.tar.gz                   : binary driver for ubuntu 22.10
+
+#############################################################################
+3. Product list
+#############################################################################
+
+  SSD7580A
+  SSD7580B
+  SSD7540
+  SSD7505
+  SSD7502
+  SSD7202
+  SSD7105
+
+#############################################################################
+4. Tips for choosing the right driver
+#############################################################################
+
+  Before installing the driver, please verify that the md5 code of your system image iso file matches the md5 code we provide, otherwise the driver      installation may fail.
+
+  Here is an example:
+  If the name of your iso system image is "ubuntu-20.04-live-server-amd64.iso" and its md code is "f03d31c11136e24c10c705b7b3efc39f".
+  According to the list below, you should choose driver named "HighPoint_NVMe_ubuntu20.04_x86_64_v1.5.1_23_02_27.tar.gz" for the later installation.
+
+
+  
+  driver                                                                iso file                                      md5
+
+  HighPoint_NVMe_ubuntu20.04_x86_64_v1.5.1_23_02_27.tar.gz              ubuntu-20.04-live-server-amd64.iso            f03d31c11136e24c10c705b7b3efc39f
+                                                                        ubuntu-20.04-desktop-amd64.iso                ea28c4fd933be55f9f01a5fa9e868490
+
+
+  HighPoint_NVMe_ubuntu20.04.1_x86_64_v1.5.1_23_02_27.tar.gz            ubuntu-20.04.1-live-server-amd64.iso          f3a306f40e4a313fb5a584d73b3dee8f
+                                                                        ubuntu-20.04.1-desktop-amd64.iso              77fc715a283e41d0ad33d6418a9ba128
+
+
+  HighPoint_NVMe_ubuntu20.04.2.0_x86_64_v1.5.1_23_02_27.tar.gz          ubuntu-20.04.2.0-desktop-amd64.iso            2b0bfcb7e9e95c8eadb14a6fb59efae8
+  
+  HighPoint_NVMe_ubuntu20.04.2_server_x86_64_v1.5.1_23_04_23.tar.gz     ubuntu-20.04.2-live-server-amd64.iso          aba7e22636c435c5008f5d059ae69a62
+
+  HighPoint_NVMe_ubuntu20.04.3_x86_64_v1.5.1_23_03_28.tar.gz            ubuntu-20.04.3-live-server-amd64.iso          8df52f27204c37a50a169989fb019188
+
+  HighPoint_NVMe_ubuntu20.04.4_LTS_x86_64_v1.5.1_23_03_28.tar.gz        ubuntu-20.04.4-live-server-amd64.iso          bf83ce95c8c002669f3a78d34422d08e
+
+  HighPoint_NVMe_ubuntu20.04.5_LTS_x86_64_v1.5.1_23_03_28.tar.gz        ubuntu-20.04.5-live-server-amd64.iso          f02b9524d61d01f080f7e06c01ec2fff
+
+  HighPoint_NVMe_ubuntu20.10_x86_64_v1.5.1_23_02_27.tar.gz              ubuntu-20.10-live-server-amd64.iso            f51594d36008c456cf0360aeadd130d6
+                                                                        ubuntu-20.10-desktop-amd64.iso                aa8d6ec4703372ca748bf3c8ea12f87f
+
+
+  HighPoint_NVMe_ubuntu22.04_x86_64_v1.5.1_23_02_27.tar.gz              ubuntu-22.04-live-server-amd64.iso            788f3e469c6cc8136b5bfd50b2282a91
+                                                                        ubuntu-22.04-desktop-amd64.iso                7621da10af45a031ea9a0d1d7fea9643
+
+
+  HighPoint_NVMe_ubuntu22.04.1_x86_64_v1.5.1_23_02_27.tar.gz            ubuntu-22.04.1-live-server-amd64.iso          e8d2a77c51b599c10651608a5d8c286f
+                                                                        ubuntu-22.04.1-desktop-amd64.iso              8c651682056205967d530697c98d98c3
+  
+
+  HighPoint_NVMe_ubuntu22.04.2_desktop_x86_64_v1.5.1_23_04_21.tar       ubuntu-22.04.2-desktop-amd64.iso                        53ea13f2a945231e6ae4affe34257884
+  
+  HighPoint_NVMe_ubuntu22.10_x86_64_v1.5.1_23_02_27.tar.gz              ubuntu-22.10-live-server-amd64.iso            88ed88a1fe5ba10d774a612094d6d295
+                                                                        ubuntu-22.10-desktop-amd64.iso                23cf93464fd7374de60e8fa80e1b708c
+
+#############################################################################
+5. Revision history
+#############################################################################
+
+   v1.5.1 04/23/2023
+     * First release for driver v1.5.1
+
+
+        
+#############################################################################
+6. Technical support and service
+#############################################################################
+
+  If you have questions about installing or using your HighPoint product,
+  check the user's guide or readme file first, and you will find answers to
+  most of your questions here. If you need further assistance, please
+  contact us. We offer the following support and information services:
+
+  1)  The HighPoint Web Site provides information on software upgrades,
+      answers to common questions, and other topics. The Web Site is
+      available from Internet 24 hours a day, 7 days a week, at
+      http://www.highpoint-tech.com.
+
+
+  NOTE: Before you send an e-mail, please visit our Web Site
+        (http://www.highpoint-tech.com) to check if there is a new or 
+        updated device driver for your system.

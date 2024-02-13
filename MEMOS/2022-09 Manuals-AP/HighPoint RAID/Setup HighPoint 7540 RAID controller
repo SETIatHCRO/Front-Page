@@ -1,0 +1,61 @@
+# HighPoint 7540 RAID Controller
+
+
+# Download management software:
+
+https://www.highpoint-tech.com/ssd7000-gen4-products-downloads/
+
+Download:
+	- Linux RAID Management
+	- Data RAID-Linux Open Source Driver
+
+
+# Copy files into root directory on server:
+
+scp RAID_Manage_Linux_v3.1.15_23_10_26.tgz root@seti-node10.hcro.org:~/
+scp HighPoint_NVMe_G5_Linux_Src_v1.6.14.0_2023_12_26.tar.gz root@seti-node10.hcro.org:~/
+
+
+# Unpack files:
+
+tar -xvzf HighPoint_NVMe_G5_Linux_Src_v1.6.14.0_2023_12_26.tar.gz
+tar -xvzf RAID_Manage_Linux_v3.1.15_23_10_26.tgz
+
+
+# Install the package:
+
+./hptnvme_g5_linux_src_v1.6.14.0_2023_12_26.bin 
+./RAID_Manage_Linux_v3.1.15_23_10_26.bin 
+
+Reboot device then go to next step
+
+
+
+You can configure the RAIDs via:
+
+http://seti-node10.hcro.org:7402
+
+
+Make filesystem:
+
+mkfs.ext4 -F /dev/hptblock0n16p
+mkfs.ext4 -F /dev/hptblock0n17p
+
+
+Mount buffer in fstab:
+
+nano /etc/fstab
+
+"
+# Mount Local:
+UUID=bb9c876f-0b66-4334-9f43-930a2ddd704e /mnt/buf0 ext4 defaults 0 0
+UUID=fb37b313-4daf-47e5-a914-0f79905b89a9 /mnt/buf1 ext4 defaults 0 0
+
+# Mount Shared: /home and /usr/local
+10.10.0.2:/exports/mnt/md0/home /home nfs nfsvers=3,noauto,x-systemd.automount  0 0
+10.10.0.2:/exports/data/opt_mnt /opt/mnt nfs nfsvers=3,noauto,x-systemd.automount  0 0
+
+# Mount GLUSTER FS primary storage pool Sis1:
+10.10.1.143:/primary  /mnt/primary glusterfs  noauto,x-systemd.automount 0 0
+"
+

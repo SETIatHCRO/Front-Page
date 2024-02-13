@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+PREREQS=""
+
+prereqs() { echo "$PREREQS"; }
+
+case "$1" in
+    prereqs)
+    prereqs
+    exit 0
+    ;;
+esac
+
+if grep hptnvme /lib/modules/`uname -r`/modules.dep -s -q; then
+    echo "Loading driver hptnvme"
+    modprobe hptnvme 2> /dev/null
+fi # hptnvme # mark to delete driver entry
+

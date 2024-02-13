@@ -1,0 +1,332 @@
+HighPoint NVMe Controller Linux Open Source Driver package installation guide
+Copyright (C) 2023 HighPoint Technologies, Inc. All rights reserved.
+
+1. Overview
+2. File list
+3. Installation
+4. Uninstallation
+5. Revision history
+6. Technical support and service
+
+#############################################################################
+1. Overview
+#############################################################################
+
+  This package contains Linux driver code for HighPoint NVMe RAID controller.
+  You can use it to build the driver module for custom Linux kernels.
+
+  NO WARRANTY
+
+  THE DRIVER SOURCE CODE HIGHPOINT PROVIDED IS FREE OF CHARGE, AND THERE IS
+  NO WARRANTY FOR THE PROGRAM. THERE ARE NO RESTRICTIONS ON THE USE OF THIS
+  FREE SOURCE CODE. HIGHPOINT DOES NOT PROVIDE ANY TECHNICAL SUPPORT IF THE
+  CODE HAS BEEN CHANGED FROM ORIGINAL SOURCE CODE.
+
+  LIMITATION OF LIABILITY
+
+  IN NO EVENT WILL HIGHPOINT BE LIABLE FOR DIRECT, INDIRECT, SPECIAL,
+  INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF OR
+  INABILITY TO USE THIS PRODUCT OR DOCUMENTATION, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGES. IN PARTICULAR, HIGHPOINT SHALL NOT HAVE
+  LIABILITY FOR ANY HARDWARE, SOFTWARE, OR DATA STORED USED WITH THE
+  PRODUCT, INCLUDING THE COSTS OF REPAIRING, REPLACING, OR RECOVERING
+  SUCH HARDWARE, OR DATA.
+
+#############################################################################
+2. File list
+#############################################################################
+
+  |- README                                   : this file
+  `- hptnvme_g5_linux_src_vx.x.x_xx_xx_xx.bin : driver for NVMe RAID controller
+
+#############################################################################
+3. Installation
+#############################################################################
+
+  1)  Extract the source package to a temporary directory.
+
+  2)  Change to the temporary directory.
+
+  3)  Run the .bin file to install the driver package.
+
+    # sh hptnvme_g5_linux_src_vxx.x.x_xx_xx_xx.bin
+
+  NOTES:
+
+    The installer requires super user's permission to run the installation.
+  So if you are not logged in as root, please supply the password of root to
+  start the installation.
+
+    The installer will check and install build tools if some of them is missing.
+  A network connection is required to install the build tools. The following
+  tools are checked by the installer:
+
+    gcc
+    make
+    perl
+
+    They are installed automatically when you select "Software Development
+  Workstation" group in the installation of RHEL/CentOS 6.
+
+    When packages are installed from network, it may take too long to complete
+  the installation as it depends on the network speed. The packages could be
+  installed first to omit the network issue by following command:
+
+    # yum install gcc make perl
+
+    If the installer failed to find or install the required build tools, the
+  installation will be terminated without any change to the system.
+
+    The installer will install folders and files to /usr/share/hptdrv/hptnvme.
+
+    At the end of the installation, the installer will build driver module hptnvme
+  for all kernels in the system.
+
+    And the auto build script will be invoked to build driver module for kernels
+  added automatically when system reboot or shutdown.
+	
+  Notice:
+
+    The instructions above are all about installing the driver automatically. If you want to
+  compile and load driver manually, the following instructions are ready for you.	 
+	
+    Attention: If you want to load hptnvme driver, before that you have to unbind the nvme disk attached to adapter from the nvme driver. 
+  Here is an example. Use the command "lspci | grep memory" to query nvme SSD information, such as "01:00.0 Non-Volatile memory controller". 
+  Then enter the /sys/bus/pci/drivers/nvme directory and find that there is a soft link named 0000:01:00.0 that matches the nvme SSD information queried before.
+  Finally, use the command "echo -n "0000:01:00.0" > unbind" to unbind the nvme device.
+  
+
+    Decompress .bin file to get an open source code directory by following command:
+
+    # ./hptnvme_g5_linux_src_vxx.x.x_xx_xx_xx.bin --noexec --target hptnvme 
+					 
+    Enter to directory hptnvme and compile source code to get a module by following commands:
+
+    # cd hptnvme/product/hptnvme/linux/
+
+    # make
+
+    Load the hptnvme.ko by executing the following command:
+
+    # insmod hptnvme.ko
+    
+    Remove the hptnvme.ko by executing the following command:
+
+    # rmmod hptnvme.ko
+	
+
+#############################################################################
+4. Uninstallation
+#############################################################################
+
+    Run hptuninhptnvme as root to uninstall driver for NVMe RAID controller.
+
+    This command will delete all files installed to the system previously,
+  except the package(s) installed to support driver compilation.
+
+#############################################################################
+5. Revision history
+#############################################################################
+   v1.6.14 12/26/2023
+     * Resolve compilation failure in some versions.
+
+   v1.6.13 11/23/2023
+     * Fix a bug that the driver cannot return to last good kernel if the driver does not work in the new kernel.
+
+   v1.6.12 11/06/2023
+     * Fix a bug that the system may crash when changing the password of an encrypted disk in the critical state.
+     * Fix a bug that fail to add encrypted disks to the rebuild list of an encrypted RAID.
+
+   v1.6.11 10/18/2023
+     * Support kernel 6.5.0.
+     * Fix a bug that obtaining serial number may fail.
+
+   v1.6.10 09/15/2023
+     * Support CentOS-Stream-9 5.14.0-330.
+     * Fix a bug that xfs formatting failed.
+     * Fix a bug that the count of total cpus may change when iommu is enable.
+
+   v1.6.6 07/27/2023
+     * Resolve the compilation failure of an earlier version.
+
+   v1.6.5 07/18/2023
+     * Add proxmox and redhat user login reminder.
+     * Fix a bug that the system may crash if the NVMe request size is greater than 2M.
+     * Fix a bug that WebGUI may display two enclosures for one adapter when using NVMe system disks.
+     * Improve AER shielding.
+
+   v1.6.4 06/25/2023
+     * Add a network connection prompt.
+     * Support PLX temperature monitoring.
+     * Support SSD7749 SED.
+
+   v1.6.3 06/09/2023
+     * Fix a bug that AER mask adjustment is not completed.
+     * Support Rocky Linux 9.2.
+     * Improve sequencial performance issue when AMD IOMMU enabled.
+
+   v1.6.2 05/29/2023
+     * Fix potential memory leaks under IOMMU-enabled platform.
+
+   v1.6.1 05/16/2023
+     * Dump BlockSID information.
+ 
+   v1.6.0.1 05/10/2023
+     * AER error report workaround.
+ 
+   v1.6.0 04/20/2023
+     * OPAL encryption function.
+     * Support controller hotplug.
+	  
+   v1.5.1 02/21/2023
+     * Fix a bug that driver failed to load under IOMMU-enabled platform.
+
+   v1.5.0 02/16/2023
+     *Support getting a binary driver from server when driver compilation fails.
+
+   v1.4.8 12/04/2022
+     * Support SSD7580B.
+     
+   v1.4.7 11/22/2022
+    * Support kernel 6.0.0 and redhat 9.
+    * Add new install message.
+
+   v1.4.6 10/20/2022
+    * Support kernel 5.19.0.
+    * Provide instructions for compiling and loading driver in README.
+    * Support iommu.
+    * Support PVE 7.x installation.
+    * Support Ubuntu 22.04.1 LTS server installation.
+    * Support slackware 15.0.
+    * Fix support for redhat 8.6.
+
+   v1.4.5 07/22/2022
+    * Add serial under hptblock when disk is legacy.
+    
+   v1.4.4 06/13/2022
+    * Support kernel 5.18.0.
+    * Support CentOS 9.
+
+   v1.4.3 05/30/2022
+    * Add US Linux background Server address.
+
+   v1.4.2 05/12/2022
+     * Support kernel 5.17.0.
+     * Fixup IO timeout when loading driver in some circumstance.
+     * Fix a bug that unsupported commands return incorrect status from kernel 5.14.0.
+     * Fix a bug that the driver cannot return to last good kernel if the driver does not work in the new kernel.
+
+   v1.4.1 03/04/2022
+     * Update Linux background Server address.
+
+   v1.4.0 03/01/2022
+     * Support kernel 5.16.0.
+
+   v1.3.5 12/22/2021
+     * Support kernel 5.15.0.
+	 
+   v1.3.3 11/25/2021
+     * Support IOMMU enabled DMA access.
+     * Fixup compilation issue on RHEL 8u5.
+
+   v1.3.2 10/27/2021
+     * Support NVMe controller hotplug.
+     * Support NVMe controller suspend/hibernate/resume.
+     * Fixup compilation issue on linux kernel 5.14.0.
+
+   v1.3.1 09/07/2021
+     * Fixup wrong destination block address if the specified LBA of IO to
+       RAID0 exceeds 4TB.
+
+   v1.3.0 07/19/2021
+     * Improve 4K IO performance.
+
+   v1.2.24 01/05/2021
+     * Support SSD7580.
+
+   v1.2.23 01/04/2021
+     * Enable 64K stripe size.
+
+   v1.2.22 11/12/2020
+     * Fixup IO performance issue.
+     * Fixup compilation issue on linux kernel 5.8.0.
+
+   v1.2.20 09/28/2020
+     * Support SSD7540.
+     * Support SSD7120.
+     * Support SSD6540.
+
+   v1.2.18 08/03/2020
+     * Fix a bug that RAID not "hide" when deleted and rescan later.
+
+   v1.2.17 07/16/2020
+     * Support SSD7105.
+     * Support SSD7180.
+     * Support SSD7184.
+
+   v1.2.16 07/14/2020
+     * Support Ubuntu Live Server 20.04 installation.
+     * Fix a bug that some NVMe device(s) failed to be probed when it is in D3
+       power-saving mode.
+     * Install libelf devel library on CentOS/RHEL system to pass driver installation.
+
+   v1.2.15 05/06/2020
+     * Support SSD7505.
+
+   v1.2.14 04/22/2020
+     * Fixup system frozen when long time IO over RAID1.
+
+   v1.2.13 03/16/2020
+     * Fixup system crash IO under CentOS/RHEL 7.x when XFS created on target Array(s).
+     * Support SSD7202.
+
+   v1.2.10 12/03/2019
+     * Mddify makefile to support kernel 5.4.1.
+
+   v1.2.9.1 11/28/2019
+     * Disable iommu on Intel and AMD platform.
+     * Ubuntu-Fix Format issue in graphical mode.
+
+   v1.2.8 10/25/2019
+     * Handle MSIX affinity.
+
+   v1.2.6 05/15/2019
+     * Support kernel 5.0.
+
+   v1.2.5 05/15/2019
+     * Fixup system crash if Toshiba NVMe controller installed.
+
+   v1.2.4 04/29/2019
+     * Support SSD7103.
+
+   v1.2.2 04/25/2019
+     * Support RAID10.
+
+   v1.2.0 03/21/2019
+     * NVMe controller hot replace.
+
+   v1.0.0 01/10/2019
+     * First Linux release.
+
+        
+#############################################################################
+6. Technical support and service
+#############################################################################
+
+  If you have questions about installing or using your HighPoint product,
+  check the user's guide or readme file first, and you will find answers to
+  most of your questions here. If you need further assistance, please
+  contact us. We offer the following support and information services:
+
+  1)  The HighPoint Web Site provides information on software upgrades,
+      answers to common questions, and other topics. The Web Site is
+      available from Internet 24 hours a day, 7 days a week, at
+      http://www.highpoint-tech.com.
+
+  2)  For technical support, send e-mail to support@highpoint-tech.com and
+      attach file /var/log/hptdrv.log if possible.
+
+  NOTE: Before you send an e-mail, please visit our Web Site
+        (http://www.highpoint-tech.com) to check if there is a new or 
+        updated device driver for your system.
+
