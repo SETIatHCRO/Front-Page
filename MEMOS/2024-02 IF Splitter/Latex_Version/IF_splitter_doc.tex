@@ -103,24 +103,33 @@ This document outlines general information regarding the IF Splitter such as the
 \section{CAD Design and Drawings}
 \label{sec:CAD}
 % ----------------------------------------------------------------
-This section includes a description of the CAD design.
+This section includes a description of the CAD design. Figure \ref{fig:CAD_outside} shows the outside of the IF splitter with the front pannel. Figure \ref{fig:CAD_inside} shows the IF splitter open, with the mounts and signal splitter modules but no cable. The par list is available in appendix \ref{sec:Part_List}. The Drawings are available in appendix \ref{sec:Drawings}.
 
 \hfill \break
 
 %
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=1\linewidth]{<path>/picture.png}
-%\caption{Caption}
-%\label{fig:LABEL}
-%\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\linewidth]{figures/CAD_outside.png}
+\caption{Outside CAD view of the IF splitter.}
+\label{fig:CAD_outside}
+\end{figure}
+%
+
+%
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\linewidth]{figures/CAD_inside.png}
+\caption{Inside CAD view of the IF splitter.}
+\label{fig:CAD_inside}
+\end{figure}
 %
 
 
 \subsection{Design}
 \label{sec:Design}
 % ----------------------------------------------------------------
-Different parts
+
 
 %--
 \subsection{Wiring}
@@ -138,7 +147,7 @@ Different parts
 \section{Power Supplies \& Adapter}
 \label{sec:Power}
 % ----------------------------------------------------------------
-
+All the components in the IF splitter are passive and don't require any power supply.
 %----------------------------------------------------------------------------------------
 %	Module Wiring
 %--------------------------------------------------------------------------------------
@@ -169,10 +178,10 @@ Different parts
 \label{sec:Testing_Troubleshooting}
 % ----------------------------------------------------------------
 
- \newpage
+\newpage
  
 %----------------------------------------------------------------------------------------
-%	Appendix A: Attemplifier Module Enclosure Drawings
+%	Appendix: Attemplifier Module Enclosure Drawings
 %----------------------------------------------------------------------------------------
 
 \appendix
@@ -183,10 +192,10 @@ Different parts
 
 
 %----------------------------------------------------------------------------------------
-%	Appendix B: Attemplifier Module Component List
+%	Appendix: IF splitter Component List
 %----------------------------------------------------------------------------------------
 \begin{landscape}
-\section*{B \hspace{.5cm} Component List of Attemplifier Module}
+\section{Component List of IF Splitter}\label{sec:Part_List}
 
 % ----------------------------------------------------------------
 
@@ -197,20 +206,28 @@ Different parts
 \toprule
 Qty & Unit & Description & Manufacturer & PN Manufacturer & Distributor & PN Distributor\\
 \midrule
-1 & Each/Pack & & & &\\
-
+12 & Each & Power Splitter Mount & & &\\
+96 & Power Splitter module & & &\\
+336 & each & Screws (type?) & & &\\
+% 12 * 12 = 144 for L-brackets
+% 16 * 12 = 192 to attach power splitter modules on mount
+%
 
 \bottomrule            
 \end{tabular}}
-\label{tab:Attemp_components}
+\label{tab:IF_components}
 \end{table}
 
 %----------------------------------------------------------------------------------------
-%	Appendix D: Control Board Schematics
+%	Appendix: Control Board Schematics
 %----------------------------------------------------------------------------------------
 
-\section*{D \hspace{.5cm} Control Board Schematics}
-
+\section{Drawings}
+\label{sec:Drawings}
+Below are the drawings of the front pannel, Power Splitter Mount and L-shape attachement brackets.
+\includepdf[pages=1-2, landscape=true]{PDFs/24567474_100.pdf}
+\includepdf[pages=-, landscape=true]{PDFs/24567474_200.pdf}
+\includepdf[pages=-, landscape=true]{PDFs/24567474_201.pdf}
 % ----------------------------------------------------------------
 
 %
