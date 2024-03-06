@@ -1,0 +1,49 @@
+<mxfile host="Electron" modified="2024-03-06T21:18:39.155Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="v_HpBS6S3-52x5truXBp" version="23.1.5" type="device">
+  <diagram name="Page-1" id="scoB1WjYKybkdFovzfeb">
+    <mxGraphModel dx="1562" dy="1078" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="k64iraX7cp4zJOcicBBl-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="190" y="240" width="430" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="620" y="400" width="10" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="615" y="390" width="20" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-9" value="&lt;font style=&quot;font-size: 36px;&quot;&gt;800 MHz&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="320" y="385" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-10" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;-5 dB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="640" y="460" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-11" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;-10 dB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="640" y="313" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-12" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;-20 dB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="640" y="623" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-13" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;-30 dB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="360" y="190" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-14" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;-27 dB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="360" y="730" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-15" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;-40 dB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="150" y="730" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-16" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;+20 dBm&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="345" y="515" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-17" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Door&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=270;" parent="1" vertex="1">
+          <mxGeometry x="560" y="460" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k64iraX7cp4zJOcicBBl-19" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.radio.aerial_-_antenna_2;" parent="1" vertex="1">
+          <mxGeometry x="375.5" y="445" width="59" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
