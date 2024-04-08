@@ -134,7 +134,7 @@ A first baseline measurement was done with all the GReX electronics turned off. 
 \section{Results}
 \label{sec:Results}
 
-The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission peaks around $1\thinspace$GHz are due to the EMI emitted by the spectrum analyzer itself, even though it is set outside the screened room for the measurements. However, this contribution is negligible compared to the GReX measurements shown below. Figure \ref{fig:open_result} shows the spectrum for the GReX enclosure open. The spectrum measurement result with the GReX enclosure closed is shown in figure \ref{fig:closed_result}. Finally, figure \ref{fig:absorber_comparison_spectrum} shows the effect of adding absorbers inside the enclosure. These four spectrums are respectively referred below as "baseline", "open", "closed" and "absorber". A list of the highest interference peaks, defined as a value greater than $30\thinspace$dBm above its two immediate neighboring values, is reported in table \ref{tab:main_emission_peaks}.
+The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission peaks around $1\thinspace$GHz are due to the EMI emitted by the spectrum analyzer itself, even though it is set outside the screened room for the measurements. However, this contribution is negligible compared to the GReX measurements shown below. Figure \ref{fig:open_result} shows the spectrum for the GReX enclosure open. The spectrum measurement result with the GReX enclosure closed is shown in figure \ref{fig:closed_result}. Finally, figure \ref{fig:absorber_comparison_spectrum} shows the effect of adding absorbers inside the enclosure. These four spectrums are respectively referred below as "baseline", "open", "closed" and "absorber". A list of the highest interference peaks, defined as a value greater than $30\thinspace$dBm above its neighbors and a distance of at least 5 spectrum values between each peaks, is reported in table \ref{tab:main_emission_peaks}.
 
 \begin{figure}[H]
 \centering
@@ -197,7 +197,7 @@ The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission
          absorber & 5.4984 & -70.499525 \\ \hline
 
     \end{tabular}
-    \caption{List of main emission peaks in the spectrum recorded for the GReX EMI measurements.}
+    \caption{List of main emission peaks in the spectrum recorded for the GReX EMI measurements. Computed using scipy.signal's find\_peaks function (threshold: 30, distance: 5).}
     \label{tab:main_emission_peaks}
 \end{table}
 
