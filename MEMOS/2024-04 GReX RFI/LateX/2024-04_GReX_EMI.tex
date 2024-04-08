@@ -41,7 +41,7 @@
 \pagestyle{fancy}
 \title{\Huge The Hat Creek Radio Observatory\\
 \vspace{0.5cm}
-GReX Electromagnetic interference measurements\\
+GReX Electromagnetic Interference Measurements\\
 \vspace{0.5cm}
 \normalsize \emph{}
 \vspace{3.5cm}
@@ -52,7 +52,7 @@ GReX Electromagnetic interference measurements\\
 \author{ 
 \vspace{1cm}
 \Large
-\textbf{ Alexander Pollak, Wael Farah, Marc Jacquart} \\
+\textbf{Alexander Pollak, Wael Farah, Marc Jacquart} \\
 SETI Institute \\ 
 339 Bernardo Ave, Suite 200 \\
 Mountain View, CA 94043 \\ 
@@ -72,12 +72,14 @@ Alexander.Pollak.87@gmail.com\\
 %	General
 %----------------------------------------------------------------------------------------
 
-This document summarizes the testing of the GReX electronics EM interferences at the Hat Creek Radio Observatory (HCRO) on April 3rd, 2024.
+This document summarizes the testing of the GReX electronics' EM interferences at the Hat Creek Radio Observatory (HCRO) on April 3rd, 2024.
 
 \section{Measurement setup}
 \label{sec:Testing}
 
-The GRex unit is place in the screened room and it's Electromagnetic emissions are recorded by a spectrum analyzer connected to an omnidirectional antenna through a signal amplifier. A schematic of the setup is shown in figure \ref{fig:measurement_setup_schematics}, a list of the components used in table \ref{tab:setup_component_list} and a picture inside the screened room in figure \ref{fig:screened_room_setup}. A list of settings for the spectrum analyser is shown in table \ref{tab:spectrum_analyzer_settings}.
+The GReX unit is place in the HCRO's screened room and it's electromagnetic emissions are recorded by a spectrum analyzer connected to an omnidirectional antenna through a signal amplifier. A schematic of the setup is shown in figure \ref{fig:measurement_setup_schematics}, a list of the components used in table \ref{tab:setup_component_list} and a picture of the setup inside the screened room is shown in figure \ref{fig:screened_room_setup}. A list of settings for the spectrum analyzer is shown in table \ref{tab:spectrum_analyzer_settings}. One modification was done for all the tests, compared to the state in which the GReX module was received: steel wool was added in the opening for the fiber cable to further shield the GReX enclosure.
+
+A first baseline measurement was done with all the GReX electronics turned off. Then, the GReX was powered on and the emission spectrum was recorded for the GReX enclosure closed and opened separately. As a final test, RF absorbers were placed in the GReX enclosure and the emission spectrum was once again measured with the enclosure closed. The hypothesis tested here is that the GReX enclosure acts as a resonant chamber for the EMI. Adding absorbers in the enclosure would reduce the interferences inside the enclosure, thus reducing the amount escaping the enclosure causing interferences on the outside.
 
 \begin{figure}[H]
 \centering
@@ -85,16 +87,14 @@ The GRex unit is place in the screened room and it's Electromagnetic emissions a
 \caption{GReX EMI measurement setup schematics.}
 \label{fig:measurement_setup_schematics}
 \end{figure}
-
-
+%
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{Figures/screened_room_setup.jpeg}
-\caption{Test setup in the HCRO screened room.}
+\caption{GReX EMI measurement setup in the HCRO screened room.}
 \label{fig:screened_room_setup}
 \end{figure}
-
-
+%
 \begin{table}[]
     \centering
    
@@ -107,7 +107,7 @@ The GRex unit is place in the screened room and it's Electromagnetic emissions a
          Female-Female SMA cable 5m & ABC-CA18-SMSM-5.OM\\ \hline
          Spectrum analyzer & Agilent N9010A\\ \hline
     \end{tabular}
-    \caption{Measurement setup components list.}
+    \caption{Components list for the GReX EMI measurements.}
     \label{tab:setup_component_list}
 \end{table}
 
@@ -120,47 +120,47 @@ The GRex unit is place in the screened room and it's Electromagnetic emissions a
           Start Frequency & $300\thinspace$MHz \\ \hline
           Stop Frequency & $6\thinspace$GHz \\ \hline
           Number of points & 1001 \\ \hline
-          Sweep time & 656.175767597013\\ \hline
+          Sweep time & 656.176 s\\ \hline
           RBW & 100 \\ \hline
           VBW & 1000 \\ \hline
-          Attenuation & 0 \\ \hline
+          Attenuation & 0 dB\\ \hline
           Trace type & Maxhold \\ \hline
           Detector & Peak \\ \hline         
     \end{tabular}
-    \caption{Specrum analyzer settings list.}
+    \caption{ Agilent N9010A specrum analyzer settings list for the GReX EMI measurements.}
     \label{tab:spectrum_analyzer_settings}
 \end{table}
 % ----------------------------------------------------------------
 \section{Results}
 \label{sec:Results}
 
-The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission peaks are due to the EMI emitted by the spectrum analyzer itself, eventhough it is set outside the screened room. However, as the comparison spectrum plot shows, this contribution is negligible compared to the GReX measurements recorded. Figure \ref{fig:closed_result} shows the spectrum for the GReX enclosure open is shown in figure \ref{fig:open_result}. The spectrum when the GReX enclosure is closed. Finally, figure \ref{fig:absorber_comparison_spectrum} shows the effect of adding absorbers inside the enclosure. A list of the highest interference peaks, defined as peak $>30\thinspace$dBm abouve their surrounding background, is presented in table X.
+The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission peaks around $1\thinspace$GHz are due to the EMI emitted by the spectrum analyzer itself, even though it is set outside the screened room for the measurements. However, this contribution is negligible compared to the GReX measurements shown below. Figure \ref{fig:open_result} shows the spectrum for the GReX enclosure open. The spectrum measurement result with the GReX enclosure closed is shown in figure \ref{fig:closed_result}. Finally, figure \ref{fig:absorber_comparison_spectrum} shows the effect of adding absorbers inside the enclosure. These four spectrums are respectively referred below as "baseline", "open", "closed" and "absorber". A list of the highest interference peaks, defined as a value greater than $30\thinspace$dBm above its two immediate neighboring values, is reported in table \ref{tab:main_emission_peaks}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Figures/baseline_spectrum.jpg}
-\caption{Baseline.}
+\includegraphics[width=0.9\linewidth]{Figures/baseline_spectrum.jpg}
+\caption{Baseline spectrum for the GReX EMI measurements.}
 \label{fig:baseline_result}
 \end{figure}
-
+%
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Figures/open_comparison_spectrum.jpg}
-\caption{GReX enclosure open compared to baseline.}
+\includegraphics[width=0.9\linewidth]{Figures/open_comparison_spectrum.jpg}
+\caption{EMI emission spectrum of the GReX unit with its enclosure opened, compared with the baseline spectrum.}
 \label{fig:open_result}
 \end{figure}
-
+%
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Figures/closed_comparison_spectrum.jpg}
-\caption{GReX enclosure closed compared to baseline.}
+\includegraphics[width=0.9\linewidth]{Figures/closed_comparison_spectrum.jpg}
+\caption{EMI emission spectrum of the GReX unit with its enclosure closed, compared with the baseline spectrum.}
 \label{fig:closed_result}
 \end{figure}
-
+%
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\linewidth]{Figures/absorber_comparison_spectrum.jpg}
-\caption{GReX enclosure closed and compared to baseline.}
+\includegraphics[width=0.9\linewidth]{Figures/absorber_comparison_spectrum.jpg}
+\caption{EMI emission spectrum of the GReX unit with its enclosure closed and absorbers added inside the enclosure, compared with the baseline spectrum.}
 \label{fig:absorber_comparison_spectrum}
 \end{figure}
 
@@ -171,6 +171,12 @@ The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission
     \begin{tabular}{|c|c|c|}
     \hline
          \cellcolor[gray]{0.85} Measurement & \cellcolor[gray]{0.85} Frequency [GHz] &  \cellcolor[gray]{0.85} Amplitude [dBm]\\ \hline
+         open & 3.0873 & -39.978501 \\ \hline
+         open & 3.4977 & -45.107806 \\ \hline
+         open & 4.1190 & -44.959350 \\ \hline
+         open & 4.5009 & -46.206643 \\ \hline
+         open & 5.4984 & -54.792139 \\ \hline
+         \hline
          closed & 0.4995 & -63.143009 \\ \hline
          closed & 1.0296 & -35.672183 \\ \hline
          closed & 1.5027 & -52.661033 \\ \hline
@@ -181,18 +187,17 @@ The baseline spectrum is shown in figure \ref{fig:baseline_result}. The emission
          closed & 3.4977 & -56.419926 \\ \hline
          closed & 3.9993 & -66.870435 \\ \hline
          closed & 4.5009 & -58.519204 \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
-         & & \\ \hline
+         \hline
+         absorber & 1.0296 & -48.517166 \\ \hline
+         absorber & 2.5002 & -64.079893 \\ \hline
+         absorber & 3.0873 & -50.503989 \\ \hline
+         absorber & 3.4977 & -57.511396 \\ \hline
+         absorber & 3.9993 & -72.956611 \\ \hline
+         absorber & 4.5009 & -70.879781 \\ \hline
+         absorber & 5.4984 & -70.499525 \\ \hline
+
     \end{tabular}
-    \caption{List of main emission peaks \textbf{verify peaks and condition}.}
+    \caption{List of main emission peaks in the spectrum recorded for the GReX EMI measurements.}
     \label{tab:main_emission_peaks}
 \end{table}
 
