@@ -1,0 +1,2663 @@
+
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{appendix}
+\usepackage[dvips]{graphicx}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{psfrag}
+\usepackage[square, comma,sort,numbers]{natbib}
+\usepackage{fancyhdr}
+\usepackage[nottoc]{tocbibind}
+\usepackage{color}
+\usepackage{fixltx2e}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{array,tabularx}
+\usepackage{fancyref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}%
+
+
+
+\newcommand{\quotes}[1]{``#1''}
+
+\newenvironment{conditions*}
+  {\par\vspace{\abovedisplayskip}\noindent
+   \tabularx{\columnwidth}{>{$}l<{$} @{\ : } >{\raggedright\arraybackslash}X}}
+  {\endtabularx\par\vspace{\belowdisplayskip}}
+
+
+
+\pagestyle{fancy}
+\title{\Huge The Hat Creek Radio Observatory\\
+\vspace{0.5cm}
+VNA test results of the IF Splitter\\
+\vspace{0.5cm}
+\normalsize \emph{}
+\vspace{3.5cm}
+\begin{center}
+\includegraphics[height=4cm]{titlepage/SETI_institute_logo.jpg}
+\end{center}
+}
+\author{ 
+\vspace{1cm}
+\Large
+\textbf{ Alexander Pollak \& Marc Jacquart} \\
+SETI Institute \\ 
+339 Bernardo Ave, Suite 200 \\
+Mountain View, CA 94043 \\ 
+Alexander.Pollak.87@gmail.com\\
+}
+\date{\today}
+
+
+
+\begin{document}
+\clearpage\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+% --- 1Ax_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ax_3dB1.png}
+\caption{Scattering matrix for channel 1A, polarization x and output 3dB1.}
+\label{fig:1Ax_3dB1}
+\end{figure}
+
+
+% --- 1Ax_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ax_6dB2.png}
+\caption{Scattering matrix for channel 1A, polarization x and output 6dB2.}
+\label{fig:1Ax_6dB2}
+\end{figure}
+
+
+% --- 1Ax_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ax_6dB3.png}
+\caption{Scattering matrix for channel 1A, polarization x and output 6dB3.}
+\label{fig:1Ax_6dB3}
+\end{figure}
+
+
+% --- 1Ay_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ay_3dB1.png}
+\caption{Scattering matrix for channel 1A, polarization y and output 3dB1.}
+\label{fig:1Ay_3dB1}
+\end{figure}
+
+
+% --- 1Ay_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ay_6dB2.png}
+\caption{Scattering matrix for channel 1A, polarization y and output 6dB2.}
+\label{fig:1Ay_6dB2}
+\end{figure}
+
+
+% --- 1Ay_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ay_6dB3.png}
+\caption{Scattering matrix for channel 1A, polarization y and output 6dB3.}
+\label{fig:1Ay_6dB3}
+\end{figure}
+
+
+% --- 1Bx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Bx_3dB1.png}
+\caption{Scattering matrix for channel 1B, polarization x and output 3dB1.}
+\label{fig:1Bx_3dB1}
+\end{figure}
+
+
+% --- 1Bx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Bx_6dB2.png}
+\caption{Scattering matrix for channel 1B, polarization x and output 6dB2.}
+\label{fig:1Bx_6dB2}
+\end{figure}
+
+
+% --- 1Bx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Bx_6dB3.png}
+\caption{Scattering matrix for channel 1B, polarization x and output 6dB3.}
+\label{fig:1Bx_6dB3}
+\end{figure}
+
+
+% --- 1By_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1By_3dB1.png}
+\caption{Scattering matrix for channel 1B, polarization y and output 3dB1.}
+\label{fig:1By_3dB1}
+\end{figure}
+
+
+% --- 1By_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1By_6dB2.png}
+\caption{Scattering matrix for channel 1B, polarization y and output 6dB2.}
+\label{fig:1By_6dB2}
+\end{figure}
+
+
+% --- 1By_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1By_6dB3.png}
+\caption{Scattering matrix for channel 1B, polarization y and output 6dB3.}
+\label{fig:1By_6dB3}
+\end{figure}
+
+
+% --- 1Cx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Cx_3dB1.png}
+\caption{Scattering matrix for channel 1C, polarization x and output 3dB1.}
+\label{fig:1Cx_3dB1}
+\end{figure}
+
+
+% --- 1Cx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Cx_6dB2.png}
+\caption{Scattering matrix for channel 1C, polarization x and output 6dB2.}
+\label{fig:1Cx_6dB2}
+\end{figure}
+
+
+% --- 1Cx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Cx_6dB3.png}
+\caption{Scattering matrix for channel 1C, polarization x and output 6dB3.}
+\label{fig:1Cx_6dB3}
+\end{figure}
+
+
+% --- 1Cy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Cy_3dB1.png}
+\caption{Scattering matrix for channel 1C, polarization y and output 3dB1.}
+\label{fig:1Cy_3dB1}
+\end{figure}
+
+
+% --- 1Cy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Cy_6dB2.png}
+\caption{Scattering matrix for channel 1C, polarization y and output 6dB2.}
+\label{fig:1Cy_6dB2}
+\end{figure}
+
+
+% --- 1Cy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Cy_6dB3.png}
+\caption{Scattering matrix for channel 1C, polarization y and output 6dB3.}
+\label{fig:1Cy_6dB3}
+\end{figure}
+
+
+% --- 1Dx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Dx_3dB1.png}
+\caption{Scattering matrix for channel 1D, polarization x and output 3dB1.}
+\label{fig:1Dx_3dB1}
+\end{figure}
+
+
+% --- 1Dx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Dx_6dB2.png}
+\caption{Scattering matrix for channel 1D, polarization x and output 6dB2.}
+\label{fig:1Dx_6dB2}
+\end{figure}
+
+
+% --- 1Dx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Dx_6dB3.png}
+\caption{Scattering matrix for channel 1D, polarization x and output 6dB3.}
+\label{fig:1Dx_6dB3}
+\end{figure}
+
+
+% --- 1Dy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Dy_3dB1.png}
+\caption{Scattering matrix for channel 1D, polarization y and output 3dB1.}
+\label{fig:1Dy_3dB1}
+\end{figure}
+
+
+% --- 1Dy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Dy_6dB2.png}
+\caption{Scattering matrix for channel 1D, polarization y and output 6dB2.}
+\label{fig:1Dy_6dB2}
+\end{figure}
+
+
+% --- 1Dy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Dy_6dB3.png}
+\caption{Scattering matrix for channel 1D, polarization y and output 6dB3.}
+\label{fig:1Dy_6dB3}
+\end{figure}
+
+
+% --- 1Ex_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ex_3dB1.png}
+\caption{Scattering matrix for channel 1E, polarization x and output 3dB1.}
+\label{fig:1Ex_3dB1}
+\end{figure}
+
+
+% --- 1Ex_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ex_6dB2.png}
+\caption{Scattering matrix for channel 1E, polarization x and output 6dB2.}
+\label{fig:1Ex_6dB2}
+\end{figure}
+
+
+% --- 1Ex_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ex_6dB3.png}
+\caption{Scattering matrix for channel 1E, polarization x and output 6dB3.}
+\label{fig:1Ex_6dB3}
+\end{figure}
+
+
+% --- 1Ey_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ey_3dB1.png}
+\caption{Scattering matrix for channel 1E, polarization y and output 3dB1.}
+\label{fig:1Ey_3dB1}
+\end{figure}
+
+
+% --- 1Ey_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ey_6dB2.png}
+\caption{Scattering matrix for channel 1E, polarization y and output 6dB2.}
+\label{fig:1Ey_6dB2}
+\end{figure}
+
+
+% --- 1Ey_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ey_6dB3.png}
+\caption{Scattering matrix for channel 1E, polarization y and output 6dB3.}
+\label{fig:1Ey_6dB3}
+\end{figure}
+
+
+% --- 1Fx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Fx_3dB1.png}
+\caption{Scattering matrix for channel 1F, polarization x and output 3dB1.}
+\label{fig:1Fx_3dB1}
+\end{figure}
+
+
+% --- 1Fx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Fx_6dB2.png}
+\caption{Scattering matrix for channel 1F, polarization x and output 6dB2.}
+\label{fig:1Fx_6dB2}
+\end{figure}
+
+
+% --- 1Fx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Fx_6dB3.png}
+\caption{Scattering matrix for channel 1F, polarization x and output 6dB3.}
+\label{fig:1Fx_6dB3}
+\end{figure}
+
+
+% --- 1Fy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Fy_3dB1.png}
+\caption{Scattering matrix for channel 1F, polarization y and output 3dB1.}
+\label{fig:1Fy_3dB1}
+\end{figure}
+
+
+% --- 1Fy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Fy_6dB2.png}
+\caption{Scattering matrix for channel 1F, polarization y and output 6dB2.}
+\label{fig:1Fy_6dB2}
+\end{figure}
+
+
+% --- 1Fy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Fy_6dB3.png}
+\caption{Scattering matrix for channel 1F, polarization y and output 6dB3.}
+\label{fig:1Fy_6dB3}
+\end{figure}
+
+
+% --- 1Gx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Gx_3dB1.png}
+\caption{Scattering matrix for channel 1G, polarization x and output 3dB1.}
+\label{fig:1Gx_3dB1}
+\end{figure}
+
+
+% --- 1Gx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Gx_6dB2.png}
+\caption{Scattering matrix for channel 1G, polarization x and output 6dB2.}
+\label{fig:1Gx_6dB2}
+\end{figure}
+
+
+% --- 1Gx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Gx_6dB3.png}
+\caption{Scattering matrix for channel 1G, polarization x and output 6dB3.}
+\label{fig:1Gx_6dB3}
+\end{figure}
+
+
+% --- 1Gy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Gy_3dB1.png}
+\caption{Scattering matrix for channel 1G, polarization y and output 3dB1.}
+\label{fig:1Gy_3dB1}
+\end{figure}
+
+
+% --- 1Gy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Gy_6dB2.png}
+\caption{Scattering matrix for channel 1G, polarization y and output 6dB2.}
+\label{fig:1Gy_6dB2}
+\end{figure}
+
+
+% --- 1Gy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Gy_6dB3.png}
+\caption{Scattering matrix for channel 1G, polarization y and output 6dB3.}
+\label{fig:1Gy_6dB3}
+\end{figure}
+
+
+% --- 1Hx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Hx_3dB1.png}
+\caption{Scattering matrix for channel 1H, polarization x and output 3dB1.}
+\label{fig:1Hx_3dB1}
+\end{figure}
+
+
+% --- 1Hx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Hx_6dB2.png}
+\caption{Scattering matrix for channel 1H, polarization x and output 6dB2.}
+\label{fig:1Hx_6dB2}
+\end{figure}
+
+
+% --- 1Hx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Hx_6dB3.png}
+\caption{Scattering matrix for channel 1H, polarization x and output 6dB3.}
+\label{fig:1Hx_6dB3}
+\end{figure}
+
+
+% --- 1Hy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Hy_3dB1.png}
+\caption{Scattering matrix for channel 1H, polarization y and output 3dB1.}
+\label{fig:1Hy_3dB1}
+\end{figure}
+
+
+% --- 1Hy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Hy_6dB2.png}
+\caption{Scattering matrix for channel 1H, polarization y and output 6dB2.}
+\label{fig:1Hy_6dB2}
+\end{figure}
+
+
+% --- 1Hy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Hy_6dB3.png}
+\caption{Scattering matrix for channel 1H, polarization y and output 6dB3.}
+\label{fig:1Hy_6dB3}
+\end{figure}
+
+
+% --- 1Jx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Jx_3dB1.png}
+\caption{Scattering matrix for channel 1J, polarization x and output 3dB1.}
+\label{fig:1Jx_3dB1}
+\end{figure}
+
+
+% --- 1Jx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Jx_6dB2.png}
+\caption{Scattering matrix for channel 1J, polarization x and output 6dB2.}
+\label{fig:1Jx_6dB2}
+\end{figure}
+
+
+% --- 1Jx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Jx_6dB3.png}
+\caption{Scattering matrix for channel 1J, polarization x and output 6dB3.}
+\label{fig:1Jx_6dB3}
+\end{figure}
+
+
+% --- 1Jy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Jy_3dB1.png}
+\caption{Scattering matrix for channel 1J, polarization y and output 3dB1.}
+\label{fig:1Jy_3dB1}
+\end{figure}
+
+
+% --- 1Jy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Jy_6dB2.png}
+\caption{Scattering matrix for channel 1J, polarization y and output 6dB2.}
+\label{fig:1Jy_6dB2}
+\end{figure}
+
+
+% --- 1Jy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Jy_6dB3.png}
+\caption{Scattering matrix for channel 1J, polarization y and output 6dB3.}
+\label{fig:1Jy_6dB3}
+\end{figure}
+
+
+% --- 1Kx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Kx_3dB1.png}
+\caption{Scattering matrix for channel 1K, polarization x and output 3dB1.}
+\label{fig:1Kx_3dB1}
+\end{figure}
+
+
+% --- 1Kx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Kx_6dB2.png}
+\caption{Scattering matrix for channel 1K, polarization x and output 6dB2.}
+\label{fig:1Kx_6dB2}
+\end{figure}
+
+
+% --- 1Kx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Kx_6dB3.png}
+\caption{Scattering matrix for channel 1K, polarization x and output 6dB3.}
+\label{fig:1Kx_6dB3}
+\end{figure}
+
+
+% --- 1Ky_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ky_3dB1.png}
+\caption{Scattering matrix for channel 1K, polarization y and output 3dB1.}
+\label{fig:1Ky_3dB1}
+\end{figure}
+
+
+% --- 1Ky_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ky_6dB2.png}
+\caption{Scattering matrix for channel 1K, polarization y and output 6dB2.}
+\label{fig:1Ky_6dB2}
+\end{figure}
+
+
+% --- 1Ky_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/1Ky_6dB3.png}
+\caption{Scattering matrix for channel 1K, polarization y and output 6dB3.}
+\label{fig:1Ky_6dB3}
+\end{figure}
+
+
+% --- 2Ax_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ax_3dB1.png}
+\caption{Scattering matrix for channel 2A, polarization x and output 3dB1.}
+\label{fig:2Ax_3dB1}
+\end{figure}
+
+
+% --- 2Ax_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ax_6dB2.png}
+\caption{Scattering matrix for channel 2A, polarization x and output 6dB2.}
+\label{fig:2Ax_6dB2}
+\end{figure}
+
+
+% --- 2Ax_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ax_6dB3.png}
+\caption{Scattering matrix for channel 2A, polarization x and output 6dB3.}
+\label{fig:2Ax_6dB3}
+\end{figure}
+
+
+% --- 2Ay_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ay_3dB1.png}
+\caption{Scattering matrix for channel 2A, polarization y and output 3dB1.}
+\label{fig:2Ay_3dB1}
+\end{figure}
+
+
+% --- 2Ay_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ay_6dB2.png}
+\caption{Scattering matrix for channel 2A, polarization y and output 6dB2.}
+\label{fig:2Ay_6dB2}
+\end{figure}
+
+
+% --- 2Ay_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ay_6dB3.png}
+\caption{Scattering matrix for channel 2A, polarization y and output 6dB3.}
+\label{fig:2Ay_6dB3}
+\end{figure}
+
+
+% --- 2Bx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Bx_3dB1.png}
+\caption{Scattering matrix for channel 2B, polarization x and output 3dB1.}
+\label{fig:2Bx_3dB1}
+\end{figure}
+
+
+% --- 2Bx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Bx_6dB2.png}
+\caption{Scattering matrix for channel 2B, polarization x and output 6dB2.}
+\label{fig:2Bx_6dB2}
+\end{figure}
+
+
+% --- 2Bx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Bx_6dB3.png}
+\caption{Scattering matrix for channel 2B, polarization x and output 6dB3.}
+\label{fig:2Bx_6dB3}
+\end{figure}
+
+
+% --- 2By_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2By_3dB1.png}
+\caption{Scattering matrix for channel 2B, polarization y and output 3dB1.}
+\label{fig:2By_3dB1}
+\end{figure}
+
+
+% --- 2By_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2By_6dB2.png}
+\caption{Scattering matrix for channel 2B, polarization y and output 6dB2.}
+\label{fig:2By_6dB2}
+\end{figure}
+
+
+% --- 2By_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2By_6dB3.png}
+\caption{Scattering matrix for channel 2B, polarization y and output 6dB3.}
+\label{fig:2By_6dB3}
+\end{figure}
+
+
+% --- 2Cx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Cx_3dB1.png}
+\caption{Scattering matrix for channel 2C, polarization x and output 3dB1.}
+\label{fig:2Cx_3dB1}
+\end{figure}
+
+
+% --- 2Cx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Cx_6dB2.png}
+\caption{Scattering matrix for channel 2C, polarization x and output 6dB2.}
+\label{fig:2Cx_6dB2}
+\end{figure}
+
+
+% --- 2Cx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Cx_6dB3.png}
+\caption{Scattering matrix for channel 2C, polarization x and output 6dB3.}
+\label{fig:2Cx_6dB3}
+\end{figure}
+
+
+% --- 2Cy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Cy_3dB1.png}
+\caption{Scattering matrix for channel 2C, polarization y and output 3dB1.}
+\label{fig:2Cy_3dB1}
+\end{figure}
+
+
+% --- 2Cy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Cy_6dB2.png}
+\caption{Scattering matrix for channel 2C, polarization y and output 6dB2.}
+\label{fig:2Cy_6dB2}
+\end{figure}
+
+
+% --- 2Cy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Cy_6dB3.png}
+\caption{Scattering matrix for channel 2C, polarization y and output 6dB3.}
+\label{fig:2Cy_6dB3}
+\end{figure}
+
+
+% --- 2Dx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Dx_3dB1.png}
+\caption{Scattering matrix for channel 2D, polarization x and output 3dB1.}
+\label{fig:2Dx_3dB1}
+\end{figure}
+
+
+% --- 2Dx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Dx_6dB2.png}
+\caption{Scattering matrix for channel 2D, polarization x and output 6dB2.}
+\label{fig:2Dx_6dB2}
+\end{figure}
+
+
+% --- 2Dx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Dx_6dB3.png}
+\caption{Scattering matrix for channel 2D, polarization x and output 6dB3.}
+\label{fig:2Dx_6dB3}
+\end{figure}
+
+
+% --- 2Dy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Dy_3dB1.png}
+\caption{Scattering matrix for channel 2D, polarization y and output 3dB1.}
+\label{fig:2Dy_3dB1}
+\end{figure}
+
+
+% --- 2Dy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Dy_6dB2.png}
+\caption{Scattering matrix for channel 2D, polarization y and output 6dB2.}
+\label{fig:2Dy_6dB2}
+\end{figure}
+
+
+% --- 2Dy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Dy_6dB3.png}
+\caption{Scattering matrix for channel 2D, polarization y and output 6dB3.}
+\label{fig:2Dy_6dB3}
+\end{figure}
+
+
+% --- 2Ex_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ex_3dB1.png}
+\caption{Scattering matrix for channel 2E, polarization x and output 3dB1.}
+\label{fig:2Ex_3dB1}
+\end{figure}
+
+
+% --- 2Ex_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ex_6dB2.png}
+\caption{Scattering matrix for channel 2E, polarization x and output 6dB2.}
+\label{fig:2Ex_6dB2}
+\end{figure}
+
+
+% --- 2Ex_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ex_6dB3.png}
+\caption{Scattering matrix for channel 2E, polarization x and output 6dB3.}
+\label{fig:2Ex_6dB3}
+\end{figure}
+
+
+% --- 2Ey_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ey_3dB1.png}
+\caption{Scattering matrix for channel 2E, polarization y and output 3dB1.}
+\label{fig:2Ey_3dB1}
+\end{figure}
+
+
+% --- 2Ey_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ey_6dB2.png}
+\caption{Scattering matrix for channel 2E, polarization y and output 6dB2.}
+\label{fig:2Ey_6dB2}
+\end{figure}
+
+
+% --- 2Ey_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ey_6dB3.png}
+\caption{Scattering matrix for channel 2E, polarization y and output 6dB3.}
+\label{fig:2Ey_6dB3}
+\end{figure}
+
+
+% --- 2Fx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Fx_3dB1.png}
+\caption{Scattering matrix for channel 2F, polarization x and output 3dB1.}
+\label{fig:2Fx_3dB1}
+\end{figure}
+
+
+% --- 2Fx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Fx_6dB2.png}
+\caption{Scattering matrix for channel 2F, polarization x and output 6dB2.}
+\label{fig:2Fx_6dB2}
+\end{figure}
+
+
+% --- 2Fx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Fx_6dB3.png}
+\caption{Scattering matrix for channel 2F, polarization x and output 6dB3.}
+\label{fig:2Fx_6dB3}
+\end{figure}
+
+
+% --- 2Fy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Fy_3dB1.png}
+\caption{Scattering matrix for channel 2F, polarization y and output 3dB1.}
+\label{fig:2Fy_3dB1}
+\end{figure}
+
+
+% --- 2Fy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Fy_6dB2.png}
+\caption{Scattering matrix for channel 2F, polarization y and output 6dB2.}
+\label{fig:2Fy_6dB2}
+\end{figure}
+
+
+% --- 2Fy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Fy_6dB3.png}
+\caption{Scattering matrix for channel 2F, polarization y and output 6dB3.}
+\label{fig:2Fy_6dB3}
+\end{figure}
+
+
+% --- 2Gx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Gx_3dB1.png}
+\caption{Scattering matrix for channel 2G, polarization x and output 3dB1.}
+\label{fig:2Gx_3dB1}
+\end{figure}
+
+
+% --- 2Gx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Gx_6dB2.png}
+\caption{Scattering matrix for channel 2G, polarization x and output 6dB2.}
+\label{fig:2Gx_6dB2}
+\end{figure}
+
+
+% --- 2Gx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Gx_6dB3.png}
+\caption{Scattering matrix for channel 2G, polarization x and output 6dB3.}
+\label{fig:2Gx_6dB3}
+\end{figure}
+
+
+% --- 2Gy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Gy_3dB1.png}
+\caption{Scattering matrix for channel 2G, polarization y and output 3dB1.}
+\label{fig:2Gy_3dB1}
+\end{figure}
+
+
+% --- 2Gy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Gy_6dB2.png}
+\caption{Scattering matrix for channel 2G, polarization y and output 6dB2.}
+\label{fig:2Gy_6dB2}
+\end{figure}
+
+
+% --- 2Gy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Gy_6dB3.png}
+\caption{Scattering matrix for channel 2G, polarization y and output 6dB3.}
+\label{fig:2Gy_6dB3}
+\end{figure}
+
+
+% --- 2Hx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Hx_3dB1.png}
+\caption{Scattering matrix for channel 2H, polarization x and output 3dB1.}
+\label{fig:2Hx_3dB1}
+\end{figure}
+
+
+% --- 2Hx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Hx_6dB2.png}
+\caption{Scattering matrix for channel 2H, polarization x and output 6dB2.}
+\label{fig:2Hx_6dB2}
+\end{figure}
+
+
+% --- 2Hx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Hx_6dB3.png}
+\caption{Scattering matrix for channel 2H, polarization x and output 6dB3.}
+\label{fig:2Hx_6dB3}
+\end{figure}
+
+
+% --- 2Hy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Hy_3dB1.png}
+\caption{Scattering matrix for channel 2H, polarization y and output 3dB1.}
+\label{fig:2Hy_3dB1}
+\end{figure}
+
+
+% --- 2Hy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Hy_6dB2.png}
+\caption{Scattering matrix for channel 2H, polarization y and output 6dB2.}
+\label{fig:2Hy_6dB2}
+\end{figure}
+
+
+% --- 2Hy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Hy_6dB3.png}
+\caption{Scattering matrix for channel 2H, polarization y and output 6dB3.}
+\label{fig:2Hy_6dB3}
+\end{figure}
+
+
+% --- 2Jx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Jx_3dB1.png}
+\caption{Scattering matrix for channel 2J, polarization x and output 3dB1.}
+\label{fig:2Jx_3dB1}
+\end{figure}
+
+
+% --- 2Jx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Jx_6dB2.png}
+\caption{Scattering matrix for channel 2J, polarization x and output 6dB2.}
+\label{fig:2Jx_6dB2}
+\end{figure}
+
+
+% --- 2Jx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Jx_6dB3.png}
+\caption{Scattering matrix for channel 2J, polarization x and output 6dB3.}
+\label{fig:2Jx_6dB3}
+\end{figure}
+
+
+% --- 2Jy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Jy_3dB1.png}
+\caption{Scattering matrix for channel 2J, polarization y and output 3dB1.}
+\label{fig:2Jy_3dB1}
+\end{figure}
+
+
+% --- 2Jy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Jy_6dB2.png}
+\caption{Scattering matrix for channel 2J, polarization y and output 6dB2.}
+\label{fig:2Jy_6dB2}
+\end{figure}
+
+
+% --- 2Jy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Jy_6dB3.png}
+\caption{Scattering matrix for channel 2J, polarization y and output 6dB3.}
+\label{fig:2Jy_6dB3}
+\end{figure}
+
+
+% --- 2Kx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Kx_3dB1.png}
+\caption{Scattering matrix for channel 2K, polarization x and output 3dB1.}
+\label{fig:2Kx_3dB1}
+\end{figure}
+
+
+% --- 2Kx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Kx_6dB2.png}
+\caption{Scattering matrix for channel 2K, polarization x and output 6dB2.}
+\label{fig:2Kx_6dB2}
+\end{figure}
+
+
+% --- 2Kx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Kx_6dB3.png}
+\caption{Scattering matrix for channel 2K, polarization x and output 6dB3.}
+\label{fig:2Kx_6dB3}
+\end{figure}
+
+
+% --- 2Ky_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ky_3dB1.png}
+\caption{Scattering matrix for channel 2K, polarization y and output 3dB1.}
+\label{fig:2Ky_3dB1}
+\end{figure}
+
+
+% --- 2Ky_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ky_6dB2.png}
+\caption{Scattering matrix for channel 2K, polarization y and output 6dB2.}
+\label{fig:2Ky_6dB2}
+\end{figure}
+
+
+% --- 2Ky_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ky_6dB3.png}
+\caption{Scattering matrix for channel 2K, polarization y and output 6dB3.}
+\label{fig:2Ky_6dB3}
+\end{figure}
+
+
+% --- 2Lx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Lx_3dB1.png}
+\caption{Scattering matrix for channel 2L, polarization x and output 3dB1.}
+\label{fig:2Lx_3dB1}
+\end{figure}
+
+
+% --- 2Lx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Lx_6dB2.png}
+\caption{Scattering matrix for channel 2L, polarization x and output 6dB2.}
+\label{fig:2Lx_6dB2}
+\end{figure}
+
+
+% --- 2Lx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Lx_6dB3.png}
+\caption{Scattering matrix for channel 2L, polarization x and output 6dB3.}
+\label{fig:2Lx_6dB3}
+\end{figure}
+
+
+% --- 2Ly_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ly_3dB1.png}
+\caption{Scattering matrix for channel 2L, polarization y and output 3dB1.}
+\label{fig:2Ly_3dB1}
+\end{figure}
+
+
+% --- 2Ly_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ly_6dB2.png}
+\caption{Scattering matrix for channel 2L, polarization y and output 6dB2.}
+\label{fig:2Ly_6dB2}
+\end{figure}
+
+
+% --- 2Ly_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Ly_6dB3.png}
+\caption{Scattering matrix for channel 2L, polarization y and output 6dB3.}
+\label{fig:2Ly_6dB3}
+\end{figure}
+
+
+% --- 2Mx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Mx_3dB1.png}
+\caption{Scattering matrix for channel 2M, polarization x and output 3dB1.}
+\label{fig:2Mx_3dB1}
+\end{figure}
+
+
+% --- 2Mx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Mx_6dB2.png}
+\caption{Scattering matrix for channel 2M, polarization x and output 6dB2.}
+\label{fig:2Mx_6dB2}
+\end{figure}
+
+
+% --- 2Mx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2Mx_6dB3.png}
+\caption{Scattering matrix for channel 2M, polarization x and output 6dB3.}
+\label{fig:2Mx_6dB3}
+\end{figure}
+
+
+% --- 2My_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2My_3dB1.png}
+\caption{Scattering matrix for channel 2M, polarization y and output 3dB1.}
+\label{fig:2My_3dB1}
+\end{figure}
+
+
+% --- 2My_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2My_6dB2.png}
+\caption{Scattering matrix for channel 2M, polarization y and output 6dB2.}
+\label{fig:2My_6dB2}
+\end{figure}
+
+
+% --- 2My_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/2My_6dB3.png}
+\caption{Scattering matrix for channel 2M, polarization y and output 6dB3.}
+\label{fig:2My_6dB3}
+\end{figure}
+
+
+% --- Iax_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iax_3dB1.png}
+\caption{Scattering matrix for channel Ia, polarization x and output 3dB1.}
+\label{fig:Iax_3dB1}
+\end{figure}
+
+
+% --- Iax_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iax_6dB2.png}
+\caption{Scattering matrix for channel Ia, polarization x and output 6dB2.}
+\label{fig:Iax_6dB2}
+\end{figure}
+
+
+% --- Iax_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iax_6dB3.png}
+\caption{Scattering matrix for channel Ia, polarization x and output 6dB3.}
+\label{fig:Iax_6dB3}
+\end{figure}
+
+
+% --- Iay_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iay_3dB1.png}
+\caption{Scattering matrix for channel Ia, polarization y and output 3dB1.}
+\label{fig:Iay_3dB1}
+\end{figure}
+
+
+% --- Iay_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iay_6dB2.png}
+\caption{Scattering matrix for channel Ia, polarization y and output 6dB2.}
+\label{fig:Iay_6dB2}
+\end{figure}
+
+
+% --- Iay_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iay_6dB3.png}
+\caption{Scattering matrix for channel Ia, polarization y and output 6dB3.}
+\label{fig:Iay_6dB3}
+\end{figure}
+
+
+% --- IIax_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIax_3dB1.png}
+\caption{Scattering matrix for channel IIa, polarization x and output 3dB1.}
+\label{fig:IIax_3dB1}
+\end{figure}
+
+
+% --- IIax_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIax_6dB2.png}
+\caption{Scattering matrix for channel IIa, polarization x and output 6dB2.}
+\label{fig:IIax_6dB2}
+\end{figure}
+
+
+% --- IIax_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIax_6dB3.png}
+\caption{Scattering matrix for channel IIa, polarization x and output 6dB3.}
+\label{fig:IIax_6dB3}
+\end{figure}
+
+
+% --- IIay_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIay_3dB1.png}
+\caption{Scattering matrix for channel IIa, polarization y and output 3dB1.}
+\label{fig:IIay_3dB1}
+\end{figure}
+
+
+% --- IIay_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIay_6dB2.png}
+\caption{Scattering matrix for channel IIa, polarization y and output 6dB2.}
+\label{fig:IIay_6dB2}
+\end{figure}
+
+
+% --- IIay_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIay_6dB3.png}
+\caption{Scattering matrix for channel IIa, polarization y and output 6dB3.}
+\label{fig:IIay_6dB3}
+\end{figure}
+
+
+% --- 3Cx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Cx_3dB1.png}
+\caption{Scattering matrix for channel 3C, polarization x and output 3dB1.}
+\label{fig:3Cx_3dB1}
+\end{figure}
+
+
+% --- 3Cx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Cx_6dB2.png}
+\caption{Scattering matrix for channel 3C, polarization x and output 6dB2.}
+\label{fig:3Cx_6dB2}
+\end{figure}
+
+
+% --- 3Cx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Cx_6dB3.png}
+\caption{Scattering matrix for channel 3C, polarization x and output 6dB3.}
+\label{fig:3Cx_6dB3}
+\end{figure}
+
+
+% --- 3Cy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Cy_3dB1.png}
+\caption{Scattering matrix for channel 3C, polarization y and output 3dB1.}
+\label{fig:3Cy_3dB1}
+\end{figure}
+
+
+% --- 3Cy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Cy_6dB2.png}
+\caption{Scattering matrix for channel 3C, polarization y and output 6dB2.}
+\label{fig:3Cy_6dB2}
+\end{figure}
+
+
+% --- 3Cy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Cy_6dB3.png}
+\caption{Scattering matrix for channel 3C, polarization y and output 6dB3.}
+\label{fig:3Cy_6dB3}
+\end{figure}
+
+
+% --- 3Dx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Dx_3dB1.png}
+\caption{Scattering matrix for channel 3D, polarization x and output 3dB1.}
+\label{fig:3Dx_3dB1}
+\end{figure}
+
+
+% --- 3Dx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Dx_6dB2.png}
+\caption{Scattering matrix for channel 3D, polarization x and output 6dB2.}
+\label{fig:3Dx_6dB2}
+\end{figure}
+
+
+% --- 3Dx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Dx_6dB3.png}
+\caption{Scattering matrix for channel 3D, polarization x and output 6dB3.}
+\label{fig:3Dx_6dB3}
+\end{figure}
+
+
+% --- 3Dy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Dy_3dB1.png}
+\caption{Scattering matrix for channel 3D, polarization y and output 3dB1.}
+\label{fig:3Dy_3dB1}
+\end{figure}
+
+
+% --- 3Dy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Dy_6dB2.png}
+\caption{Scattering matrix for channel 3D, polarization y and output 6dB2.}
+\label{fig:3Dy_6dB2}
+\end{figure}
+
+
+% --- 3Dy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Dy_6dB3.png}
+\caption{Scattering matrix for channel 3D, polarization y and output 6dB3.}
+\label{fig:3Dy_6dB3}
+\end{figure}
+
+
+% --- 3Ex_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ex_3dB1.png}
+\caption{Scattering matrix for channel 3E, polarization x and output 3dB1.}
+\label{fig:3Ex_3dB1}
+\end{figure}
+
+
+% --- 3Ex_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ex_6dB2.png}
+\caption{Scattering matrix for channel 3E, polarization x and output 6dB2.}
+\label{fig:3Ex_6dB2}
+\end{figure}
+
+
+% --- 3Ex_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ex_6dB3.png}
+\caption{Scattering matrix for channel 3E, polarization x and output 6dB3.}
+\label{fig:3Ex_6dB3}
+\end{figure}
+
+
+% --- 3Ey_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ey_3dB1.png}
+\caption{Scattering matrix for channel 3E, polarization y and output 3dB1.}
+\label{fig:3Ey_3dB1}
+\end{figure}
+
+
+% --- 3Ey_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ey_6dB2.png}
+\caption{Scattering matrix for channel 3E, polarization y and output 6dB2.}
+\label{fig:3Ey_6dB2}
+\end{figure}
+
+
+% --- 3Ey_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ey_6dB3.png}
+\caption{Scattering matrix for channel 3E, polarization y and output 6dB3.}
+\label{fig:3Ey_6dB3}
+\end{figure}
+
+
+% --- 3Fx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Fx_3dB1.png}
+\caption{Scattering matrix for channel 3F, polarization x and output 3dB1.}
+\label{fig:3Fx_3dB1}
+\end{figure}
+
+
+% --- 3Fx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Fx_6dB2.png}
+\caption{Scattering matrix for channel 3F, polarization x and output 6dB2.}
+\label{fig:3Fx_6dB2}
+\end{figure}
+
+
+% --- 3Fx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Fx_6dB3.png}
+\caption{Scattering matrix for channel 3F, polarization x and output 6dB3.}
+\label{fig:3Fx_6dB3}
+\end{figure}
+
+
+% --- 3Fy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Fy_3dB1.png}
+\caption{Scattering matrix for channel 3F, polarization y and output 3dB1.}
+\label{fig:3Fy_3dB1}
+\end{figure}
+
+
+% --- 3Fy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Fy_6dB2.png}
+\caption{Scattering matrix for channel 3F, polarization y and output 6dB2.}
+\label{fig:3Fy_6dB2}
+\end{figure}
+
+
+% --- 3Fy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Fy_6dB3.png}
+\caption{Scattering matrix for channel 3F, polarization y and output 6dB3.}
+\label{fig:3Fy_6dB3}
+\end{figure}
+
+
+% --- 3Gx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Gx_3dB1.png}
+\caption{Scattering matrix for channel 3G, polarization x and output 3dB1.}
+\label{fig:3Gx_3dB1}
+\end{figure}
+
+
+% --- 3Gx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Gx_6dB2.png}
+\caption{Scattering matrix for channel 3G, polarization x and output 6dB2.}
+\label{fig:3Gx_6dB2}
+\end{figure}
+
+
+% --- 3Gx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Gx_6dB3.png}
+\caption{Scattering matrix for channel 3G, polarization x and output 6dB3.}
+\label{fig:3Gx_6dB3}
+\end{figure}
+
+
+% --- 3Gy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Gy_3dB1.png}
+\caption{Scattering matrix for channel 3G, polarization y and output 3dB1.}
+\label{fig:3Gy_3dB1}
+\end{figure}
+
+
+% --- 3Gy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Gy_6dB2.png}
+\caption{Scattering matrix for channel 3G, polarization y and output 6dB2.}
+\label{fig:3Gy_6dB2}
+\end{figure}
+
+
+% --- 3Gy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Gy_6dB3.png}
+\caption{Scattering matrix for channel 3G, polarization y and output 6dB3.}
+\label{fig:3Gy_6dB3}
+\end{figure}
+
+
+% --- 3Hx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Hx_3dB1.png}
+\caption{Scattering matrix for channel 3H, polarization x and output 3dB1.}
+\label{fig:3Hx_3dB1}
+\end{figure}
+
+
+% --- 3Hx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Hx_6dB2.png}
+\caption{Scattering matrix for channel 3H, polarization x and output 6dB2.}
+\label{fig:3Hx_6dB2}
+\end{figure}
+
+
+% --- 3Hx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Hx_6dB3.png}
+\caption{Scattering matrix for channel 3H, polarization x and output 6dB3.}
+\label{fig:3Hx_6dB3}
+\end{figure}
+
+
+% --- 3Hy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Hy_3dB1.png}
+\caption{Scattering matrix for channel 3H, polarization y and output 3dB1.}
+\label{fig:3Hy_3dB1}
+\end{figure}
+
+
+% --- 3Hy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Hy_6dB2.png}
+\caption{Scattering matrix for channel 3H, polarization y and output 6dB2.}
+\label{fig:3Hy_6dB2}
+\end{figure}
+
+
+% --- 3Hy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Hy_6dB3.png}
+\caption{Scattering matrix for channel 3H, polarization y and output 6dB3.}
+\label{fig:3Hy_6dB3}
+\end{figure}
+
+
+% --- 3Jx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Jx_3dB1.png}
+\caption{Scattering matrix for channel 3J, polarization x and output 3dB1.}
+\label{fig:3Jx_3dB1}
+\end{figure}
+
+
+% --- 3Jx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Jx_6dB2.png}
+\caption{Scattering matrix for channel 3J, polarization x and output 6dB2.}
+\label{fig:3Jx_6dB2}
+\end{figure}
+
+
+% --- 3Jx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Jx_6dB3.png}
+\caption{Scattering matrix for channel 3J, polarization x and output 6dB3.}
+\label{fig:3Jx_6dB3}
+\end{figure}
+
+
+% --- 3Jy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Jy_3dB1.png}
+\caption{Scattering matrix for channel 3J, polarization y and output 3dB1.}
+\label{fig:3Jy_3dB1}
+\end{figure}
+
+
+% --- 3Jy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Jy_6dB2.png}
+\caption{Scattering matrix for channel 3J, polarization y and output 6dB2.}
+\label{fig:3Jy_6dB2}
+\end{figure}
+
+
+% --- 3Jy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Jy_6dB3.png}
+\caption{Scattering matrix for channel 3J, polarization y and output 6dB3.}
+\label{fig:3Jy_6dB3}
+\end{figure}
+
+
+% --- 3Lx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Lx_3dB1.png}
+\caption{Scattering matrix for channel 3L, polarization x and output 3dB1.}
+\label{fig:3Lx_3dB1}
+\end{figure}
+
+
+% --- 3Lx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Lx_6dB2.png}
+\caption{Scattering matrix for channel 3L, polarization x and output 6dB2.}
+\label{fig:3Lx_6dB2}
+\end{figure}
+
+
+% --- 3Lx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Lx_6dB3.png}
+\caption{Scattering matrix for channel 3L, polarization x and output 6dB3.}
+\label{fig:3Lx_6dB3}
+\end{figure}
+
+
+% --- 3Ly_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ly_3dB1.png}
+\caption{Scattering matrix for channel 3L, polarization y and output 3dB1.}
+\label{fig:3Ly_3dB1}
+\end{figure}
+
+
+% --- 3Ly_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ly_6dB2.png}
+\caption{Scattering matrix for channel 3L, polarization y and output 6dB2.}
+\label{fig:3Ly_6dB2}
+\end{figure}
+
+
+% --- 3Ly_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/3Ly_6dB3.png}
+\caption{Scattering matrix for channel 3L, polarization y and output 6dB3.}
+\label{fig:3Ly_6dB3}
+\end{figure}
+
+
+% --- 4Ex_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ex_3dB1.png}
+\caption{Scattering matrix for channel 4E, polarization x and output 3dB1.}
+\label{fig:4Ex_3dB1}
+\end{figure}
+
+
+% --- 4Ex_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ex_6dB2.png}
+\caption{Scattering matrix for channel 4E, polarization x and output 6dB2.}
+\label{fig:4Ex_6dB2}
+\end{figure}
+
+
+% --- 4Ex_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ex_6dB3.png}
+\caption{Scattering matrix for channel 4E, polarization x and output 6dB3.}
+\label{fig:4Ex_6dB3}
+\end{figure}
+
+
+% --- 4Ey_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ey_3dB1.png}
+\caption{Scattering matrix for channel 4E, polarization y and output 3dB1.}
+\label{fig:4Ey_3dB1}
+\end{figure}
+
+
+% --- 4Ey_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ey_6dB2.png}
+\caption{Scattering matrix for channel 4E, polarization y and output 6dB2.}
+\label{fig:4Ey_6dB2}
+\end{figure}
+
+
+% --- 4Ey_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ey_6dB3.png}
+\caption{Scattering matrix for channel 4E, polarization y and output 6dB3.}
+\label{fig:4Ey_6dB3}
+\end{figure}
+
+
+% --- 4Fx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Fx_3dB1.png}
+\caption{Scattering matrix for channel 4F, polarization x and output 3dB1.}
+\label{fig:4Fx_3dB1}
+\end{figure}
+
+
+% --- 4Fx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Fx_6dB2.png}
+\caption{Scattering matrix for channel 4F, polarization x and output 6dB2.}
+\label{fig:4Fx_6dB2}
+\end{figure}
+
+
+% --- 4Fx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Fx_6dB3.png}
+\caption{Scattering matrix for channel 4F, polarization x and output 6dB3.}
+\label{fig:4Fx_6dB3}
+\end{figure}
+
+
+% --- 4Fy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Fy_3dB1.png}
+\caption{Scattering matrix for channel 4F, polarization y and output 3dB1.}
+\label{fig:4Fy_3dB1}
+\end{figure}
+
+
+% --- 4Fy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Fy_6dB2.png}
+\caption{Scattering matrix for channel 4F, polarization y and output 6dB2.}
+\label{fig:4Fy_6dB2}
+\end{figure}
+
+
+% --- 4Fy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Fy_6dB3.png}
+\caption{Scattering matrix for channel 4F, polarization y and output 6dB3.}
+\label{fig:4Fy_6dB3}
+\end{figure}
+
+
+% --- 4Gx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Gx_3dB1.png}
+\caption{Scattering matrix for channel 4G, polarization x and output 3dB1.}
+\label{fig:4Gx_3dB1}
+\end{figure}
+
+
+% --- 4Gx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Gx_6dB2.png}
+\caption{Scattering matrix for channel 4G, polarization x and output 6dB2.}
+\label{fig:4Gx_6dB2}
+\end{figure}
+
+
+% --- 4Gx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Gx_6dB3.png}
+\caption{Scattering matrix for channel 4G, polarization x and output 6dB3.}
+\label{fig:4Gx_6dB3}
+\end{figure}
+
+
+% --- 4Gy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Gy_3dB1.png}
+\caption{Scattering matrix for channel 4G, polarization y and output 3dB1.}
+\label{fig:4Gy_3dB1}
+\end{figure}
+
+
+% --- 4Gy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Gy_6dB2.png}
+\caption{Scattering matrix for channel 4G, polarization y and output 6dB2.}
+\label{fig:4Gy_6dB2}
+\end{figure}
+
+
+% --- 4Gy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Gy_6dB3.png}
+\caption{Scattering matrix for channel 4G, polarization y and output 6dB3.}
+\label{fig:4Gy_6dB3}
+\end{figure}
+
+
+% --- 4Hx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Hx_3dB1.png}
+\caption{Scattering matrix for channel 4H, polarization x and output 3dB1.}
+\label{fig:4Hx_3dB1}
+\end{figure}
+
+
+% --- 4Hx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Hx_6dB2.png}
+\caption{Scattering matrix for channel 4H, polarization x and output 6dB2.}
+\label{fig:4Hx_6dB2}
+\end{figure}
+
+
+% --- 4Hx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Hx_6dB3.png}
+\caption{Scattering matrix for channel 4H, polarization x and output 6dB3.}
+\label{fig:4Hx_6dB3}
+\end{figure}
+
+
+% --- 4Hy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Hy_3dB1.png}
+\caption{Scattering matrix for channel 4H, polarization y and output 3dB1.}
+\label{fig:4Hy_3dB1}
+\end{figure}
+
+
+% --- 4Hy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Hy_6dB2.png}
+\caption{Scattering matrix for channel 4H, polarization y and output 6dB2.}
+\label{fig:4Hy_6dB2}
+\end{figure}
+
+
+% --- 4Hy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Hy_6dB3.png}
+\caption{Scattering matrix for channel 4H, polarization y and output 6dB3.}
+\label{fig:4Hy_6dB3}
+\end{figure}
+
+
+% --- 4Jx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Jx_3dB1.png}
+\caption{Scattering matrix for channel 4J, polarization x and output 3dB1.}
+\label{fig:4Jx_3dB1}
+\end{figure}
+
+
+% --- 4Jx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Jx_6dB2.png}
+\caption{Scattering matrix for channel 4J, polarization x and output 6dB2.}
+\label{fig:4Jx_6dB2}
+\end{figure}
+
+
+% --- 4Jx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Jx_6dB3.png}
+\caption{Scattering matrix for channel 4J, polarization x and output 6dB3.}
+\label{fig:4Jx_6dB3}
+\end{figure}
+
+
+% --- 4Jy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Jy_3dB1.png}
+\caption{Scattering matrix for channel 4J, polarization y and output 3dB1.}
+\label{fig:4Jy_3dB1}
+\end{figure}
+
+
+% --- 4Jy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Jy_6dB2.png}
+\caption{Scattering matrix for channel 4J, polarization y and output 6dB2.}
+\label{fig:4Jy_6dB2}
+\end{figure}
+
+
+% --- 4Jy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Jy_6dB3.png}
+\caption{Scattering matrix for channel 4J, polarization y and output 6dB3.}
+\label{fig:4Jy_6dB3}
+\end{figure}
+
+
+% --- 4Kx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Kx_3dB1.png}
+\caption{Scattering matrix for channel 4K, polarization x and output 3dB1.}
+\label{fig:4Kx_3dB1}
+\end{figure}
+
+
+% --- 4Kx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Kx_6dB2.png}
+\caption{Scattering matrix for channel 4K, polarization x and output 6dB2.}
+\label{fig:4Kx_6dB2}
+\end{figure}
+
+
+% --- 4Kx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Kx_6dB3.png}
+\caption{Scattering matrix for channel 4K, polarization x and output 6dB3.}
+\label{fig:4Kx_6dB3}
+\end{figure}
+
+
+% --- 4Ky_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ky_3dB1.png}
+\caption{Scattering matrix for channel 4K, polarization y and output 3dB1.}
+\label{fig:4Ky_3dB1}
+\end{figure}
+
+
+% --- 4Ky_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ky_6dB2.png}
+\caption{Scattering matrix for channel 4K, polarization y and output 6dB2.}
+\label{fig:4Ky_6dB2}
+\end{figure}
+
+
+% --- 4Ky_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ky_6dB3.png}
+\caption{Scattering matrix for channel 4K, polarization y and output 6dB3.}
+\label{fig:4Ky_6dB3}
+\end{figure}
+
+
+% --- 4Lx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Lx_3dB1.png}
+\caption{Scattering matrix for channel 4L, polarization x and output 3dB1.}
+\label{fig:4Lx_3dB1}
+\end{figure}
+
+
+% --- 4Lx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Lx_6dB2.png}
+\caption{Scattering matrix for channel 4L, polarization x and output 6dB2.}
+\label{fig:4Lx_6dB2}
+\end{figure}
+
+
+% --- 4Lx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Lx_6dB3.png}
+\caption{Scattering matrix for channel 4L, polarization x and output 6dB3.}
+\label{fig:4Lx_6dB3}
+\end{figure}
+
+
+% --- 4Ly_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ly_3dB1.png}
+\caption{Scattering matrix for channel 4L, polarization y and output 3dB1.}
+\label{fig:4Ly_3dB1}
+\end{figure}
+
+
+% --- 4Ly_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ly_6dB2.png}
+\caption{Scattering matrix for channel 4L, polarization y and output 6dB2.}
+\label{fig:4Ly_6dB2}
+\end{figure}
+
+
+% --- 4Ly_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/4Ly_6dB3.png}
+\caption{Scattering matrix for channel 4L, polarization y and output 6dB3.}
+\label{fig:4Ly_6dB3}
+\end{figure}
+
+
+% --- 5Bx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Bx_3dB1.png}
+\caption{Scattering matrix for channel 5B, polarization x and output 3dB1.}
+\label{fig:5Bx_3dB1}
+\end{figure}
+
+
+% --- 5Bx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Bx_6dB2.png}
+\caption{Scattering matrix for channel 5B, polarization x and output 6dB2.}
+\label{fig:5Bx_6dB2}
+\end{figure}
+
+
+% --- 5Bx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Bx_6dB3.png}
+\caption{Scattering matrix for channel 5B, polarization x and output 6dB3.}
+\label{fig:5Bx_6dB3}
+\end{figure}
+
+
+% --- 5By_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5By_3dB1.png}
+\caption{Scattering matrix for channel 5B, polarization y and output 3dB1.}
+\label{fig:5By_3dB1}
+\end{figure}
+
+
+% --- 5By_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5By_6dB2.png}
+\caption{Scattering matrix for channel 5B, polarization y and output 6dB2.}
+\label{fig:5By_6dB2}
+\end{figure}
+
+
+% --- 5By_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5By_6dB3.png}
+\caption{Scattering matrix for channel 5B, polarization y and output 6dB3.}
+\label{fig:5By_6dB3}
+\end{figure}
+
+
+% --- 5Cx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Cx_3dB1.png}
+\caption{Scattering matrix for channel 5C, polarization x and output 3dB1.}
+\label{fig:5Cx_3dB1}
+\end{figure}
+
+
+% --- 5Cx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Cx_6dB2.png}
+\caption{Scattering matrix for channel 5C, polarization x and output 6dB2.}
+\label{fig:5Cx_6dB2}
+\end{figure}
+
+
+% --- 5Cx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Cx_6dB3.png}
+\caption{Scattering matrix for channel 5C, polarization x and output 6dB3.}
+\label{fig:5Cx_6dB3}
+\end{figure}
+
+
+% --- 5Cy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Cy_3dB1.png}
+\caption{Scattering matrix for channel 5C, polarization y and output 3dB1.}
+\label{fig:5Cy_3dB1}
+\end{figure}
+
+
+% --- 5Cy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Cy_6dB2.png}
+\caption{Scattering matrix for channel 5C, polarization y and output 6dB2.}
+\label{fig:5Cy_6dB2}
+\end{figure}
+
+
+% --- 5Cy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Cy_6dB3.png}
+\caption{Scattering matrix for channel 5C, polarization y and output 6dB3.}
+\label{fig:5Cy_6dB3}
+\end{figure}
+
+
+% --- 5Ex_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Ex_3dB1.png}
+\caption{Scattering matrix for channel 5E, polarization x and output 3dB1.}
+\label{fig:5Ex_3dB1}
+\end{figure}
+
+
+% --- 5Ex_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Ex_6dB2.png}
+\caption{Scattering matrix for channel 5E, polarization x and output 6dB2.}
+\label{fig:5Ex_6dB2}
+\end{figure}
+
+
+% --- 5Ex_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Ex_6dB3.png}
+\caption{Scattering matrix for channel 5E, polarization x and output 6dB3.}
+\label{fig:5Ex_6dB3}
+\end{figure}
+
+
+% --- 5Ey_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Ey_3dB1.png}
+\caption{Scattering matrix for channel 5E, polarization y and output 3dB1.}
+\label{fig:5Ey_3dB1}
+\end{figure}
+
+
+% --- 5Ey_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Ey_6dB2.png}
+\caption{Scattering matrix for channel 5E, polarization y and output 6dB2.}
+\label{fig:5Ey_6dB2}
+\end{figure}
+
+
+% --- 5Ey_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Ey_6dB3.png}
+\caption{Scattering matrix for channel 5E, polarization y and output 6dB3.}
+\label{fig:5Ey_6dB3}
+\end{figure}
+
+
+% --- 5Gx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Gx_3dB1.png}
+\caption{Scattering matrix for channel 5G, polarization x and output 3dB1.}
+\label{fig:5Gx_3dB1}
+\end{figure}
+
+
+% --- 5Gx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Gx_6dB2.png}
+\caption{Scattering matrix for channel 5G, polarization x and output 6dB2.}
+\label{fig:5Gx_6dB2}
+\end{figure}
+
+
+% --- 5Gx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Gx_6dB3.png}
+\caption{Scattering matrix for channel 5G, polarization x and output 6dB3.}
+\label{fig:5Gx_6dB3}
+\end{figure}
+
+
+% --- 5Gy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Gy_3dB1.png}
+\caption{Scattering matrix for channel 5G, polarization y and output 3dB1.}
+\label{fig:5Gy_3dB1}
+\end{figure}
+
+
+% --- 5Gy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Gy_6dB2.png}
+\caption{Scattering matrix for channel 5G, polarization y and output 6dB2.}
+\label{fig:5Gy_6dB2}
+\end{figure}
+
+
+% --- 5Gy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Gy_6dB3.png}
+\caption{Scattering matrix for channel 5G, polarization y and output 6dB3.}
+\label{fig:5Gy_6dB3}
+\end{figure}
+
+
+% --- 5Hx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Hx_3dB1.png}
+\caption{Scattering matrix for channel 5H, polarization x and output 3dB1.}
+\label{fig:5Hx_3dB1}
+\end{figure}
+
+
+% --- 5Hx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Hx_6dB2.png}
+\caption{Scattering matrix for channel 5H, polarization x and output 6dB2.}
+\label{fig:5Hx_6dB2}
+\end{figure}
+
+
+% --- 5Hx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Hx_6dB3.png}
+\caption{Scattering matrix for channel 5H, polarization x and output 6dB3.}
+\label{fig:5Hx_6dB3}
+\end{figure}
+
+
+% --- 5Hy_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Hy_3dB1.png}
+\caption{Scattering matrix for channel 5H, polarization y and output 3dB1.}
+\label{fig:5Hy_3dB1}
+\end{figure}
+
+
+% --- 5Hy_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Hy_6dB2.png}
+\caption{Scattering matrix for channel 5H, polarization y and output 6dB2.}
+\label{fig:5Hy_6dB2}
+\end{figure}
+
+
+% --- 5Hy_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/5Hy_6dB3.png}
+\caption{Scattering matrix for channel 5H, polarization y and output 6dB3.}
+\label{fig:5Hy_6dB3}
+\end{figure}
+
+
+% --- Ibx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Ibx_3dB1.png}
+\caption{Scattering matrix for channel Ib, polarization x and output 3dB1.}
+\label{fig:Ibx_3dB1}
+\end{figure}
+
+
+% --- Ibx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Ibx_6dB2.png}
+\caption{Scattering matrix for channel Ib, polarization x and output 6dB2.}
+\label{fig:Ibx_6dB2}
+\end{figure}
+
+
+% --- Ibx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Ibx_6dB3.png}
+\caption{Scattering matrix for channel Ib, polarization x and output 6dB3.}
+\label{fig:Ibx_6dB3}
+\end{figure}
+
+
+% --- Iby_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iby_3dB1.png}
+\caption{Scattering matrix for channel Ib, polarization y and output 3dB1.}
+\label{fig:Iby_3dB1}
+\end{figure}
+
+
+% --- Iby_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iby_6dB2.png}
+\caption{Scattering matrix for channel Ib, polarization y and output 6dB2.}
+\label{fig:Iby_6dB2}
+\end{figure}
+
+
+% --- Iby_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/Iby_6dB3.png}
+\caption{Scattering matrix for channel Ib, polarization y and output 6dB3.}
+\label{fig:Iby_6dB3}
+\end{figure}
+
+
+% --- IIbx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIbx_3dB1.png}
+\caption{Scattering matrix for channel IIb, polarization x and output 3dB1.}
+\label{fig:IIbx_3dB1}
+\end{figure}
+
+
+% --- IIbx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIbx_6dB2.png}
+\caption{Scattering matrix for channel IIb, polarization x and output 6dB2.}
+\label{fig:IIbx_6dB2}
+\end{figure}
+
+
+% --- IIbx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIbx_6dB3.png}
+\caption{Scattering matrix for channel IIb, polarization x and output 6dB3.}
+\label{fig:IIbx_6dB3}
+\end{figure}
+
+
+% --- IIby_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIby_3dB1.png}
+\caption{Scattering matrix for channel IIb, polarization y and output 3dB1.}
+\label{fig:IIby_3dB1}
+\end{figure}
+
+
+% --- IIby_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIby_6dB2.png}
+\caption{Scattering matrix for channel IIb, polarization y and output 6dB2.}
+\label{fig:IIby_6dB2}
+\end{figure}
+
+
+% --- IIby_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIby_6dB3.png}
+\caption{Scattering matrix for channel IIb, polarization y and output 6dB3.}
+\label{fig:IIby_6dB3}
+\end{figure}
+
+
+% --- IIIbx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIIbx_3dB1.png}
+\caption{Scattering matrix for channel IIIb, polarization x and output 3dB1.}
+\label{fig:IIIbx_3dB1}
+\end{figure}
+
+
+% --- IIIbx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIIbx_6dB2.png}
+\caption{Scattering matrix for channel IIIb, polarization x and output 6dB2.}
+\label{fig:IIIbx_6dB2}
+\end{figure}
+
+
+% --- IIIbx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIIbx_6dB3.png}
+\caption{Scattering matrix for channel IIIb, polarization x and output 6dB3.}
+\label{fig:IIIbx_6dB3}
+\end{figure}
+
+
+% --- IIIby_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIIby_3dB1.png}
+\caption{Scattering matrix for channel IIIb, polarization y and output 3dB1.}
+\label{fig:IIIby_3dB1}
+\end{figure}
+
+
+% --- IIIby_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIIby_6dB2.png}
+\caption{Scattering matrix for channel IIIb, polarization y and output 6dB2.}
+\label{fig:IIIby_6dB2}
+\end{figure}
+
+
+% --- IIIby_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IIIby_6dB3.png}
+\caption{Scattering matrix for channel IIIb, polarization y and output 6dB3.}
+\label{fig:IIIby_6dB3}
+\end{figure}
+
+
+% --- IVbx_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IVbx_3dB1.png}
+\caption{Scattering matrix for channel IVb, polarization x and output 3dB1.}
+\label{fig:IVbx_3dB1}
+\end{figure}
+
+
+% --- IVbx_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IVbx_6dB2.png}
+\caption{Scattering matrix for channel IVb, polarization x and output 6dB2.}
+\label{fig:IVbx_6dB2}
+\end{figure}
+
+
+% --- IVbx_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IVbx_6dB3.png}
+\caption{Scattering matrix for channel IVb, polarization x and output 6dB3.}
+\label{fig:IVbx_6dB3}
+\end{figure}
+
+
+% --- IVby_3dB1--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IVby_3dB1.png}
+\caption{Scattering matrix for channel IVb, polarization y and output 3dB1.}
+\label{fig:IVby_3dB1}
+\end{figure}
+
+
+% --- IVby_6dB2--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IVby_6dB2.png}
+\caption{Scattering matrix for channel IVb, polarization y and output 6dB2.}
+\label{fig:IVby_6dB2}
+\end{figure}
+
+
+% --- IVby_6dB3--- 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{VNA_results/IVby_6dB3.png}
+\caption{Scattering matrix for channel IVb, polarization y and output 6dB3.}
+\label{fig:IVby_6dB3}
+\end{figure}
+
+
+\end{document}

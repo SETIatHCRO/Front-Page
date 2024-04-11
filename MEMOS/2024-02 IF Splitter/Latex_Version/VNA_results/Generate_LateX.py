@@ -1,8 +1,14 @@
 # Generate latex text to include all the figures
 
-channels = ["1A", "1B", "1C", "1D", "1E", "1F", "1G", "1H", "1J", "1K"
-           "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "2J", "2K", "2M", "2N"
-           "Ia", "IIa"]
+channels = [# Module 1
+           "1A", "1B", "1C", "1D", "1E", "1F", "1G", "1H", "1J", "1K",
+           "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "2J", "2K", "2L", "2M",
+           "Ia", "IIa",
+           # Module 2
+           "3C", "3D", "3E", "3F", "3G", "3H", "3J", "3L",
+           "4E", "4F", "4G", "4H", "4J", "4K", "4L",
+           "5B", "5C", "5E", "5G", "5H",
+           "Ib", "IIb", "IIIb", "IVb"]
 
 polarizations = ["x", "y"]
 
