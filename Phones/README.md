@@ -211,6 +211,10 @@ Applications -> Ring Groups
 
 Add Ring Group (straightforward). Use "Terminate Call" for no-answer destination.
 
+If you are specifying groups as members (vs. actual extensions), append a "#" to the end of the member.
+
+So for example, add extension 114 as `114`, but add group 310 as `310#`
+
 ## Troubleshooting
 
 Registration issue on phones? Maybe you set up the phone before adding the extension to FreePBX.
