@@ -46,8 +46,14 @@ groups:
   - description: "*Main Lab All*"
     extension: 310
 
+  - description: "*External Calls - Day*"
+    extension: 330
+
   - description: "*Main Lab Obs*"
     extension: 340
+
+  - description: "*Main Lab Offices*"
+    extension: 341
 
   - description: "*Dorm Common*"
     extension: 320
