@@ -1,0 +1,68 @@
+---
+
+# line_title can be a max of 10-12 characters (depending on character width)
+
+lines:
+
+  - description: Paul Coldren
+    extension: 114
+    line_title: Paul C
+    phone_mac: "64:16:7F:58:ED:34"
+    phone_ipv4: 10.1.22.20
+
+  - description: Alex Pollak
+    extension: 110
+    line_title: Alex P
+    phone_mac: "AA:BB:CC:DD:EE:F0"
+    phone_ipv4: 10.1.22.21
+
+  - description: Mark / Carol
+    extension: 120
+    line_title: Mark / Carol
+    phone_mac: "AA:BB:CC:DD:EE:F1"
+    phone_ipv4: 10.1.22.22
+
+  - description: Dorm Library
+    extension: 200
+    line_title: Dorm Library
+    phone_mac: "AA:BB:CC:DD:EE:F2"
+    phone_ipv4: 10.1.22.23
+
+  - description: Lassen House LR
+    extension: 250
+    line_title: Lassen LR
+    phone_mac: "AA:BB:CC:DD:EE:F4"
+    phone_ipv4: 10.1.22.24
+
+  - description: Hat Creek House LR
+    extension: 260
+    line_title: Hat Creek LR
+    phone_mac: "AA:BB:CC:DD:EE:F3"
+    phone_ipv4: 10.1.22.25
+
+
+groups:
+
+  - description: "*Main Lab All*"
+    extension: 310
+
+  - description: "*Main Lab Obs*"
+    extension: 340
+
+  - description: "*Dorm Common*"
+    extension: 320
+
+  - description: "*Lassen House Common*"
+    extension: 321
+
+  - description: "*Hat Creek House Common*"
+    extension: 322
+
+  - description: "***ALL Work Phones***"
+    extension: 510
+
+  - description: "***ALL Residence Phones***"
+    extension: 511
+
+  - description: "*****ALL HCRO PHONES*****"
+    extension: 610
