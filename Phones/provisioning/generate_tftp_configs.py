@@ -133,7 +133,7 @@ def main():
         phone_mac = line['phone_mac']
         phone_ipv4 = line['phone_ipv4']
 
-        LOGGER.info(f"Processing line {extension} ({description}).".format(
+        LOGGER.info("Processing line {extension} ({description}).".format(
             extension=extension,
             description=description))
 
@@ -205,7 +205,7 @@ def main():
         description = group['description']
         extension = group['extension']
 
-        LOGGER.info(f"Processing group {extension} ({description}).".format(
+        LOGGER.info("Processing group {extension} ({description}).".format(
             extension=extension,
             description=description))
 
@@ -216,6 +216,21 @@ def main():
         directory_item = DIRECTORY_ITEM_TEMPLATE.format(
             description=group_description_with_extension,
             extension=extension
+        )
+
+        directory_item_list += directory_item
+
+    for secret_directory_item in secrets_data['directory']:
+        description = secret_directory_item['description']
+        number = secret_directory_item['number']
+
+        LOGGER.info("Processing secret directory item \"{description}\" ({number}).".format(
+            description=description,
+            number=number))
+
+        directory_item = DIRECTORY_ITEM_TEMPLATE.format(
+            description=description,
+            extension=number
         )
 
         directory_item_list += directory_item

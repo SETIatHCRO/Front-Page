@@ -46,15 +46,6 @@ groups:
   - description: "*Main Lab All*"
     extension: 310
 
-  - description: "*External Calls - Day*"
-    extension: 330
-
-  - description: "*Main Lab Obs*"
-    extension: 340
-
-  - description: "*Main Lab Offices*"
-    extension: 341
-
   - description: "*Dorm Common*"
     extension: 320
 
@@ -64,11 +55,29 @@ groups:
   - description: "*Hat Creek House Common*"
     extension: 322
 
-  - description: "***ALL Work Phones***"
+  - description: "*External Calls - Day*"
+    extension: 330
+
+  - description: "*Main Lab Obs*"
+    extension: 340
+
+  - description: "*Main Lab Offices*"
+    extension: 341
+
+  - description: "***ALL HCRO PHONES***"
     extension: 510
 
-  - description: "***ALL Residence Phones***"
+  - description: "***ALL Work Phones***"
     extension: 511
 
-  - description: "*****ALL HCRO PHONES*****"
-    extension: 610
+  - description: "***ALL Residence Phones***"
+    extension: 512
+
+  - description: "****PAGE ALL HCRO****"
+    extension: 710
+
+  - description: "****PAGE ALL WORK****"
+    extension: 711
+
+  - description: "****PAGE ALL RESIDENCE****"
+    extension: 712

@@ -12,8 +12,8 @@ VLAN 22 is 10.1.22.0/24. DHCP must be enabled on this VLAN for phones to get an 
 provisioning data. Once phones are provisioned, they use a hardcoded static IPv4 address and send traffic
 on VLAN 22.
 
-Option 66 must be specified with the IPv4 address of the provisioning server, pbx1.hcro.org.
-This is currently 10.1.22.10.
+Option 66 must be specified with the connection string of the provisioning server, pbx1.hcro.org.
+This is currently `tftp://10.1.22.10`.
 
 This is how the phones know how to contact the provisioning server.
 
@@ -84,6 +84,10 @@ Use System Admin module to set static IP:
 
 Added to DNS as:
 pbx1.hcro.org
+
+Go to Admin -> Module Admin. Disable all "Commercial" modules except System Admin. We don't use them,
+and they greatly increase the time required to reload configurations. Doing this will reduce the config reload
+time from 20 seconds to 6 seconds.
 
 ## Enable TFTP on FreePBX
 
@@ -215,6 +219,19 @@ If you are specifying groups as members (vs. actual extensions), append a "#" to
 
 So for example, add extension 114 as `114`, but add group 310 as `310#`
 
+## Adding a Page Group
+
+Paging means mass-broadcast/announce without recipients having to pick up. Phones auto-answer. One-way communication.
+Used for emergencies.
+
+Applications -> Paging and Intercom.
+
+Add Page Group.
+
+Set "Busy Extensions" to "Force".
+
+Leave "Duplex" as "No". It is bad (privacy, chaos, etc) to have an option to auto-enable mics in remote locations.
+
 ## Troubleshooting
 
 Registration issue on phones? Maybe you set up the phone before adding the extension to FreePBX.
@@ -235,6 +252,15 @@ secrets:
   local_admin_password: "1234"
   local_user_password: "5678"
   sip_auth_password: "abcd"
+ 
+directory:
+
+  - description: Speed Dial Entry #1
+    number: +1-555-111-2222
+
+  - description: Speed Dial Entry #1
+    number: +1-555-123-4567
+
 ```
 
 This is so we don't check in sensitive secrets to git. This file is in .gitignore.
