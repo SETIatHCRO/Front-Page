@@ -30,20 +30,20 @@ BASE_XML_TEMPLATE = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 {comment}
 -->
 <APPLICATION
-    CONFIG_FILES="common/common.cfg, common/secret.cfg, {device_config_file_path}"
-    APP_FILE_PATH="/{firmware_config_path}/{firmware_file_name}"
-    DECT_FILE_PATH=""
-    SERVICE_FILES=""
-    MISC_FILES=""
-    LOG_FILE_DIRECTORY="/log"
-    OVERRIDES_DIRECTORY=""
-    CONTACTS_DIRECTORY="/{contacts_config_path}"
-    LICENSE_DIRECTORY=""
-    USER_PROFILES_DIRECTORY=""
-    CALL_LISTS_DIRECTORY=""
-    COREFILE_DIRECTORY=""
-    CERTIFICATE_DIRECTORY=""
-    FLK_DIRECTORY=""
+        CONFIG_FILES="common/common.cfg, common/secret.cfg, {device_config_file_path}"
+        APP_FILE_PATH="/{firmware_config_path}/{firmware_file_name}"
+        DECT_FILE_PATH=""
+        SERVICE_FILES=""
+        MISC_FILES=""
+        LOG_FILE_DIRECTORY="/log"
+        OVERRIDES_DIRECTORY=""
+        CONTACTS_DIRECTORY="/{contacts_config_path}"
+        LICENSE_DIRECTORY=""
+        USER_PROFILES_DIRECTORY=""
+        CALL_LISTS_DIRECTORY=""
+        COREFILE_DIRECTORY=""
+        CERTIFICATE_DIRECTORY=""
+        FLK_DIRECTORY=""
 />
 '''
 
@@ -68,7 +68,7 @@ SECRET_XML_TEMPLATE = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             device.auth.localUserPassword="{local_user_password}"
             device.auth.localAdminPassword="{local_admin_password}"
             reg.1.auth.password="{sip_auth_password}"
-/>
+    />
 </PHONE_CONFIG>
 '''
 
@@ -126,16 +126,67 @@ def main():
 
     directory_item_list = ""
 
+    ipv4_set = set()
+    extension_set = set()
+    mac_set = set()
+    line_title_set = set()
+    description_set = set()
     for line in phone_config_data['lines']:
         description = line['description']
         extension = line['extension']
         line_title = line['line_title']
         phone_mac = line['phone_mac']
         phone_ipv4 = line['phone_ipv4']
+        hide_from_directory = line.get('hide_from_directory', False)
+
+        mac_formatted = phone_mac.lower().strip().replace(':', '').replace('-', '')
 
         LOGGER.info("Processing line {extension} ({description}).".format(
             extension=extension,
             description=description))
+
+        if phone_ipv4 in ipv4_set:
+            LOGGER.error(
+                "ERROR: IP address {phone_ipv4} for line {extension} ({description}) is already in use!".format(
+                    phone_ipv4=phone_ipv4,
+                    extension=extension,
+                    description=description))
+            exit(-1)
+        ipv4_set.add(phone_ipv4)
+
+        if extension in extension_set:
+            LOGGER.error(
+                "ERROR: Extension {extension} for line {extension} ({description}) is already in use!".format(
+                    extension=extension,
+                    description=description))
+            exit(-1)
+        extension_set.add(extension)
+
+        if mac_formatted in mac_set:
+            LOGGER.error(
+                "ERROR: MAC {phone_mac} for line {extension} ({description}) is already in use!".format(
+                    phone_mac=phone_mac,
+                    extension=extension,
+                    description=description))
+            exit(-1)
+        mac_set.add(mac_formatted)
+
+        if line_title in line_title_set:
+            LOGGER.error(
+                "ERROR: Line Title {line_title} for line {extension} ({description}) is already in use!".format(
+                    line_title=line_title,
+                    extension=extension,
+                    description=description))
+            exit(-1)
+        line_title_set.add(line_title)
+
+        if description in description_set:
+            LOGGER.error(
+                "ERROR: Description {description} for line {extension} ({description}) is already in use!".format(
+                    extension=extension,
+                    description=description))
+            exit(-1)
+        description_set.add(description)
 
         line_title_with_extension = "{extension} - {line_title}".format(
             extension=extension,
@@ -181,8 +232,6 @@ def main():
             contacts_config_path=CONTACTS_CONFIG_PATH,
             firmware_file_name=FIRMWARE_FILE_NAME)
 
-        mac_formatted = phone_mac.lower().strip().replace(':', '').replace('-', '')
-
         base_xml_filename = "{mac_formatted}.cfg".format(
             mac_formatted=mac_formatted)
 
@@ -194,16 +243,24 @@ def main():
             extension=extension,
             path=base_config_file_path))
 
-        directory_item = DIRECTORY_ITEM_TEMPLATE.format(
-            description=description_with_extension,
-            extension=extension
-        )
+        if hide_from_directory:
+            LOGGER.info("Skipping directory publication for line {extension} ({description}).".format(
+                extension=extension,
+                description=description))
+        else:
+            LOGGER.info("Adding line {extension} ({description}) to directory.".format(
+                extension=extension,
+                description=description))
+            directory_item = DIRECTORY_ITEM_TEMPLATE.format(
+                description=description_with_extension,
+                extension=extension)
 
-        directory_item_list += directory_item
+            directory_item_list += directory_item
 
     for group in phone_config_data['groups']:
         description = group['description']
         extension = group['extension']
+        hide_from_directory = group.get('hide_from_directory', False)
 
         LOGGER.info("Processing group {extension} ({description}).".format(
             extension=extension,
@@ -213,12 +270,19 @@ def main():
             extension=extension,
             description=description)
 
-        directory_item = DIRECTORY_ITEM_TEMPLATE.format(
-            description=group_description_with_extension,
-            extension=extension
-        )
+        if hide_from_directory:
+            LOGGER.info("Skipping directory publication for group {extension} ({description}).".format(
+                extension=extension,
+                description=description))
+        else:
+            LOGGER.info("Adding group {extension} ({description}) to directory.".format(
+                extension=extension,
+                description=description))
+            directory_item = DIRECTORY_ITEM_TEMPLATE.format(
+                description=group_description_with_extension,
+                extension=extension)
 
-        directory_item_list += directory_item
+            directory_item_list += directory_item
 
     for secret_directory_item in secrets_data['directory']:
         description = secret_directory_item['description']

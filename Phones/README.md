@@ -141,13 +141,26 @@ Trunk Sequence for Matched Routes: "sip_provider".
 
 Dial Patterns. Do not include any prefix -- no prefix needed to access an outside line.
 
++.
+
+011.
+
 NXXNXXXXXX
 
 1NXXNXXXXXX
 
 4443
 
+Create another one called "to_sip_provider_emergency". Set the CID to something that will match E911 with
+our VoIP provider.
+
+Dial patterns:
+
 911
+
+5555550911 (test number to validate CID and e911 activation status)
+
+15555550911 (test number to validate CID and e911 activation status)
 
 ### Inbound SIP configuration
 
@@ -207,8 +220,6 @@ Leave Outbound CID and Emergency CID blank.
 
 Set "Link to a Default User" to "None".
 
-Under Advanced, set "Send Connected Line" to No.
-
 ## Adding a Ring Group
 
 Applications -> Ring Groups
@@ -218,6 +229,13 @@ Add Ring Group (straightforward). Use "Terminate Call" for no-answer destination
 If you are specifying groups as members (vs. actual extensions), append a "#" to the end of the member.
 
 So for example, add extension 114 as `114`, but add group 310 as `310#`
+
+Change "Mark Answered Elsewhere" to "Yes". This avoids spurious "missed call" notifications on phones that did not
+pick up, as long as *someone* picked up. For big groups, consider using "Always", to avoid spamming missed call
+notifications to everyone's phones.
+
+The default setting, "No", means that every phone other than the one that
+actually picked up will show a missed call, which means lots of useless missed call notifications. 
 
 ## Adding a Page Group
 
