@@ -4,6 +4,7 @@ import argparse
 import logging
 import os
 import shutil
+import subprocess
 from pathlib import Path
 
 import yaml
@@ -23,7 +24,6 @@ COMMON_CONFIG_PATH = "common"
 FIRMWARE_CONFIG_PATH = "firmware"
 DIRECTORY_FILE_NAME = "000000000000-directory.xml"
 PHONE_CONFIG_FILE = "phone_config.yaml"
-FIRMWARE_FILE_NAME = "3111-48820-001.sip.ld"
 
 BASE_XML_TEMPLATE = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
@@ -31,7 +31,7 @@ BASE_XML_TEMPLATE = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 -->
 <APPLICATION
         CONFIG_FILES="common/common.cfg, common/secret.cfg, {device_config_file_path}"
-        APP_FILE_PATH="/{firmware_config_path}/{firmware_file_name}"
+        APP_FILE_PATH="/{firmware_config_path}/sip.ld"
         DECT_FILE_PATH=""
         SERVICE_FILES=""
         MISC_FILES=""
@@ -229,8 +229,7 @@ def main():
             comment=comment,
             device_config_file_path=device_config_relative_path,
             firmware_config_path=FIRMWARE_CONFIG_PATH,
-            contacts_config_path=CONTACTS_CONFIG_PATH,
-            firmware_file_name=FIRMWARE_FILE_NAME)
+            contacts_config_path=CONTACTS_CONFIG_PATH)
 
         base_xml_filename = "{mac_formatted}.cfg".format(
             mac_formatted=mac_formatted)
@@ -322,6 +321,26 @@ def main():
             LOGGER.info("Copied common file {file_src_path} to {file_output_path}".format(
                 file_src_path=full_file_src_path,
                 file_output_path=file_output_path))
+
+    # Merge any partial files. GitHub limits files > 100M.
+    # Partial files created using, for example:
+    # split -b 50M -d -a 3 filename filename.
+    for filename in Path(TFTP_OUT_SUBDIRECTORY).glob('**/*'):
+        if str(filename).endswith(".000"):
+            if not os.path.exists(filename):
+                # Already deleted on previous iteration.
+                continue
+            filename_combined = str(filename)[0:-4]
+            if os.path.exists(filename_combined):
+                # Already combined, nothing to do.
+                continue
+            # We found partial files. Merge them using shell command.
+            subprocess.run("cat {filename_combined}.* > {filename_combined}".format(
+                filename_combined=filename_combined), shell=True)
+            LOGGER.info("Combined partial files into {filename_combined}".format(
+                filename_combined=filename_combined))
+            subprocess.run("rm {filename_combined}.*".format(
+                filename_combined=filename_combined), shell=True)
 
 
 if __name__ == "__main__":

@@ -13,13 +13,13 @@ lines:
   - description: Marc Jacquart
     extension: 111
     line_title: Marc J
-    phone_mac: "AA:AA:AA:AA:AA:00"
+    phone_mac: "48:25:67:0E:C6:33"
     phone_ipv4: 10.1.22.26
 
   - description: Wael Farah
     extension: 112
     line_title: Wael F
-    phone_mac: "AA:AA:AA:AA:AA:01"
+    phone_mac: "64:16:7F:7C:FF:3A"
     phone_ipv4: 10.1.22.27
 
   - description: Paul Coldren
@@ -37,79 +37,79 @@ lines:
   - description: Carol Shumaker
     extension: 121
     line_title: Carol S
-    phone_mac: "AA:AA:AA:AA:AA:02"
+    phone_mac: "64:16:7F:EF:24:97"
     phone_ipv4: 10.1.22.28
 
   - description: Research Office
     extension: 122
     line_title: Research Ofc
-    phone_mac: "AA:AA:AA:AA:AA:0E"
+    phone_mac: "48:25:67:4A:FB:12"
     phone_ipv4: 10.1.22.40
 
   - description: Student Desk 1
     extension: 130
     line_title: Student 1
-    phone_mac: "AA:AA:AA:AA:AA:03"
+    phone_mac: "48:25:67:B0:29:97"
     phone_ipv4: 10.1.22.29
 
   - description: Student Desk 2
     extension: 131
     line_title: Student 2
-    phone_mac: "AA:AA:AA:AA:AA:04"
+    phone_mac: "48:25:67:4A:BC:65"
     phone_ipv4: 10.1.22.30
 
   - description: Conference Room
     extension: 140
     line_title: Conf Room
-    phone_mac: "AA:AA:AA:AA:AA:05"
+    phone_mac: "48:25:67:02:FA:33"
     phone_ipv4: 10.1.22.31
 
   - description: Electronics Workshop
     extension: 143
     line_title: Elec Wkshp
-    phone_mac: "AA:AA:AA:AA:AA:06"
+    phone_mac: "48:25:67:44:85:8C"
     phone_ipv4: 10.1.22.32
 
   - description: Signal Processing Room
     extension: 145
     line_title: SPR
-    phone_mac: "AA:AA:AA:AA:AA:07"
+    phone_mac: "48:25:67:02:89:B0"
     phone_ipv4: 10.1.22.33
 
   - description: Lab 1
     extension: 150
     line_title: Lab 1
-    phone_mac: "AA:AA:AA:AA:AA:08"
+    phone_mac: "48:25:67:4F:0F:2D"
     phone_ipv4: 10.1.22.34
 
   - description: Lab 2
     extension: 152
     line_title: Lab 2
-    phone_mac: "AA:AA:AA:AA:AA:09"
+    phone_mac: "48:25:67:4A:D8:5E"
     phone_ipv4: 10.1.22.35
 
   - description: Lab 2 Clean Room
     extension: 153
     line_title: Lab 2 Cln Rm
-    phone_mac: "AA:AA:AA:AA:AA:0A"
+    phone_mac: "48:25:67:4D:A6:EF"
     phone_ipv4: 10.1.22.36
 
   - description: UPS Shed
     extension: 160
     line_title: UPS Shed
-    phone_mac: "AA:AA:AA:AA:AA:0B"
+    phone_mac: "48:25:67:4E:7D:83"
     phone_ipv4: 10.1.22.37
 
   - description: Main Workshop
     extension: 161
     line_title: Main Wkshp
-    phone_mac: "AA:AA:AA:AA:AA:0C"
+    phone_mac: "48:25:67:4D:AC:77"
     phone_ipv4: 10.1.22.38
 
   - description: Chime Container
     extension: 163
     line_title: Chime
-    phone_mac: "AA:AA:AA:AA:AA:0D"
+    phone_mac: "48:25:67:4E:08:79"
     phone_ipv4: 10.1.22.39
 
   - description: Dorm Library
