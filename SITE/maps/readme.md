@@ -1,1 +1,0 @@
-These are site maps.

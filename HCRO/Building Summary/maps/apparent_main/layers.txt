@@ -1,0 +1,103 @@
+    Layer name        State       Color       Linetype     Lineweight
+------------------ ----------- ------------- ------------ ------------
+"0"                on       -P   7 (white)   "CONTINUOUS"   Default
+"Aerial Photo"     on       -P   7 (white)   "CONTINUOUS"   Default
+"ATA-CONFIG"       off      -P   7 (white)   "CONTINUOUS"   Default
+"ATA-LAND"         off      -P   7 (white)   "CONTINUOUS"   Default
+"ATA - exclude"    off      -P   7 (white)   "CONTINUOUS"   Default
+
+"ATA - fixed south" off      -P   7 (white)   "CONTINUOUS"   Default
+"ATA - include"    on       -P   7 (white)   "CONTINUOUS"   Default
+"ATA - routes"     off      -P   7 (white)   "CONTINUOUS"   Default
+"ATA - shaded"     off      -P   7 (white)   "CONTINUOUS"   Default
+"ATA vistor & admin area" on       -P   4 (cyan)    "CONTINUOUS"   Default
+
+"ATA. lease A"     off      -P   2 (yellow)  "CONTINUOUS"   Default
+"ATA. lease B"     off      -P   2 (yellow)  "CONTINUOUS"   Default
+"ATA. lease C"     off      -P   6 (magenta) "CONTINUOUS"   Default
+"B-1"              off      -P   6 (magenta) "CONTINUOUS"   Default
+"B-2"              off      -P   2 (yellow)  "CONTINUOUS"   Default
+
+"B-3"              off      -P   3 (green)   "CONTINUOUS"   Default
+"B-4"              off      -P   4 (cyan)    "CONTINUOUS"   Default
+"B-AERIAL"         off      -P   7 (white)   "CONTINUOUS"   Default
+"B-ASHADE"         off    -L-P   7 (white)   "CONTINUOUS"   Default
+"B-BOUNDARYS"      on       -P   5 (blue)    "DASHED"    Default
+
+"B-COM-OVERHEAD"   on       -P   3 (green)   "CONTINUOUS"   Default
+"B-COM-UMDERGROUND" off      -P   6 (magenta) "CONTINUOUS"   Default
+"B-DIM"            off      -P   1 (red)     "CONTINUOUS"   Default
+"B-G-CANAL"        on       -P   4 (cyan)    "CONTINUOUS"   Default
+"B-G-LAVA"         on       -P   7 (white)   "CONTINUOUS"   Default
+
+"B-G-PONDS"        on       -P   4 (cyan)    "CONTINUOUS"   Default
+"B-G-TREES"        off      -P   3 (green)   "CONTINUOUS"   Default
+"B-HID"            off      -P   4 (cyan)    "HIDDEN"    Default
+"B-LAYOUT"         off      -P   1 (red)     "CONTINUOUS"   Default
+"B-LOCATIONS"      off      -P   5 (blue)    "CONTINUOUS"   Default
+
+"B-MISC"           off      -P   7 (white)   "CONTINUOUS"   Default
+"B-POWER-OVERHEAD" on       -P   1 (red)     "CONTINUOUS"   Default
+"B-POWER-UNDERGROUND" off      -P  30           "CONTINUOUS"   Default
+"B-ROADS-BUILDINGS" on       -P   7 (white)   "CONTINUOUS"   Default
+"B-SEPTIC"         off      -P   6 (magenta) "CONTINUOUS"   Default
+
+"B-SETI"           off      -P   6 (magenta) "CONTINUOUS"   Default
+"B-TB-BORDER"      off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TB-TEXT"        off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TB1"            off      -P   6 (magenta) "CONTINUOUS"   Default
+"B-TB2"            off      -P   1 (red)     "CONTINUOUS"   Default
+
+"B-TB3"            off      -P   3 (green)   "CONTINUOUS"   Default
+"B-TC-BORDER"      off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TC-TEXT"        off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TD-BORDER"      on       -P   7 (white)   "CONTINUOUS"   Default
+"B-TD-TEXT"        on       -P   7 (white)   "CONTINUOUS"   Default
+
+"B-TE-BORDER"      off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TE-TEXT"        off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TEXT"           off      -P   7 (white)   "CONTINUOUS"   Default
+"B-TF-BORDER"      off      -P   7 (white)   "CONTINUOUS"   Default
+"B-WATER"          off      -P   5 (blue)    "CONTINUOUS"   Default
+
+Press ENTER to continue:
+"Communications (aerial)" off      -P   6 (magenta) "CONTINUOUS"   Default
+"Communications (buried fiber)" off      -P   6 (magenta) "CONTINUOUS"   Default
+"config 1"         off      -P   7 (white)   "CONTINUOUS"   Default
+"Cont 0.5m (matt)" off      -P   7 (white)   "CONTINUOUS"   Default
+"Cont 0.5m on 5m grid" off      -P   7 (white)   "CONTINUOUS"   Default
+
+"Cont 1m on 10m grid" off      -P   3 (green)   "CONTINUOUS"   Default
+"Cont 1m on 5m grid" off      -P   7 (white)   "CONTINUOUS"   Default
+"Defpoints"        off           7 (white)   "CONTINUOUS"   Default
+"delete me !"      off      -P   3 (green)   "CONTINUOUS"   Default
+"Fences"           off      -P   5 (blue)    "CONTINUOUS"   Default
+
+"Forest service corners" off      -P   1 (red)     "CONTINUOUS"   Default
+"GPS topo (elevations)" off      -P   1 (red)     "CONTINUOUS"   Default
+"GPS topo Data boundary" off      -P   6 (magenta) "CONTINUOUS"   Default
+"GPS topo Data points" off      -P   1 (red)     "CONTINUOUS"   Default
+"Lava flow cracks (LL-L5)" off      -P   7 (white)   "CONTINUOUS"   Default
+
+"Lava flow cracks (LL-L6)" off      -P   7 (white)   "CONTINUOUS"   Default
+"Lava flow cracks (LL-L7)" off      -P   7 (white)   "CONTINUOUS"   Default
+"Lava flow directions" off      -P   7 (white)   "CONTINUOUS"   Default
+"Lava flow edges (crest)" off      -P   6 (magenta) "CONTINUOUS"   Default
+"lava flow edges (matt)" off      -P   5 (blue)    "CONTINUOUS"   Default
+
+"Lava flow edges (toe)" off      -P   4 (cyan)    "CONTINUOUS"   Default
+"Leased areas"     off      -P   7 (white)   "CONTINUOUS"   Default
+"Misc. (UTILITY)"  off      -P   9           "CONTINUOUS"   Default
+"Pit boxes"        off      -P   7 (white)   "CONTINUOUS"   Default
+"Pole lines"       off      -P   7 (white)   "CONTINUOUS"   Default
+
+"Power poles"      off      -P   7 (white)   "CONTINUOUS"   Default
+"Roads"            off      -P   9           "CONTINUOUS"   Default
+"Slope"            off      -P   7 (white)   "CONTINUOUS"   Default
+"Suggested boundary for GPS traverses" off      -P   4 (cyan)    "CONTINUOUS"   
+Default
+"unknown ( Z-TRDPLN)" off      -P   2 (yellow)  "CONTINUOUS"   Default
+
+"unknown (Z-FLTC1)" off      -P   9           "CONTINUOUS"   Default
+
+Current layer: "ATA - include"
