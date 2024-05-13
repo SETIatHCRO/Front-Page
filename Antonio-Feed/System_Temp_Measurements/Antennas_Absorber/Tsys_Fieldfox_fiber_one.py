@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 293.15
+t_hot = 299.15
 t_cold = 14
-ant = '3c'
+ant = '2c'
 nm = '1'
 year='2024'
 
