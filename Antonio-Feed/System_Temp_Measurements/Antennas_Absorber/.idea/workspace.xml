@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ea6684d-2915-4adb-b202-9b8ee2358863" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/2024/Measurement Metadata.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/2024/X-pol/XC1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/2024/X-pol/XH1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/2024/Y-pol/YC1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/2024/Y-pol/YH1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/Tsys/2024/Spectra.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/Tsys/2024/Tsys.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2c/Tsys/2024/Y-factor.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tsys_Fieldfox_fiber_one.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tsys_Fieldfox_fiber_one.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
