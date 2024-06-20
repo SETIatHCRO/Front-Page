@@ -1,0 +1,14 @@
+#auto eth0
+#iface eth0 inet dhcp
+
+#auto eth0:1
+#iface eth0:1 inet dhcp
+
+auto eth0:1
+iface eth0:1 inet static
+address 10.10.2.1
+netmask 255.255.0.0
+gateway 10.10.0.1
+dns-search hcro.org
+dns-nameservers 10.1.11.11 10.1.11.12
+hwaddress ether 00:0A:35:00:22:01
