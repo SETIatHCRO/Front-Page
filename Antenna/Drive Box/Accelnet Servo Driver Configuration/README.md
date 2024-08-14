@@ -63,3 +63,7 @@ ataant@ant5c:~/ata-boxes/utils$ python3 accelnet.py write el accelnet-el.dat
 It is only necessary to configure new Accelnet modules that have been replaced.  I have seen cases where a module lost its configuration and was 
 made to work again by reconfiguring, but I believe that complete failure followed soon after.
 
+
+To read out a drive amplifier status fast and per axis run:
+
+ ~obs/tkoumrian/drivebox.sh 3c az 
