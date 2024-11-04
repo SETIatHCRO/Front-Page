@@ -1,0 +1,39 @@
+# Replace disk on mdadm raid
+
+
+ 1023  2024-05-07 17:16:38 mdadm --detail /dev/md1
+ 1024  2024-05-07 17:17:02 lsblk
+ 1025  2024-05-07 17:18:28 mdadm --manage /dev/md1 --fail /dev/sdb
+ 1026  2024-05-07 17:18:37 lsblk
+ 1027  2024-05-07 17:18:41 mdadm --detail /dev/md1
+ 1028  2024-05-07 17:18:56 mdadm --manage /dev/md1 --remove /dev/sdb
+ 1029  2024-05-07 17:19:02 ls
+ 1030  2024-05-07 17:19:12 mdadm --detail /dev/md1
+ 1031  2024-05-07 17:19:30 cat /proc/mdstat 
+ 1032  2024-05-07 17:22:51 lsblk
+ 1033  2024-05-07 17:23:12 mdadm --manage /dev/md1 --add /dev/sdb
+ 1034  2024-05-07 17:23:32 cat /proc/mdstat 
+ 1035  2024-05-07 17:25:55 mdadm --detail /dev/md1
+ 1036  2024-05-07 17:26:09 df -h
+ 1037  2024-05-07 17:40:01 mdadm --detail /dev/md1
+ 1038  2024-05-07 21:12:47 exit
+
+
+
+ mkfs.ext4 -F /dev/sde
+
+ mount /dev/sde /mnt/test
+
+ cd /home/sonata/src/disk_hammer/
+ ./disk_hammer /mnt/test/test.txt 10g
+
+ umount /mnt/test
+
+ # if the configuration changes run:
+
+ nano /etc/mdadm/mdadm.conf 
+ #comment out or delete last entry
+
+ mdadm --detail --brief /dev/md0 | sudo tee -a /etc/mdadm/mdadm.conf
+ #add current configuration
+

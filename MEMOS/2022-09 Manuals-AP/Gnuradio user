@@ -1,0 +1,101 @@
+
+find /home -group 1001 -exec chgrp -h 1500 {} \;
+find /home -user 1001 -exec chown -h 1572 {} \;
+
+find /home -user 1002 -exec chown -h 1573 {} \;
+find /home -group 1002 -exec chgrp -h 1500 {} \;
+
+find /home -user 1008 -exec chown -h 1506 {} \;
+find /home -group 27 -exec chgrp -h 1500 {} \;
+
+find /home -user 1007 -exec chown -h 1574 {} \;
+
+find /home -user 1006 -exec chown -h 1575 {} \;
+
+find /home -user 1004 -exec chown -h 1576 {} \;
+
+find /home -user 1003 -exec chown -h 1577 {} \;
+
+find /home -user 1009 -exec chown -h 1578 {} \;
+
+find /home -user 1010 -exec chown -h 1579 {} \;
+
+find /home -user 1011 -exec chown -h 1580 {} \;
+find /home -group 1011 -exec chgrp -h 1500 {} \;
+
+find /home -user 1012 -exec chown -h 1502 {} \;
+find /home -group 1014 -exec chgrp -h 1500 {} \;
+
+find /home -user 1013 -exec chown -h 1581 {} \;
+find /home -group 1015 -exec chgrp -h 1500 {} \;
+
+find /home -group 1016 -exec chgrp -h 1500 {} \;
+find /home -user 1014 -exec chown -h 1582 {} \;
+
+find /home -user 1015 -exec chown -h 1583 {} \;
+find /home -group 1017 -exec chgrp -h 1500 {} \;
+
+find /home -user 1016 -exec chown -h 1511 {} \;
+find /home -group 1018 -exec chgrp -h 1500 {} \;
+
+find /home -user 1017 -exec chown -h 1584 {} \;
+find /home -group 1019 -exec chgrp -h 1500 {} \;
+
+find /home -user 1020 -exec chown -h 1585 {} \;
+find /home -group 1022 -exec chgrp -h 1500 {} \;
+
+find /home -user 1021 -exec chown -h 1541 {} \;
+find /home -group 1023 -exec chgrp -h 1500 {} \;
+
+find /home -group 1024 -exec chgrp -h 1500 {} \;
+find /home -user 1022 -exec chown -h 1586 {} \;
+
+find /home -group 1025 -exec chgrp -h 1500 {} \;
+find /home -user 1023 -exec chown -h 1587 {} \;
+
+find /home -user 1024 -exec chown -h 1552 {} \;
+find /home -group 1026 -exec chgrp -h 1500 {} \;
+
+
+
+
+find /usr -user 1019 -exec chown -h 1104 {} \;
+find /usr -group 1021 -exec chgrp -h 1100 {} \;
+find /var -user 1019 -exec chown -h 1104 {} \;
+find /var -group 1021 -exec chgrp -h 1100 {} \;
+find /tmp -user 1019 -exec chown -h 1104 {} \;
+find /tmp -group 1021 -exec chgrp -h 1100 {} \;
+find /sys -user 1019 -exec chown -h 1104 {} \;
+find /sys -group 1021 -exec chgrp -h 1100 {} \;
+find /srv -user 1019 -exec chown -h 1104 {} \;
+find /srv -group 1021 -exec chgrp -h 1100 {} \;
+find /snap -user 1019 -exec chown -h 1104 {} \;
+find /snap -group 1021 -exec chgrp -h 1100 {} \;
+
+find /sdr -user 1019 -exec chown -h 1104 {} \;
+find /sdr -group 1021 -exec chgrp -h 1100 {} \;
+find /run -user 1019 -exec chown -h 1104 {} \;
+find /run -group 1021 -exec chgrp -h 1100 {} \;
+find /root -user 1019 -exec chown -h 1104 {} \;
+find /root -group 1021 -exec chgrp -h 1100 {} \;
+find /proc -user 1019 -exec chown -h 1104 {} \;
+find /proc -group 1021 -exec chgrp -h 1100 {} \;
+
+find /plugins -user 1019 -exec chown -h 1104 {} \;
+find /plugins -group 1021 -exec chgrp -h 1100 {} \;
+find /opt -user 1019 -exec chown -h 1104 {} \;
+find /opt -group 1021 -exec chgrp -h 1100 {} \;
+find /nonexistent -user 1019 -exec chown -h 1104 {} \;
+find /nonexistent -group 1021 -exec chgrp -h 1100 {} \;
+find /media -user 1019 -exec chown -h 1104 {} \;
+find /media -group 1021 -exec chgrp -h 1100 {} \;
+find /etc -user 1019 -exec chown -h 1104 {} \;
+find /etc -group 1021 -exec chgrp -h 1100 {} \;
+find /dev -user 1019 -exec chown -h 1104 {} \;
+find /dev -group 1021 -exec chgrp -h 1100 {} \;
+
+
+
+
+
+
