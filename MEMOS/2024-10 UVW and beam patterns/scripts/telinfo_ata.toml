@@ -1,0 +1,219 @@
+# Name of telescope
+telescope_name = "ATA"
+
+# Refence antenna for delay calibration and beamforming
+reference_antenna_name = "2a"
+
+# Geodetic location of telescope reference point.  `latitude` and `longitude`
+# may be given in decimal degrees as a float, or as a sexagesimal string with
+# `:` separators.
+# `altitude` is in meters above the geodetic reference ellipsoid (probably
+# WGS84, but the UVH5 spec is unclear on this point).
+latitude = "40:49:02.75"
+longitude = "-121:28:14.65"
+altitude = 1019.222
+
+# Default diameter for antennas
+# Not needed if all `antennas` entries have `diameter` field.
+antenna_diameter = 6.1
+
+# Reference frame for the antenna positions.  Can be `ecef` for the ITRF (i.e.
+# Earth-Centered-Earth-Fixed XYZ) frame or `enu` for a topocentric
+# East-North-Up frame with origin at the telescope reference point. If not
+# given, it will be assumed to be `ecef` unless the magnitude of the first
+# antenna's position vector is less than 6 million meters in which case it will
+# be assumed to be `enu`.  Best practice is to explicitly specify this.
+# This is not case-sensitive.
+antenna_position_frame = "ecef"
+
+# List of antennas.  Each entry is a hash containing keys:
+#
+#   - `name`: A string value of the telescope name
+#   - `number`: An integer number identifying the telescope
+#   - `position`: A 3 elements array of floats giving the position in meters.
+#   - `diameter`: A float value for the diameter of the antenna
+#
+# The reference frame of the positions is given in `antennas_position_frame`.
+# The `diameter` entry is optional if a global `antenna_diameter` is given and
+# has the correct value for the antenna.
+[[antennas]]
+  name = "1a"
+  number = 1
+  position = [-2524036.0307912203, -4123528.101172219, 4147706.408318585]
+[[antennas]]
+  name = "1b"
+  number = 2
+  position = [-2524012.4958892134, -4123555.1766721113, 4147693.5484577166]
+[[antennas]]
+  name = "1c"
+  number = 3
+  position = [-2524041.5388905862, -4123587.965024342, 4147646.4222955606]
+[[antennas]]
+  name = "1d"
+  number = 4
+  position = [-2524059.792573754, -4123572.448681901, 4147648.2406134596]
+[[antennas]]
+  name = "1e"
+  number = 5
+  position = [-2524068.187873109, -4123558.735413135, 4147656.21282186]
+[[antennas]]
+  name = "1f"
+  number = 6
+  position = [-2524093.716340507, -4123544.129301442, 4147655.6831260016]
+[[antennas]]
+  name = "1g"
+  number = 7
+  position = [-2524087.2078100787, -4123532.397416349, 4147670.9866770394]
+[[antennas]]
+  name = "1h"
+  number = 8
+  position = [-2524103.384010733, -4123511.111598937, 4147682.4133068994]
+[[antennas]]
+  name = "1j"
+  number = 9
+  position = [-2524096.980570317, -4123480.786854586, 4147716.343429463]
+[[antennas]]
+  name = "1k"
+  number = 10
+  position = [-2524056.730228759, -4123515.287949227, 4147706.4850287656]
+[[antennas]]
+  name = "2a"
+  number = 11
+  position = [-2523986.279601761, -4123497.427940991, 4147766.732988923]
+[[antennas]]
+  name = "2b"
+  number = 12
+  position = [-2523970.301363642, -4123515.238502669, 4147758.790023165]
+[[antennas]]
+  name = "2c"
+  number = 13
+  position = [-2523983.5419911123, -4123528.1422073604, 4147737.872218138]
+[[antennas]]
+  name = "2d"
+  number = 14
+  position = [-2523957.2473999085, -4123560.6492725424, 4147721.727385693]
+[[antennas]]
+  name = "2e"
+  number = 15
+  position = [-2523941.5221860334, -4123568.125040547, 4147723.8292249846]
+[[antennas]]
+  name = "2f"
+  number = 16
+  position = [-2524059.106099003, -4123485.615619698, 4147734.198131659]
+[[antennas]]
+  name = "2g"
+  number = 17
+  position = [-2524084.5774130877, -4123471.5634082295, 4147732.8048639772]
+[[antennas]]
+  name = "2h"
+  number = 18
+  position = [-2524074.096220788, -4123468.5182652213, 4147742.0422435375]
+[[antennas]]
+  name = "2j"
+  number = 19
+  position = [-2524058.6409591637, -4123466.5112451194, 4147753.4513993543]
+[[antennas]]
+  name = "2k"
+  number = 20
+  position = [-2524048.5254066754, -4123468.3463909747, 4147757.835369889]
+[[antennas]]
+  name = "2l"
+  number = 21
+  position = [-2524026.989692545, -4123480.9405167866, 4147758.2356800516]
+[[antennas]]
+  name = "2m"
+  number = 22
+  position = [-2524000.5641107005, -4123498.2984570004, 4147756.815976133]
+[[antennas]]
+  name = "3c"
+  number = 23
+  position = [-2523913.265779332, -4123517.062782675, 4147791.1821111576]
+[[antennas]]
+  name = "3d"
+  number = 24
+  position = [-2523945.086670364, -4123480.3638816103, 4147808.127865142]
+[[antennas]]
+  name = "3e"
+  number = 25
+  position = [-2523971.439791098, -4123472.6180766555, 4147799.766493265]
+[[antennas]]
+  name = "3f"
+  number = 26
+  position = [-2523989.1620624275, -4123471.266121543, 4147790.551974626]
+[[antennas]]
+  name = "3g"
+  number = 27
+  position = [-2523998.124952975, -4123467.6450268496, 4147788.711874468]
+[[antennas]]
+  name = "3h"
+  number = 28
+  position = [-2523992.8464242537, -4123464.322817822, 4147796.3664053706]
+[[antennas]]
+  name = "3j"
+  number = 29
+  position = [-2523932.8971014554, -4123470.89044144, 4147824.7980390238]
+[[antennas]]
+  name = "3l"
+  number = 30
+  position = [-2523950.6822576034, -4123444.7023326857, 4147839.7474427638]
+[[antennas]]
+  name = "4e"
+  number = 31
+  position = [-2523880.869769226, -4123514.3375464156, 4147813.413426994]
+[[antennas]]
+  name = "4f"
+  number = 32
+  position = [-2523913.382185706, -4123479.7060887963, 4147827.8364580916]
+[[antennas]]
+  name = "4g"
+  number = 33
+  position = [-2523930.3747946257, -4123454.3080821196, 4147842.6449955846]
+[[antennas]]
+  name = "4h"
+  number = 34
+  position = [-2523940.4924399494, -4123445.672260385, 4147844.9899415076]
+[[antennas]]
+  name = "4j"
+  number = 35
+  position = [-2523898.1150373477, -4123456.314794732, 4147860.3045849088]
+[[antennas]]
+  name = "4k"
+  number = 36
+  position = [-2523896.075066118, -4123477.339537938, 4147840.538272895]
+[[antennas]]
+  name = "4l"
+  number = 37
+  position = [-2523886.8518362255, -4123483.024180943, 4147840.260497064]
+[[antennas]]
+  name = "5b"
+  number = 38
+  position = [-2523824.598229116, -4123527.93080514, 4147833.98936114]
+[[antennas]]
+  name = "5c"
+  number = 39
+  position = [-2523825.0029098387, -4123540.8439693213, 4147821.048239712]
+[[antennas]]
+  name = "5e"
+  number = 40
+  position = [-2523818.829627262, -4123551.1077656075, 4147814.906896719]
+[[antennas]]
+  name = "5g"
+  number = 41
+  position = [-2523843.4903899855, -4123539.9993453375, 4147810.7145798537]
+[[antennas]]
+  name = "5h"
+  number = 42
+  position = [-2523836.636021752, -4123534.166729928, 4147820.5849095713]
+#[[antennas]]
+#  name = "6a"
+#  number = 43
+#  position = [-2524265.228, -4122660.291, 4148425.838]
+#[[antennas]]
+#  name = "6b"
+#  number = 44
+#  position = [-2523650.610, -4123355.835, 4148110.609]
+#[[antennas]]
+#  name = "0a"
+#  number = 0
+#  position = [-2523986.517025974,  -4123402.8084017253, 4147842.8605397404]
+
