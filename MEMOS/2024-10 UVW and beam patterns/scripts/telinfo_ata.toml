@@ -213,6 +213,10 @@ antenna_position_frame = "ecef"
 #  number = 44
 #  position = [-2523650.610, -4123355.835, 4148110.609]
 #[[antennas]]
+#  name = "6c"
+#  number = 45
+#  position = [-2523360.3710, -4123998.9680, 4147650.9031]
+#[[antennas]]
 #  name = "0a"
 #  number = 0
 #  position = [-2523986.517025974,  -4123402.8084017253, 4147842.8605397404]
