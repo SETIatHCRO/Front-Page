@@ -130,12 +130,23 @@ uv /= np.array(lmbd)
 # This is a bit arbitrary, should think of a better way to do this
 cellsize = int(np.max((np.max(uv[0]), np.max(uv[1])))/12)
 
+# make cellsize odd
+if cellsize % 2 == 0:
+    cellsize += 1
+
 # Let's grid
 hist = plt.hist2d(uv[0], uv[1], bins=cellsize)
 grid = hist[0]
 
 # This seemed to be needed for some reason (plotting?)
 dd = np.flipud(grid.T)
+
+# remove the autocorrelations
+i,j = np.where(dd == np.max(dd))
+# should be in the middle of the matrix
+ii = jj = cellsize//2
+assert i == ii and j == jj, "The max value of the gridding should be in the middle of the matrix!"
+dd[i, j] = 0
 
 # Increase the resolution by 12x in the image plane by padding zeros on either side of the gridded matrix
 dd = np.pad(dd, cellsize*6, mode='constant', constant_values=0)
@@ -224,8 +235,9 @@ plt.ylabel("m [deg]")
 plt.figure()
 plt.clf()
 plt.title("Synthesized (dirty) beam w/ primary beam attenuation")
-plt.imshow(dirty_beam_attenuated, interpolation='nearest', aspect='auto', vmin=-40,
+plt.imshow(dirty_beam_attenuated, interpolation='nearest', aspect='auto', vmin=-60,
           extent=[-res_l_deg*s, res_l_deg*s, -res_m_deg*s, res_m_deg*s])
+plt.colorbar()
 plt.xlabel("l [deg]")
 plt.ylabel("m [deg]")
 
