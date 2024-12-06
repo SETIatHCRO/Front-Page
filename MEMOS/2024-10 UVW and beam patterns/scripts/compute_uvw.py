@@ -84,19 +84,17 @@ def compute_uvw(ts, source, ant_coordinates):
 ##############
 
 # Friday August 16, 7:15 PM PST
-t_now = 1723860949 # unix time
+t_now = 1733188507
 
-# Calculate UVWs for 6h track, 5 mins integration
-t_range = np.arange(t_now, t_now + 6*3600, 300)
+# Calculate UVWs for 2h track, 5 mins integration
+t_range = np.arange(t_now, t_now + 2*3600, 300)
 
-# Assume pointing at 3c286
-# coordinates at the time were
-# az,el ~= (261.6, 59.3)
-ra = 13.51896899 * 360 / 24. # deg
-dec = 30.509157660           # deg
+# Assume pointing at 3c48
+ra = 1.628139 * 360 / 24. # deg
+dec = 33.159759           # deg
 
-# Observing frequency, I don't assume BW, so UVW will only be at a single freq
-obsfreq = 3e9 #Hz
+# Observing frequency is 3000 +- 300 MHz, split into 31 bins
+obsfreq = np.linspace(3e9-300e6, 3e9+300e6, 31) #Hz
 
 # telinfo file
 telinfo_fname = "telinfo_ata.toml"
@@ -125,7 +123,11 @@ plt.ylabel("V [m]")
 lmbd = c/obsfreq
 
 # UV [m] -> UV[lambda]
-uv /= np.array(lmbd)
+tmp = np.array([[0],[0]])
+for ilmbd in lmbd:
+    tmp = np.column_stack((tmp, uv / ilmbd))
+uv = tmp
+#uv /= np.array(lmbd)
 
 # This is a bit arbitrary, should think of a better way to do this
 cellsize = int(np.max((np.max(uv[0]), np.max(uv[1])))/12)
@@ -147,6 +149,7 @@ i,j = np.where(dd == np.max(dd))
 ii = jj = cellsize//2
 assert i == ii and j == jj, "The max value of the gridding should be in the middle of the matrix!"
 dd[i, j] = 0
+#dd[dd != 0] = 200
 
 # Increase the resolution by 12x in the image plane by padding zeros on either side of the gridded matrix
 dd = np.pad(dd, cellsize*6, mode='constant', constant_values=0)
@@ -174,7 +177,8 @@ dbdB -= np.max(dbdB)
 plt.figure()
 plt.clf()
 plt.title("UV Coverage")
-plt.scatter(uv[0]*lmbd, uv[1]*lmbd, s=1)
+plt.scatter(np.concatenate((uvws[:,0], -1*uvws[:,0])), 
+            np.concatenate((uvws[:,1], -1*uvws[:,1])), s=1)
 plt.xlabel("U [m]")
 plt.ylabel("V [m]")
 
@@ -184,6 +188,11 @@ plt.title("UV Coverage")
 plt.scatter(uv[0]/1e3, uv[1]/1e3, s=1)
 plt.xlabel("U [k$\lambda$]")
 plt.ylabel("V [k$\lambda$]")
+
+plt.figure()
+plt.clf()
+plt.title("UV Coverage (gridded)")
+plt.imshow(dd, interpolation='nearest', aspect='auto')
 
 plt.figure()
 plt.clf()
@@ -205,7 +214,7 @@ plt.ylabel("m [arcsec]")
 
 # This is primary beam stuff
 
-fwhm = np.rad2deg(1.22 * lmbd / 6.1) # 6.1m for ATA
+fwhm = np.rad2deg(1.22 * np.mean(lmbd) / 6.1) # 6.1m for ATA
 sig = fwhm / 2.355 # sigma is better for Gaussian distribution
 
 # Mesh the entire image
@@ -237,6 +246,8 @@ plt.clf()
 plt.title("Synthesized (dirty) beam w/ primary beam attenuation")
 plt.imshow(dirty_beam_attenuated, interpolation='nearest', aspect='auto', vmin=-60,
           extent=[-res_l_deg*s, res_l_deg*s, -res_m_deg*s, res_m_deg*s])
+plt.xlim(-fwhm, fwhm)
+plt.ylim(-fwhm, fwhm)
 plt.colorbar()
 plt.xlabel("l [deg]")
 plt.ylabel("m [deg]")
