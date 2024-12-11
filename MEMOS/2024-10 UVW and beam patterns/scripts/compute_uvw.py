@@ -93,8 +93,8 @@ t_range = np.arange(t_now, t_now + 2*3600, 300)
 ra = 1.628139 * 360 / 24. # deg
 dec = 33.159759           # deg
 
-# Observing frequency is 3000 +- 300 MHz, split into 31 bins
-obsfreq = np.linspace(3e9-300e6, 3e9+300e6, 31) #Hz
+# Observing frequency is 3000 +- 300 MHz, split into 81 bins (~8MHz res)
+obsfreq = np.linspace(3e9-300e6, 3e9+300e6, 81) #Hz
 
 # telinfo file
 telinfo_fname = "telinfo_ata.toml"
@@ -149,7 +149,7 @@ i,j = np.where(dd == np.max(dd))
 ii = jj = cellsize//2
 assert i == ii and j == jj, "The max value of the gridding should be in the middle of the matrix!"
 dd[i, j] = 0
-#dd[dd != 0] = 200
+dd[dd != 0] = 1
 
 # Increase the resolution by 12x in the image plane by padding zeros on either side of the gridded matrix
 dd = np.pad(dd, cellsize*6, mode='constant', constant_values=0)
