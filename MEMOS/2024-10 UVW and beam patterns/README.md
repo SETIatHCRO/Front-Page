@@ -17,7 +17,7 @@ Usage
 
 Example plots:
 --------------
-The script, if run as-is, should generate the plots below. UV coverage and simulated beam pattern (amongst others) for a **2h track** of the calibrator **3c48** at **3GHz** (assuming a single frequency observation):
+The script, if run as-is, should generate the plots below. UV coverage and simulated beam pattern (amongst others) for a **2h track** of the calibrator **3c48** at **3GHz**:
 
 ### UV-coverage
 <img width="1119" alt="Screenshot 2024-12-10 at 5 33 47 PM" src="https://github.com/user-attachments/assets/91e07d11-0b27-4474-b12c-f58e2719be33">
