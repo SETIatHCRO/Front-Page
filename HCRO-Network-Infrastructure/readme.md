@@ -7,4 +7,4 @@
 ## HCRO SPR Rack Layout  ##
 
 
-![Alt Text](Network-Rack-Configuration.png)
+![Alt Text](Network-Rack-Configuration_UPDATE2025.png)
