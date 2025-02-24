@@ -2,17 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 276
+t_hot = 285
 t_cold = 12
-ant = '4e'
-nm = '12'
-date1= 'QRFH prototype'
+ant = '1c'
+nm = '2'
+year='2025'
+date1= 'QRFH prototype 2'
 
-t_hot2 = 285
-t_cold2 = 12
+t_hot2 = 298
+t_cold2 = 16
 ant2 = '4e'
-nm2 = '13'
-date2='Log-Periodic Feed'
+nm2 = '100'
+year2='2022'
+date2='QRFH prototype 1'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -20,8 +22,8 @@ cold_r_ing = np.zeros((801), dtype=float)
 hot_l_ing = np.zeros((801), dtype=float)
 hot_r_ing = np.zeros((801), dtype=float)
 
-file=pd.read_csv(ant+'/2021/X-pol/XH'+nm+'.csv', sep=',',skiprows=20,header=None)
-file2=pd.read_csv( ant+'/2021/X-pol/XC'+nm+'.csv', sep=',',skiprows=20,header=None)
+file=pd.read_csv(ant+'/'+year+'/X-pol/XH'+nm+'.csv', sep=',',skiprows=20,header=None)
+file2=pd.read_csv( ant+'/'+year+'/X-pol/XC'+nm+'.csv', sep=',',skiprows=20,header=None)
 print (file.columns) #writes the simulated values in columns
 freq_0= file.values[range(0, file.shape[0] - 1), 0].astype(float) / 1e9
 hot_X_db = file.values[range(file.shape[0] - 1), 1].astype(float)
@@ -29,8 +31,8 @@ cold_X_db = file2.values[range(file.shape[0] - 1), 1].astype(float)
 hot_X= 10 ** (hot_X_db/10)
 cold_X= 10 ** (cold_X_db/10)
 
-file=pd.read_csv(ant+'/2021/Y-pol/YC'+nm+'.csv', sep=',',skiprows=20,header=None)
-file2=pd.read_csv(ant+'/2021/Y-pol/YH'+nm+'.csv', sep=',',skiprows=20,header=None)
+file=pd.read_csv(ant+'/'+year+'/Y-pol/YC'+nm+'.csv', sep=',',skiprows=20,header=None)
+file2=pd.read_csv(ant+'/'+year+'/Y-pol/YH'+nm+'.csv', sep=',',skiprows=20,header=None)
 print (file.columns) #writes the simulated values in columns
 freq_0= file.values[range(0, file.shape[0] - 1), 0].astype(float) / 1e9
 cold_Y_db = file.values[range(file.shape[0] - 1), 1].astype(float)
@@ -49,8 +51,8 @@ cold_r_ing2 = np.zeros((801), dtype=float)
 hot_l_ing2 = np.zeros((801), dtype=float)
 hot_r_ing2 = np.zeros((801), dtype=float)
 
-file2=pd.read_csv(ant2+'/2021/X-pol/XH'+nm2+'.csv', sep=',',skiprows=20,header=None)
-file22=pd.read_csv(ant2+'/2021/X-pol/XC'+nm2+'.csv', sep=',',skiprows=20,header=None)
+file2=pd.read_csv(ant2+'/'+year2+'/X-pol/XH'+nm2+'.csv', sep=',',skiprows=20,header=None)
+file22=pd.read_csv(ant2+'/'+year2+'/X-pol/XC'+nm2+'.csv', sep=',',skiprows=20,header=None)
 print (file2.columns) #writes the simulated values in columns
 freq_02= file2.values[range(0, file.shape[0] - 1), 0].astype(float) / 1e9
 hot_X_db2 = file2.values[range(file.shape[0] - 1), 1].astype(float)
@@ -58,8 +60,8 @@ cold_X_db2 = file22.values[range(file.shape[0] - 1), 1].astype(float)
 hot_X2= 10 ** (hot_X_db2/10)
 cold_X2= 10 ** (cold_X_db2/10)
 
-file2=pd.read_csv(ant2+'/2021/Y-pol/YC'+nm2+'.csv', sep=',',skiprows=20,header=None)
-file22=pd.read_csv(ant2+'/2021/Y-pol/YH'+nm2+'.csv', sep=',',skiprows=20,header=None)
+file2=pd.read_csv(ant2+'/'+year2+'/Y-pol/YC'+nm2+'.csv', sep=',',skiprows=20,header=None)
+file22=pd.read_csv(ant2+'/'+year2+'/Y-pol/YH'+nm2+'.csv', sep=',',skiprows=20,header=None)
 print (file2.columns) #writes the simulated values in columns
 freq_02= file2.values[range(0, file.shape[0] - 1), 0].astype(float) / 1e9
 cold_Y_db2 = file2.values[range(file.shape[0] - 1), 1].astype(float)
