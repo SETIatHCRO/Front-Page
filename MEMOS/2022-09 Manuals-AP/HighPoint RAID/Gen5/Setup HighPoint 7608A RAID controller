@@ -1,0 +1,233 @@
+# HighPoint 7540 RAID Controller
+
+
+# Download management software:
+
+https://www.highpoint-tech.com/gen5-software-drivers/
+
+Download:
+	- Linux RAID Management
+	- Data RAID-Linux Open Source Driver
+
+
+# Copy files into root directory on server:
+
+scp HighPoint_NVMe_G5_RAID_Linux_Software_v1.8.12.0.0_24_12_10.tgz root@seti-node10.hcro.org:~/
+
+
+
+# Unpack files:
+
+tar -xvzf HighPoint_NVMe_G5_RAID_Linux_Software_v1.8.12.0.0_24_12_10.tgz
+
+
+# Install the package:
+
+./setup.bin
+
+
+Reboot device then go to next step
+
+
+
+You can configure the RAIDs via:
+
+http://seti-node10.hcro.org:7402
+
+
+Or if the web interface does not work use CLI
+
+hptraidconf 
+
+
+"
+HPT CLI>query
+
+Query Command
+	This command allows you to query devices or arrays' informations.
+Syntax:
+	query controllers
+	query controllers {controller_id}
+	query enclosures
+	query enclosures {enclosure_id}
+	query devices
+	query devices {device_id}
+	query arrays
+	query arrays {array_id}
+Note:
+	The query devices {device_id} has add S.M.A.R.T information in version 2.1.
+
+HPT CLI>query controllers
+
+ID                         	Channel   	Name
+1                          	0         	HighPoint NVMe RAID Controller
+------------------------------------------------------------------------------
+
+HPT CLI>query enclosures
+
+ID        	Secure      	Channel   	Name
+1/E1      	No          	8         	SSD7608
+------------------------------------------------------------------------------
+PCI Bus Number:            	69        
+PCI Device Number:         	0         
+PCI Func Number:           	0         
+Link Width:                	x16        
+Link Speed:                	Gen 5         
+Serial Number:             	2446HCH000061
+------------------------------------------------------------------------------
+
+
+HPT CLI>query enclosures 1
+
+ERROR: Invalid enclosure id(1)!
+Use 'query enclosures' to get all enclosures ids.
+
+HPT CLI>query enclosures E1
+
+ERROR: Invalid enclosure id(E1)!
+Use 'query enclosures' to get all enclosures ids.
+
+HPT CLI>query enclosures 1/E1
+
+Model:              R7608A NVMe RAID AIC
+Vendor:             HighPoint
+ID:                 1/E1
+
+Vendor ID:          0x1103
+Device ID:          0x7608
+Location:           PCI bus 69, device 0, function 0
+Current Link Width: x16
+Current Link Speed: 32.0 GT/s
+
+SN:                 2446HCH000061
+Firmware Version:   5.12.5.0
+UEFI Version:       2.4.1
+Chip Temperature:   61 (C)/141 (F)
+PCB Version:        1.0
+Board 3.3V Voltage: 3.320 V
+Board 12V Voltage:  12.012 V
+Power Consumption   38.74 W
+Fan Speed:          Auto(3390 RPM)
+
+HPT CLI>query device 1/E1/1
+
+ERROR: Unknown query command 'device'.
+e.g.	query controllers
+	query enclosures
+	query devices
+	query arrays
+For more information, please use the command:
+	help query
+
+HPT CLI>query devices 1/E1/1
+
+Mode Number:        CT1000T700SSD3
+Serial Number:      2446E994C1FC
+Firmware Version:   PACR5103
+Capacity(GB):   1000.20             TotalFree(GB):  0
+Status:         SINGLE              Flag:           LEGACY
+SED Capable:    Yes                 SED Type:       OPAL
+Secured:        No                  Cryptographic Erase Capable:  Yes
+PCIe Width:     x4                  PCIe Speed:     32.0 GT/s
+Temperature (F):                                  102                 
+Warning Composite Temperature Threshold (F):      188                 
+Critical Composite Temperature Threshold (F):     192
+Total Bytes Written: 2.85 TB
+------------------------------------------------------------------------------
+				NVMe S.M.A.R.T Attributes
+Critical Warning                                  	0x0
+Composite Temperature (C)                         	39
+Avaliable Spare                                   	100%
+Avaliable Spare Threshold                         	5%
+Precentage Used                                   	0%
+Data Units Read                                   	0x1df365
+Data Units Written                                	0x5d800f
+Host Read Commands                                	0x86359c
+Host Write Commands                               	0x16d9b48
+Controller Busy Time                              	0x14
+Power Cycles                                      	0x18
+Power On Hours                                    	0xb4
+Unsafe Shutdowns                                  	0x10
+Media and Data Integrity Errors                   	0x0
+Number of Error Information Log Entries           	0x0
+Warning Temperature Time                          	0x0
+Critical Composite Temperature Time               	0x0
+Temperature Sensor 1 (C)                          	0
+Temperature Sensor 2 (C)                          	0
+Temperature Sensor 3 (C)                          	0
+Temperature Sensor 4 (C)                          	0
+Temperature Sensor 5 (C)                          	0
+Temperature Sensor 6 (C)                          	0
+Temperature Sensor 7 (C)                          	0
+Temperature Sensor 8 (C)                          	0
+------------------------------------------------------------------------------
+
+HPT CLI>create RAID0 disks=* capacity=* name=buf0 init=quickinit bs=512k
+
+ERROR: Legacy disk has been selected! Please init the Legacy disks first, use the command:
+	init {deviceid} {start|stop}
+
+
+HPT CLI>init 1/E1/1 start
+
+Init disk '1/E1/1' successfully!
+
+HPT CLI>init 1/E1/2 start
+
+Init disk '1/E1/2' successfully!
+
+HPT CLI>init 1/E1/3 start
+
+Init disk '1/E1/3' successfully!
+
+HPT CLI>init 1/E1/4 start
+
+Init disk '1/E1/4' successfully!
+
+HPT CLI>init 1/E1/5 start
+
+Init disk '1/E1/5' successfully!
+
+HPT CLI>init 1/E1/6 start
+
+Init disk '1/E1/6' successfully!
+
+HPT CLI>init 1/E1/7 start
+
+Init disk '1/E1/7' successfully!
+
+HPT CLI>init 1/E1/8 start
+
+Init disk '1/E1/8' successfully!
+
+HPT CLI>create RAID0 disks=* capacity=* name=buf0 init=quickinit bs=512k
+
+
+"
+
+
+
+
+Make filesystem:
+
+mkfs.ext4 -F /dev/hptblock0n16p
+mkfs.ext4 -F /dev/hptblock0n17p
+
+
+Mount buffer in fstab:
+
+nano /etc/fstab
+
+"
+# Mount Local:
+UUID=bf65ef54-2a47-4a2c-8721-13986414cb15 /mnt/buf0 ext4 defaults 0 0
+UUID=fb37b313-4daf-47e5-a914-0f79905b89a9 /mnt/buf1 ext4 defaults 0 0
+
+# Mount Shared: /home and /usr/local
+10.10.0.2:/exports/mnt/md0/home /home nfs nfsvers=3,noauto,x-systemd.automount  0 0
+10.10.0.2:/exports/data/opt_mnt /opt/mnt nfs nfsvers=3,noauto,x-systemd.automount  0 0
+
+# Mount GLUSTER FS primary storage pool Sis1:
+10.10.1.143:/primary  /mnt/primary glusterfs  noauto,x-systemd.automount 0 0
+"
+
