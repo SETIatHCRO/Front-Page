@@ -1,0 +1,20 @@
+#!/bin/bash
+
+directory="/Users/pollak/Documents/GitHub/Front-Page/"
+target_char=":"
+replacement_char="-"
+
+# Find all matching files and directories
+find "$directory" -depth -name "*$target_char*" | while IFS= read -r path; do
+    # Get the base name and directory name
+    base=$(basename "$path")
+    dir=$(dirname "$path")
+
+    # Replace the character
+    new_base="${base//$target_char/$replacement_char}"
+    new_path="$dir/$new_base"
+
+    # Rename the file/folder
+    mv "$path" "$new_path"
+    echo "Renamed: $path -> $new_path"
+done
