@@ -2,28 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ea6684d-2915-4adb-b202-9b8ee2358863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/1c/2025/X-pol/XC2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/2025/X-pol/XH2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/2025/Y-pol/YC2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/2025/Y-pol/YH2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/Tsys/2025/1/Spectra.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/Tsys/2025/1/Tsys.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/Tsys/2025/1/Y-factor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/Tsys/2025/2/Spectra.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/Tsys/2025/2/Tsys.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1c/Tsys/2025/2/Y-factor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spectra.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tsys.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Y-factor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Antenna/Alidade/relayBoard/AlidadeRelayBoardBOM.xls" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Antenna/Alidade/relayBoard/AlidadeRelayBoardBOM.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1c/2025/Measurement Metadata.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/1c/2025/Measurement Metadata.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1c/Tsys/2025/Spectra.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1c/Tsys/2025/Tsys.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1c/Tsys/2025/Y-factor.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/2025/Measurement Metadata.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/2025/X-pol/XC1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/2025/X-pol/XH1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/2025/Y-pol/YC1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/2025/Y-pol/YH1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/Tsys/2025/Spectra.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/Tsys/2025/Tsys.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5b/Tsys/2025/Y-factor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spectra.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tsys.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tsys_Fieldfox_fiber_one.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tsys_Fieldfox_fiber_one.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tsys_Fieldfox_fiber_two.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tsys_Fieldfox_fiber_two.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../HCRO-Power-Distribution/UPS shed upgrades.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../HCRO-Power-Distribution/UPS shed upgrades.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Y-factor.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
