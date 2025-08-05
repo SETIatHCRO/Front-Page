@@ -1,0 +1,73 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Page-1" id="phjVi10UltGLP4Egbe68">
+    <mxGraphModel dx="1125" dy="869" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LBc0nO8CudeSvStuQtrO-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;startArrow=oval;startFill=1;entryX=0.553;entryY=-0.022;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="LBc0nO8CudeSvStuQtrO-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="115" as="sourcePoint" />
+            <mxPoint x="735" y="265" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-5" value="1Gb to Management IPMI" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LBc0nO8CudeSvStuQtrO-4">
+          <mxGeometry x="-0.0747" y="1" relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="LBc0nO8CudeSvStuQtrO-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="115" as="sourcePoint" />
+            <mxPoint x="235" y="265" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-7" value="10 Gb Eth" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LBc0nO8CudeSvStuQtrO-6">
+          <mxGeometry x="-0.1849" y="1" relative="1" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;startArrow=oval;startFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="332" y="354.5" as="sourcePoint" />
+            <mxPoint x="640" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-9" value="SAS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LBc0nO8CudeSvStuQtrO-8">
+          <mxGeometry x="-0.1477" y="1" relative="1" as="geometry">
+            <mxPoint y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-10" value="" style="endArrow=oval;html=1;rounded=0;endFill=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="355" as="sourcePoint" />
+            <mxPoint x="640" y="395" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="590" y="395" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-11" value="Tape 1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-12" value="Tape 2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="395" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-13" value="SDB - 20TB RAID 6 [Buffer, Afailable for Data Storage]&lt;div&gt;SDA - OS Drive&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="425" width="430" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-14" value="RAID Card" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="335" y="365" width="65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-17" value="10Gb Switch" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="70" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-18" value="&lt;span style=&quot;text-wrap-mode: nowrap; background-color: rgb(255, 255, 255);&quot;&gt;sis3 1U Server&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="320" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="LBc0nO8CudeSvStuQtrO-19" value="&lt;font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot; face=&quot;Helvetica&quot;&gt;&lt;span style=&quot;font-variant-ligatures: common-ligatures; text-align: left;&quot;&gt;Spectra Stack&lt;/span&gt;&lt;br style=&quot;box-sizing: inherit; font-variant-ligatures: common-ligatures; text-align: left;&quot;&gt;&lt;/font&gt;&lt;span style=&quot;font-variant-ligatures: common-ligatures; text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot; face=&quot;Helvetica&quot;&gt;Tape Library LTO9&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="320" width="170" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
