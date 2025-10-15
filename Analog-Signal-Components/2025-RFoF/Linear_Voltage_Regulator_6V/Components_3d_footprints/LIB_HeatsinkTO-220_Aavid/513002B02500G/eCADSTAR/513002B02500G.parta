@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_572008"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-03-30-16:16:18)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "513002B02500G")
+)
+
+
+(pinAssign "ECS_572008"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-03-30-16:16:18)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_572008")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "513002B02500G")
+)
+
+
+(part "513002B02500G"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-03-30-16:16:18)
+    (utime 2023-03-07-16:10:32)
+    (packageRef "513002B02500G")
+    (pinAssignRef "ECS_572008")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "U")
+    (property "description" "AAVID THERMALLOY - 513002B02500G - HEAT SINK")
+    (property "Mouser_Part_Number" "532-513002B25G")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Aavid/513002B02500G?qs=FlsQBa5xHTbPBByZnQTykg%3D%3D")
+    (property "Manufacturer_Name" "Aavid Thermalloy")
+    (property "Manufacturer_Part_Number" "513002B02500G")
+    (property "Datasheet_Link" "")
+    (property "compAreaTopHeight" 25.4)
+)
+
+

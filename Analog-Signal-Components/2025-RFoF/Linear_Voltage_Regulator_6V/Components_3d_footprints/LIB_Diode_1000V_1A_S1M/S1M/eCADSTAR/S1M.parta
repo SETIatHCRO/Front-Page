@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_1027864"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2018-01-19-11:43:59)
+    (utime 2024-09-19-14:45:22)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "S1M")
+)
+
+
+(pinAssign "ECS_1027864"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2018-01-19-11:43:59)
+    (utime 2024-09-19-14:45:22)
+    (interface
+        (port "1" (symbPinId 1) (portName "K") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "A") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_1027864")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "S1M")
+)
+
+
+(part "S1M"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2018-01-19-11:43:59)
+    (utime 2024-09-19-14:45:22)
+    (packageRef "S1M")
+    (pinAssignRef "ECS_1027864")
+    (interface
+        (port "1" (symbPinId 1) (portName "K") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "A") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "D")
+    (property "description" "ON SEMICONDUCTOR - S1M - DIODE, STANDARD, 1A, 1000V, SMD")
+    (property "Mouser_Part_Number" "512-S1M")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/S1M?qs=RJwZ8kJo1mhFujnIpzoJdg%3D%3D")
+    (property "Manufacturer_Name" "onsemi")
+    (property "Manufacturer_Part_Number" "S1M")
+    (property "Datasheet_Link" "https://componentsearchengine.com/Datasheets/2/S1M.pdf")
+    (property "compAreaTopHeight" 2.7)
+)
+
+

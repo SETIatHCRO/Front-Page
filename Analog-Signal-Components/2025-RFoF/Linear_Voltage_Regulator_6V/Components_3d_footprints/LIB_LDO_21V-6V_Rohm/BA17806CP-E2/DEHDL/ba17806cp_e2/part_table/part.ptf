@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'BA17806CP_E2'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "ROHM Semiconductor", "BA17806CP-E2" (!) = "", "TO254P460X1010X1720-3P", "Transistor Outline, Vertical", "755-BA17806CP-E2", "https://www.mouser.co.uk/ProductDetail/ROHM-Semiconductor/BA17806CP-E2?qs=IsRgwgmxh6%252Bu7gXf8CL%252Bqw%3D%3D", "Standard Voltage Regulators", "https://fscdn.rohm.com/jp/products/databook/datasheet/ic/power/linear_regulator/ba178_series-j.pdf", "4.6 mm"
+END_PART
+
+END.

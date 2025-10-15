@@ -1,0 +1,92 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "ERJ-U1TF2000U"
+   (description "Thick Film Resistors - SMD 2512 1% 200ohm Anti-Sulfur AEC-Q200")
+   (family "RES")
+   (package "ERJS1T_U1T_(2512)")
+   (attribute "Datasheet Link" "https://componentsearchengine.com/Datasheets/1/ERJ-U1TF2000U.pdf")
+   (attribute "Geometry.Height" "0.7mm")
+   (attribute "Mouser Part Number" "667-ERJ-U1TF2000U")
+   (attribute "Mouser Price/Stock" "https://www.mouser.com/Search/Refine.aspx?Keyword=667-ERJ-U1TF2000U")
+   (attribute "Manufacturer_Name" "Panasonic")
+   (attribute "Manufacturer_Part_Number" "ERJ-U1TF2000U")
+   (gate
+    (symbol "ERJ-U1TF2000U")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+   )
+  )
+  (symbol "ERJ-U1TF2000U"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 50) (pt 500 50) (pt 500 -50) (pt 200 -50) (pt 200 50) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 700 0) (rot 0) (mir X) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "ERJS1T_U1T_(2512)"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -3.2 1.6)
+      (pt 3.2 1.6)
+      (pt 3.2 -1.6)
+      (pt -3.2 -1.6)
+      (pt -3.2 1.6))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (circle
+      (pt -4.725 0) (pt -4.625 0)
+     )
+    )
+   )
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -5.575 2.6)
+      (pt 4.85 2.6)
+      (pt 4.85 -2.6)
+      (pt -5.575 -2.6)
+      (pt -5.575 2.6))))
+   (leg 1 (pt -3.325 0) (padstack 0))
+   (leg 2 (pt 3.325 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 1.45 2.9 0 0 90))
+   )
+   (model "ERJ-U1TF2000U.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

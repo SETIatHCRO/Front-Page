@@ -1,0 +1,126 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "T491X107K025AT"
+   (description "T491, Tantalum, MnO2 Tantalum, Commercial Grade, 100 uF, 10%, 25 VDC, 125C, -55C, 85C, SMD, MnO2, Molded, 8 % , 300 mOhms, 25 uA, 652.04 mg, 7343, 4mm, Height Max = 4.3mm, 500, 156  Weeks")
+   (family "CAP")
+   (package "T491X")
+   (attribute "Datasheet Link" "https://content.kemet.com/datasheets/KEM_T2005_T491.pdf")
+   (attribute "Geometry.Height" "4.3mm")
+   (attribute "Mouser Part Number" "80-T491X107K025AT")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/KEMET/T491X107K025AT?qs=QpHsZXO%252BQJ%252BKFgQiUckA6A%3D%3D")
+   (attribute "Manufacturer_Name" "KEMET")
+   (attribute "Manufacturer_Part_Number" "T491X107K025AT")
+   (gate
+    (symbol "T491X107K025AT")
+    (pin "+" 1 PS)
+    (pin "-" 2 PS)
+   )
+  )
+  (symbol "T491X107K025AT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 200 -100) (pt 230 -100) (pt 230 100) (pt 200 100) (closed))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 180 50) (pt 140 50))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 160 70) (pt 160 30))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 100 0) (pt 200 0))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 300 0) (pt 400 0))
+   )
+   (graphic
+    (stroke 10)
+    (path (closed true) (pt 300 100) (pt 300 -100) (pt 270 -100) (pt 270 100) (pt 300 100))
+   )
+   (terminal
+    (body (symbol "PINSHORT") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+   (terminal
+    (body (symbol "PINSHORT") (pt 500 0) (rot 0) (mir X) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "T491X"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -3.65 2.15)
+      (pt 3.65 2.15)
+      (pt 3.65 -2.15)
+      (pt -3.65 -2.15)
+      (pt -3.65 2.15))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -3.65 2.15)
+      (pt 3.65 2.15))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt 3.65 -2.15)
+      (pt -3.65 -2.15))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (circle
+      (pt -4.77 0) (pt -4.67 0)
+     )
+    )
+   )
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -5.105 3.15)
+      (pt 5.105 3.15)
+      (pt 5.105 -3.15)
+      (pt -5.105 -3.15)
+      (pt -5.105 3.15))))
+   (leg 1 (pt -3.12 0) (padstack 0))
+   (leg 2 (pt 3.12 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 2.37 2.43 0 0 90))
+   )
+   (model "T491X107K025AT.stp"
+    (euler 90 0 0)
+    (offset -3.6700000762939453 -2.299999952316284 0)
+   )
+  )
+ )
+)

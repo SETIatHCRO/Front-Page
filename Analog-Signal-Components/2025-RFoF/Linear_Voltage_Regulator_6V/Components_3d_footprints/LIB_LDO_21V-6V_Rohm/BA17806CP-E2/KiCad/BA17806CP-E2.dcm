@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP BA17806CP-E2
+D Standard Voltage Regulators
+K
+F https://fscdn.rohm.com/jp/products/databook/datasheet/ic/power/linear_regulator/ba178_series-j.pdf
+$ENDCMP
+#
+#End Doc Library

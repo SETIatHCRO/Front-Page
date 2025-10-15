@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "T491X107K025AT"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2022-05-10-08:32:05)
+    (mountForm default
+        (footprintRef "T491X")
+        (spec "System")
+    )
+)

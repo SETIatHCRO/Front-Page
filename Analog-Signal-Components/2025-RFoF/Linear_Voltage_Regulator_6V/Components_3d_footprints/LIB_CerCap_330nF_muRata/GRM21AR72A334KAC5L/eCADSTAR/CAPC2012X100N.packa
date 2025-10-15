@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "GRM21AR72A334KAC5L"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2019-11-15-07:08:58)
+    (mountForm default
+        (footprintRef "CAPC2012X100N")
+        (spec "System")
+    )
+)

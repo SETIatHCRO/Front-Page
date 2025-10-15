@@ -1,0 +1,16 @@
+.BA17806CP-E2 :1 ;Standard Voltage Regulators
+TO254P460X1010X1720-3P
+*STM IC
+*NGS
+*PLB 1="INPUT" 2="COMMON" 3="OUTPUT"
+*MXP 3
+*DFN BA17806CP-E2
+~!Mouser Part Number (755-BA17806CP-E2)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/ROHM-Semiconductor/BA17806CP-E2?qs=IsRgwgmxh6%252Bu7gXf8CL%252Bqw%3D%3D)
+~!Manufacturer_Name (ROHM Semiconductor)
+~!Manufacturer_Part_Number (BA17806CP-E2)
+~!Link Datasheet (https://fscdn.rohm.com/jp/products/databook/datasheet/ic/power/linear_regulator/ba178_series-j.pdf)
+~!Height (4.6mm)
+~!3D_Model (BA17806CP-E2)
+BA17806CP-E2
+1.1!U 2.1!U 3.1!U 

@@ -1,0 +1,16 @@
+.0154001.DRT :1 ;Fuse SMD NANO2 1A T anti surge w/holder Littelfuse 1A T Surface Mount Fuse, 125 V ac/dc
+"0154001.DRT"
+*STM F
+*NGS
+*PLB 1="1" 2="2"
+*MXP 2
+*DFN 0154001.DRT
+~!Mouser Part Number (576-0154001.DRT)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Littelfuse/0154001.DRT?qs=gu7KAQ731UQPKHSDuMkClg%3D%3D)
+~!Manufacturer_Name (LITTELFUSE)
+~!Manufacturer_Part_Number (0154001.DRT)
+~!Link Datasheet (https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-DGA19/20965.pdf)
+~!Height (-)
+~!3D_Model (0154001.DRT)
+"0154001.DRT"
+1.1!U 2.1!U 

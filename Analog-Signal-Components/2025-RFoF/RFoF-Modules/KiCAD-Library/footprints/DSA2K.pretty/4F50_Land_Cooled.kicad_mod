@@ -1,0 +1,146 @@
+(footprint "4F50_Land_Cooled"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 1.75 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "44f8c214-fc9a-426e-9ee9-6b65c40c904f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "4F50_Land"
+		(at 0 2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "6c18cc18-14fb-4cc3-8693-00e2d434c1d9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1f44e96b-03c3-4b49-b163-c2b69a1afac4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c85265db-94dc-4d82-9e93-a3934ef6c938")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_text user "${REFERENCE}"
+		(at 0 3.4 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "9547116a-8dfa-409b-acb7-ca2b213f11ae")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at 0 0)
+		(size 0.8 0.8)
+		(drill 0.8)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "a6c785ca-79ed-4a2e-aa87-76686375f773")
+	)
+	(pad "1" smd rect
+		(at 0.6 0)
+		(size 0.2 0.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "e1ba904e-fa65-40b2-b7cc-3093f647b6fc")
+	)
+	(pad "2" thru_hole rect
+		(at -0.25 -0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f4be9ab1-1d9a-4341-bb9a-7b022e09d652")
+	)
+	(pad "2" thru_hole rect
+		(at -0.25 0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e53b4b70-97b3-49e4-8bc2-25d3250aa79d")
+	)
+	(pad "2" thru_hole rect
+		(at 0.25 0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7e3fec15-6449-4bb3-b406-19d0d83580f5")
+	)
+	(pad "3" smd rect
+		(at -0.6 0)
+		(size 0.2 0.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "c1f393b7-04c1-424e-9cfe-28b2f2794295")
+	)
+	(zone
+		(net 0)
+		(net_name "")
+		(layer "F.Cu")
+		(uuid "03dd9a17-e3ba-4f17-9bb7-2d9518267151")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(filled_areas_thickness no)
+		(keepout
+			(tracks allowed)
+			(vias allowed)
+			(pads allowed)
+			(copperpour not_allowed)
+			(footprints allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+		)
+		(polygon
+			(pts
+				(xy -0.5 -1.1525) (xy 0.5 -1.1525) (xy 0.5 1.1525) (xy -0.5 1.1525)
+			)
+		)
+	)
+	(embedded_fonts no)
+)

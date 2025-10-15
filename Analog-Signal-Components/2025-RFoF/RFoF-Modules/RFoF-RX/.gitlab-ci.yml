@@ -1,0 +1,8 @@
+artifacts:
+  image: ghcr.io/inti-cmnb/kicad9_auto:latest
+  script:
+    - "kibot -d Fabrication pdf_layout pdf_sch gerbers drills ibom pcb_render_top pcb_render_bottom"
+  artifacts:
+    when: always
+    paths:
+      - Fabrication

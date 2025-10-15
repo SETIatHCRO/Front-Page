@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "GCM21BR72A104KA37L"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2019-09-25-13:44:56)
+    (mountForm default
+        (footprintRef "CAPC2012X140N")
+        (spec "System")
+    )
+)

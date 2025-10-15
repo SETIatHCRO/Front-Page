@@ -1,0 +1,127 @@
+(footprint "4F50_Land"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 1.75 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "44f8c214-fc9a-426e-9ee9-6b65c40c904f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "4F50_Land"
+		(at 0 2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "6c18cc18-14fb-4cc3-8693-00e2d434c1d9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1f44e96b-03c3-4b49-b163-c2b69a1afac4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c85265db-94dc-4d82-9e93-a3934ef6c938")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_poly
+		(pts
+			(xy -0.5 -0.6525) (xy -0.2 -0.4) (xy -0.2 0.4) (xy -0.5 0.6525) (xy 0.5 0.6525) (xy 0.2 0.4) (xy 0.2 -0.4)
+			(xy 0.5 -0.6525)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.Cu")
+		(uuid "102ef654-1724-4ff8-80f8-0b556e9fd3ee")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 3.55 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "1fec4bec-3c04-4934-8b04-fdaab0944bf6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" thru_hole rect
+		(at -0.25 -0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1c7d0750-3024-41e1-9630-ab3eae78f72c")
+	)
+	(pad "" thru_hole rect
+		(at -0.25 0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "3a83111a-7916-48ed-b0ca-a04472aaa28a")
+	)
+	(pad "" thru_hole rect
+		(at 0.25 -0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "725f06c8-3b40-4c3b-836b-ff40552086fe")
+	)
+	(pad "" thru_hole rect
+		(at 0.25 0.9025)
+		(size 0.5 0.5)
+		(drill 0.2032)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "df1a02db-18c4-41e5-a197-890f9320f33e")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/dsa2k_lib/3dmodels/DSA2K.3dshapes/4F50.step"
+		(offset
+			(xyz 0 -0.5 -1.45)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -1,0 +1,170 @@
+(footprint "MountedPD"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 2.15 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "14776d82-3cc2-400d-8624-ae1aae166807")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "MountedPD"
+		(at 0 3.4 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "9abded15-6b2f-48f7-babc-358a993826b4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "MountedPD"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "27292ae3-bffa-41dd-a2e0-fc7cf735a8b4")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "56ca0f5b-ace2-47cb-a40a-a70143dd1db9")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "329ea1ef-4330-40ca-8e2b-8e35f36281bf")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -8.5 -5.05)
+		(end 8.5 -1.05)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "38f46432-34df-4931-8d62-1de7359d4f30")
+	)
+	(fp_rect
+		(start -3.25 0)
+		(end 3.25 -0.6)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "f871b42e-3dc2-41f0-b1e0-0c4636e39e5a")
+	)
+	(fp_rect
+		(start -3 -0.6)
+		(end 3 -9.6)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "408ef378-6765-43a0-9a81-13b4a18d0589")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 4.9 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "4f279bc1-5ceb-4b23-9e44-910192b600fc")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at 0 0.65)
+		(size 0.8 0.8)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e0dc13e4-0171-4ecd-9ba2-140b37c1649a")
+	)
+	(pad "2" thru_hole circle
+		(at -6.5 -3)
+		(size 3.5 3.5)
+		(drill 2.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "b0ee5d9a-b3c0-4d45-abe9-bf55d9bea312")
+	)
+	(pad "2" thru_hole circle
+		(at -1 0.65)
+		(size 0.8 0.8)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "b5cf7d59-473c-4c11-8f4a-adb911b1f12c")
+	)
+	(pad "2" smd rect
+		(at 0 -3)
+		(size 18 5)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "93cccf44-10d7-4c37-8ecc-0c883413ac91")
+	)
+	(pad "2" thru_hole circle
+		(at 1 0.65)
+		(size 0.8 0.8)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6f147a34-f216-43be-a74b-6e0b98aa33ce")
+	)
+	(pad "2" thru_hole circle
+		(at 6.5 -3)
+		(size 3.5 3.5)
+		(drill 2.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "824beedb-674e-4e0d-996f-c77b23c99f57")
+	)
+	(model "${KIPRJMOD}/dsa2klib/3dmodels/DSA2K.3dshapes/MountedTOCan_PD.wrl"
+		(offset
+			(xyz 0 0.74 3.6)
+		)
+		(scale
+			(xyz 0.3937 0.3937 0.3937)
+		)
+		(rotate
+			(xyz -180 90 -180)
+		)
+	)
+)

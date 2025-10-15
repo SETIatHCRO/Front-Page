@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "T491X"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "T491X")
+        (spec "default")
+    )
+)

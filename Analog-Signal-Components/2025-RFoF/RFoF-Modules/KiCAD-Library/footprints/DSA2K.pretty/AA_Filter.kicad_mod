@@ -1,0 +1,194 @@
+(footprint "AA_Filter"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Unnamed StepUp generated footprint")
+	(tags "net tie")
+	(property "Reference" "FC_"
+		(at 0 6.65 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "6c977872-7541-4497-ae78-fc2ba574ebc6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Val_"
+		(at 0 8.1 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "e5856ec4-6ba6-4f23-8a8f-2155f27800c7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "AA_Filter"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cc033708-9285-45a1-b49d-43d861b3af04")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "eb8b3fa4-70a7-4625-bd34-a3364c9ba87d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9f80a456-4739-4539-97e2-7beeb5f96ebb")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(net_tie_pad_groups "1, 2")
+	(fp_poly
+		(pts
+			(xy 9.5 0.1) (xy 9.5 -0.1) (xy 9.8 -0.1) (xy 9.8 0.1)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.Cu")
+		(uuid "a493bc75-1663-4a49-a780-ff0a81fa59e5")
+	)
+	(fp_poly
+		(pts
+			(xy 9.5 0.1) (xy 9.5 -0.1) (xy 9.8 -0.1) (xy 9.8 0.1)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.Mask")
+		(uuid "3b1306fd-4c69-4590-b198-45e88654a94d")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 6.6 0)
+		(layer "F.Fab")
+		(uuid "c9e76ae8-86fd-4dbf-94df-72fdd90c5f61")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd custom
+		(at -9.764 0)
+		(size 0.059 0.059)
+		(layers "F.Cu" "F.Mask")
+		(zone_connect 0)
+		(thermal_bridge_angle 90)
+		(options
+			(clearance outline)
+			(anchor circle)
+		)
+		(primitives
+			(gr_poly
+				(pts
+					(xy 4.164 -0.1) (xy 4.164 -2.4) (xy 1.264 -2.4) (xy 1.264 -4.6) (xy 7.564 -4.6) (xy 7.564 -2.4)
+					(xy 4.664 -2.4) (xy 4.664 -0.1) (xy 5.289 -0.1) (xy 5.289 -0.935) (xy 5.302 -1.002) (xy 5.34 -1.058)
+					(xy 5.397 -1.096) (xy 5.464 -1.11) (xy 6.497 -1.11) (xy 6.564 -1.096) (xy 6.621 -1.058) (xy 6.659 -1.002)
+					(xy 6.672 -0.935) (xy 6.672 0.91) (xy 7.656 0.91) (xy 7.656 -0.935) (xy 7.669 -1.002) (xy 7.707 -1.058)
+					(xy 7.764 -1.096) (xy 7.831 -1.11) (xy 8.864 -1.11) (xy 8.931 -1.096) (xy 8.988 -1.058) (xy 9.026 -1.002)
+					(xy 9.039 -0.935) (xy 9.039 -0.1) (xy 9.664 -0.1) (xy 9.864 -0.1) (xy 10.489 -0.1) (xy 10.489 -0.935)
+					(xy 10.502 -1.002) (xy 10.54 -1.058) (xy 10.597 -1.096) (xy 10.664 -1.11) (xy 11.697 -1.11) (xy 11.764 -1.096)
+					(xy 11.821 -1.058) (xy 11.859 -1.002) (xy 11.872 -0.935) (xy 11.872 0.91) (xy 12.856 0.91) (xy 12.856 -0.935)
+					(xy 12.869 -1.002) (xy 12.907 -1.058) (xy 12.964 -1.096) (xy 13.031 -1.11) (xy 14.064 -1.11) (xy 14.131 -1.096)
+					(xy 14.188 -1.058) (xy 14.226 -1.002) (xy 14.239 -0.935) (xy 14.239 -0.1) (xy 14.864 -0.1) (xy 14.864 -2.4)
+					(xy 11.964 -2.4) (xy 11.964 -4.6) (xy 18.264 -4.6) (xy 18.264 -2.4) (xy 15.364 -2.4) (xy 15.364 -0.1)
+					(xy 19.385 -0.1) (xy 19.385 0.1) (xy 15.364 0.1) (xy 14.864 0.1) (xy 14.214 0.1) (xy 14.147 0.087)
+					(xy 14.09 0.049) (xy 14.052 -0.008) (xy 14.039 -0.075) (xy 14.039 -0.91) (xy 13.056 -0.91) (xy 13.056 0.935)
+					(xy 13.042 1.002) (xy 13.004 1.058) (xy 12.948 1.096) (xy 12.881 1.11) (xy 11.847 1.11) (xy 11.78 1.096)
+					(xy 11.723 1.058) (xy 11.685 1.002) (xy 11.672 0.935) (xy 11.672 -0.91) (xy 10.689 -0.91) (xy 10.689 -0.075)
+					(xy 10.676 -0.008) (xy 10.638 0.049) (xy 10.581 0.087) (xy 10.514 0.1) (xy 9.864 0.1) (xy 9.864 2.98)
+					(xy 14.184 2.98) (xy 14.184 1.83) (xy 15.584 1.83) (xy 15.584 4.33) (xy 14.184 4.33) (xy 14.184 3.18)
+					(xy 9.864 3.18) (xy 9.664 3.18) (xy 5.344 3.18) (xy 5.344 4.33) (xy 3.944 4.33) (xy 3.944 1.83)
+					(xy 5.344 1.83) (xy 5.344 2.98) (xy 9.664 2.98) (xy 9.664 0.1) (xy 9.014 0.1) (xy 8.947 0.087)
+					(xy 8.89 0.049) (xy 8.852 -0.008) (xy 8.839 -0.075) (xy 8.839 -0.91) (xy 7.856 -0.91) (xy 7.856 0.935)
+					(xy 7.842 1.002) (xy 7.804 1.058) (xy 7.748 1.096) (xy 7.681 1.11) (xy 6.647 1.11) (xy 6.58 1.096)
+					(xy 6.523 1.058) (xy 6.485 1.002) (xy 6.472 0.935) (xy 6.472 -0.91) (xy 5.489 -0.91) (xy 5.489 -0.075)
+					(xy 5.476 -0.008) (xy 5.438 0.049) (xy 5.381 0.087) (xy 5.314 0.1) (xy 4.664 0.1) (xy 4.164 0.1)
+					(xy -0.036 0.1) (xy -0.036 -0.1)
+				)
+				(width 0)
+				(fill yes)
+			)
+		)
+		(uuid "f59c378e-a469-4b8d-b1cf-f53c10ed21ec")
+	)
+	(pad "2" smd rect
+		(at 9.7325 0)
+		(size 0.135 0.2)
+		(layers "F.Cu" "F.Mask")
+		(uuid "2598cc51-538b-4105-a70e-46bb571e18fc")
+	)
+	(zone
+		(net 0)
+		(net_name "")
+		(layer "F.Cu")
+		(uuid "826fcd56-3eaf-4ae2-bd52-499b7363dfc2")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(filled_areas_thickness no)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads allowed)
+			(copperpour not_allowed)
+			(footprints allowed)
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+		)
+		(polygon
+			(pts
+				(xy -9.8 -6.1) (xy 9.8 -6.1) (xy 9.8 5.85) (xy -9.8 5.85)
+			)
+		)
+	)
+	(model "/home/kshila/sync/Projects/PCB/frx/dsa2klib/footprints/DSA2K.pretty/Unnamed.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

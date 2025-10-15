@@ -1,0 +1,193 @@
+(footprint "ERJS1T_U1T__2512_"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "ERJS1T_U1T_(2512)")
+	(tags "Resistor")
+	(property "Reference" "R**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "aad273d1-8219-4381-8593-60cfc3cf744b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "ERJS1T_U1T_(2512)"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "afb9b940-c2ef-4fcb-847a-f8114a2dee80")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f635f581-b987-4a74-b939-0c68d9f14443")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4c061b1b-3be4-40a6-980e-ddf67776f219")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bde4209b-c1ee-4933-9352-ecdc45f64def")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -4.675 0)
+		(end -4.675 0.05)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "fa819e1b-5504-4cfb-8866-4828b86f49c3")
+	)
+	(fp_line
+		(start -5.575 -2.6)
+		(end 4.85 -2.6)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "630d8357-2733-4957-a4ec-8fa73c174bb3")
+	)
+	(fp_line
+		(start -5.575 2.6)
+		(end -5.575 -2.6)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "5fc0feb1-160c-4beb-aaf6-c8ceaed7769b")
+	)
+	(fp_line
+		(start 4.85 -2.6)
+		(end 4.85 2.6)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d37c04c0-500c-44a2-ab5b-dc44ca0def52")
+	)
+	(fp_line
+		(start 4.85 2.6)
+		(end -5.575 2.6)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6b9d5a65-18d3-4a57-a231-cab16a78484e")
+	)
+	(fp_line
+		(start -3.2 -1.6)
+		(end 3.2 -1.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7095c6b6-1cf5-412c-9716-c118090f658a")
+	)
+	(fp_line
+		(start -3.2 1.6)
+		(end -3.2 -1.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "53b4611e-2a96-4f57-b7f8-ab7606641f1f")
+	)
+	(fp_line
+		(start 3.2 -1.6)
+		(end 3.2 1.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "525544b5-c1a0-4338-baf4-7217dcf865d9")
+	)
+	(fp_line
+		(start 3.2 1.6)
+		(end -3.2 1.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f35d74a0-bde3-423d-bcea-0d01d5edf38c")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "f6ff5a72-9b77-44b7-945a-c37d619042dd")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -3.325 0)
+		(size 1.45 2.9)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "63c8710c-0c56-45c0-b579-f72811b500d9")
+	)
+	(pad "2" smd rect
+		(at 3.325 0)
+		(size 1.45 2.9)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e370fcc5-1742-434f-b590-d11a1a247ebc")
+	)
+	(model "C:/Users/pauli/Documents/KiCad/8.0/Components/Components_Linear_Power_Regulator_RFITestBench/LIB_200Ohm_ThickFilm_SMD/ERJ-U1TF2000U/3D/ERJ-U1TF2000U.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

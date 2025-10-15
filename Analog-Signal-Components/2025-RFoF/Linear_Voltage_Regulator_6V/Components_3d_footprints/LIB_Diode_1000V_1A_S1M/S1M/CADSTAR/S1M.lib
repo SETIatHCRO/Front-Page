@@ -1,0 +1,16 @@
+.S1M :1 ;ON SEMICONDUCTOR - S1M - DIODE, STANDARD, 1A, 1000V, SMD
+DIOM5227X270N
+*STM D
+*NGS
+*PLB 1="K" 2="A"
+*MXP 2
+*DFN S1M
+~!Mouser Part Number (512-S1M)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/S1M?qs=RJwZ8kJo1mhFujnIpzoJdg%3D%3D)
+~!Manufacturer_Name (onsemi)
+~!Manufacturer_Part_Number (S1M)
+~!Link Datasheet (https://componentsearchengine.com/Datasheets/2/S1M.pdf)
+~!Height (2.7mm)
+~!3D_Model (S1M)
+S1M
+1.1!U 2.1!U 

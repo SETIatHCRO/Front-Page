@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'S1M'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "onsemi", "S1M" (!) = "", "DIOM5227X270N", "Diodes Moulded", "512-S1M", "https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/S1M?qs=RJwZ8kJo1mhFujnIpzoJdg%3D%3D", "ON SEMICONDUCTOR - S1M - DIODE, STANDARD, 1A, 1000V, SMD", "https://componentsearchengine.com/Datasheets/2/S1M.pdf", "2.7 mm"
+END_PART
+
+END.

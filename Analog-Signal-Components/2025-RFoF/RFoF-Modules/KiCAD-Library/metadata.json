@@ -1,0 +1,23 @@
+{
+    "$schema": "https://go.kicad.org/pcm/schemas/v1",
+    "name": "DSA2000 KiCAD Library",
+    "description": "Symbols, footprints, and 3D models for DSA2000 hardware design",
+    "description_full": "Symbols, footprints, and 3D models for DSA2000 hardware design",
+    "identifier": "com.gitlab.dsa-2000.asp",
+    "type": "library",
+    "author": {
+        "name": "Kiran Shila",
+        "contact": {
+            "email": "kshila@caltech.edu"
+        }
+    },
+    "resources": {"homepage": "https://gitlab.com/dsa-2000/asp/kicad-library"},
+    "license": "open-source",
+    "versions": [
+        {
+            "version": "0.1",
+            "status": "development",
+            "kicad_version": "9.0"
+        }
+    ]
+}

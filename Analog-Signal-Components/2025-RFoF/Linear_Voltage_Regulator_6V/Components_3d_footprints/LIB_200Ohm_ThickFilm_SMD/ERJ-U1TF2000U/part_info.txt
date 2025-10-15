@@ -1,0 +1,9 @@
+Manufacturer=Panasonic
+PartNumber=ERJ-U1TF2000U
+PartCategory=Resistor
+PackageCategory=Other
+PinCount=2
+Version=3.1
+Released=2021-01-04 15:24:16
+Downloaded=2024-11-05 20:11:01
+3D=Y

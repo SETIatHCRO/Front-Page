@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '513002B02500G'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Aavid Thermalloy", "513002B02500G" (!) = "", "513002B02500G", "Other", "532-513002B25G", "https://www.mouser.co.uk/ProductDetail/Aavid/513002B02500G?qs=FlsQBa5xHTbPBByZnQTykg%3D%3D", "AAVID THERMALLOY - 513002B02500G - HEAT SINK", "", "25.4 mm"
+END_PART
+
+END.

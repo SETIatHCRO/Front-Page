@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '0154001.DRT'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET";
+{========================================================================================}
+ "LITTELFUSE", "0154001.DRT" (!) = "", "0154001.DRT", "Other", "576-0154001.DRT", "https://www.mouser.co.uk/ProductDetail/Littelfuse/0154001.DRT?qs=gu7KAQ731UQPKHSDuMkClg%3D%3D", "Fuse SMD NANO2 1A T anti surge w/holder Littelfuse 1A T Surface Mount Fuse, 125 V ac/dc", "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-DGA19/20965.pdf"
+END_PART
+
+END.

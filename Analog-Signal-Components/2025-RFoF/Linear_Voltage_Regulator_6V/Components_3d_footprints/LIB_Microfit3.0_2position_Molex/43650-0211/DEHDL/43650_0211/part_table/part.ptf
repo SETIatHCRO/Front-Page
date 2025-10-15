@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '43650_0211'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Molex", "43650-0211" (!) = "", "43650-02YY_091011", "Other", "538-43650-0211", "https://www.mouser.co.uk/ProductDetail/Molex/43650-0211?qs=z57USrEQgt0F0sS1hGS9Bw%3D%3D", "Micro-Fit 3.0 Right-Angle Header, 3.00mm Pitch, Single Row, 2 Circuits, with PCB Press-fit Metal Retention Clip, Glow-Wire Capable, Black, Tape and Reel", "https://www.molex.com/pdm_docs/sd/436500209_sd.pdf", "5.57 mm"
+END_PART
+
+END.

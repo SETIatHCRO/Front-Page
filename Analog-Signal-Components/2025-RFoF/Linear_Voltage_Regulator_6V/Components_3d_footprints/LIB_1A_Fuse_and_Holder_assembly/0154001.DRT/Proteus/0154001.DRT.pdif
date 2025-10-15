@@ -1,0 +1,91 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "0154001.DRT"
+   (description "Fuse SMD NANO2 1A T anti surge w/holder Littelfuse 1A T Surface Mount Fuse, 125 V ac/dc")
+   (family "FUS")
+   (package "0154001.DRT")
+   (attribute "Datasheet Link" "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-DGA19/20965.pdf")
+   (attribute "Mouser Part Number" "576-0154001.DRT")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Littelfuse/0154001.DRT?qs=gu7KAQ731UQPKHSDuMkClg%3D%3D")
+   (attribute "Manufacturer_Name" "LITTELFUSE")
+   (attribute "Manufacturer_Part_Number" "0154001.DRT")
+   (gate
+    (symbol "0154001.DRT")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+   )
+  )
+  (symbol "0154001.DRT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 50) (pt 500 50) (pt 500 -50) (pt 200 -50) (pt 200 50) (closed))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 200 0) (pt 500 0))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 700 0) (rot 0) (mir X) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "0154001.DRT"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.254)
+     (path
+      (closed true)
+      (pt -4.8641 2.5146)
+      (pt 4.8641 2.5146)
+      (pt 4.8641 -2.5146)
+      (pt -4.8641 -2.5146)
+      (pt -4.8641 2.5146))))
+   (layer TSLK
+    (graphic
+     (stroke 0.254)
+     (path
+      (closed false)
+      (pt -4.8641 2.5146)
+      (pt 4.8641 2.5146))))
+   (layer TSLK
+    (graphic
+     (stroke 0.254)
+     (path
+      (closed false)
+      (pt -4.8641 -2.5146)
+      (pt 4.8641 -2.5146))))
+   (leg 1 (pt -3.1877 0) (padstack 0))
+   (leg 2 (pt 3.1877 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 3.81 4.2418 0 0 0))
+   )
+   (model "0154001.DRT.stp"
+    (euler 90 0 90)
+    (offset 0 0 0.30000001192092896)
+   )
+  )
+ )
+)

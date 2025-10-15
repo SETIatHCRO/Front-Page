@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP GCM21BR72A104KA37L
+D Ceramic  SMT capacitor 100nF 100Vdc Murata 100nF Multilayer Ceramic Capacitor (MLCC) 100 V dc +/-10% X7R dielectric GCM Surface Mount max op. temp. +125C
+K
+F https://psearch.en.murata.com/capacitor/product/GCM21BR72A104KA37%23.html
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_12740466"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2020-10-15-05:36:32)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "T491X107K025AT")
+)
+
+
+(pinAssign "ECS_12740466"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2020-10-15-05:36:32)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portName "+") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "-") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_12740466")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "T491X107K025AT")
+)
+
+
+(part "T491X107K025AT"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2020-10-15-05:36:32)
+    (utime 2023-03-07-16:10:32)
+    (packageRef "T491X107K025AT")
+    (pinAssignRef "ECS_12740466")
+    (interface
+        (port "1" (symbPinId 1) (portName "+") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "-") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "T491, Tantalum, MnO2 Tantalum, Commercial Grade, 100 uF, 10%, 25 VDC, 125C, -55C, 85C, SMD, MnO2, Molded, 8 % , 300 mOhms, 25 uA, 652.04 mg, 7343, 4mm, Height Max = 4.3mm, 500, 156  Weeks")
+    (property "Mouser_Part_Number" "80-T491X107K025AT")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/KEMET/T491X107K025AT?qs=QpHsZXO%252BQJ%252BKFgQiUckA6A%3D%3D")
+    (property "Manufacturer_Name" "KEMET")
+    (property "Manufacturer_Part_Number" "T491X107K025AT")
+    (property "Datasheet_Link" "https://content.kemet.com/datasheets/KEM_T2005_T491.pdf")
+    (property "compAreaTopHeight" 4.3)
+)
+
+

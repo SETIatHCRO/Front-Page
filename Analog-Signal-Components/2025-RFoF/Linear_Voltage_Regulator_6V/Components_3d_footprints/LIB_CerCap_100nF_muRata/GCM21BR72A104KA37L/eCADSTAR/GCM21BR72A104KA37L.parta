@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_234311"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2017-04-28-01:21:00)
+    (utime 2024-02-20-14:15:58)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "GCM21BR72A104KA37L")
+)
+
+
+(pinAssign "ECS_234311"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2017-04-28-01:21:00)
+    (utime 2024-02-20-14:15:58)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_234311")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "GCM21BR72A104KA37L")
+)
+
+
+(part "GCM21BR72A104KA37L"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2017-04-28-01:21:00)
+    (utime 2024-02-20-14:15:58)
+    (packageRef "GCM21BR72A104KA37L")
+    (pinAssignRef "ECS_234311")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "Ceramic  SMT capacitor 100nF 100Vdc Murata 100nF Multilayer Ceramic Capacitor (MLCC) 100 V dc +/-10% X7R dielectric GCM Surface Mount max op. temp. +125C")
+    (property "Mouser_Part_Number" "81-GCM21BR72A104KA7L")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Murata-Electronics/GCM21BR72A104KA37L?qs=aEuGZpxfbxU57i7kalIPTw%3D%3D")
+    (property "Manufacturer_Name" "Murata Electronics")
+    (property "Manufacturer_Part_Number" "GCM21BR72A104KA37L")
+    (property "Datasheet_Link" "https://psearch.en.murata.com/capacitor/product/GCM21BR72A104KA37%23.html")
+    (property "compAreaTopHeight" 1.4)
+)
+
+

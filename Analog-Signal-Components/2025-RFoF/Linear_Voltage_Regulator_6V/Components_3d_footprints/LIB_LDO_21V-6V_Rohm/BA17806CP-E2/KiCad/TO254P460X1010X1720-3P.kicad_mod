@@ -1,0 +1,234 @@
+(footprint "TO254P460X1010X1720-3P"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "TO220CP-3_2021-1")
+	(tags "Integrated Circuit")
+	(property "Reference" "IC**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "d8e8fb2b-1b50-4145-a351-55a581eadbe3")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "TO254P460X1010X1720-3P"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "bfa02cad-c30d-4a69-9d44-f649ca68fcef")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "68191d6d-a419-42d5-a5a7-099a6297f05c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7fc06545-8392-4dfa-9f3b-0f9aa4448ea6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2db67d66-8792-4909-8249-3c9a1f108254")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -2.61 -2.85)
+		(end -2.61 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a81c2a45-7243-404f-bb3f-d96843fc1986")
+	)
+	(fp_line
+		(start 7.69 -2.85)
+		(end -2.61 -2.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4b047924-99fb-4843-a997-8f893f0625cc")
+	)
+	(fp_line
+		(start 7.69 1.75)
+		(end 7.69 -2.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f41eaa74-50d7-4a0b-ad23-485f74076195")
+	)
+	(fp_line
+		(start -2.86 -3.1)
+		(end 7.94 -3.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6a7e98d7-c7a8-45bb-b919-448d259cce66")
+	)
+	(fp_line
+		(start -2.86 2)
+		(end -2.86 -3.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "345e8b25-60b3-44b2-9713-4534ad274db3")
+	)
+	(fp_line
+		(start 7.94 -3.1)
+		(end 7.94 2)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "c36da750-624d-4a87-a829-519849c4be23")
+	)
+	(fp_line
+		(start 7.94 2)
+		(end -2.86 2)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7a2d7be2-8ec7-41a0-a59a-9e7341b899aa")
+	)
+	(fp_line
+		(start -2.61 -2.85)
+		(end 7.69 -2.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "01b038b4-053d-4473-aecb-0665dd0e1774")
+	)
+	(fp_line
+		(start -2.61 -1.58)
+		(end -1.34 -2.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a5a66830-4776-4025-874c-cbc677842cec")
+	)
+	(fp_line
+		(start -2.61 1.75)
+		(end -2.61 -2.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "32f5bb47-d1cd-4c0e-847c-d65f3630b3e6")
+	)
+	(fp_line
+		(start 7.69 -2.85)
+		(end 7.69 1.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "ebf8eb7c-68ca-4ae5-890a-5319d224146f")
+	)
+	(fp_line
+		(start 7.69 1.75)
+		(end -2.61 1.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "40f0e6ea-1f54-4657-8702-5fc3a3e3732c")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "00b1046a-66ff-4280-a989-4eb1645f95b1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 1.89 1.89)
+		(drill 1.26)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "64da1cf7-4d3c-4681-b0f2-4f8f4fdd6bc3")
+	)
+	(pad "2" thru_hole circle
+		(at 2.54 0)
+		(size 1.89 1.89)
+		(drill 1.26)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e9fad122-3f41-4dd1-9088-671d5aecbb07")
+	)
+	(pad "3" thru_hole circle
+		(at 5.08 0)
+		(size 1.89 1.89)
+		(drill 1.26)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "64e65a8f-dc14-4f2e-90bf-20f169cc82bc")
+	)
+	(model "C:/Users/pauli/Documents/KiCad/8.0/Components/Components_Linear_Power_Regulator_RFITestBench/LIB_LDO_21V-6V_Rohm/BA17806CP-E2/3D/BA17806CP-E2.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

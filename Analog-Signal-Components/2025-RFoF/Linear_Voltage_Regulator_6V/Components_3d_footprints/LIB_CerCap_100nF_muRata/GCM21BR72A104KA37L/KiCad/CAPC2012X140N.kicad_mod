@@ -1,0 +1,192 @@
+(footprint "CAPC2012X140N"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "GCM21 L=2.0mm W=1.25mm T=1.25mm")
+	(tags "Capacitor")
+	(property "Reference" "C**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "864eaf99-aa44-4f6f-9e96-72b60e193c54")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "CAPC2012X140N"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "17272d99-209e-40f5-aa29-4fdb211fe709")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1093dc0d-e089-44ff-b21b-00cbff851520")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f82e5ae0-2056-46d5-9457-6080af29943b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c8709b30-bd37-44d3-8ecf-9ca5f274ae47")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start 0 -0.525)
+		(end 0 0.525)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8c1207a7-08fa-47b0-a1b0-d380b6529acd")
+	)
+	(fp_line
+		(start -1.44 -0.87)
+		(end 1.44 -0.87)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "64a192f6-0cab-4835-9aca-147c2828cabf")
+	)
+	(fp_line
+		(start -1.44 0.87)
+		(end -1.44 -0.87)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1bc1c08f-9e61-4d82-9e24-eb7800312dd5")
+	)
+	(fp_line
+		(start 1.44 -0.87)
+		(end 1.44 0.87)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "980b2098-cd8c-4bfd-aef1-ba31873dfb8c")
+	)
+	(fp_line
+		(start 1.44 0.87)
+		(end -1.44 0.87)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "aa027854-cc8c-443c-a35f-12d938b215f6")
+	)
+	(fp_line
+		(start -1 -0.625)
+		(end 1 -0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "73960c68-dd96-4c76-a1b9-fa87fc55e9a3")
+	)
+	(fp_line
+		(start -1 0.625)
+		(end -1 -0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "8821cc46-1fba-4255-87db-508b270b0223")
+	)
+	(fp_line
+		(start 1 -0.625)
+		(end 1 0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "31deb854-d666-4b1a-bafe-ac40e7a512fa")
+	)
+	(fp_line
+		(start 1 0.625)
+		(end -1 0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1f98d103-6021-4658-b83f-81d10aee6ba0")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "340cc169-c6ce-4ec9-b4bb-70ad6780f9b1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -0.82 0)
+		(size 0.94 1.43)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "a27bf04f-b729-44aa-b691-fd40f7d95a04")
+	)
+	(pad "2" smd rect
+		(at 0.82 0)
+		(size 0.94 1.43)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "27fd1802-6e8b-415a-9921-ed9d1fa1477e")
+	)
+	(model "C:/Users/pauli/Documents/KiCad/8.0/Components/Components_Linear_Power_Regulator_RFITestBench/LIB_CerCap_100nF_muRata/GCM21BR72A104KA37L/3D/GCM21BR72A104KA37L.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

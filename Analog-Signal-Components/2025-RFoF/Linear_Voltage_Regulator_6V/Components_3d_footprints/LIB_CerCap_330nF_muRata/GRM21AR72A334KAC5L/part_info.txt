@@ -1,0 +1,9 @@
+Manufacturer=Murata Electronics
+PartNumber=GRM21AR72A334KAC5L
+PartCategory=Capacitor
+PackageCategory=Capacitor Chip Non-polarised
+PinCount=2
+Version=1.1
+Released=2019-11-15 07:08:58
+Downloaded=2024-11-02 22:58:12
+3D=Y

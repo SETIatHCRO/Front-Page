@@ -1,0 +1,9 @@
+Manufacturer=LITTELFUSE
+PartNumber=0154001.DRT
+PartCategory=Fuse
+PackageCategory=Other
+PinCount=2
+Version=1.3
+Released=2016-12-09 16:53:01
+Downloaded=2024-11-05 19:15:36
+3D=Y

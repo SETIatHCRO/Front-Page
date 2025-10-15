@@ -1,0 +1,162 @@
+(footprint "0154001.DRT"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "0154001.DRT")
+	(tags "Fuse")
+	(property "Reference" "F**"
+		(at -0.7487 0.247 0)
+		(layer "F.SilkS")
+		(uuid "93eae386-1b91-4ba4-90e4-e38bf1f13c79")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "0154001.DRT"
+		(at -0.7487 0.247 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "dc8e619e-3b3f-4ffc-ab4f-6a06a73eb6b3")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fbb6eb7b-553e-49c9-97b0-30b49b94fc6f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "12af5880-445c-4fac-bd65-2652dce2b241")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "36b0f9bc-c0f1-4cf7-8e3a-8e639f2ea9c6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -4.8641 -2.5146)
+		(end 4.8641 -2.5146)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1e670631-4b47-47f0-bfa5-4c4745ad3eb5")
+	)
+	(fp_line
+		(start -4.8641 2.5146)
+		(end 4.8641 2.5146)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2684d91b-3ab8-41ce-9630-541679e57354")
+	)
+	(fp_line
+		(start -4.8641 -2.5146)
+		(end 4.8641 -2.5146)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f57cab2d-ea48-4974-9360-af1d9709f3ee")
+	)
+	(fp_line
+		(start -4.8641 2.5146)
+		(end -4.8641 -2.5146)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b918aeb2-6f81-4528-a8c6-77683144d518")
+	)
+	(fp_line
+		(start 4.8641 -2.5146)
+		(end 4.8641 2.5146)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "3c6048ec-6328-41cd-8824-58208c3bf6a6")
+	)
+	(fp_line
+		(start 4.8641 2.5146)
+		(end -4.8641 2.5146)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "402e4b77-038f-46c9-b398-c5a2bc73ce4a")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -0.7487 0.247 0)
+		(layer "F.Fab")
+		(uuid "a541b2af-cf77-4c89-9c6e-738b99fbccf0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -3.1877 0 90)
+		(size 3.81 4.2418)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "37ee3a75-45b8-40b7-9c69-2fe8da079df1")
+	)
+	(pad "2" smd rect
+		(at 3.1877 0 90)
+		(size 3.81 4.2418)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "745578b3-9c2b-413d-8c70-873b261e434b")
+	)
+	(model "C:/Users/pauli/Documents/KiCad/8.0/Components/Components_Linear_Power_Regulator_RFITestBench/LIB_1A_Fuse_and_Holder_assembly/0154001.DRT/3D/0154001.DRT.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 -90)
+		)
+	)
+)

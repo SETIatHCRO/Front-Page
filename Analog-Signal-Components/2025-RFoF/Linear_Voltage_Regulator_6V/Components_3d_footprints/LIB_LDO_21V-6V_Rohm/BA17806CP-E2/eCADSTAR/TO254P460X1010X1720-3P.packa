@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "BA17806CP-E2"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2021-10-22-05:31:10)
+    (mountForm default
+        (footprintRef "TO254P460X1010X1720-3P")
+        (spec "System")
+    )
+)

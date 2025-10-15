@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_256941"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-11-15-07:08:58)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "GRM21AR72A334KAC5L")
+)
+
+
+(pinAssign "ECS_256941"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-11-15-07:08:58)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_256941")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "GRM21AR72A334KAC5L")
+)
+
+
+(part "GRM21AR72A334KAC5L"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-11-15-07:08:58)
+    (utime 2023-03-07-16:10:32)
+    (packageRef "GRM21AR72A334KAC5L")
+    (pinAssignRef "ECS_256941")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "Multilayer Ceramic Capacitors MLCC - SMD/SMT .33uF 100Volts 10%")
+    (property "Mouser_Part_Number" "81-GRM21AR72A334KA5L")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Murata-Electronics/GRM21AR72A334KAC5L?qs=vS1sKHMaE9WxhFYLmviwXA%3D%3D")
+    (property "Manufacturer_Name" "Murata Electronics")
+    (property "Manufacturer_Part_Number" "GRM21AR72A334KAC5L")
+    (property "Datasheet_Link" "")
+    (property "compAreaTopHeight" 1)
+)
+
+

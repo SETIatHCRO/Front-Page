@@ -1,0 +1,9 @@
+Manufacturer=onsemi
+PartNumber=S1M
+PartCategory=Diode
+PackageCategory=Diodes Moulded
+PinCount=2
+Version=2.1
+Released=2018-01-19 11:43:59
+Downloaded=2024-11-06 00:25:03
+3D=Y

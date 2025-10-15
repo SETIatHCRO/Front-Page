@@ -1,0 +1,244 @@
+(footprint "ERA6AEB101V"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "ERA6A")
+	(tags "Resistor")
+	(property "Reference" "R**"
+		(at -0.175 0 0)
+		(layer "F.SilkS")
+		(uuid "a489641c-2a02-449a-bb2d-2ecefc666816")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "ERA6AEB101V"
+		(at -0.175 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "92b56042-cb59-4f0b-bf9a-4869fd43bf08")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d0af078f-02d0-4309-a615-651fa037b29f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b1f7d6e0-09f8-4a67-9694-3b436beed0ec")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fc11459f-902f-4cbf-927e-376f617d7bad")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.5 -0.1)
+		(end -2.5 -0.1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "aaf9fbe6-5e9f-4934-aec0-ccdf619c181d")
+	)
+	(fp_line
+		(start -2.5 0.1)
+		(end -2.5 0.1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9a11df8a-66a2-4f6c-b182-6f46d0c5256e")
+	)
+	(fp_line
+		(start -0.2 -0.625)
+		(end 0.2 -0.625)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "45f2c782-6b5f-4ccb-a022-554613f24ad7")
+	)
+	(fp_line
+		(start -0.2 0.625)
+		(end 0.2 0.625)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "03cfc013-a2d2-4fed-89ce-82dd716597dc")
+	)
+	(fp_arc
+		(start -2.5 -0.1)
+		(mid -2.4 0)
+		(end -2.5 0.1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c71a9a67-17eb-4c0e-86b8-343480858eeb")
+	)
+	(fp_arc
+		(start -2.5 0.1)
+		(mid -2.6 0)
+		(end -2.5 -0.1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "07ff269e-98a1-4586-9855-5d0f362aa231")
+	)
+	(fp_line
+		(start -3.1 -1.625)
+		(end 2.75 -1.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b19782e5-088f-4874-9ecc-f0ad1a655b97")
+	)
+	(fp_line
+		(start -3.1 1.625)
+		(end -3.1 -1.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d6f90454-b48d-4725-b42d-62a9d24af24e")
+	)
+	(fp_line
+		(start 2.75 -1.625)
+		(end 2.75 1.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "606c1ff6-664f-46fd-b7fb-351799218277")
+	)
+	(fp_line
+		(start 2.75 1.625)
+		(end -3.1 1.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "68207a7d-a615-4e87-90f6-32c588b9c2aa")
+	)
+	(fp_line
+		(start -1 -0.625)
+		(end 1 -0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "2ba72735-12b3-4a5c-bd27-7564d93ebd2f")
+	)
+	(fp_line
+		(start -1 0.625)
+		(end -1 -0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "9fc9cb6d-9f69-4fac-b41e-d35fc22d1d86")
+	)
+	(fp_line
+		(start 1 -0.625)
+		(end 1 0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1cc5b99c-c50c-4f68-9408-5f0e117c7743")
+	)
+	(fp_line
+		(start 1 0.625)
+		(end -1 0.625)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c2d58f23-fd2e-46e2-8b1f-7c2b08ee19e9")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -0.175 0 0)
+		(layer "F.Fab")
+		(uuid "67f14a32-4065-4596-bbb0-32dfd73de691")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.175 0)
+		(size 1.15 1.15)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "7340c2a0-69dd-46d8-a347-bca874e97cb3")
+	)
+	(pad "2" smd rect
+		(at 1.175 0)
+		(size 1.15 1.15)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "fdd74f75-bf0e-4ead-ada9-9ccf1ad803a7")
+	)
+	(model "C:/Users/pauli/Documents/KiCad/8.0/Components/Components_Linear_Power_Regulator_RFITestBench/LIB_1MOhm_ThinFilm_SMD/ERA-6AEB105V/3D/ERA-6AEB105V.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

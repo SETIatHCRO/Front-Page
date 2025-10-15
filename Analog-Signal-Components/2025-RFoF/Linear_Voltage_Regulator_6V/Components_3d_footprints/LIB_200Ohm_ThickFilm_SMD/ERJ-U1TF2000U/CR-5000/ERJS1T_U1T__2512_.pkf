@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "ERJS1T_U1T__2512_"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "ERJS1T_U1T__2512_")
+        (spec "default")
+    )
+)

@@ -1,0 +1,99 @@
+(footprint "IMN"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0.01 6.74 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "558bce9b-bfcf-44ce-a25a-22d99b28026e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "IMN"
+		(at 0.01 8.24 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "ea2a056c-8ba3-4334-9c78-f117d94e3ced")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0.01 7.24 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b84215ad-d584-4b0a-adac-07065097bb9f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0.01 7.24 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f98f15c8-2ab3-4d72-bddc-b574bde1ce79")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0.01 7.24 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "07035590-ffec-4345-9dd4-a11e3b8ca355")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_poly
+		(pts
+			(xy -25.08 3.65) (xy -25.08 -3.65) (xy -16.54 -3.65) (xy -16.54 -4.75) (xy -8 -4.75) (xy -8 -5.3)
+			(xy 9.08 -5.3) (xy 9.08 -4.2) (xy 17.62 -4.2) (xy 17.62 -1.85) (xy 26.16 -1.85) (xy 26.16 -0.85)
+			(xy 34.7 -0.85) (xy 34.7 -0.5) (xy 43.24 -0.5) (xy 43.24 -0.3) (xy 51.78 -0.3) (xy 51.78 -0.2) (xy 60.32 -0.2)
+			(xy 60.32 0.2) (xy 51.78 0.2) (xy 51.78 0.3) (xy 43.24 0.3) (xy 43.24 0.5) (xy 34.7 0.5) (xy 34.7 0.85)
+			(xy 26.16 0.85) (xy 26.16 1.85) (xy 17.62 1.85) (xy 17.62 4.2) (xy 9.08 4.2) (xy 9.08 5.3) (xy -8 5.3)
+			(xy -8 4.75) (xy -16.54 4.75) (xy -16.54 3.65)
+		)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.Cu")
+		(uuid "e65a1567-d54a-4523-a096-3463a2f625fd")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0.01 9.74 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "eed0bd37-90c9-40ad-b336-3b8aee8c5883")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+)

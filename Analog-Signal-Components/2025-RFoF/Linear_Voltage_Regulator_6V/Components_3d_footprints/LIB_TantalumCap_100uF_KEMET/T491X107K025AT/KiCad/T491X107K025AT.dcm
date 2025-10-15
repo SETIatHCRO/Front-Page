@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP T491X107K025AT
+D T491, Tantalum, MnO2 Tantalum, Commercial Grade, 100 uF, 10%, 25 VDC, 125C, -55C, 85C, SMD, MnO2, Molded, 8 % , 300 mOhms, 25 uA, 652.04 mg, 7343, 4mm, Height Max = 4.3mm, 500, 156  Weeks
+K
+F https://content.kemet.com/datasheets/KEM_T2005_T491.pdf
+$ENDCMP
+#
+#End Doc Library

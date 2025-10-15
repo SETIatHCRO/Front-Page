@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP S1M
+D ON SEMICONDUCTOR - S1M - DIODE, STANDARD, 1A, 1000V, SMD
+K
+F https://componentsearchengine.com/Datasheets/2/S1M.pdf
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,9 @@
+Manufacturer=KEMET
+PartNumber=T491X107K025AT
+PartCategory=Capacitor Polarised
+PackageCategory=Other
+PinCount=2
+Version=5.1
+Released=2020-10-15 05:36:32
+Downloaded=2024-11-05 19:32:27
+3D=Y

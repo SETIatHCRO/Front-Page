@@ -1,0 +1,122 @@
+kibot:
+  version: 1
+
+global:
+  units: "millimeters"
+  pcb_finish: "ENIG"
+
+preflight:
+  update_xml: true
+
+filters:
+  - name: "bom_exclude"
+    type: generic
+    comment: "Exclude components from BOM"
+    exclude_any:
+      - column: Part
+        regex: 'mount.*hole'
+      - column: Part
+        regex: 'test.*point'
+      - column: Footprint
+        regex: 'test.*point'
+      - column: Footprint
+        regex: 'mount.*hole'
+
+outputs:
+  - name: "pdf_sch"
+    comment: "Schematic (PDF)"
+    type: pdf_sch_print
+    dir: .
+    options:
+      output: Schematic.pdf
+
+  - name: "gerbers"
+    comment: "Production Gerbers"
+    type: gerber
+    dir: gerbers
+    options:
+      # generic layer options
+      plot_sheet_reference: false
+      plot_footprint_refs: false
+      # gerber options
+      subtract_mask_from_silk: true
+      use_protel_extensions: true
+      gerber_precision: 4.6
+      create_gerber_job_file: false
+      use_gerber_x2_attributes: false
+      use_gerber_net_attributes: false
+    layers:
+      - "copper"
+      - "technical"
+
+  - name: "drills"
+    comment: "Excellon drill files"
+    type: excellon
+    dir: gerbers
+
+  - name: "ibom"
+    comment: "Interactive BOM (HTML)"
+    dir: ibom
+    type: ibom
+
+  - name: "bom"
+    comment: "BOM (CSV)"
+    type: kibom
+    dir: .
+    options:
+      format: "CSV"
+
+  - name: "pdf_layout"
+    comment: "Layout (PDF)"
+    type: pcb_print
+    dir: .
+    options:
+      output: Layout.pdf
+      drill_marks: "full"
+      scaling: 1.5
+      pages:
+        - layers:
+            - layer: F.Cu
+              plot_footprint_values: false
+          sheet: "Layer 1 (Top)"
+        - layers:
+            - layer: In1.Cu
+              plot_footprint_values: false
+          sheet: "Layer 2"
+        - layers:
+            - layer: In2.Cu
+              plot_footprint_values: false
+          sheet: "Layer 3"
+        - layers:
+            - layer: B.Cu
+              plot_footprint_values: false
+          sheet: "Layer 4 (Bottom)"
+        - layers:
+            - layer: Edge.Cuts
+              plot_footprint_values: false
+            - layer: F.Fab
+              plot_footprint_values: false
+            - layer: B.Fab
+              plot_footprint_values: false
+            - layer: User.Drawings
+              plot_footprint_values: false
+            - layer: User.Comments
+              plot_footprint_values: false
+          sheet: "Mechanical"
+
+  - name: "pcb_render_top"
+    comment: "Photorealistic rendering top (JPG)"
+    type: pcbdraw
+    dir: .
+    options:
+      format: jpg
+      dpi: 600
+
+  - name: "pcb_render_bottom"
+    comment: "Photorealistic rendering bottom (JPG)"
+    type: pcbdraw
+    dir: .
+    options:
+      format: jpg
+      bottom: true
+      dpi: 600

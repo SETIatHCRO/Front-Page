@@ -1,0 +1,9 @@
+Manufacturer=Murata Electronics
+PartNumber=GCM21BR72A104KA37L
+PartCategory=Capacitor
+PackageCategory=Capacitor Chip Non-polarised
+PinCount=2
+Version=5.1
+Released=2017-04-28 01:21:00
+Downloaded=2024-11-02 22:59:02
+3D=Y

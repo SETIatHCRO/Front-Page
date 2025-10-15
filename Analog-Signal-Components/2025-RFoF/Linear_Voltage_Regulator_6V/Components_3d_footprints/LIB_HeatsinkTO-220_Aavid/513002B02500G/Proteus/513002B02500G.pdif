@@ -1,0 +1,113 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "513002B02500G"
+   (description "AAVID THERMALLOY - 513002B02500G - HEAT SINK")
+   (family "ANA")
+   (package "513002B02500G")
+   (attribute "Datasheet Link" "")
+   (attribute "Geometry.Height" "25.4mm")
+   (attribute "Mouser Part Number" "532-513002B25G")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Aavid/513002B02500G?qs=FlsQBa5xHTbPBByZnQTykg%3D%3D")
+   (attribute "Manufacturer_Name" "Aavid Thermalloy")
+   (attribute "Manufacturer_Part_Number" "513002B02500G")
+   (gate
+    (symbol "513002B02500G")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+   )
+  )
+  (symbol "513002B02500G"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 600 100) (pt 600 -200) (pt 200 -200) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "513002B02500G"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -5.26 6.85)
+      (pt 30.66 6.85)
+      (pt 30.66 -6.85)
+      (pt -5.26 -6.85)
+      (pt -5.26 6.85))))
+   (layer TASM
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -4.76 6.35)
+      (pt -4.76 -6.35)
+      (pt 4.76 -6.35)
+      (pt 4.76 -0.785)
+      (pt 20.64 -0.785)
+      (pt 20.64 -6.35)
+      (pt 30.16 -6.35)
+      (pt 30.16 6.35)
+      (pt 20.64 6.35)
+      (pt 20.64 0.785)
+      (pt 4.76 0.785)
+      (pt 4.76 6.35)
+      (pt -4.76 6.35))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 4.76 -0.785)
+      (pt 4.76 -6.35)
+      (pt -4.76 -6.35)
+      (pt -4.76 6.35)
+      (pt 4.76 6.35)
+      (pt 4.76 0.785)
+      (pt 20.64 0.785)
+      (pt 20.64 6.35)
+      (pt 30.16 6.35)
+      (pt 30.16 -6.35)
+      (pt 20.64 -6.35)
+      (pt 20.64 -0.785)
+      (pt 4.76 -0.785))))
+   (leg 1 (pt 0.000 0.000) (padstack 0))
+   (leg 2 (pt 25.400 0.000) (padstack 0))
+   (padstack 0
+    (hole 2.57)
+    (plated true)
+    (pad (layer TCOP) (round 3.855))
+    (pad (layer INNER) (round 3.855))
+    (pad (layer BCOP) (round 3.855))
+   )
+   (model "513002B02500G.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

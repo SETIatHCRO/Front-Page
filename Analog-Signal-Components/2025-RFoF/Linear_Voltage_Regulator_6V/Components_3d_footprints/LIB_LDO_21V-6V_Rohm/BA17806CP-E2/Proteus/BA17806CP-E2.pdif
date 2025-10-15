@@ -1,0 +1,116 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "BA17806CP-E2"
+   (description "Standard Voltage Regulators")
+   (family "ANA")
+   (package "TO254P460X1010X1720-3P")
+   (attribute "Datasheet Link" "https://fscdn.rohm.com/jp/products/databook/datasheet/ic/power/linear_regulator/ba178_series-j.pdf")
+   (attribute "Geometry.Height" "4.6mm")
+   (attribute "Mouser Part Number" "755-BA17806CP-E2")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/ROHM-Semiconductor/BA17806CP-E2?qs=IsRgwgmxh6%252Bu7gXf8CL%252Bqw%3D%3D")
+   (attribute "Manufacturer_Name" "ROHM Semiconductor")
+   (attribute "Manufacturer_Part_Number" "BA17806CP-E2")
+   (gate
+    (symbol "BA17806CP-E2")
+    (pin "INPUT" 1 PS)
+    (pin "COMMON" 2 PS)
+    (pin "OUTPUT" 3 PS)
+   )
+  )
+  (symbol "BA17806CP-E2"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 800 100) (pt 800 -300) (pt 200 -300) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "TO254P460X1010X1720-3P"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -2.86 3.1)
+      (pt 7.94 3.1)
+      (pt 7.94 -2)
+      (pt -2.86 -2)
+      (pt -2.86 3.1))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -2.61 2.85)
+      (pt 7.69 2.85)
+      (pt 7.69 -1.75)
+      (pt -2.61 -1.75)
+      (pt -2.61 2.85))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -2.61 1.58)
+      (pt -1.34 2.85))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 7.69 -1.75)
+      (pt 7.69 2.85)
+      (pt -2.61 2.85)
+      (pt -2.61 0))))
+   (leg 1 (pt 0 0) (padstack 1))
+   (leg 2 (pt 2.54 0) (padstack 0))
+   (leg 3 (pt 5.08 0) (padstack 0))
+   (padstack 0
+    (hole 1.26)
+    (plated true)
+    (pad (layer TCOP) (round 1.89))
+    (pad (layer INNER) (round 1.89))
+    (pad (layer BCOP) (round 1.89))
+   )
+   (padstack 1
+    (hole 1.26)
+    (plated true)
+    (pad (layer TCOP) (square 1.89))
+    (pad (layer INNER) (round 1.89))
+    (pad (layer BCOP) (square 1.89))
+   )
+   (model "BA17806CP-E2.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

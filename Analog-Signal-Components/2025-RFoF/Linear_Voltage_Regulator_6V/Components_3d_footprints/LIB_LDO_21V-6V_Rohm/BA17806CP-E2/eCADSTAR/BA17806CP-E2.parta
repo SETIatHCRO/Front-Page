@@ -1,0 +1,70 @@
+(Japanese_coding: sjis)
+(function "ECS_1253847"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2021-10-22-05:31:10)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+        (port "3" (symbPinId 3) (portType INOUT))
+    )
+    (property "symbolName" "BA17806CP-E2")
+)
+
+
+(pinAssign "ECS_1253847"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2021-10-22-05:31:10)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portName "INPUT") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "COMMON") (portType INOUT))
+        (port "3" (symbPinId 3) (portName "OUTPUT") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_1253847")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+                (port "3" (match "3"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "BA17806CP-E2")
+)
+
+
+(part "BA17806CP-E2"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2021-10-22-05:31:10)
+    (utime 2023-03-07-16:10:32)
+    (packageRef "BA17806CP-E2")
+    (pinAssignRef "ECS_1253847")
+    (interface
+        (port "1" (symbPinId 1) (portName "INPUT") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "COMMON") (portType INOUT))
+        (port "3" (symbPinId 3) (portName "OUTPUT") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "IC")
+    (property "description" "Standard Voltage Regulators")
+    (property "Mouser_Part_Number" "755-BA17806CP-E2")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/ROHM-Semiconductor/BA17806CP-E2?qs=IsRgwgmxh6%252Bu7gXf8CL%252Bqw%3D%3D")
+    (property "Manufacturer_Name" "ROHM Semiconductor")
+    (property "Manufacturer_Part_Number" "BA17806CP-E2")
+    (property "Datasheet_Link" "https://fscdn.rohm.com/jp/products/databook/datasheet/ic/power/linear_regulator/ba178_series-j.pdf")
+    (property "compAreaTopHeight" 4.6)
+)
+
+

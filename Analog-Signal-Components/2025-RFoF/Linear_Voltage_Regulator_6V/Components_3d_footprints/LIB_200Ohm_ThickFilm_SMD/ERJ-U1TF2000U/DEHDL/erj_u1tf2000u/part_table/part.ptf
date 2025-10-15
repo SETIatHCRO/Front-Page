@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'ERJ_U1TF2000U'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Panasonic", "ERJ-U1TF2000U" (!) = "", "ERJS1T_U1T_(2512)", "Other", "667-ERJ-U1TF2000U", "https://www.mouser.com/Search/Refine.aspx?Keyword=667-ERJ-U1TF2000U", "Thick Film Resistors - SMD 2512 1% 200ohm Anti-Sulfur AEC-Q200", "https://componentsearchengine.com/Datasheets/1/ERJ-U1TF2000U.pdf", "0.7 mm"
+END_PART
+
+END.

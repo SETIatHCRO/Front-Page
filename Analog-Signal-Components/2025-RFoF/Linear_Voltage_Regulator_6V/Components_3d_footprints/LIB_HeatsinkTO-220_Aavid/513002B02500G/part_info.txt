@@ -1,0 +1,9 @@
+Manufacturer=Aavid Thermalloy
+PartNumber=513002B02500G
+PartCategory=Undefined or Miscellaneous
+PackageCategory=Other
+PinCount=2
+Version=1.2
+Released=2019-03-30 16:16:18
+Downloaded=2024-11-02 23:33:11
+3D=Y

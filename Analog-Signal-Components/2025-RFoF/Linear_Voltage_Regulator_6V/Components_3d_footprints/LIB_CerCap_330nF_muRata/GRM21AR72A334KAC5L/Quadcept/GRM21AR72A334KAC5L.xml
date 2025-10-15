@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--/256941/1526529/2.50/2/3/Capacitor/-->
+<quadcept_library>
+  <setting unit="mil" />
+  <textstyle name="Default" height="47.244094488189" strokewidth="7.8740157480315" charwidth="47.244094488189" />
+  <textstyle name="Dimension" height="19.6850393700787" strokewidth="0" charwidth="19.6850393700787" />
+  <textstyle name="H127W0635TH00762" height="50" strokewidth="3" charwidth="25" />
+  <textstyle name="H15W15TH02" height="59.0551181102362" strokewidth="7.8740157480315" charwidth="59.0551181102362" />
+  <padstyle name="r139_91" surface="True" plated="False" isvia="False" nopaste="False" nomask="True" complex="False" holesize="0">
+    <padshape layer="TOP" shape="rectangle" width="35.826771653543" height="54.724409448818" />
+    <padshape layer="TOP_SOLDER_MASK" shape="rectangle" width="43.700787401574" height="62.59842519685" />
+    <padshape layer="TOP_SOLDER_PASTE" shape="rectangle" width="35.826771653543" height="54.724409448818" />
+  </padstyle>
+  <footprint name="CAPC2012X100N" originx="0" originy="0" pickpointx="0" pickpointy="0">
+    <pcbpin number="1" name="1" style="r139_91" originx="-32.283464566929" originy="0" rotation="0" />
+    <pcbpin number="2" name="2" style="r139_91" originx="32.283464566929" originy="0" rotation="0" />
+    <line layer="TOP_PLACE_BOUND" originx="-56.102362204724" originy="33.464566929133" endx="56.102362204724" endy="33.464566929133" width="1.9685039370079" />
+    <line layer="TOP_PLACE_BOUND" originx="56.102362204724" originy="33.464566929133" endx="56.102362204724" endy="-33.464566929133" width="1.9685039370079" />
+    <line layer="TOP_PLACE_BOUND" originx="56.102362204724" originy="-33.464566929133" endx="-56.102362204724" endy="-33.464566929133" width="1.9685039370079" />
+    <line layer="TOP_PLACE_BOUND" originx="-56.102362204724" originy="-33.464566929133" endx="-56.102362204724" endy="33.464566929133" width="1.9685039370079" />
+    <line layer="TOP_ASSEMBLY" originx="-39.370078740157" originy="24.606299212598" endx="39.370078740157" endy="24.606299212598" width="3.9370078740157" />
+    <line layer="TOP_ASSEMBLY" originx="39.370078740157" originy="24.606299212598" endx="39.370078740157" endy="-24.606299212598" width="3.9370078740157" />
+    <line layer="TOP_ASSEMBLY" originx="39.370078740157" originy="-24.606299212598" endx="-39.370078740157" endy="-24.606299212598" width="3.9370078740157" />
+    <line layer="TOP_ASSEMBLY" originx="-39.370078740157" originy="-24.606299212598" endx="-39.370078740157" endy="24.606299212598" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="0" originy="20.669291338582" endx="0" endy="-20.669291338582" width="7.8740157480314" />
+  </footprint>
+  <symbol name="GRM21AR72A334KAC5L" originx="0" originy="0">
+    <line originx="220" originy="100" endx="220" endy="-100" width="0" />
+    <line originx="280" originy="100" endx="280" endy="-100" width="0" />
+    <line originx="200" originy="0" endx="220" endy="0" width="0" />
+    <line originx="280" originy="0" endx="300" endy="0" width="0" />
+    <sympin number="1" originx="200" originy="0" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="0" originy="-10" style="Default" rotation="0" justify="upperleft" flipped="False" hidden="True" data="1" />
+      <text name="pindes" originx="0" originy="10" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="1" />
+    </sympin>
+    <sympin number="2" originx="300" originy="0" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="500" originy="-10" style="Default" rotation="0" justify="upperright" flipped="False" hidden="True" data="2" />
+      <text name="pindes" originx="500" originy="10" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="2" />
+    </sympin>
+  </symbol>
+  <component name="GRM21AR72A334KAC5L" designatorprefix="C" height="39.370078740157" footprint="CAPC2012X100N">
+    <comppin designator="1" sympin="1" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="1" />
+    <comppin designator="2" sympin="2" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="2" />
+    <attached_symbol gate="1" name="GRM21AR72A334KAC5L" />
+    <pinmap designator="1" footprintpin="1" />
+    <pinmap designator="2" footprintpin="2" />
+    <text name="Datasheet" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="" />
+    <text name="Description" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="Multilayer Ceramic Capacitors MLCC - SMD/SMT .33uF 100Volts 10%" />
+    <text name="Mouser Part Number" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="81-GRM21AR72A334KA5L" />
+    <text name="Mouser Price/Stock" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="https://www.mouser.co.uk/ProductDetail/Murata-Electronics/GRM21AR72A334KAC5L?qs=vS1sKHMaE9WxhFYLmviwXA%3D%3D" />
+    <text name="Manufacturer_Name" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="Murata Electronics" />
+    <text name="Manufacturer_Part_Number" originx="350" originy="150" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="GRM21AR72A334KAC5L" />
+  </component>
+</quadcept_library>

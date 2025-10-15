@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "ERJ-U1TF2000U"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2021-09-30-13:48:15)
+    (mountForm default
+        (footprintRef "ERJS1T_U1T__2512_")
+        (spec "System")
+    )
+)

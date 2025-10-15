@@ -1,0 +1,9 @@
+Manufacturer=ROHM Semiconductor
+PartNumber=BA17806CP-E2
+PartCategory=Integrated Circuit
+PackageCategory=Transistor Outline, Vertical
+PinCount=3
+Version=1.1
+Released=2021-10-22 05:31:10
+Downloaded=2024-11-02 22:35:22
+3D=Y
