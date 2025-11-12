@@ -1,0 +1,61 @@
+The sheds interior dimensions are 10' x 10' with an additional 4'3" x 2'5" x
+5'10" nook in the back right corner for the comporessor. The interior floor to
+ceiling dimension of BYU's shed is 8'.
+
+ALPACA's dimenions when in the cart are described in:
+'alpaca-cart-dimensions.png', 'ALPACA-clearnances.pdf', 'ALPACA-forklift
+clearance.pdf'
+
+The included drawings in, `ShedDrawings_July_2020.pdf` detail the shed's
+construction, dimenions, and electrical specificaiton on pgs. 4-5. 
+
+There are a few discrepancies from that drawing and what was built. It is best
+to consider that document as a reference and what the building mateiral
+specifications were. The signficant differences worth noting are:
+
+  - The door is not center to the shed entrance. The door frame starts 18 inches
+from the left and 36 inches from the right. This was to allow us to clear
+the fenced area on BYU's roof and use the full range of motion in the cart to
+tilt the array to the horizontal. This is shown in 'shed-door-dimensions.png'
+
+  - A 4'3" x 2'5" x 5'10" nook for the comporessor in the back right corner.
+The initial drawing shows the compressor outdoors, and did not include the
+nook in the shed for the compressor. The space for the compressor was added
+during construction of the shed with the change to instead store and run the
+compressor from within the shed. We move the helium cables as needed when moving
+the instrument in and out of the shed. Dimenions of this nook in the current
+shed are shown in 'compressor_location.jpg'. A view of the compressor from the
+outside is shown in "shed_side_compressor.jpeg" and
+"shed_side_compressor_closed.jpeg".
+
+Other current shed informaiton:
+
+Door height has a clearance of 85" (shown in 'shed-door-dimensions.png')
+
+The shed is insulated.
+
+Included pictures show the rail dimensions and spacing as currently installed.
+These rails we can remove from and ship with the instrument. Rails are shown in
+'rails.jpeg'.
+
+There are quad duplex NEMA 5-20R 120V outlet assemblies on each wall. The outlets are
+4' off the ground on the back and side walls. The outlet on the 36" wall with the
+door is 2' off the ground. We have four 20 A 120V circuits on our panel.
+
+One 60A 480V 3 phase circuit for the compressor. The compressor is rated to
+operate at 20A. More details about electrical operation of the compressor are in
+the 'trillium-m700rt-helium-compressor-manual-c.pdf' on page 6.
+
+Changes for at ATA:
+
+- Increase the internal ceiling to floor height to at least 9' x 6". A 10'
+  ceiling would add comfortable margin. This allows for replacing/removal of the
+  top hat and servicing the array without taking the array outside. 
+
+- Increase the door height by at least 3 inches
+
+- Extend the shed to at least 2 to 3 feet in each dimension. As seen in the
+  photos, there is enough room to work, but it is cramped. We also cannot
+  service the instrument at the horizontal. Increasing the ceiling height and
+  length will provide more space to conveniently service the array.
+
