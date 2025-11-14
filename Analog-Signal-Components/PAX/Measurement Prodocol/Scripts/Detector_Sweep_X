@@ -1,0 +1,25 @@
+#!/bin/sh
+
+host=pax
+port=23
+pass='getdet x'
+
+( echo open ${host} ${port}
+  sleep 2
+  echo ${pass}
+  sleep 2
+  echo -e "\n" 
+  sleep 2
+  echo  "$setdet x 30 30"
+  sleep 2
+  echo "$\n"
+  sleep 2
+  echo "$getdet x"
+  sleep 2
+  echo -e "\n"
+  sleep 2
+  echo "$setdet x 30 27"
+  sleep 2
+  echo -e "\n"
+  sleep 2
+  echo exit ) | telnet
