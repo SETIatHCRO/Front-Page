@@ -1,0 +1,42 @@
+Altium Designer Pick and Place Locations
+F:\crush\double-amplifier-module\double_amp\Project Outputs for double_amp\Pick Place for double_amp.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       14/11/25
+Time:       13:01
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mil
+
+Designator Comment        Layer    Footprint          Center-X(mil) Center-Y(mil) Rotation Description                                                                                                                                                                    
+EQ1        AEQ05472-10    TopLayer EQ_AEQ05472        511.811       283.465       0        "Rf Filter Gain Equalizer 2SMD"                                                                                                                                                
+E1         HZ0805E601R-10 TopLayer FB_HZ0805E601R-10  421.260       633.858       0        "Ferrite Bead (Chip Bead), 2 x 1.25 x 1.25mm (0805), 277Ohms impedance at 25 MHz | Laird Performance Materials HZ0805E601R-10"                                                 
+U1         MML098GQ4A     TopLayer amp_MML098GQ4A     299.162       273.627       0        "Low Noise Amplifier
+Low current consumption
+Low noise figure
+Pb-free RoHS compliant QFN package
+Ultra wideband performance
+Positive bias
+Ready for Space Qualification" 
+C4         10nF           TopLayer C10nF              107.795       283.465       0        ""                                                                                                                                                                             
+X3         "Solder Pad"   TopLayer CPW_Edge_Connector 974.409       283.465       270      "Solder pad for RF Coplanar Waveguide Rogers 4350B Thickness 0.020" Copper 1oz"                                                                                                
+X2         "Solder Pad"   TopLayer CPW_Edge_Connector 10.000        283.465       90       "Solder pad for RF Coplanar Waveguide Rogers 4350B Thickness 0.020" Copper 1oz"                                                                                                
+X1         "Solder Pad"   TopLayer Solder_Pad         570.866       698.819       90       "Pad to solder wires to"                                                                                                                                                       
+U2         MML098GQ4A     TopLayer amp_MML098GQ4A     665.354       273.628       0        "Low Noise Amplifier
+Low current consumption
+Low noise figure
+Pb-free RoHS compliant QFN package
+Ultra wideband performance
+Positive bias
+Ready for Space Qualification" 
+EQ2        AEQ05472-10    TopLayer EQ_AEQ05472        893.701       283.465       0        "Rf Filter Gain Equalizer 2SMD"                                                                                                                                                
+C9         10nF           TopLayer C10nF              822.835       283.465       0        ""                                                                                                                                                                             
+C8         "100 pF"       TopLayer C100pF             647.537       418.107       180      "Multilayer Ceramic Capacitors MLCC - SMD/SMT 100 pF 100 VDC 1% 0402 C0G (NP0)"                                                                                                
+C7         "1000 pF"      TopLayer C1000pF__C100nF    637.282       483.850       180      "Ceramic Capacitor, Multilayer, Ceramic, 50V, 1% +Tol, 1% -Tol, C0G, 30ppm/Cel TC, 0.001uF, Surface Mount, 0603"                                                               
+C6         "4.7 uF"       TopLayer C4_7uF             591.317       566.929       180      "Tantalum Capacitor, Polarized, Tantalum (dry/solid), 10V, 10% +Tol, 10% -Tol, 4.7uF, Surface Mount, 1306"                                                                     
+C5         10nF           TopLayer C10nF              437.008       283.465       0        ""                                                                                                                                                                             
+C3         "100 pF"       TopLayer C100pF             283.117       410.091       180      "Multilayer Ceramic Capacitors MLCC - SMD/SMT 100 pF 100 VDC 1% 0402 C0G (NP0)"                                                                                                
+C2         "1000 pF"      TopLayer C1000pF__C100nF    269.071       483.850       180      "Ceramic Capacitor, Multilayer, Ceramic, 50V, 1% +Tol, 1% -Tol, C0G, 30ppm/Cel TC, 0.001uF, Surface Mount, 0603"                                                               
+C1         "4.7 uF"       TopLayer C4_7uF             222.349       566.929       180      "Tantalum Capacitor, Polarized, Tantalum (dry/solid), 10V, 10% +Tol, 10% -Tol, 4.7uF, Surface Mount, 1306"                                                                     

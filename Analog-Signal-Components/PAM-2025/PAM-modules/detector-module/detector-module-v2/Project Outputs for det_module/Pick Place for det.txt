@@ -1,0 +1,29 @@
+Altium Designer Pick and Place Locations
+F:\crush\power-detector\power-detector\Project Outputs for det_module\Pick Place for det.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       14/11/25
+Time:       13:10
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mil
+
+Designator Comment            Layer    Footprint               Center-X(mil) Center-Y(mil) Rotation Description                                                                                                
+R4         2kOhm              TopLayer JP_R_MCT06030Z0000ZP500 660.510       235.986       0        "Fixed Resistor, Thin Film, 0.1W, 1000ohm, 75V, 1% +/-Tol, 50ppm/Cel, Surface Mount, 0603"                 
+R3         2kOhm              TopLayer JP_R_MCT06030Z0000ZP500 540.303       136.187       0        "Fixed Resistor, Thin Film, 0.1W, 1000ohm, 75V, 1% +/-Tol, 50ppm/Cel, Surface Mount, 0603"                 
+JP1        MCT06030Z0000ZP500 TopLayer JP_R_MCT06030Z0000ZP500 656.299       561.732       90       "Fixed Resistor, Thin Film, 0.1W, 0ohm, Surface Mount, 0603"                                               
+X3         "Solder Pad"       TopLayer CPW_EDGE_CONNECTOR      9.842         283.465       90       "Solder pad for RF Coplanar Waveguide Rogers 4350B Thickness 0.020" Copper 1oz"                            
+U2         AD8065             TopLayer OPAMP_AD8065ARTZ-REEL7  534.685       252.874       270      "Operational Amplifier, 1 Func, BIPolar, PDSO5"                                                            
+U1         ADL6010            TopLayer DET_ADL6010ACPZN-R2     144.882       283.465       180      "Linear Detector, 500MHz Min, 43500MHz Max, 20dBm Input Power-Max"                                         
+R2         1kOhm              TopLayer JP_R_MCT06030Z0000ZP500 291.969       241.142       270      "Fixed Resistor, Thin Film, 0.1W, 1000ohm, 75V, 1% +/-Tol, 50ppm/Cel, Surface Mount, 0603"                 
+R1         1kOhm              TopLayer JP_R_MCT06030Z0000ZP500 613.819       378.543       180      "Fixed Resistor, Thin Film, 0.1W, 1000ohm, 75V, 1% +/-Tol, 50ppm/Cel, Surface Mount, 0603"                 
+C6         100nF              TopLayer C1000PF__C100NF         397.953       245.591       270      "Ceramic Capacitor, Multilayer, Ceramic, 16V, 10% +Tol, 10% -Tol, X7R, 15% TC, 0.1uF, Surface Mount, 0603" 
+C5         100nF              TopLayer C1000PF__C100NF         614.055       459.331       180      "Ceramic Capacitor, Multilayer, Ceramic, 16V, 10% +Tol, 10% -Tol, X7R, 15% TC, 0.1uF, Surface Mount, 0603" 
+C4         "100 pF"           TopLayer C100PF                  278.779       335.039       0        "Multilayer Ceramic Capacitors MLCC - SMD/SMT 100 pF 100 VDC 1% 0402 C0G (NP0)"                            
+C3         100nF              TopLayer C1000PF__C100NF         668.858       151.575       270      "Ceramic Capacitor, Multilayer, Ceramic, 16V, 10% +Tol, 10% -Tol, X7R, 15% TC, 0.1uF, Surface Mount, 0603" 
+C2         100nF              TopLayer C1000PF__C100NF         300.079       434.842       0        "Ceramic Capacitor, Multilayer, Ceramic, 16V, 10% +Tol, 10% -Tol, X7R, 15% TC, 0.1uF, Surface Mount, 0603" 
+C1         "4.7 uF"           TopLayer C4_7UF                  830.591       289.961       0        "Tantalum Capacitor, Polarized, Tantalum (dry/solid), 10V, 10% +Tol, 10% -Tol, 4.7uF, Surface Mount, 1306" 
+X1         "Solder Pad"       TopLayer SOLDER_PAD              570.866       698.819       0        "Pad to solder wires to"                                                                                   
+X2         "Solder Pad"       TopLayer SOLDER_PAD              728.346       698.819       180      "Pad to solder wires to"                                                                                   

@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=+5V Pin=X3-1
+Removed Member From Class: ClassName=double_amp Member=X3
+Added Member To Class: ClassName=double_amp Member=Component C4 10nF
+Added Member To Class: ClassName=double_amp Member=Component U1 MML098GQ4A

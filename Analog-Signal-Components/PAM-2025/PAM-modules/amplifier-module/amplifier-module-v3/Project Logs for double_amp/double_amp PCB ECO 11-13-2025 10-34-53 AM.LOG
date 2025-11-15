@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=+5V Pin=C1-1
+Removed Pin From Net: NetName=+5V Pin=C2-1
+Removed Pin From Net: NetName=+5V Pin=C3-1
+Removed Pin From Net: NetName=+5V Pin=Designator10-1
+Removed Pin From Net: NetName=+5V Pin=Designator10-2
+Removed Pin From Net: NetName=+5V Pin=U1-21
+Add Component: Footprint Not Found FB_HZ0805E601R-10
+Add Pin To Net: Unknown Pin: Pin E1-2
+Change Net Name : Old Net Name=+5V New Net Name=+5V A
+Added Pin To Net: NetName=+5V B Pin=C1-1
+Added Pin To Net: NetName=+5V B Pin=C2-1
+Added Pin To Net: NetName=+5V B Pin=C3-1
+Added Pin To Net: NetName=+5V B Pin=U1-21
+Added Pin To Net: NetName=+5V B Pin=U1-21
+Added Net: Name=+5V B
+Add Class Member: Failed to add class member : Component E1 HZ0805E601R-10

@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [det_module.PrjPcb]
+   Generated File[det.TXT]
+   Generated File[det.LDP]
+   Generated File[det.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 3:46:55 PM On 11/14/2025

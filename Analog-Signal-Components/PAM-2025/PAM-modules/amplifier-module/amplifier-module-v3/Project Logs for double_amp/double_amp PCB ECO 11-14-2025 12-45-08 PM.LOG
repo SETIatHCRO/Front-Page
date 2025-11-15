@@ -1,0 +1,16 @@
+Change Component Comment : Designator=E1 Old Comment=Comment New Comment=HZ0805E601R-10
+Change component parameters: Designator = "E1" ("E1"); Footprint = "FB_HZ0805E601R-10"; UniqueID = "\PXTAQGPT" ("\PXTAQGPT")
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HZ0805E601R-10/Laird-Signal+Integrity+Products/view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Laird-Signal Integrity Products"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "HZ0805E601R-10"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "0805 Laird"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HZ0805E601R-10/Laird-Signal+Integrity+Products/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Component: Footprint Not Found EQ_AEQ05472
+Added Pin To Net: NetName=NetC5_2 Pin=C5-2
+Added Net: Name=NetC5_2
+Added Pin To Net: NetName=NetEQ1_2 Pin=U2-3
+Added Pin To Net: NetName=NetEQ1_2 Pin=U2-3
+Added Net: Name=NetEQ1_2
+Added Member To Class: ClassName=double_amp Member=Component E1 HZ0805E601R-10
+Add Class Member: Failed to add class member : Component EQ1 AEQ05472-10
