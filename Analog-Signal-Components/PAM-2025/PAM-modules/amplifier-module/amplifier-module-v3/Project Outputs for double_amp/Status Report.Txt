@@ -1,12 +1,21 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : Project [double_amp.PrjPcb]
-   Generated File[double_amp.TXT]
-   Generated File[double_amp.LDP]
-   Generated File[double_amp.DRR]
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [Free Documents]
+   Generated File[double_amp.GTO]
+   Generated File[double_amp.GTP]
+   Generated File[double_amp.GTS]
+   Generated File[double_amp.GTL]
+   Generated File[double_amp.GBL]
+   Generated File[double_amp.GBS]
+   Generated File[double_amp.GBP]
+   Generated File[double_amp.GBO]
+   Generated File[double_amp.GM1]
+   Generated File[double_amp.GM]
+   Generated File[double_amp.EXTREP]
+   Generated File[double_amp.REP]
 
 
-Files Generated   : 3
+Files Generated   : 12
 Documents Printed : 0
 
-Finished Output Generation At 2:13:59 PM On 11/14/2025
+Finished Output Generation At 9:55:08 AM On 11/17/2025

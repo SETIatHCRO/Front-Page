@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-Gerber File Extension Report For: det.GBR   11/14/2025  3:46:48 PM
+Gerber File Extension Report For: det.GBR   11/17/2025  9:37:58 AM
 ------------------------------------------------------------------------------------------
 
 
@@ -14,5 +14,6 @@ Layer Extension     Layer Description
 .GBS                Bottom Solder                           
 .GBP                Bottom Paste                            
 .GBO                Bottom Overlay                          
+.GM1                Board                                   
 .GM                 Profile                                 
 ------------------------------------------------------------------------------------------

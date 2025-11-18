@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: double_amp.PcbDoc   11/14/2025  2:13:59 PM
+NCDrill File Report For: double_amp.PcbDoc   11/17/2025  9:36:58 AM
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -7,9 +7,9 @@ ASCII RoundHoles File : double_amp.TXT
 
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
-T1      0.2mm (8mil)                                              Round             78        PTH        148.49mm (5.85inch)
+T1      0.2mm (8mil)                                              Round             86        PTH        176.23mm (6.94inch)
 T2      2.05mm (81mil)                                            Round             4         PTH        33.80mm (1.33inch)
 ----------------------------------------------------------------------------------------------------------------------------------
-Totals                                                                              82
+Totals                                                                              90
 
 Total Processing Time (hh:mm:ss) : 00:00:00
