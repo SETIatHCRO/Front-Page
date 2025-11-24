@@ -202,10 +202,8 @@ Init disk '1/E1/8' successfully!
 
 HPT CLI>create RAID0 disks=* capacity=* name=buf0 init=quickinit bs=512k
 
-
+HPT CLI>exit
 "
-
-
 
 
 Make filesystem:
@@ -230,4 +228,28 @@ UUID=fb37b313-4daf-47e5-a914-0f79905b89a9 /mnt/buf1 ext4 defaults 0 0
 # Mount GLUSTER FS primary storage pool Sis1:
 10.10.1.143:/primary  /mnt/primary glusterfs  noauto,x-systemd.automount 0 0
 "
+
+# Useful HPT console commands:
+
+To delete an array that was created incorrectly:
+
+HPT CLI>query arrays
+
+ID      Secured Capacity(GB)    Type        Status   Block  Sector   Cache            Name
+------------------------------------------------------------------------------
+1            No     32005.02   RAID0        NORMAL    512k    512B    NONE            buf0
+
+HPT CLI>delete 1
+
+Delete array '1' successfully!
+
+HPT CLI>query arrays
+
+ID      Secured Capacity(GB)    Type        Status   Block  Sector   Cache            Name
+------------------------------------------------------------------------------
+
+To list the individual disks needed for creation of a RAID:
+
+HPT CLI>create RAID0 disks=1/E1/1,1/E1/2,1/E1/3,1/E1/4,1/E1/5,1/E1/6,1/E1/7,1/E1/8 capacity=* name=buf0 init=quickinit bs=512k
+
 
