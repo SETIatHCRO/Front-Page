@@ -1,0 +1,16 @@
+﻿"Symbol";"Value";"Unit";
+"REFERENCE";"FN 282-6/06";"";
+"TraceParts.PartVersion";"1.0.3";"";
+"SUPPLIER";"Schaffner";"";
+"TraceParts.PartStatus";"Published";"";
+"RS_STOCK_NUMBER";"1676800";"";
+"TraceParts.PartLanguage";"en";"";
+"DESIGN";"FN282 2 fused w/switch EMI/RFI filter,6A";"";
+"TraceParts.InstanceId";"10-21052014-116713E8ZWHADM3TPO2JYVSW30OCTLN";"";
+"TraceParts.PartTitle";"FN282 2 fused w/switch EMI/RFI filter,6A";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TIMESTAMP";"20/05/2014 12:05";"";
+"REVISION";"A";"";
+"TraceParts.PartNumber";"10-21052014-116713";"";
+"TraceParts.PartStatusId";"";"";
+"TraceParts.ClassPath";"RS_COMPONENTS:10-21052014-116713";"";

@@ -1,0 +1,13 @@
+﻿"Symbol";"Value";"Unit";
+"TraceParts.PartNumber";"30-24112016-073011";"";
+"REFERENCE";"13100151";"";
+"TraceParts.PartTitle";"Maxpower, AC Input";"";
+"TraceParts.InstanceId";"30-24112016-07301126QUG1Z8OAFV3GCD2Y6GI3UP0";"";
+"DESIGN";"156W, 12V, 13A";"";
+"TraceParts.PartStatus";"Published";"";
+"TraceParts.PartStatusId";"";"";
+"SUPPLIER";"Pentair/Schroff";"";
+"TraceParts.PartVersion";"1.0.1";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartLanguage";"en";"";
+"TraceParts.ClassPath";"SCHROFF:/F_SCHROFF/SCHROFF.12/SCHROFF.12.1/SCHROFF.12.1.1/30-24112016-073011";"";
