@@ -7,14 +7,14 @@ t_cold = 12
 ant = '1c'
 nm = '2'
 year='2025'
-date1= 'QRFH prototype 2'
+date1= 'QRFH prototype 2 same cryo'
 
-t_hot2 = 298
-t_cold2 = 16
+t_hot2 = 285
+t_cold2 = 12
 ant2 = '4e'
-nm2 = '100'
-year2='2022'
-date2='QRFH prototype 1'
+nm2 = '1'
+year2='2026'
+date2='QRFH prototype 1 same cryo'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
