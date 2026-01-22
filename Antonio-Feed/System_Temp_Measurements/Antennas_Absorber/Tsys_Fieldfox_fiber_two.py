@@ -2,19 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 285
+t_hot = 300
 t_cold = 12
-ant = '1c'
-nm = '2'
-year='2025'
-date1= 'QRFH prototype 2 same cryo'
+ant = '4E'
+nm = '100'
+year='2022'
+date1= 'QRFH prototype 1 Glass Cryo'
 
-t_hot2 = 285
-t_cold2 = 12
+t_hot2 = 295
+t_cold2 = 14
 ant2 = '4e'
-nm2 = '1'
+nm2 = '3'
 year2='2026'
-date2='QRFH prototype 1 same cryo'
+date2='QRFH prototype 1 Aluminium Cryo'
 
 
 cold_l_ing = np.zeros((801), dtype=float)
