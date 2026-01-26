@@ -1,0 +1,29 @@
+Altium Designer Pick and Place Locations
+F:\crush\AlarmSwitch\PCB_Project\Project Outputs for PCB_Project\Pick Place for AlarmSwitch.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       21/01/26
+Time:       12:06
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mil
+
+Designator Comment            Layer    Footprint                        Center-X(mil) Center-Y(mil) Rotation Description                                                                     
+R1         "2k Resistor"      TopLayer ERA6AEB101V                      783.465       1136.811      90       "Metal Thin Film Chip Resistor, 0805, 0.125W"                                   
+B1         TLC3702IPWR        TopLayer SOP65P640X120-8N                 598.425       1464.567      0        "Texas Instruments TLC3702IPWR Dual Comparator, Push-Pull O/P, 5 V 8-Pin TSSOP" 
+F1         0443.500DRLC       TopLayer 0443500DR                        551.181       444.882       180      Fuse                                                                            
+R6         "2k Resistor"      TopLayer ERA6AEB101V                      925.197       1460.630      270      "Metal Thin Film Chip Resistor, 0805, 0.125W"                                   
+R5         "2k Resistor"      TopLayer ERA6AEB101V                      925.197       488.189       270      "Metal Thin Film Chip Resistor, 0805, 0.125W"                                   
+R4         "2k Resistor"      TopLayer ERA6AEB101V                      271.654       1460.630      270      "Metal Thin Film Chip Resistor, 0805, 0.125W"                                   
+R3         "2k Resistor"      TopLayer ERA6AEB101V                      279.528       976.378       90       "Metal Thin Film Chip Resistor, 0805, 0.125W"                                   
+R2         "2k Resistor"      TopLayer ERA6AEB101V                      413.386       1137.795      270      "Metal Thin Film Chip Resistor, 0805, 0.125W"                                   
+J5         42375-1855         TopLayer HDRV2W87P0X254_1X2_768X249X1494P 1059.055      1461.811      90       "Headers & Wire Housings KK 100 Hdr Assy Bkw 02 Ckt Tin"                        
+J4         42375-1855         TopLayer HDRV2W87P0X254_1X2_768X249X1494P 1059.055      490.945       90       "Headers & Wire Housings KK 100 Hdr Assy Bkw 02 Ckt Tin"                        
+J3         42375-1855         TopLayer HDRV2W87P0X254_1X2_768X249X1494P 137.795       1461.811      90       "Headers & Wire Housings KK 100 Hdr Assy Bkw 02 Ckt Tin"                        
+J2         42375-1855         TopLayer HDRV2W87P0X254_1X2_768X249X1494P 137.795       975.197       90       "Headers & Wire Housings KK 100 Hdr Assy Bkw 02 Ckt Tin"                        
+J1         42375-1855         TopLayer HDRV2W87P0X254_1X2_768X249X1494P 137.795       490.945       90       "Headers & Wire Housings KK 100 Hdr Assy Bkw 02 Ckt Tin"                        
+D1         S1M                TopLayer DIOM5227X270N                    783.465       767.716       270      "Glass passivated junction.; Low profile package."                              
+C2         T491X107K025AT     TopLayer T491X                            519.685       681.102       180      "Capacitor Polarised"                                                           
+C1         VJ0805Y105KXQTW1BC TopLayer CAPC2012X135N                    598.425       1578.740      180      "Multilayer Ceramic Capacitors MLCC - SMD/SMT 0805 1uF 10volts X7R 10%"         

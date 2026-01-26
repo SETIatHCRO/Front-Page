@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=NetC2_1 Pin=J1-1
+Added Component: Designator=F1(0443500DR)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "0443.500DRLC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/0443.500drlc/littelfuse?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://www.littelfuse.com/~/media/electronics/datasheets/fuses/littelfuse_fuse_443_datasheet.pdf.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "3.05mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "LITTELFUSE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "0443.500DRLC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "576-0443.500DRLC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Littelfuse/0443.500DRLC?qs=AQlKX63v8RvHlKjIINnTsQ%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetC2_1 Pin=F1-1
+Added Pin To Net: NetName=NetF1_2 Pin=F1-2
+Added Pin To Net: NetName=NetF1_2 Pin=J1-1
+Added Net: Name=NetF1_2
+Added Member To Class: ClassName=AlarmSwitch Member=Component F1 0443.500DRLC

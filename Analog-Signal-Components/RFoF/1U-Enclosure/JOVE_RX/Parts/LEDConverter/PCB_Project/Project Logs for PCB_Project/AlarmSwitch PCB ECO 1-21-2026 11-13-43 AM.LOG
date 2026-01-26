@@ -1,0 +1,2 @@
+Change Component Designator: OldDesignator=B1 NewDesignator=B?
+Added Member To Class: ClassName=AlarmSwitch Member=Component R1 2k Resistor
