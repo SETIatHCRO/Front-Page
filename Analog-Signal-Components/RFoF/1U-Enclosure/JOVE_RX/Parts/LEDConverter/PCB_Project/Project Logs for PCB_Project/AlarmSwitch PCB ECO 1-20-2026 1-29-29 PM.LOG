@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=GND Pin=B1-4
+Removed Pin From Net: NetName=NetB1_8 Pin=B1-8
+Removed Member From Class: ClassName=AlarmSwitch Member=B1
+Added Component: Designator=B?(SOP65P640X120-8N)
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://www.ti.com/lit/gpn/TLC3702"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.2mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "TLC3702IPWR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "595-TLC3702IPWR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/TLC3702IPWR?qs=p6lVfQR1GSqrayQICnP15w%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=B?-4
+Added Pin To Net: NetName=NetB1_8 Pin=B?-8
+Change Net Name : Old Net Name=NetB1_8 New Net Name=NetB?_8
+Added Pin To Net: NetName=NetB?_1 Pin=B?-1
+Added Pin To Net: NetName=NetB?_1 Pin=R5-1
+Added Net: Name=NetB?_1
+Added Pin To Net: NetName=NetB?_2 Pin=B?-2
+Added Pin To Net: NetName=NetB?_2 Pin=J2-2
+Added Pin To Net: NetName=NetB?_2 Pin=R3-2
+Added Net: Name=NetB?_2
+Added Pin To Net: NetName=NetB?_3 Pin=B?-3
+Added Pin To Net: NetName=NetB?_3 Pin=B?-5
+Added Pin To Net: NetName=NetB?_3 Pin=R1-2
+Added Pin To Net: NetName=NetB?_3 Pin=R2-1
+Added Net: Name=NetB?_3
+Added Pin To Net: NetName=NetB?_6 Pin=B?-6
+Added Pin To Net: NetName=NetB?_6 Pin=J3-2
+Added Pin To Net: NetName=NetB?_6 Pin=R4-1
+Added Net: Name=NetB?_6
+Added Pin To Net: NetName=NetB?_7 Pin=B?-7
+Added Pin To Net: NetName=NetB?_7 Pin=R6-1
+Added Net: Name=NetB?_7
+Added Member To Class: ClassName=AlarmSwitch Member=Component B? TLC3702IPWR
