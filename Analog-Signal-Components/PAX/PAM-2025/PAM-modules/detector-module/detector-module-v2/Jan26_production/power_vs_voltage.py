@@ -13,7 +13,7 @@ params = {'axes.labelsize': 20,'axes.linewidth': 1.5, 'legend.fontsize': 16,'leg
     'ytick.minor.pad': 10,'ytick.minor.size': 10,'ytick.minor.visible': True,'ytick.minor.width': 1,
     'ytick.right': True, 'figure.figsize' : (15, 12)}
 rcParams.update(params)
-module = 'module000'
+module = 'module002'
 
 df1 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet 1')  # optional sheet_name
 
