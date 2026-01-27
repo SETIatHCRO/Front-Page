@@ -3,11 +3,15 @@ import matplotlib.pyplot as plt
 from pylab import rcParams
 import matplotlib as mpl
 
+ORDER = {"S11" : 0, "S21" : 1, "S12" : 2, "S22" : 3}
 mpl.rcParams['axes.axisbelow'] = False  # Set globally
 
 rcParams.keys()
 rcParams['font.family'] = 'serif'
-params = {'axes.labelsize': 20,'axes.linewidth': 1.5, 'legend.fontsize': 16,'legend.frameon': True,'lines.linewidth': 2,'xtick.direction': 'in','xtick.labelsize': 20,'xtick.major.bottom': True,'xtick.major.pad': 20,'xtick.major.size': 20,'xtick.major.width': 1,'xtick.minor.bottom': True,'xtick.minor.pad': 10,'xtick.minor.size': 10,'xtick.minor.top': True,'xtick.minor.visible': True,'xtick.minor.width': 1,'xtick.top': True,'ytick.direction': 'in','ytick.labelsize': 20,'ytick.major.pad': 20,'ytick.major.size': 20,'ytick.major.width': 1,
+params = {'axes.labelsize': 20,'axes.linewidth': 1.5, 'legend.fontsize': 16,'legend.frameon': True,'lines.linewidth': 2,'xtick.direction': 'in',
+    'xtick.labelsize': 20,'xtick.major.bottom': True,'xtick.major.pad': 20,'xtick.major.size': 20,'xtick.major.width': 1,'xtick.minor.bottom': True,
+    'xtick.minor.pad': 10,'xtick.minor.size': 10,'xtick.minor.top': True,'xtick.minor.visible': True,'xtick.minor.width': 1,'xtick.top': True,
+    'ytick.direction': 'in','ytick.labelsize': 20,'ytick.major.pad': 20,'ytick.major.size': 20,'ytick.major.width': 1,
     'ytick.minor.pad': 10,'ytick.minor.size': 10,'ytick.minor.visible': True,'ytick.minor.width': 1,
     'ytick.right': True, 'figure.figsize' : (15, 12)}
 rcParams.update(params)
@@ -35,14 +39,26 @@ def read_cti_file(filepath):
             s_blocks.append(np.array(block))
         idx += 1
 
+    # Makes the output agnostic to order of s-parameters in the original data file. Reorders so S11 always first
+    file_order = [s[5:8] for s in lines[6:10]]
+    file_order = {i : s for i, s in enumerate(file_order)}
+    ordered_sblocks = [None] * len(s_blocks)
+    for i in range(len(s_blocks)):
+        ordered_sblocks[ORDER[file_order[i]]] = s_blocks[i]
+        print("Moving ", file_order[i]," to ", ORDER[file_order[i]])
+    s_blocks = ordered_sblocks
+
     # === 3. Validate block count ===
     if len(s_blocks) != 4:
         raise ValueError(f"Expected 4 S-parameter blocks, found {len(s_blocks)}")
 
     s11, s21, s12, s22 = s_blocks
+    
     return freq, s11, s21, s12, s22
 
     #return freq, s11, s21, s12, s22
+
+
 
 # === Replace with your filenames ===
 file1_path = '000.cti'
