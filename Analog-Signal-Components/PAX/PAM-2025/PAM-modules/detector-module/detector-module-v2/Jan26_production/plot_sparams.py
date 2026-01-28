@@ -56,29 +56,27 @@ def read_cti_file(filepath):
     
     return freq, s11, s21, s12, s22
 
-    #return freq, s11, s21, s12, s22
 
 
 
 # === Replace with your filenames ===
-file1_path = '000.cti'
-#file2_path = '2.cti'
+module = '000'
+file1_path = f'{module}.cti'
 
 # === Read files ===
 freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
-#freq2, s11_2, s21_2, s12_2, s22_2 = read_cti_file(file2_path)
 
 # === Plot S21 magnitude in dB ===
 plt.figure(figsize=(10, 8))
-plt.suptitle('LNA S-params', fontsize=18, y=0.90)
+plt.suptitle(f'LNA S-params module{module}', fontsize=18, y=0.90)
 
 print ('freq1', freq1)
 print ('s21_1', s21_1)
 
-plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s21_1)), c='tab:blue', alpha=1.0, label='S21')
-#plt.plot(freq2 / 1e9, 20 * np.log10(np.abs(s21_2)), c='tab:blue', linestyle='--', alpha=0.5, label='S21 with Bias-tee')
 plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s11_1)), c='tab:orange', alpha=1.0, label='S11')
-#plt.plot(freq2 / 1e9, 20 * np.log10(np.abs(s11_2)), c='tab:orange',linestyle='--', alpha=0.5, label='S11 with Bias-tee')
+#plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s21_1)), c='tab:blue', alpha=1.0, label='S21')
+#plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s12_1)), c='tab:red', alpha=1.0, label='S12')
+#plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s22_1)), c='tab:green', alpha=1.0, label='S22')
 
 plt.ylim(-40, 10)
 plt.xlim(0, 20)
@@ -88,5 +86,5 @@ plt.grid(True)
 plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
 
 plt.tight_layout(rect=[0, 0, 1, 0.92])
-plt.savefig("Sparam_measurements.pdf")
+plt.savefig(f"module{module}_Sparam_measurements.pdf")
 plt.show()
