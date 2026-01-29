@@ -68,7 +68,7 @@ freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
 
 # === Plot S21 magnitude in dB ===
 plt.figure(figsize=(10, 8))
-plt.suptitle(f'LNA S-params feed{feed}', fontsize=18, y=0.90)
+plt.suptitle('QRFHv3 S-params', fontsize=18, y=0.90)
 
 print ('freq1', freq1)
 print ('s21_1', s21_1)
@@ -86,5 +86,5 @@ plt.grid(True)
 plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
 
 plt.tight_layout(rect=[0, 0, 1, 0.92])
-plt.savefig(f"feed{feed}_Sparam_measurements.pdf")
+plt.savefig("QRFHv3_Sparam_measurements.pdf")
 plt.show()
