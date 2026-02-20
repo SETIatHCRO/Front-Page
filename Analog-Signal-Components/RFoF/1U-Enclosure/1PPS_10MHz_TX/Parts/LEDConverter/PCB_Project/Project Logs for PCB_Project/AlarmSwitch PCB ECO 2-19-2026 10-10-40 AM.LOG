@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=NetB1_3 Pin=B1-5
+Removed Pin From Net: NetName=NetB1_3 Pin=R1-2
+Removed Pin From Net: NetName=NetB1_3 Pin=R2-1
+Added Pin To Net: NetName=NetB1_3 Pin=J2-2
+Added Pin To Net: NetName=NetB1_3 Pin=R3-2
+Added Pin To Net: NetName=6V Pin=B1-2
+Added Pin To Net: NetName=6V Pin=B1-6
+Added Pin To Net: NetName=6V Pin=R1-2
+Added Pin To Net: NetName=6V Pin=R2-1
+Added Net: Name=6V
+Added Pin To Net: NetName=NetB1_5 Pin=B1-5
+Added Pin To Net: NetName=NetB1_5 Pin=J3-2
+Added Net: Name=NetB1_5
+Added Rule: Name=Schematic Supply Nets_1

@@ -50,7 +50,7 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=..\AlarmSwitch.SchDoc
+DocumentPath=LEDConverter.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -64,10 +64,10 @@ ClassGenCCAutoRoomEnabled=0
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=JKEHQCXL
+DocumentUniqueId=WVPKPVAZ
 
 [Document2]
-DocumentPath=Z:\crush\Altium\DIP794W53P254L959H508Q8N.PcbLib
+DocumentPath=..\..\Altium\DIP794W53P254L959H508Q8N.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -84,7 +84,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document3]
-DocumentPath=Z:\crush\Altium\TLC3702IPE4.SchLib
+DocumentPath=..\..\Altium\TLC3702IPE4.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -118,7 +118,7 @@ GenerateClassCluster=0
 DocumentUniqueId=QZOIODGV
 
 [Document5]
-DocumentPath=Z:\crush\LIB_ERA-6AED4990V\ERA-6AED4990V\Altium\ERA6AEB101V.PcbLib
+DocumentPath=..\..\LIB_ERA-6AED4990V\ERA-6AED4990V\Altium\ERA6AEB101V.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -135,7 +135,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document6]
-DocumentPath=Z:\crush\LIB_ERA-6AED4990V\ERA-6AED4990V\Altium\ERA-6AED4990V.SchLib
+DocumentPath=..\..\LIB_ERA-6AED4990V\ERA-6AED4990V\Altium\ERA-6AED4990V.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -152,7 +152,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document7]
-DocumentPath=AlarmSwitch.PcbDoc
+DocumentPath=LEDConverter.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -169,7 +169,7 @@ GenerateClassCluster=0
 DocumentUniqueId=FYRLXLGT
 
 [Document8]
-DocumentPath=Z:\crush\LIB_90120-0124\90120-0124\Altium\90120-0124.SchLib
+DocumentPath=..\..\LIB_90120-0124\90120-0124\Altium\90120-0124.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -186,7 +186,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document9]
-DocumentPath=Z:\crush\LIB_90120-0124\90120-0124\Altium\HDRV4W65P0X254_1X4_1016X254X945P.PcbLib
+DocumentPath=..\..\LIB_90120-0124\90120-0124\Altium\HDRV4W65P0X254_1X4_1016X254X945P.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -203,7 +203,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document10]
-DocumentPath=Z:\crush\LIB_90120-0126\90120-0126\Altium\90120-0126.SchLib
+DocumentPath=..\..\LIB_90120-0126\90120-0126\Altium\90120-0126.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -220,7 +220,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document11]
-DocumentPath=Z:\crush\LIB_90120-0126\90120-0126\Altium\HDRV6W65P0X254_1X6_1502X249X560P.PcbLib
+DocumentPath=..\..\LIB_90120-0126\90120-0126\Altium\HDRV6W65P0X254_1X6_1502X249X560P.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -237,7 +237,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document12]
-DocumentPath=Z:\crush\LIB_S1M\S1M\Altium\DIOM5227X270N.PcbLib
+DocumentPath=..\..\LIB_S1M\S1M\Altium\DIOM5227X270N.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -254,7 +254,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document13]
-DocumentPath=Z:\crush\LIB_S1M\S1M\Altium\S1M.SchLib
+DocumentPath=..\..\LIB_S1M\S1M\Altium\S1M.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -271,7 +271,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document14]
-DocumentPath=Z:\crush\LIB_42375-1855\42375-1855\Altium\42375-1855.SchLib
+DocumentPath=..\..\LIB_42375-1855\42375-1855\Altium\42375-1855.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -288,7 +288,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document15]
-DocumentPath=Z:\crush\LIB_42375-1855\42375-1855\Altium\HDRV2W87P0X254_1X2_768X249X1494P.PcbLib
+DocumentPath=..\..\LIB_42375-1855\42375-1855\Altium\HDRV2W87P0X254_1X2_768X249X1494P.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -305,7 +305,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document16]
-DocumentPath=Z:\crush\LIB_VJ0805Y105KXQTW1BC\VJ0805Y105KXQTW1BC\Altium\CAPC2012X135N.PcbLib
+DocumentPath=..\..\LIB_VJ0805Y105KXQTW1BC\VJ0805Y105KXQTW1BC\Altium\CAPC2012X135N.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -322,7 +322,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document17]
-DocumentPath=Z:\crush\LIB_VJ0805Y105KXQTW1BC\VJ0805Y105KXQTW1BC\Altium\VJ0805Y105KXQTW1BC.SchLib
+DocumentPath=..\..\LIB_VJ0805Y105KXQTW1BC\VJ0805Y105KXQTW1BC\Altium\VJ0805Y105KXQTW1BC.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -339,7 +339,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document18]
-DocumentPath=Z:\crush\LIB_TLC3702IPWR\TLC3702IPWR\Altium\SOP65P640X120-8N.PcbLib
+DocumentPath=..\..\LIB_TLC3702IPWR\TLC3702IPWR\Altium\SOP65P640X120-8N.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -356,7 +356,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document19]
-DocumentPath=Z:\crush\LIB_TLC3702IPWR\TLC3702IPWR\Altium\TLC3702IPWR.SchLib
+DocumentPath=..\..\LIB_TLC3702IPWR\TLC3702IPWR\Altium\TLC3702IPWR.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -813,6 +813,11 @@ OutputName9=Report Single Pin Nets
 OutputDocumentPath9=
 OutputVariantName9=[No Variations]
 OutputDefault9=0
+OutputType10=BOM_ReportManufacturing
+OutputName10=Manufacturing Data
+OutputDocumentPath10=
+OutputVariantName10=[No Variations]
+OutputDefault10=0
 
 [OutputGroup7]
 Name=Other Outputs
@@ -1098,6 +1103,17 @@ Type147=1
 Type148=1
 Type149=1
 Type150=1
+Type151=1
+Type152=1
+Type153=1
+Type154=1
+Type155=1
+Type156=1
+Type157=1
+Type158=1
+Type159=1
+Type160=1
+Type161=1
 
 [Difference Levels]
 Type1=1
@@ -1181,6 +1197,13 @@ Type78=1
 Type79=1
 Type80=1
 Type81=1
+Type82=1
+Type83=1
+Type84=1
+Type85=1
+Type86=1
+Type87=1
+Type88=1
 
 [Electrical Rules Check]
 Type1=1
@@ -1337,6 +1360,17 @@ Type151=2
 Type152=1
 Type153=1
 Type154=0
+Type155=0
+Type156=0
+Type157=0
+Type158=0
+Type159=0
+Type160=0
+Type161=0
+Type162=1
+Type163=1
+Type164=1
+Type165=2
 
 [ERC Connection Matrix]
 L1=NNNNNNNNNNNWNNNWW
