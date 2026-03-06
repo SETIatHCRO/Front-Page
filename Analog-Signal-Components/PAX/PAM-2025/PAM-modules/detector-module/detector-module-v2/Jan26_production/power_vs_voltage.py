@@ -13,33 +13,33 @@ params = {'axes.labelsize': 20,'axes.linewidth': 1.5, 'legend.fontsize': 16,'leg
     'ytick.minor.pad': 10,'ytick.minor.size': 10,'ytick.minor.visible': True,'ytick.minor.width': 1,
     'ytick.right': True, 'figure.figsize' : (15, 12)}
 rcParams.update(params)
-module = 'module002'
+module = 'module012'
 
-df1 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet 1')  # optional sheet_name
+df1 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet1')  # optional sheet_name
 
 det_array1 = df1['Output level (dBm)'].to_numpy()
 volt_array1 = df1['Voltage (V)'].to_numpy()
 
 ###--------------------------------------------------------------------------------
-df2 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet 2')  # optional sheet_name
+df2 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet2')  # optional sheet_name
 
 det_array2 = df2['Output level (dBm)'].to_numpy()
 volt_array2 = df2['Voltage (V)'].to_numpy()
 
 ###--------------------------------------------------------------------------------
-df3 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet 3')  # optional sheet_name
+df3 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet3')  # optional sheet_name
 
 det_array3 = df3['Output level (dBm)'].to_numpy()
 volt_array3 = df3['Voltage (V)'].to_numpy()
 
 ###--------------------------------------------------------------------------------
-df4 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet 4')  # optional sheet_name
+df4 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet4')  # optional sheet_name
 
 det_array4 = df4['Output level (dBm)'].to_numpy()
 volt_array4 = df4['Voltage (V)'].to_numpy()
 
 ###--------------------------------------------------------------------------------
-df5 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet 5')  # optional sheet_name
+df5 = pd.read_excel(f'pv_{module}.xlsx', sheet_name='Sheet5')  # optional sheet_name
 
 det_array5 = df5['Output level (dBm)'].to_numpy()
 volt_array5 = df5['Voltage (V)'].to_numpy()
