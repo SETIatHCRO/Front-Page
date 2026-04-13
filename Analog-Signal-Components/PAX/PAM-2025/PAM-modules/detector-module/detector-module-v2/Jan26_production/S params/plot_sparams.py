@@ -16,6 +16,41 @@ params = {'axes.labelsize': 20,'axes.linewidth': 1.5, 'legend.fontsize': 16,'leg
     'ytick.right': True, 'figure.figsize' : (15, 12)}
 rcParams.update(params)
 
+def read_cti_s11_only(filepath):
+    with open(filepath, 'r') as f:
+        lines = [line.strip() for line in f.readlines()]
+
+    # === 1. Extract frequency list ===
+    freq_start = lines.index('VAR_LIST_BEGIN') + 1
+    freq_end = lines.index('VAR_LIST_END')
+    freq = np.array([float(line) for line in lines[freq_start:freq_end]])
+    
+    # # === 2. Extract BEGIN...END blocks (S-parameters) ===
+    # s11_start = lines.index('BEGIN') + 1
+    # s11_end = lines.index('END')
+    # s11_ri = list(map(float, line.split(',')) for line in lines[s11_start:s11_end])
+    # s11 = np.array(complex(ri[0], ri[1]) for ri in s11_ri)
+    
+    
+    s_blocks = []
+    idx = 0
+    while idx < len(lines):
+        if lines[idx] == 'BEGIN':
+            block = []
+            idx += 1
+            while idx < len(lines) and lines[idx] != 'END':
+                real_imag = list(map(float, lines[idx].split(',')))
+                block.append(complex(real_imag[0], real_imag[1]).real)
+                #print(complex(real_imag[0], real_imag[1]).real)
+                idx += 1
+            s_blocks.append(np.array(block))
+        idx += 1
+        
+    s11 = s_blocks[0]
+    
+    return freq, s11
+    
+
 def read_cti_file(filepath):
     with open(filepath, 'r') as f:
         lines = [line.strip() for line in f.readlines()]
@@ -60,20 +95,23 @@ def read_cti_file(filepath):
 
 
 # === Replace with your filenames ===
-module = '002'
+module = '003'
 file1_path = f'{module}.cti'
 
 # === Read files ===
-freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
+#freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
+freq1, s11_1 = read_cti_s11_only(file1_path)
 
-# === Plot S21 magnitude in dB ===
+# === Plot S11 magnitude in dB ===
 plt.figure(figsize=(10, 8))
 plt.suptitle(f'LNA S-params module{module}', fontsize=18, y=0.90)
 
-print ('freq1', freq1)
-print ('s21_1', s21_1)
+#print ('freq1', freq1)
+#print ('s21_1', s21_1)
 
-plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s11_1)), c='tab:orange', alpha=1.0, label='S11')
+
+plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
+#plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s11_1)), c='tab:orange', alpha=1.0, label='S11')
 #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s21_1)), c='tab:blue', alpha=1.0, label='S21')
 #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s12_1)), c='tab:red', alpha=1.0, label='S12')
 #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s22_1)), c='tab:green', alpha=1.0, label='S22')
