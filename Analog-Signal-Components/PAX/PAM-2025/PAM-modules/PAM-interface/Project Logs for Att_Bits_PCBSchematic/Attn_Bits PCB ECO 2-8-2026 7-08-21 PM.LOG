@@ -1,0 +1,33 @@
+Added Pin To Net: NetName=Net1k R2_2 Pin=dual Flip Flop 1-1
+Added Pin To Net: NetName=Netdual Flip Flop 1_2 Pin=dual Flip Flop 1-2
+Added Pin To Net: NetName=CLK Pin=dual Flip Flop 1-3
+Added Pin To Net: NetName=+5V Pin=dual Flip Flop 1-4
+Added Pin To Net: NetName=Netdual Flip Flop 1_5 Pin=dual Flip Flop 1-5
+Added Pin To Net: NetName=Netdual Flip Flop 1_6 Pin=dual Flip Flop 1-6
+Added Pin To Net: NetName=GND Pin=dual Flip Flop 1-7
+Added Pin To Net: NetName=Netdual Flip Flop 1_2 Pin=dual Flip Flop 1-9
+Added Pin To Net: NetName=+5V Pin=dual Flip Flop 1-10
+Added Pin To Net: NetName=CLK Pin=dual Flip Flop 1-11
+Added Pin To Net: NetName=Netdual Flip Flop 1_12 Pin=dual Flip Flop 1-12
+Added Pin To Net: NetName=Net1k R1_1 Pin=dual Flip Flop 1-13
+Added Pin To Net: NetName=+5V Pin=dual Flip Flop 1-14
+Added Pin To Net: NetName=+5V Pin=R1-1
+Added Pin To Net: NetName=NetLED1_2 Pin=R1-2
+Added Pin To Net: NetName=Net+5VT_2 Pin=R3-1
+Added Pin To Net: NetName=+5VT Pin=R3-2
+Added Pin To Net: NetName=DET Pin=R5-1
+Added Pin To Net: NetName=NetDET_2 Pin=R5-2
+Added Pin To Net: NetName=NetCLK_2 Pin=R6-1
+Added Pin To Net: NetName=CLK Pin=R6-2
+Added Pin To Net: NetName=NetLOAD_2 Pin=R7-1
+Added Pin To Net: NetName=LOAD Pin=R7-2
+Added Pin To Net: NetName=+5VO Pin=R10-1
+Added Pin To Net: NetName=Net+5VO_2 Pin=R10-2
+Added Pin To Net: NetName=-5V Pin=R12-1
+Added Pin To Net: NetName=Net-5V_1 Pin=R12-2
+Added Pin To Net: NetName=NetDATA_2 Pin=R14-1
+Added Pin To Net: NetName=DATA Pin=R14-2
+Added Pin To Net: NetName=DATA Pin=Schmitt-Trigger-2
+Added Pin To Net: NetName=GND Pin=Schmitt-Trigger-3
+Added Pin To Net: NetName=Netdual Flip Flop 1_12 Pin=Schmitt-Trigger-4
+Added Pin To Net: NetName=+5V Pin=Schmitt-Trigger-5

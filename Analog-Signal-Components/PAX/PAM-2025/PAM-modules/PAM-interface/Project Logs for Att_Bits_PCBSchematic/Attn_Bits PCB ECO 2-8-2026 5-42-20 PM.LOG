@@ -1,0 +1,226 @@
+Removed Pin From Net: NetName=Net+5VT_2 Pin=D-Sep Supply-3
+Removed Pin From Net: NetName=Net+5VO_2 Pin=D-Sep Supply-10
+Removed Pin From Net: NetName=Net+5VT_2 Pin=Fiber OTX-2
+Removed Pin From Net: NetName=Net+5VO_2 Pin=Fiber OTX-4
+Change Component Designator: OldDesignator=Amp 1 NewDesignator=U1
+Change Component Designator: OldDesignator=Amp 2 NewDesignator=U2
+Change Component Designator: OldDesignator=Amp 3 NewDesignator=U3
+Change Component Designator: OldDesignator=Amp 4 NewDesignator=U4
+Added Component: Designator=+5VO(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=+5VT(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=-5V(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=1k R1(ERA6AEB101V)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "ERA6AEB1071V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/era-6aeb1071v/panasonic?utm_currency=USD&region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C307.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "0.6mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Panasonic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "ERA6AEB1071V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=1k R2(ERA6AEB101V)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "ERA6AEB1071V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/era-6aeb1071v/panasonic?utm_currency=USD&region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C307.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "0.6mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Panasonic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "ERA6AEB1071V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=CLK(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=DATA(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=DET(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found PW14
+Added Component: Designator=LED1(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=LOAD(LEDC3216X110N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sml-lx1206gw-tr/lumex?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-315/519820.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.1mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SML-LX1206GW-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "696-SML-LX1206GW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Lumex/SML-LX1206GW-TR?qs=k7wqd3tv8MigBobUZMRxZw%3D%3D"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Add Component: Footprint Not Found RES_ERA6VEB1000V
+Added Component: Designator=S1(NDS02V)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://www.mouser.com/datasheet/2/910/DS_1-1571341.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "7.05mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Diptronics"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "NDS-02V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "113-NDS-02V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Diptronics/NDS-02V?qs=gTYE2QTfZfRxLXvySsrtvg%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=S2(NDS02V)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://www.mouser.com/datasheet/2/910/DS_1-1571341.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "7.05mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Diptronics"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "NDS-02V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "113-NDS-02V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Diptronics/NDS-02V?qs=gTYE2QTfZfRxLXvySsrtvg%3D%3D"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found DBV5
+Added Pin To Net: NetName=GND Pin=+5VO-1
+Added Pin To Net: NetName=Net+5VO_2 Pin=+5VO-2
+Added Pin To Net: NetName=GND Pin=+5VT-1
+Added Pin To Net: NetName=Net+5VT_2 Pin=+5VT-2
+Added Pin To Net: NetName=GND Pin=-5V-2
+Added Pin To Net: NetName=GND Pin=1k R1-2
+Added Pin To Net: NetName=GND Pin=1k R2-1
+Added Pin To Net: NetName=GND Pin=CLK-1
+Added Pin To Net: NetName=GND Pin=DATA-1
+Added Pin To Net: NetName=GND Pin=DET-1
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-2
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-4
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-7
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-9
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-10
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-12
+Add Pin To Net: Unknown Pin: Pin dual Flip Flop 1-14
+Added Pin To Net: NetName=GND Pin=LED1-1
+Added Pin To Net: NetName=GND Pin=LOAD-1
+Add Pin To Net: Unknown Pin: Pin R1-1
+Add Pin To Net: Unknown Pin: Pin R3-1
+Add Pin To Net: Unknown Pin: Pin R10-2
+Add Pin To Net: Unknown Pin: Pin R12-1
+Added Pin To Net: NetName=+5V Pin=S2-1
+Added Pin To Net: NetName=+5V Pin=S2-2
+Add Pin To Net: Unknown Pin: Pin Schmitt-Trigger-3
+Add Pin To Net: Unknown Pin: Pin Schmitt-Trigger-4
+Add Pin To Net: Unknown Pin: Pin Schmitt-Trigger-5
+Added Pin To Net: NetName=+5VO Pin=D-Sep Supply-10
+Added Pin To Net: NetName=+5VO Pin=Fiber OTX-4
+Added Net: Name=+5VO
+Added Pin To Net: NetName=+5VT Pin=D-Sep Supply-3
+Added Pin To Net: NetName=+5VT Pin=Fiber OTX-2
+Added Net: Name=+5VT
+Added Pin To Net: NetName=CLK Pin=Attenuator-3
+Added Pin To Net: NetName=CLK Pin=D-Sep Supply-6
+Added Net: Name=CLK
+Added Pin To Net: NetName=DATA Pin=Attenuator-5
+Added Pin To Net: NetName=DATA Pin=D-Sep Supply-14
+Added Pin To Net: NetName=DATA Pin=S1-1
+Added Pin To Net: NetName=DATA Pin=S1-2
+Added Net: Name=DATA
+Added Pin To Net: NetName= DET Pin=D-Sep Supply-5
+Added Pin To Net: NetName= DET Pin=Power Detector Module-3
+Added Net: Name= DET
+Added Pin To Net: NetName=LOAD Pin=Attenuator-1
+Added Pin To Net: NetName=LOAD Pin=D-Sep Supply-7
+Added Net: Name=LOAD
+Added Pin To Net: NetName=Net1k R1_1 Pin=1k R1-1
+Added Pin To Net: NetName=Net1k R1_1 Pin=S2-3
+Added Net: Name=Net1k R1_1
+Added Pin To Net: NetName=Net1k R2_2 Pin=1k R2-2
+Added Pin To Net: NetName=Net1k R2_2 Pin=S2-4
+Added Net: Name=Net1k R2_2
+Added Pin To Net: NetName=Net-5V_1 Pin=-5V-1
+Added Net: Name=Net-5V_1
+Added Pin To Net: NetName=NetCLK_2 Pin=CLK-2
+Added Net: Name=NetCLK_2
+Added Pin To Net: NetName=NetDATA_2 Pin=DATA-2
+Added Net: Name=NetDATA_2
+Added Pin To Net: NetName=NetDET_2 Pin=DET-2
+Added Net: Name=NetDET_2
+Added Pin To Net: NetName=Netdual Flip Flop 1_5 Pin=S1-4
+Added Net: Name=Netdual Flip Flop 1_5
+Added Pin To Net: NetName=Netdual Flip Flop 1_6 Pin=S1-3
+Added Net: Name=Netdual Flip Flop 1_6
+Added Pin To Net: NetName=NetLED1_2 Pin=LED1-2
+Added Net: Name=NetLED1_2
+Added Pin To Net: NetName=NetLOAD_2 Pin=LOAD-2
+Added Net: Name=NetLOAD_2
+Added Member To Class: ClassName=Sheet1 Member=Component +5VO SML-LX1206GW-TR
+Added Member To Class: ClassName=Sheet1 Member=Component +5VT SML-LX1206GW-TR
+Added Member To Class: ClassName=Sheet1 Member=Component -5V SML-LX1206GW-TR
+Added Member To Class: ClassName=Sheet1 Member=Component 1k R1 ERA6AEB1071V
+Added Member To Class: ClassName=Sheet1 Member=Component 1k R2 ERA6AEB1071V
+Added Member To Class: ClassName=Sheet1 Member=Component CLK SML-LX1206GW-TR
+Added Member To Class: ClassName=Sheet1 Member=Component DATA SML-LX1206GW-TR
+Added Member To Class: ClassName=Sheet1 Member=Component DET SML-LX1206GW-TR
+Add Class Member: Failed to add class member : Component dual Flip Flop 1 SN74ACT74PWRQ1
+Added Member To Class: ClassName=Sheet1 Member=Component LED1 SML-LX1206GW-TR
+Added Member To Class: ClassName=Sheet1 Member=Component LOAD SML-LX1206GW-TR
+Add Class Member: Failed to add class member : Component R1 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R3 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R5 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R6 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R7 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R10 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R12 ERA6VEB4700V
+Add Class Member: Failed to add class member : Component R14 ERA6VEB4700V
+Added Member To Class: ClassName=Sheet1 Member=Component S1 NDS-02V
+Added Member To Class: ClassName=Sheet1 Member=Component S2 NDS-02V
+Add Class Member: Failed to add class member : Component Schmitt-Trigger SN74LVC1G17DBVR
+Added Rule: Name=Schematic Supply Nets_1
+Added Rule: Name=Schematic Supply Nets_2
+Added Rule: Name=Schematic Supply Nets_3
+Added Rule: Name=Schematic Supply Nets_4
+Added Rule: Name=Schematic Supply Nets_5
+Added Rule: Name=Schematic Supply Nets_6
+Added Rule: Name=Schematic Supply Nets_7
+Added Rule: Name=Schematic Supply Nets_8
