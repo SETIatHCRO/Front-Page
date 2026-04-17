@@ -95,7 +95,7 @@ def read_cti_file(filepath):
 
 
 # === Replace with your filenames ===
-module = '092'
+module = '010'
 file1_path = f'{module}.cti'
 
 # === Read files ===
