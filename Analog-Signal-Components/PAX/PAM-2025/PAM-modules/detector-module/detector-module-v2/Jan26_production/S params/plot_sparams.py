@@ -95,7 +95,7 @@ def read_cti_file(filepath):
 
 
 # === Replace with your filenames ===
-module = '029'
+module = '092'
 file1_path = f'{module}.cti'
 
 # === Read files ===
@@ -110,6 +110,7 @@ plt.suptitle(f'LNA S-params module{module}', fontsize=18, y=0.90)
 #print ('s21_1', s21_1)
 
 
+# NOTE: if the .cti format is 'DATA S11 DBANGLE', then it is already in units of dB and doesn't need conversion
 plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
 #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s11_1)), c='tab:orange', alpha=1.0, label='S11')
 #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s21_1)), c='tab:blue', alpha=1.0, label='S21')
