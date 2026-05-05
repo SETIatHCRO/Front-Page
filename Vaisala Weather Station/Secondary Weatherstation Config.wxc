@@ -1,0 +1,120 @@
+[File source]
+Model=WXT530
+Version=3.67
+Calibration date=T241
+Info=Secondary
+Order code=6B1B2A3D2A1B
+Device s/n=T2410919
+PTU s/n=T2330169
+[Device]
+Baud=19200
+Data=8
+Parity=None
+Stopbits=1
+RS-485 line delay=50
+Address=0
+Type=RS-485
+Communication protocol=ASCII auto + CRC
+[Wind]
+Update interval=5
+Speed unit=mph
+Direction alignment=0
+Averaging time=3
+Use XDR in NMEA wind=MWV
+Sampling frequency=4 Hz
+Gust averaging=3
+[Wind message]
+Direction minimum=Enabled
+Direction average=Enabled
+Direction maximum=Enabled
+Speed minimum=Enabled
+Speed average=Enabled
+Speed maximum=Enabled
+Analog output=Disabled
+[PTU]
+Update interval=5
+Pressure unit=hPa
+Temperature unit=Celsius
+[PTU message]
+Air temperature=Enabled
+Pressure temperature=Disabled
+Relative humidity=Enabled
+Barometric pressure=Enabled
+[Precipitation]
+Auto report interval=5
+Rain unit=Imperial
+Hail unit=Metric
+Auto mode=Time
+Counter reset=Manual
+Rain accumulation limit=10000
+Hail accumulation limit=100
+[Precipitation message]
+Rain amount=Enabled
+Rain duration=Enabled
+Rain intensity=Enabled
+Hail amount=Enabled
+Hail duration=Enabled
+Hail intensity=Enabled
+Rain peak=Disabled
+Hail peak=Disabled
+[Analogs]
+Update interval=1
+Aux input averaging time=1
+[Aux level]
+Aux level gain=1
+Aux level voltage range=1
+[Aux temperature]
+Aux temperature averaging time=1
+[Aux rain sensor]
+Aux rain reset mode=M
+Aux rain sensor gain=1
+Aux rain counter limit=1000
+[Aux solar radiation]
+Aux solar radiation sensor gain=100000
+[Analogs message]
+Aux solar radiation=Disabled
+Aux temperature=Disabled
+Aux rain sensor=Disabled
+Aux level=Disabled
+pt1000 Resistance=Disabled
+[Self diagnostic]
+Update interval=15
+Enable heating=Enabled
+Error messaging=Enabled
+[Self diagn. message]
+Heating temperature=Enabled
+Heat voltage=Enabled
+Supply voltage=Enabled
+3.5V reference voltage=Enabled
+Info=Enabled
+[Composite message]
+Auto Report Interval=0
+Direction minimum=Disabled
+Direction average=Enabled
+Direction maximum=Disabled
+Speed minimum=Disabled
+Speed average=Enabled
+Speed maximum=Disabled
+Analog output=Disabled
+Air temperature=Enabled
+Pressure temperature=Disabled
+Relative humidity=Enabled
+Barometric pressure=Enabled
+Rain amount=Enabled
+Rain duration=Disabled
+Rain intensity=Disabled
+Hail amount=Disabled
+Hail duration=Disabled
+Hail intensity=Disabled
+Rain peak=Disabled
+Hail peak=Disabled
+Aux solar radiation=Disabled
+Aux temperature=Disabled
+Aux rain sensor=Disabled
+Aux level=Disabled
+pt1000 Resistance=Disabled
+Heating temperature=Enabled
+Heat voltage=Enabled
+Supply voltage=Disabled
+3.5V reference voltage=Disabled
+Info=Disabled
