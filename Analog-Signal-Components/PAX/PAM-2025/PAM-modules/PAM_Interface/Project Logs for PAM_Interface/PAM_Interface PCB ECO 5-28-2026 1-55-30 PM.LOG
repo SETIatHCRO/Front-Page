@@ -1,0 +1,28 @@
+Removed Pin From Net: NetName=DATA Pin=Attenuator-5
+Removed Pin From Net: NetName=GND Pin=R2-1
+Removed Pin From Net: NetName=DATA Pin=S1-1
+Removed Pin From Net: NetName=DATA Pin=S1-2
+Removed Pin From Net: NetName=+5V Pin=S2-1
+Removed Pin From Net: NetName=+5V Pin=S2-2
+Change Component Designator: OldDesignator=+5V NewDesignator=LED1
+Added Pin To Net: NetName=+5V Pin=FF1-1
+Added Pin To Net: NetName=+5V Pin=FF1-13
+Added Pin To Net: NetName=+5V Pin=R1-1
+Change Net Name : Old Net Name=Netdual Flip Flop 1_2 New Net Name=NetFF1_2
+Change Net Name : Old Net Name=Netdual Flip Flop 1_5 New Net Name=NetFF1_5
+Change Net Name : Old Net Name=Netdual Flip Flop 1_6 New Net Name=NetFF1_6
+Change Net Name : Old Net Name=Netdual Flip Flop 1_12 New Net Name=NetFF1_12
+Added Pin To Net: NetName=DATA_OUT Pin=Attenuator-5
+Added Pin To Net: NetName=DATA_OUT Pin=S1-1
+Added Pin To Net: NetName=DATA_OUT Pin=S1-2
+Added Net: Name=DATA_OUT
+Added Member To Class: ClassName=PAM_Interface Member=Component AMP1 DF11-4DP-2DSA(24)
+Added Member To Class: ClassName=PAM_Interface Member=Component AMP2 DF11-4DP-2DSA(24)
+Added Member To Class: ClassName=PAM_Interface Member=Component AMP3 DF11-4DP-2DSA(24)
+Added Member To Class: ClassName=PAM_Interface Member=Component AMP4 DF11-4DP-2DSA(24)
+Added Member To Class: ClassName=PAM_Interface Member=Component D1 DF11-4DP-2DSA(24)
+Added Member To Class: ClassName=PAM_Interface Member=Component FF1 SN74ACT74PWRQ1
+Added Member To Class: ClassName=PAM_Interface Member=Component LED1 SML-LX1206GW-TR
+Added Member To Class: ClassName=PAM_Interface Member=Component R1 ERA6AEB1071V
+Added Member To Class: ClassName=PAM_Interface Member=Component R1 ERA6VEB1000V
+Added Member To Class: ClassName=PAM_Interface Member=Component ST1 SN74LVC1G17DBVR

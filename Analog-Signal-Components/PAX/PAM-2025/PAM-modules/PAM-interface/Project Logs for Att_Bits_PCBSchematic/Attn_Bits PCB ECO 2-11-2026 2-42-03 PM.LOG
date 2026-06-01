@@ -1,4 +1,0 @@
-Change Component Designator: OldDesignator=+5V NewDesignator=LED1
-Change Component Designator: OldDesignator=   NewDesignator=D-Sep Supply
-Change Component Designator: OldDesignator=Det. Mod. NewDesignator=Power Detector Module
-Added Member To Class: ClassName=Sheet1 Member=Component D-Sep Supply DF11-14DP-2DSA(24)

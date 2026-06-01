@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [PAM_Interface.PrjPcb]
+   Generated File[PAM_Interface.TXT]
+   Generated File[PAM_Interface.LDP]
+   Generated File[PAM_Interface.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 3:50:02 PM On 6/1/2026

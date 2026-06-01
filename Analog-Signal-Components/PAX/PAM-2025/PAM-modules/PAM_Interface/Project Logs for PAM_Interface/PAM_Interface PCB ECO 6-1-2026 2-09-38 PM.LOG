@@ -1,0 +1,18 @@
+Added Component: Designator=C3(CAPC2012X70N)
+Add component (AddParameter): Name = "Datasheet Link"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "0.7mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Vishay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "VJ0805Y104KXACW1BC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "71-VJ0805Y104KXACWBC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Vishay-Vitramon/VJ0805Y104KXACW1BC?qs=%252BI21JsQ7UT26DJQ7U%2F1R%2Fw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=C4(CAPC2012X70N)
+Add component (AddParameter): Name = "Datasheet Link"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "0.7mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Vishay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "VJ0805Y104KXACW1BC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "71-VJ0805Y104KXACWBC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Vishay-Vitramon/VJ0805Y104KXACW1BC?qs=%252BI21JsQ7UT26DJQ7U%2F1R%2Fw%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5V Pin=C3-2
+Added Pin To Net: NetName=+5V Pin=C4-2
+Added Member To Class: ClassName=PAM_Interface Member=Component C3 VJ0805Y104KXACW1BC
+Added Member To Class: ClassName=PAM_Interface Member=Component C4 VJ0805Y104KXACW1BC
