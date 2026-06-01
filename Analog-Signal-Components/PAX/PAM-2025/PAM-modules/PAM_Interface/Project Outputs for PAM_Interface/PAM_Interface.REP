@@ -2,14 +2,40 @@
 FileName = PAM_Interface.GBR
 AutoAperture = True
 *************************************************************
-Generating : Board
-      File : PAM_Interface.GM1
+Generating : Top Layer
+      File : PAM_Interface.GTL
 
-    Adding Layer      : Board
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
 
 
 Used DCodes :
+    D16
     D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+*************************************************************
+
+*************************************************************
+Generating : Top Overlay
+      File : PAM_Interface.GTO
+
+    Adding Layer      : Top Overlay
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
 *************************************************************
 
 *************************************************************
@@ -33,70 +59,6 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Top Paste
-      File : PAM_Interface.GTP
-
-    Adding Layer      : Top Paste
-
-    Adding Layer      : Top Layer
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D16
-*************************************************************
-
-*************************************************************
-Generating : Bottom Solder
-      File : PAM_Interface.GBS
-
-    Adding Layer      : Bottom Solder
-
-    Adding Layer      : Bottom Layer
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D18
-    D19
-    D20
-    D21
-    D22
-    D23
-    D24
-    D39
-    D40
-    D41
-    D42
-    D43
-    D44
-*************************************************************
-
-*************************************************************
-Generating : Top Solder
-      File : PAM_Interface.GTS
-
-    Adding Layer      : Top Solder
-
-    Adding Layer      : Top Layer
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D17
-    D18
-    D19
-    D20
-    D21
-    D22
-    D23
-    D24
-*************************************************************
-
-*************************************************************
 Generating : Bottom Overlay
       File : PAM_Interface.GBO
 
@@ -113,19 +75,18 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Top Overlay
-      File : PAM_Interface.GTO
+Generating : Top Paste
+      File : PAM_Interface.GTP
 
-    Adding Layer      : Top Overlay
+    Adding Layer      : Top Paste
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D10
-    D11
-    D12
-    D13
-    D14
-    D15
+    D16
 *************************************************************
 
 *************************************************************
@@ -156,8 +117,21 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Top Layer
-      File : PAM_Interface.GTL
+Generating : Board
+      File : PAM_Interface.GM1
+
+    Adding Layer      : Board
+
+
+Used DCodes :
+    D25
+*************************************************************
+
+*************************************************************
+Generating : Top Solder
+      File : PAM_Interface.GTS
+
+    Adding Layer      : Top Solder
 
     Adding Layer      : Top Layer
 
@@ -165,14 +139,40 @@ Generating : Top Layer
 
 
 Used DCodes :
-    D16
-    D25
-    D26
-    D27
-    D28
-    D29
-    D30
-    D31
-    D32
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+*************************************************************
+
+*************************************************************
+Generating : Bottom Solder
+      File : PAM_Interface.GBS
+
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D39
+    D40
+    D41
+    D42
+    D43
+    D44
 *************************************************************
 
