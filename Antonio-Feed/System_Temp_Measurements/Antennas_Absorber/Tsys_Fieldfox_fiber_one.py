@@ -4,8 +4,8 @@ import pandas as pd
 
 t_hot = 302
 t_cold = 15
-ant = '2e'
-nm = '1'
+ant = '1d'
+nm = '2'
 year='2026'
 
 cold_l_ing = np.zeros((801), dtype=float)
