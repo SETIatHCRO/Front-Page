@@ -124,5 +124,5 @@ def plot_sparam(filename, dir_path):
     plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
 
     plt.tight_layout(rect=[0, 0, 1, 0.92])
-    plt.savefig(f"{filename[:-5]}_{filename[-5]}_Sparam.pdf")
+    plt.savefig(f"{filename[:-5]}_{filename[-5]}_Sparam".zfill(11) + ".pdf")
     plt.close()
