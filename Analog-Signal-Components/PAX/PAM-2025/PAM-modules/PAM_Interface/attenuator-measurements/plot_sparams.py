@@ -93,9 +93,9 @@ def read_cti_file(filepath):
 
 
 
-def plot_sparam(filename, pathtoparent):
+def plot_sparam(filename, dir_path):
     # === Replace with your filenames ===
-    file1_path = pathtoparent + filename
+    file1_path = dir_path + filename
 
     # === Read files ===
     #freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
@@ -103,7 +103,7 @@ def plot_sparam(filename, pathtoparent):
 
     # === Plot S11 magnitude in dB ===
     plt.figure(figsize=(10, 8))
-    plt.suptitle(f'LNA S-params {filename[:-4]}', fontsize=18, y=0.90)
+    plt.suptitle(f'LNA S-params {filename[:-5]}.{filename[-5]}', fontsize=18, y=0.90)
 
     #print ('freq1', freq1)
     #print ('s21_1', s21_1)
@@ -124,4 +124,5 @@ def plot_sparam(filename, pathtoparent):
     plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
 
     plt.tight_layout(rect=[0, 0, 1, 0.92])
-    plt.savefig(f"{filename[:-4]}_Sparam_measurements.pdf")
+    plt.savefig(f"{filename[:-5]}_{filename[-5]}_Sparam".zfill(11) + ".pdf")
+    plt.close()
