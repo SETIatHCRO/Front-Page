@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 302
+t_hot = 310
 t_cold = 15
-ant = '1d'
-nm = '1'
+ant = '4e'
+nm = '4'
 year='2026'
 
 cold_l_ing = np.zeros((801), dtype=float)
@@ -95,16 +95,14 @@ fig=plt.figure(4)
 plt.subplot(211)
 plt.title(ant+'\n System Temperature for X-pol (UP) and Y-pol (DOWN)')
 plt.plot(freq_0,t_sys_X)
-#plt.ylim(-25,150)
-plt.ylim(-25,300)
+plt.ylim(-25,150)
 plt.xlim(0.1, 12)
 plt.yticks([-25,0,25,50,75,100,125,150],[-25,0,25,50,75,100,125,150])
 plt.grid(1)
 plt.ylabel('temperature in K')
 plt.subplot(212)
 plt.plot(freq_0,t_sys_Y)
-#plt.ylim(-25,150)
-plt.ylim(-25,300)
+plt.ylim(-25,150)
 plt.xlim(0.1, 12)
 plt.yticks([-25,0,25,50,75,100,125,150],[-25,0,25,50,75,100,125,150])
 plt.grid(1)
