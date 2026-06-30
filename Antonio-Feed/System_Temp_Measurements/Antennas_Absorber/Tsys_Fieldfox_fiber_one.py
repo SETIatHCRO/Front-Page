@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-t_hot = 310
-t_cold = 15
-ant = '4e'
-nm = '4'
+t_hot = 303
+t_cold = 14
+ant = '2k'
+nm = '1'
 year='2026'
 
 cold_l_ing = np.zeros((801), dtype=float)
