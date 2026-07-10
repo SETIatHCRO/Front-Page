@@ -1,0 +1,24 @@
+Removed Pin From Net: NetName=GND Pin=C3-1
+Removed Pin From Net: NetName=GND Pin=C4-1
+Removed Pin From Net: NetName=+5VT Pin=D-Sep Supply-3
+Removed Pin From Net: NetName=GND Pin=D-Sep Supply-4
+Removed Pin From Net: NetName=DET Pin=D-Sep Supply-5
+Removed Pin From Net: NetName=CLK Pin=D-Sep Supply-6
+Removed Pin From Net: NetName=LOAD Pin=D-Sep Supply-7
+Removed Pin From Net: NetName=GND Pin=D-Sep Supply-9
+Removed Pin From Net: NetName=+5VO Pin=D-Sep Supply-10
+Removed Pin From Net: NetName=GND Pin=D-Sep Supply-11
+Removed Pin From Net: NetName=-5V Pin=D-Sep Supply-12
+Removed Pin From Net: NetName=GND Pin=D-Sep Supply-13
+Removed Pin From Net: NetName=DATA Pin=D-Sep Supply-14
+Added Pin To Net: NetName=GND Pin=D-Sep Supply-3
+Added Pin To Net: NetName=+5VO Pin=D-Sep Supply-4
+Added Pin To Net: NetName=+5VT Pin=D-Sep Supply-5
+Added Pin To Net: NetName=GND Pin=D-Sep Supply-6
+Added Pin To Net: NetName=GND Pin=D-Sep Supply-7
+Added Pin To Net: NetName=-5V Pin=D-Sep Supply-8
+Added Pin To Net: NetName=DET Pin=D-Sep Supply-9
+Added Pin To Net: NetName=GND Pin=D-Sep Supply-10
+Added Pin To Net: NetName=CLK Pin=D-Sep Supply-11
+Added Pin To Net: NetName=DATA Pin=D-Sep Supply-12
+Added Pin To Net: NetName=LOAD Pin=D-Sep Supply-14

@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=LOAD Pin=D-Sep Supply-14
+Added Pin To Net: NetName=LOAD Pin=D-Sep Supply-13
