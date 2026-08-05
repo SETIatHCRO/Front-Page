@@ -1,0 +1,15 @@
+﻿"Symbol";"Value";"Unit";
+"REFERENCE";"XB5PRJ45";"";
+"TraceParts.PartVersion";"1.0.0";"";
+"SUPPLIER";"Farnell";"";
+"TraceParts.PartStatus";"Published";"";
+"TraceParts.PartNumber";"90-11072019-102614";"";
+"TraceParts.PartLanguage";"en";"";
+"DESIGN";"Modular Connector, RJ45 Plug, 1 x 1 Port, 8P8C, IP20, Panel Mount";"";
+"TraceParts.InstanceId";"90-11072019-1026146OZLRC9JK12R6I5BYOOP8GBT4";"";
+"Manufacturer";"SCHNEIDER ELECTRIC";"";
+"TraceParts.PartTitle";"Modular Connector, RJ45 Plug, 1 x 1 Port, 8P8C, IP20, Panel Mount";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartStatusId";"";"";
+"TraceParts.ClassPath";"FARNELL:90-11072019-102614";"";
+"Order_Code";"2780768";"";

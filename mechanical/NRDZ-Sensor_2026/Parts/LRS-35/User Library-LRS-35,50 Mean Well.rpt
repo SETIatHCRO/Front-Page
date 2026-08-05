@@ -1,0 +1,68 @@
+*****************************************************************
+      SolidWorks Corporation - IGES Processor Status Report
+*****************************************************************
+=================================================================
+General Information
+=================================================================
+Sending System Product I.D.  : LRS-35,50 Mean Well.sldasm
+Receiving System Product I.D.: LRS-35,50 Mean Well.sldasm
+File Name                    : \\PSSILO\catalogs\ContentCentral\LRS-35,50 Mean Well\Cache\A552F83D-FEAE-43E9-AA00-7E1483C64491.IGS
+Sending System               : SolidWorks 2020
+Preprocessor Version         : SolidWorks 2020
+File Creation Date           : 201023.030317
+Model Creation Date          : 201023.030317
+Units                        : MM
+Model Space Scale            : 1
+Author                       : partstream
+Organization                 : 
+
+
+=================================================================
+Entity Processing Information
+=================================================================
+
+
+=================================================================
+Precision analysis of IGES file:
+=================================================================
+  Most prevalent number of significant digits:               2
+  Highest number of significant digits:                     11
+  Average number of significant digits:                 3.9546
+  Maximum distance to origin:                          1765.15
+  Minimum distance to origin:                                0
+  Effective number of significant digits:                   11
+
+
+=================================================================
+Entity Summary
+=================================================================
+-----------------------------------------------------------------
+Type Name                                         Count Converted
+---- ----                                         ----- ---------
+100  Arc                                           1540      1540
+102  Composite curve                               4942      4942
+110  Line                                         10870     10870
+120  Surface of revolution                          365       365
+124  Transformation matrix                         1380      1380
+126  Rational B-spline curve                      12314     12314
+128  Rational B-spline surface                     1733      1733
+142  Curve on a parametric surface                 2471      2471
+144  Trimmed parametric surface                    2098      2098
+308  Subfigure definition                             4         4
+314  Color definition                               515       515
+408  Singular subfigure instance                      4         4
+_________________________________________________________________
+
+
+=================================================================
+Result Summary
+=================================================================
+SolidWorks Feature Type                Count
+-----------------------                -----
+Solid feature(s)                       27
+Surface feature(s)                     0
+Curve/Sketch feature(s)                0
+--------------------------------------------
+Start time: Friday, October 23, 2020 12:35:05
+Finish time: Friday, October 23, 2020 12:35:18
+Processing time: 0 days, 00 hours, 00 mins, 13 secs
