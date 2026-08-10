@@ -1,0 +1,61 @@
+Add component: Footprint Not Found LEDC3216X110N
+Add component: Footprint Not Found LEDC3216X110N
+Add component: Footprint Not Found LEDC3216X110N
+Add component: Footprint Not Found CON4_2X2_UF_DF11_HIR
+Add component: Footprint Not Found CON4_2X2_UF_DF11_HIR
+Add component: Footprint Not Found CON4_2X2_UF_DF11_HIR
+Add component: Footprint Not Found CON4_2X2_UF_DF11_HIR
+Add component: Footprint Not Found HIROSE_DF11-6DP-2DSA(24)
+Add component: Footprint Not Found SOT95P280X100-6N
+Add component: Footprint Not Found SOT95P280X100-6N
+Add component: Footprint Not Found CON4_2X2_UF_DF11_HIR
+Add component: Footprint Not Found CAPC2012X145N
+Add component: Footprint Not Found CAPC2012X145N
+Add component: Footprint Not Found CAPC2012X70N
+Add component: Footprint Not Found CAPC2012X70N
+Add component: Footprint Not Found CON4_2X2_UF_DF11_HIR
+Add component: Footprint Not Found CON14_2X7_UF_DF11_HIR
+Add component: Footprint Not Found PW14
+Add component: Footprint Not Found HIROSE_DF11-8DP-2DSA(24)
+Add component: Footprint Not Found LEDC3216X110N
+Add component: Footprint Not Found ERA6AEB101V
+Add component: Footprint Not Found ERA6AEB101V
+Add component: Footprint Not Found RES_ERA6VEB1000V
+Add component: Footprint Not Found RES_ERA6VEB1000V
+Add component: Footprint Not Found RES_ERA6VEB1000V
+Add component: Footprint Not Found RES_ERA6VEB1000V
+Add component: Footprint Not Found DBV5
+Added Net: Name=-5V
+Added Net: Name=+5V
+Added Net: Name=+5VO
+Added Net: Name=+5VT
+Added Net: Name=CLK1
+Added Net: Name=CLK2
+Added Net: Name=CLK
+Added Net: Name=DATA
+Added Net: Name=DATA_OUT
+Added Net: Name=DET
+Added Net: Name=GND
+Added Net: Name=LOAD
+Added Net: Name=Net-5V_1
+Added Net: Name=Net+5VO_2
+Added Net: Name=Net+5VT_2
+Added Net: Name=NetB1_3
+Added Net: Name=NetB2_3
+Added Net: Name=NetBias_4
+Added Net: Name=NetFF1_2
+Added Net: Name=NetFF1_12
+Added Net: Name=NetLED1_2
+Added Class: Name=PAM_Interface
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1
+Added Rule: Name=Schematic Supply Nets_2
+Added Rule: Name=Schematic Supply Nets_3
+Added Rule: Name=Schematic Supply Nets_4
+Added Rule: Name=Schematic Supply Nets_5
+Added Rule: Name=Schematic Supply Nets_6
+Added Rule: Name=Schematic Supply Nets_7
+Added Rule: Name=Schematic Supply Nets_8
+Added Rule: Name=Schematic Supply Nets_9
+Added Rule: Name=Schematic Supply Nets_10
+Added Rule: Name=Schematic Supply Nets_11

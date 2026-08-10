@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=GND Pin=CLK-1
+Removed Pin From Net: NetName=GND Pin=DATA-1
+Removed Pin From Net: NetName=GND Pin=DET-1
+Removed Pin From Net: NetName=GND Pin=LOAD-1
+Removed Pin From Net: NetName=DET Pin=R5-1
+Removed Pin From Net: NetName=CLK Pin=R6-2
+Removed Pin From Net: NetName=LOAD Pin=R7-2
+Removed Pin From Net: NetName=DATA Pin=R10-2
+Removed Member From Class: ClassName=PAM_Interface Member=CLK
+Removed Member From Class: ClassName=PAM_Interface Member=DATA
+Removed Member From Class: ClassName=PAM_Interface Member=DET
+Removed Member From Class: ClassName=PAM_Interface Member=LOAD
+Removed Member From Class: ClassName=PAM_Interface Member=R5
+Removed Member From Class: ClassName=PAM_Interface Member=R6
+Removed Member From Class: ClassName=PAM_Interface Member=R7
+Removed Member From Class: ClassName=PAM_Interface Member=R10

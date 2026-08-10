@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=GND Pin=C1-1
+Removed Pin From Net: NetName=+5V Pin=C1-2
+Removed Pin From Net: NetName=DATA Pin=ST1-2
+Removed Pin From Net: NetName=GND Pin=ST1-3
+Removed Pin From Net: NetName=+5V Pin=ST1-5
+Removed Member From Class: ClassName=PAM_Interface Member=C1
+Removed Member From Class: ClassName=PAM_Interface Member=ST1
+Added Pin To Net: NetName=DATA Pin=Attenuator-5

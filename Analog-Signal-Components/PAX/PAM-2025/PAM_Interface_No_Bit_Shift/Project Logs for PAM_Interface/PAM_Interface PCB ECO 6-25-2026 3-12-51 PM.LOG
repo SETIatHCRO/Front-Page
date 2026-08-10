@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=DATA_OUT Pin=S1-1
+Removed Pin From Net: NetName=DATA_OUT Pin=S1-2
+Removed Member From Class: ClassName=PAM_Interface Member=S1
+Change Component Designator: OldDesignator=5V NewDesignator=LED1
+Added Pin To Net: NetName=DATA_OUT Pin=FF1-5

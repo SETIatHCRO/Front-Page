@@ -1,0 +1,17 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: PAM_Interface_No_Bit_Shift.PcbDoc   8/10/2026  12:09:17 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : PAM_Interface_No_Bit_Shift.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      0.3mm (12mil)                                             Round             19        PTH        98.30mm (3.87inch)
+T2      0.762mm (30mil)                                           Round             38        PTH        129.09mm (5.08inch)
+T3      0.9mm (35mil)                                             Round             14        PTH        33.72mm (1.33inch)
+T4      2.9mm (114mil)                                            Round             4         PTH        87.00mm (3.43inch)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              75
+
+Total Processing Time (hh:mm:ss) : 00:00:00

@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [PAM_Interface_No_Bit_Shift.PrjPcb]
+   Generated File[PAM_Interface_No_Bit_Shift.TXT]
+   Generated File[PAM_Interface_No_Bit_Shift.LDP]
+   Generated File[PAM_Interface_No_Bit_Shift.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 12:09:17 PM On 8/10/2026
