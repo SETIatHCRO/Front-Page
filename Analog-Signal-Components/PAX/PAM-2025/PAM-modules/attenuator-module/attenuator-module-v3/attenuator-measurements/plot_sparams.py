@@ -1,0 +1,181 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from pylab import rcParams
+import matplotlib as mpl
+
+ORDER = {"S11" : 0, "S21" : 1, "S12" : 2, "S22" : 3}
+mpl.rcParams['axes.axisbelow'] = False  # Set globally
+
+
+df = pd.read_excel("./Attenuation-Argument-Translation.xlsx", header=None, skiprows=1)
+translate = dict(zip(df.iloc[:, 1], df.iloc[:, 0]))
+
+rcParams.keys()
+rcParams['font.family'] = 'serif'
+params = {'axes.labelsize': 20,'axes.linewidth': 1.5, 'legend.fontsize': 16,'legend.frameon': True,'lines.linewidth': 2,'xtick.direction': 'in',
+    'xtick.labelsize': 20,'xtick.major.bottom': True,'xtick.major.pad': 20,'xtick.major.size': 20,'xtick.major.width': 1,'xtick.minor.bottom': True,
+    'xtick.minor.pad': 10,'xtick.minor.size': 10,'xtick.minor.top': True,'xtick.minor.visible': True,'xtick.minor.width': 1,'xtick.top': True,
+    'ytick.direction': 'in','ytick.labelsize': 20,'ytick.major.pad': 20,'ytick.major.size': 20,'ytick.major.width': 1,
+    'ytick.minor.pad': 10,'ytick.minor.size': 10,'ytick.minor.visible': True,'ytick.minor.width': 1,
+    'ytick.right': True, 'figure.figsize' : (15, 12)}
+rcParams.update(params)
+
+def read_sparam(filepath, sparam):
+    with open(filepath, 'r') as f:
+        lines = [line.strip() for line in f.readlines()]
+
+    # === 1. Extract frequency list ===
+    freq_start = lines.index('VAR_LIST_BEGIN') + 1
+    freq_end = lines.index('VAR_LIST_END')
+    freq = np.array([float(line) for line in lines[freq_start:freq_end]])
+    
+    # # === 2. Extract BEGIN...END blocks (S-parameters) ===
+    # s11_start = lines.index('BEGIN') + 1
+    # s11_end = lines.index('END')
+    # s11_ri = list(map(float, line.split(',')) for line in lines[s11_start:s11_end])
+    # s11 = np.array(complex(ri[0], ri[1]) for ri in s11_ri)
+    
+    
+    s_blocks = []
+    idx = 0
+    while idx < len(lines):
+        if lines[idx] == 'BEGIN':
+            block = []
+            idx += 1
+            while idx < len(lines) and lines[idx] != 'END':
+                real_imag = list(map(float, lines[idx].split(',')))
+                block.append(complex(real_imag[0], real_imag[1]).real)
+                #print(complex(real_imag[0], real_imag[1]).real)
+                idx += 1
+            s_blocks.append(np.array(block))
+        idx += 1
+        
+    s = s_blocks[sparam]
+    
+    return freq, s
+    
+
+def read_cti_file(filepath):
+    with open(filepath, 'r') as f:
+        lines = [line.strip() for line in f.readlines()]
+
+    # === 1. Extract frequency list ===
+    freq_start = lines.index('VAR_LIST_BEGIN') + 1
+    freq_end = lines.index('VAR_LIST_END')
+    freq = np.array([float(line) for line in lines[freq_start:freq_end]])
+
+    # === 2. Extract BEGIN...END blocks (S-parameters) ===
+    s_blocks = []
+    idx = 0
+    while idx < len(lines):
+        if lines[idx] == 'BEGIN':
+            block = []
+            idx += 1
+            while idx < len(lines) and lines[idx] != 'END':
+                real_imag = list(map(float, lines[idx].split(',')))
+                block.append(complex(real_imag[0], real_imag[1]).real)
+                idx += 1
+            s_blocks.append(np.array(block))
+        idx += 1
+
+    # # Makes the output agnostic to order of s-parameters in the original data file. Reorders so S11 always first
+    # file_order = [s[5:8] for s in lines[6:10]]
+    # file_order = {i : s for i, s in enumerate(file_order)}
+    # ordered_sblocks = [None] * len(s_blocks)
+    # for i in range(len(s_blocks)):
+    #     ordered_sblocks[ORDER[file_order[i]]] = s_blocks[i]
+    #     print("Moving ", file_order[i]," to ", ORDER[file_order[i]])
+    # s_blocks = ordered_sblocks
+
+    # === 3. Validate block count ===
+    if len(s_blocks) != 4:
+        raise ValueError(f"Expected 4 S-parameter blocks, found {len(s_blocks)}")
+
+    s11, s21, s12, s22 = s_blocks
+    
+    return freq, s11, s21, s12, s22
+
+
+
+def plot_sparam(filename, dir_path):
+    # === Replace with your filenames ===
+    file1_path = dir_path + filename
+
+    # === Read files ===
+    freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
+    #freq1, s11_1 = read_sparam(file1_path,1)
+
+    argument = int(f'{filename[:-5]}')
+    atten = translate[argument]
+
+    # === Plot S11 magnitude in dB ===
+    plt.figure(figsize=(10, 8))
+    plt.suptitle(f'LNA S-params, {atten} dBm', fontsize=18, y=0.90)
+
+    #print ('freq1', freq1)
+    #print ('s21_1', s21_1)
+
+
+    # NOTE: if the .cti format is 'DATA S11 DBANGLE', then it is already in units of dB and doesn't need conversion
+    # plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
+    plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
+    plt.plot(freq1 / 1e9, s21_1, c='tab:blue', alpha=1.0, label='S21')
+    plt.plot(freq1 / 1e9, s12_1, c='tab:red', alpha=1.0, label='S12')
+    plt.plot(freq1 / 1e9, s22_1, c='tab:green', alpha=1.0, label='S22')
+
+    plt.ylim(-40, 10)
+    plt.xlim(0, 20)
+    plt.ylabel('Magnitude (dB)')
+    plt.xlabel('Frequency (GHz)')
+    plt.grid(True)
+    plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.92])
+
+    
+    plt.savefig(f"{atten}dBm_Sparam".zfill(11) + ".pdf")
+    plt.close()
+
+def plot_compare_sparam(filename_1, filename_2, dir_path_1, dir_path_2):
+    # === Replace with your filenames ===
+    file1_path = dir_path_1 + filename_1
+    file2_path = dir_path_2 + filename_2
+
+    # === Read files ===
+    freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
+    freq2, s11_2, s21_2, s12_2, s22_2 = read_cti_file(file2_path)
+    #freq1, s11_1 = read_sparam(file1_path,1)
+
+    argument = int(f'{filename_1[:-5]}')
+    atten = translate[argument]
+
+    comp_sparam(s11_1, s11_2, freq1,atten, "S11")
+    comp_sparam(s21_1, s21_2, freq1,atten, "S21")
+    comp_sparam(s12_1, s12_2, freq1,atten, "S12")
+    comp_sparam(s22_1, s22_2, freq1,atten, "S22")
+
+
+def comp_sparam(s1, s2, freq1, atten, s_param):
+    # === Plot S11 magnitude in dB ===
+    plt.figure(figsize=(10, 8))
+    plt.suptitle(f'LNA S-params, {atten} dBm, {s_param}', fontsize=18, y=0.90)
+
+
+    # NOTE: if the .cti format is 'DATA S11 DBANGLE', then it is already in units of dB and doesn't need conversion
+    # plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
+    plt.plot(freq1 / 1e9, s1, c='tab:orange', alpha=1.0, label=f'{s_param}')
+    plt.plot(freq1 / 1e9, s2, c='tab:blue', alpha=1.0, label=f'{s_param} AEQ05472-T')
+
+    plt.ylim(-40, 10)
+    plt.xlim(0, 20)
+    plt.ylabel('Magnitude (dB)')
+    plt.xlabel('Frequency (GHz)')
+    plt.grid(True)
+    plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.92])
+
+    
+    plt.savefig(f"./compare_slope/{atten}dBm_{s_param}" + ".pdf")
+    plt.close()

@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=RFin Pin=U1-5
+Add component: Footprint Not Found EQ_AEQ05472
+Add Pin To Net: Unknown Pin: Pin EQ1-1
+Added Pin To Net: NetName=NetEQ1_2 Pin=U1-5
+Added Net: Name=NetEQ1_2
+Add Class Member: Failed to add class member : Component EQ1 AEQ05472-10
+Added Member To Class: ClassName=attenuator Member=Component X1 Solder Pad
+Added Member To Class: ClassName=attenuator Member=Component X3 Solder Pad
+Added Member To Class: ClassName=attenuator Member=Component X6 Solder Pad
