@@ -9,7 +9,6 @@ mpl.rcParams['axes.axisbelow'] = False  # Set globally
 
 
 df = pd.read_excel("./Attenuation-Argument-Translation.xlsx", header=None, skiprows=1)
-
 translate = dict(zip(df.iloc[:, 1], df.iloc[:, 0]))
 
 rcParams.keys()
@@ -75,19 +74,19 @@ def read_cti_file(filepath):
             idx += 1
             while idx < len(lines) and lines[idx] != 'END':
                 real_imag = list(map(float, lines[idx].split(',')))
-                block.append(complex(real_imag[0], real_imag[1]))
+                block.append(complex(real_imag[0], real_imag[1]).real)
                 idx += 1
             s_blocks.append(np.array(block))
         idx += 1
 
-    # Makes the output agnostic to order of s-parameters in the original data file. Reorders so S11 always first
-    file_order = [s[5:8] for s in lines[6:10]]
-    file_order = {i : s for i, s in enumerate(file_order)}
-    ordered_sblocks = [None] * len(s_blocks)
-    for i in range(len(s_blocks)):
-        ordered_sblocks[ORDER[file_order[i]]] = s_blocks[i]
-        print("Moving ", file_order[i]," to ", ORDER[file_order[i]])
-    s_blocks = ordered_sblocks
+    # # Makes the output agnostic to order of s-parameters in the original data file. Reorders so S11 always first
+    # file_order = [s[5:8] for s in lines[6:10]]
+    # file_order = {i : s for i, s in enumerate(file_order)}
+    # ordered_sblocks = [None] * len(s_blocks)
+    # for i in range(len(s_blocks)):
+    #     ordered_sblocks[ORDER[file_order[i]]] = s_blocks[i]
+    #     print("Moving ", file_order[i]," to ", ORDER[file_order[i]])
+    # s_blocks = ordered_sblocks
 
     # === 3. Validate block count ===
     if len(s_blocks) != 4:
@@ -104,8 +103,8 @@ def plot_sparam(filename, dir_path):
     file1_path = dir_path + filename
 
     # === Read files ===
-    #freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
-    freq1, s11_1 = read_sparam(file1_path,1)
+    freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
+    #freq1, s11_1 = read_sparam(file1_path,1)
 
     argument = int(f'{filename[:-5]}')
     atten = translate[argument]
@@ -119,11 +118,11 @@ def plot_sparam(filename, dir_path):
 
 
     # NOTE: if the .cti format is 'DATA S11 DBANGLE', then it is already in units of dB and doesn't need conversion
+    # plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
     plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
-    #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s11_1)), c='tab:orange', alpha=1.0, label='S11')
-    #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s21_1)), c='tab:blue', alpha=1.0, label='S21')
-    #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s12_1)), c='tab:red', alpha=1.0, label='S12')
-    #plt.plot(freq1 / 1e9, 20 * np.log10(np.abs(s22_1)), c='tab:green', alpha=1.0, label='S22')
+    plt.plot(freq1 / 1e9, s21_1, c='tab:blue', alpha=1.0, label='S21')
+    plt.plot(freq1 / 1e9, s12_1, c='tab:red', alpha=1.0, label='S12')
+    plt.plot(freq1 / 1e9, s22_1, c='tab:green', alpha=1.0, label='S22')
 
     plt.ylim(-40, 10)
     plt.xlim(0, 20)
