@@ -1,7 +1,9 @@
 import os
 import plot_sparams
 
-files = os.listdir('./cti')
+plot_sparams.plot_compare_sparam('00.cti', '00.cti', './cti/', './cti_eq/')
 
-for f in files:
-    plot_sparams.plot_sparam(f,'./cti/')
+# files = os.listdir("./cti/")
+
+# for f in files: 
+#     plot_sparams.plot_sparam(f, "./cti/")

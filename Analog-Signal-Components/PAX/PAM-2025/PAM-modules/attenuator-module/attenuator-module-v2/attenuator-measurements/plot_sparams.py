@@ -136,3 +136,46 @@ def plot_sparam(filename, dir_path):
     
     plt.savefig(f"{atten}dBm_Sparam".zfill(11) + ".pdf")
     plt.close()
+
+def plot_compare_sparam(filename_1, filename_2, dir_path_1, dir_path_2):
+    # === Replace with your filenames ===
+    file1_path = dir_path_1 + filename_1
+    file2_path = dir_path_2 + filename_2
+
+    # === Read files ===
+    freq1, s11_1, s21_1, s12_1, s22_1 = read_cti_file(file1_path)
+    freq2, s11_2, s21_2, s12_2, s22_2 = read_cti_file(file2_path)
+    #freq1, s11_1 = read_sparam(file1_path,1)
+
+    argument = int(f'{filename_1[:-5]}')
+    atten = translate[argument]
+
+    comp_sparam(s11_1, s11_2, freq1,atten, "S11")
+    comp_sparam(s21_1, s21_2, freq1,atten, "S21")
+    comp_sparam(s12_1, s12_2, freq1,atten, "S12")
+    comp_sparam(s22_1, s22_2, freq1,atten, "S22")
+
+
+def comp_sparam(s1, s2, freq1, atten, s_param):
+    # === Plot S11 magnitude in dB ===
+    plt.figure(figsize=(10, 8))
+    plt.suptitle(f'LNA S-params, {atten} dBm, {s_param}', fontsize=18, y=0.90)
+
+
+    # NOTE: if the .cti format is 'DATA S11 DBANGLE', then it is already in units of dB and doesn't need conversion
+    # plt.plot(freq1 / 1e9, s11_1, c='tab:orange', alpha=1.0, label='S11')
+    plt.plot(freq1 / 1e9, s1, c='tab:orange', alpha=1.0, label=f'{s_param}')
+    plt.plot(freq1 / 1e9, s2, c='tab:blue', alpha=1.0, label=f'{s_param} AEQ05472-T')
+
+    plt.ylim(-40, 10)
+    plt.xlim(0, 20)
+    plt.ylabel('Magnitude (dB)')
+    plt.xlabel('Frequency (GHz)')
+    plt.grid(True)
+    plt.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), borderaxespad=0, frameon=True, ncol=2)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.92])
+
+    
+    plt.savefig(f"./compare_slope/{atten}dBm_{s_param}" + ".pdf")
+    plt.close()
