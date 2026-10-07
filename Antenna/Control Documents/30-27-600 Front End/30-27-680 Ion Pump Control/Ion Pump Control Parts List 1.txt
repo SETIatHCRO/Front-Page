@@ -1,0 +1,17 @@
+
+EMCO high voltage Supply
+	1KBUVBQ	DC to DC high voltage supply, Emco Mod: E50
+
+LED Output, Fault, Fuse.		Dialight	( Mouser p )
+	645-550-5107F	LED, CBI, 5mm, rt angle, red, super bright, slant back.
+	645-550-5207F	LED, CBI, 5mm, rt angle, grn, super bright, slant back.
+	645-550-5307F	LED, CBI, 5mm, rt angle, yel, super bright, slant back.
+
+Reset button	E Switch  ( Mouser p1286 )
+	612-TL1105SF160Q	Switch, tactile, rt ang, 8.35mm
+
+Phono Jack for current reading	Kombiconn   ( Mouser p0921 )
+	161-3505	Jack, 3.5mm, mono, PCB mount, D
+
+Fuse Holder			Cooper Bussman    ( Mouser p0488 )
+	504-HBH-I	Fuse holder, PCB 0.25 x 1.25.  ( or PTC resetable )

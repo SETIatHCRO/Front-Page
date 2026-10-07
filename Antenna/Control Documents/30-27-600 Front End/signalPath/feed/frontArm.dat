@@ -1,0 +1,21 @@
+FrontB.scr	output filename
+0.9607  	tau (0.9606258)
+0.667		boom full width in degrees
+20.0000		arm full width in degrees
+20.0000         face width in degrees
+0.403		tip width
+12.80		length
+2.2477 		fin angle
+n0.032		minimum boom width, n=none, u=pper, l=lower, b=both
+1               scale type 0=height at pennant 1=front of arm
+1               start type 0=tip width at 1st pennant ctr 1=front of pennant
+1               with arc
+0.01            starting point for front (fraction of tipwidth)
+r 0.006 0.010   'r'ound or 'd'ont round, if r include radii of curvature (tip inner)
+c5 .0625  	pennant tip trim (%P if percentage of base, X if fixed, or cP X for combo)
+
+
+Jan 8, 2005
+arm extends to the base of the dewar.  assumes 0.010" thick metal
+I diddled the drawing to make the tip width 0.400" (actually the distance from
+vanishing to be 1.134")

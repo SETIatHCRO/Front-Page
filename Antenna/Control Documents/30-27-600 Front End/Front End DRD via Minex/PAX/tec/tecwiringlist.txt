@@ -1,0 +1,39 @@
+/ataheat/tecwiringlist.txt
+
+TEC driver card, linear version
+
+Input/output list
+
+Connector 1 - 15 pin sub D
+female on board, male on cable going to power supply and PAX Case cable
+all cable wires 24 ga except as noted (20 ga is 0.01 ohm/ft)
+
+pin	function
+1	NC or shield
+2	PAX thermistor +
+9	PAX thermistor -
+3	airstream (aux1) thermistor +
+10	airstream (aux1) thermistor -
+4	TEC heatsink (aux2) thermistor +
+11	TEC heatsink (aux2) thermistor -	  
+6	supply +24 V		(20 ga wire in cable)
+13	supply ground		(20 ga wire in cable)
+8	TEC drive -		(20 ga wire in cable)
+15	TEC drive +		(20 ga wire in cable)
+
+
+
+Connector 2 - 9 pin sub D
+female on board, male on cable to Rim Box controller board 
+
+pin	function
+1	setpoint voltage
+2	rimbox heatsink thermistor monitor
+6	ground
+3	PAX thermistor monitor
+7	ground
+4	airstream (aux1) thermistor monitor
+8	ground
+5	TEC heatsink (aux2) thermistor monitor
+9	ground
+

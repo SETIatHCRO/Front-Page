@@ -1,0 +1,21 @@
+backB.scr	output filename
+0.9607  	tau (0.9606258)
+0.667		boom full width in degrees
+20.0000		arm full width in degrees
+20.0000         face width in degrees
+4.7486		tip width
+30.283		length
+2.2477 		fin angle
+n0.032		minimum boom width, n=none, u=pper, l=lower, b=both
+1               scale type 0=height at pennant 1=base at pennant
+0               start type 0=tip width at 1st pennant ctr 1=front of pennant
+1               with arc
+0.030           starting point for front
+r 0.017 0.032   'r'ound or 'd'ont round, if r include radii of curvature (tip inner)
+c5 .020  	pennant tip trim (%P if percentage of base, X if fixed, or cP X for combo)
+
+
+Jan 8, 2005
+assumes 0.031" thickness
+total length of a side from vanishing point to end (along arm) is 43.5.
+The arm length is 30.75, so the height is 30.75*cos(10) = 30.283

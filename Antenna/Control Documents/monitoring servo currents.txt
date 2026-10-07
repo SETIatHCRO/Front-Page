@@ -1,0 +1,29 @@
+From: Gerald Harp [gharp@seti.org]
+Sent: Tuesday, October 30, 2007 12:52 PM
+To: ATA User; Matt Fleming
+Subject: monitoring servo currents
+
+Follow Up Flag: Follow up
+Flag Status: Red
+
+Attachments: ServoCurrentVersusEl.xls; ServoCurrent.xls
+Hi Matt
+
+I've added some new commands to support the servo currents. From the command line, use
+
+  atagetservocurrent 4k
+
+which returns both the Az and El currents for antenna 4k. This command takes multiple antennas, too. Note the currents are signed: elevation is normally negative, azimuth is positive for positive rotation and vice versa.
+
+These values are logged in the AntennaServer. You can get a recent history of current values using
+
+  atagetitem 4k azidraw
+  atagetitem 4k elidraw
+
+I'm attaching two spreadsheets. "ServoCurrent.xls" shows the static and slewing currents for the antennas when the elevation is near 50 degrees. The only outlier is 4k, where all Az currents are relatively high. I'm not sure how to interpret this: if it were a friction problem I think the holding current would be unaffected.
+
+"ServoCurrentVersusEl.xls" shows the elevation holding current as a function of elevation angle. As expected, the holding current is reduced at higher elevations.
+
+Cheers
+
+Gerry

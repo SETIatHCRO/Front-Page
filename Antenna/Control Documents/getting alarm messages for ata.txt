@@ -1,0 +1,45 @@
+From: Gerald Harp [gharp@seti.org]
+Sent: Friday, November 09, 2007 5:44 PM
+To: ATA User; Matt Fleming
+Subject: getting alarm messages for ata
+
+Follow Up Flag: Follow up
+Flag Status: Red
+Hi All
+
+I added a command to query the alarm status of the array. This command returns messages if, at the time of last measurement, any of the following parameters are out of range: ControlBoxTemp, DriveBoxTemp, RimBoxTemp, PAXBoxTemp, CryoTemp, AzDriveCurrent, ElDriveCurrent. It also checks the status of the servo motors and overall antenna status. 
+
+The command is "ataalarms -l".
+
+These data are returned in a listing grouped by antenna. For example at 5:30 Friday night we obtain:
+
+  ant1f:
+          CryoTemp (146.58827429848444) is out of range {60.0,63.0)
+  ant2d:
+          CryoTemp (291.15985165721315) is out of range {60.0,63.0)
+  ant2g:
+          DriveBoxTemp (63.8) is out of range {-20.0,40.0)
+  ant2j:
+          RimBoxTemp (40.2) is out of range {-20.0,40.0)
+  ant2m:
+          CryoTemp (298.3992708012115) is out of range {60.0,63.0)
+  ant3j:
+          No reading for rim box temperature.
+          No reading for pax box temperature.
+          No reading for cryo dewar temperature.
+  ant4h:
+          CryoTemp (288.6901539804845) is out of range {60.0,63.0)
+  ant5c:
+          CryoTemp (294.17627630054585) is out of range {60.0,63.0)
+  ant5e:
+          CryoTemp (348.13257210815897) is out of range {60.0,63.0)
+  ant5g:
+          CryoTemp (289.9532817998801) is out of range {60.0,63.0)
+
+
+
+It lists 7 CryoTemp's, one DriveBoxTemp, one RimBoxTemp as out of range. We already knew that 3j is awaiting maintenance.
+
+Possibly this command can be incorporated into the daily test observations.
+
+Gerry

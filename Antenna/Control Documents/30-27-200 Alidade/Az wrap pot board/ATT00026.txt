@@ -1,0 +1,46 @@
+
+
+
+
+
+It would be helpful if the cable length were 2 inches longer.
+
+The board is on antenna 3j.
+
+Cheers,
+Jeff
+
+
+
+
+On Oct 10, 2008, at 12:43 PM, Robert Ackermann wrote:
+
+> Hi Jeff,
+>
+> I am mailing to you this afternoon (Friday) the first wrappot fix  
+> board.  When it arrives, please install it on an appropriate antenna  
+> with which we can experiment.  Contact me by email when this is done.
+>
+> The wrappot fix board installs between the wrappot and the relay  
+> board.  The installation is obvious.  Picture of board is included  
+> below.  Please put large diameter shrink wrap tubing over the entire  
+> board to protect against shorts to ground.
+>
+> Let me know if the wires on subsequent boards should be shorter or  
+> longer.
+>
+> The wrappot slope should be - 0.0002356.  See calculation below.   
+> But it should be verified experimentally.  As before, each antenna  
+> will have a unique intercept.  The intercept will be offset from  
+> before so that must be found experimentally as well.
+>
+> Please take data and construct a graph of azimuth versus getwrappot  
+> that I can take a look at.  Do this for the first few boards we  
+> install.  I will visit Hat Creek as soon as I can, but that will not  
+> be by next week, so I would like to get started on this.
+>
+> Thank you,
+> Rob
+> <first-brd.jpg><wrappot-slope-caclulation.gif><first-brd-wrappot-to- 
+> adc-voltage.gif>
+

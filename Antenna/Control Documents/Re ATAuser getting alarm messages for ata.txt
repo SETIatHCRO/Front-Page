@@ -1,0 +1,46 @@
+From: Rick Forster [rick@hcro.berkeley.edu]
+Sent: Tuesday, November 13, 2007 2:06 PM
+To: Geoffrey Bower
+Cc: Gerald Harp; ATA User; Matt Fleming
+Subject: Re: [ATAuser] getting alarm messages for ata
+
+Attachments: rimbox.pdf
+
+hi all,
+
+obschk.csh now contains the following lines at startup:
+
+# run ataalarms and send to file
+echo `date`  | tee -ia ataalarm.log
+ataalarms -l | tee -ia ataalarm.log
+
+Gerry -
+
+the upper limit (-20.0,40.0)  on the rimbox temperature is probably set too low.  last summer no antennas managed to stay below 40C on some days, and many got to 60K and higher.  see attached plot for an 
+arbitrary day in august.   even today there are quite a few of them.  
+i'd suggest using 50C for now.  perhaps Matt can think of a way to improve the rimbox cooling before next summer comes along.
+
+obs@tumulus archive/tempmon> ataalarms -l | grep Rim
+        RimBoxTemp (41.6) is out of range {-20.0,40.0)
+        RimBoxTemp (44.4) is out of range {-20.0,40.0)
+        RimBoxTemp (43.3) is out of range {-20.0,40.0)
+        RimBoxTemp (44.3) is out of range {-20.0,40.0)
+        RimBoxTemp (41.6) is out of range {-20.0,40.0)
+        RimBoxTemp (46.1) is out of range {-20.0,40.0)
+        RimBoxTemp (40.7) is out of range {-20.0,40.0)
+        RimBoxTemp (43.2) is out of range {-20.0,40.0)
+
+- rick
+
+Geoffrey Bower wrote:
+> Gerry,
+>
+> This looks very useful.  It definitely should be incorporated in obschk.
+>
+> Geoff
+> _______________________________________________
+> atauser mailing list
+> atauser@seti.org
+> http://mailman.seti.org/listinfo/atauser
+>
+>   

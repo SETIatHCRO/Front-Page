@@ -1,0 +1,56 @@
+Norman Madden		& wife Martie 
+4540 Jacmel Drive
+Sparks NV 89436
+
+Home Tel: 775-425-3864
+
+norma.madden@sbcglobal.net 
+
+Norm has been operating with a contract from SETI which I believe is now complete.  We have paid a couple of bills for him form Minex, such as board purchase etc.  He is an acquaintance of Chris Cork and they both used to work at Berkleley Lab or Livermore Lab.
+
+
+
+	EMCO High Voltage Corp.
+1 ea  1KBUVBQ		High Voltage DC to DC  model E50
+
+	Dialight, LED, CBI, circuit board indicator, super bright diffused
+1  ea  550-5205		LED, 5mm, green, circuit board mount ( output )
+1  ea  550-5305		LED, yellow, circuit board mount ( fault )
+1  ea  550-5105		LED, red, circuit board mount ( fuse )
+
+1  ea  564-0300-132F	LED, 3mm, right angle stackof 3, red grn yel.
+
+1  ea  			Reynolds receptacle.
+
+1  ea  			DIN 8 pin receptacle.
+
+cadsoft eagle
+
+3/20 Tuesday electrical & mechanical layout plot & scan send to me pdf
+
+3/31 Wed order proto  10  for $250
+
+3/27 Tue then asem test 
+
+4/3 Ship 1 test proto + 9
+
+4/16 1st production units ready.
+
+
+
+then proto 10 boards   Colorado 4 to 5 days
+150 $ tooling    
+then 1 
+
+9 boards 
+------------------------------
+
+A person recommended by Mark Will of EDM TEK Inc.
+I can refer you to someone who builds, rebuilds, and works with ion pumps if you wish.
+
+Fred Brechtel.  Brechtel Mfg.  Hayward.  510-732-9723.
+ 
+He just sold his core business to duniway, who was his primary customer.  still operational, and been working with ion pumps for many years.
+ 
+ 
+mark.

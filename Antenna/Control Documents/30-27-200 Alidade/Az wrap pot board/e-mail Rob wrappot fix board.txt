@@ -1,0 +1,28 @@
+From: Robert Ackermann [ackermann@seti.org]
+Sent: Friday, October 10, 2008 12:44 PM
+To: Jeff Kaufman
+Cc: Rick Forster; gharp; Matt Fleming
+Subject: wrappot fix board
+
+Follow Up Flag: Follow up
+Flag Status: Red
+
+Attachments: first-brd.jpg; wrappot-slope-caclulation.gif;
+first-brd-wrappot-to-adc-voltage.gif
+
+Hi Jeff,
+
+I am mailing to you this afternoon (Friday) the first wrappot fix board.  When it arrives, please install it on an appropriate antenna with which we can experiment.  Contact me by email when this is done.
+
+The wrappot fix board installs between the wrappot and the relay board.  
+The installation is obvious.  Picture of board is included below.  
+Please put large diameter shrink wrap tubing over the entire board to protect against shorts to ground.
+
+Let me know if the wires on subsequent boards should be shorter or longer.
+
+The wrappot slope should be - 0.0002356.  See calculation below.  But it should be verified experimentally.  As before, each antenna will have a unique intercept.  The intercept will be offset from before so that must be found experimentally as well.
+
+Please take data and construct a graph of azimuth versus getwrappot that I can take a look at.  Do this for the first few boards we install.  I will visit Hat Creek as soon as I can, but that will not be by next week, so I would like to get started on this.
+
+Thank you,
+Rob

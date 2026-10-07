@@ -1,0 +1,45 @@
+Drill Station Info File: /home/rackerma/rfa/SETI/ATA/AntennaControl/RimBox/power/pcb/RimBoxPowerSupply.dri
+
+ Date              :  7/09/2006 22:37:44 
+ Drills            : generated
+ Device            : Excellon drill station
+
+Parameter settings:
+
+ Tolerance Drill + :  2.50 %
+ Tolerance Drill - :  2.50 %
+ Rotate            : no
+ Mirror            : no
+ Optimize          : yes
+ Auto fit          : yes
+ OffsetX           : 0inch
+ OffsetY           : 0inch
+ Layers            : Drills Holes
+
+Drill File Info:
+
+ Data Mode         : Absolute
+ Units             : 1/1000 Inch
+
+Drills used:
+
+ Code  Size       used
+
+ T01   0.1500inch     4
+ T02   0.0630inch    11
+ T03   0.0551inch    14
+ T04   0.1300inch     3
+ T05   0.0433inch     3
+ T06   0.0320inch    12
+ T07   0.0315inch    20
+ T08   0.0400inch    15
+ T09   0.1600inch     1
+ T10   0.0394inch    17
+ T11   0.1102inch     4
+ T12   0.0354inch    72
+
+Total number of drills: 176
+
+Plotfiles:
+
+ /home/rackerma/rfa/SETI/ATA/AntennaControl/RimBox/power/pcb/RimBoxPowerSupply.drd

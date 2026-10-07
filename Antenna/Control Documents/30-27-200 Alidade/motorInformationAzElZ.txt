@@ -1,0 +1,37 @@
+Motor information:
+
+PO#:12734.02PD 09/01/2005 [Incomplete] Cymatix MINEX
+   011003: $53,909.00
+	01	Qty: 47 ea  Az/El motor 
+		"Part #AKM42J-EKMN2-03, Servo motor, 160VDC, 31.5 in-lb, 8.4 amp, 
+		customized for IP20 plugs flying leads with J winding, 
+		Housing 3.307 x 3.307 x 5.82, boss 2.875 x 0.118, pattern 0.218 on 3.875 circle, 
+		shaft 0.500 x 1.250, key 0.125 x 0.750," 
+		$475.00 /ea, $22,325.00 total
+
+	02	Qty: 94 ea Az/El servo amplifier
+		"Part #ACM-180-20-module, Servo amplifier, Accelnet module.180 VDC, 
+		10 amp continuous, 20 amp peak." 
+		$336.00 /ea $31,584.00 total
+---------------------------------------------------------------------------------
+(005:478) PO#:12774.03PD 09/01/2005 [Incomplete] Cymatix MINEX
+   011003: $20,840.00
+	01	Qty: 47 ea feed drive motor
+		"Part #SN32HRYY-LNK-NS-00, Motor, AC Synchronous, Pacific Scientific, 
+		NEMA 34, 3.38""sqr x 4.64 lg, 0.500""dia x 1.25""lg, 72 rpm, 480 0z-in running, 
+		120VAC, 60 Hz, 1 Ph, flying leads (note: requires Resistor 200 ohm, 50w & requires Capacitor, 
+		10uf x 370 Vac)" 
+		$262.00 /ea $12,314.00 total
+
+
+AKM42J-EKMN2-03
+"AKM": AKM series
+"4"  : motor frame size 4
+"2"  : rotor stack length 2
+"J"  : winding type J
+"E"  : NEMA mount
+"K"  : open keyway
+"M"  : 0.5m shielded cable with IP20 plugs
+"N"  : no brake
+"2"  : 2048 PPR digital encoder w/ commutation
+"03" : special shaft seal 03

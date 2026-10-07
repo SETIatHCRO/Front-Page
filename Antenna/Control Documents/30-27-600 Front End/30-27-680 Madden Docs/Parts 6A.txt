@@ -1,0 +1,142 @@
+Partlist
+
+Exported from Ion_Pump_Controller_6.sch at  4/09/2007 03:18:39p
+
+EAGLE Version 4.16r2 Copyright (c) 1988-2006 CadSoft
+
+Part     Value          Device       Package      Library        Sheet
+
+C1                      CAP-5        C-5          discrete       1
+C2                      CAP-5        C-5          discrete       1
+C3                      CAP-5        C-5          discrete       1
+C4                      CAPNP-15     C-15         discrete       1
+C5                      CAP-5        C-5          discrete       1
+C6                      CAP-5        C-5          discrete       1
+C7                      CAP-5        C-5          discrete       1
+C8                      CAP-5        C-5          discrete       1
+C9                      CAP-5        C-5          discrete       1
+C10                     CAP-5        C-5          discrete       1
+C13                     CAPNP-15     C-15         discrete       1
+C14                     CAPNP-15     C-15         discrete       1
+C15                     CAPNP-15     C-15         discrete       1
+C16                     CAPNP-15     C-15         discrete       1
+C17                     CAPNP-15     C-15         discrete       1
+C18                     CAP-5        C-5          discrete       1
+C19                     CAPNP-15     C-15         discrete       1
+C20                     CAP-5        C-5          discrete       1
+C21                     CAP-5        C-5          discrete       1
+C22                     CAPNP-15     C-15         discrete       1
+C23                     CAP-5        C-5          discrete       1
+C24                     CAP-5        C-5          discrete       1
+C25                     CAP-5        C-5          discrete       1
+C26                     CAP-5        C-5          discrete       1
+C27                     CAP-5        C-5          discrete       1
+C28                     CAP-5        C-5          discrete       1
+C29                     CAPNP-15     C-15         discrete       1
+C30                     CAPNP-15     C-15         discrete       1
+C31                     CAPNP-15     C-15         discrete       1
+C33                     CAPNP-15     C-15         discrete       1
+D1       1N4001         1N4004       DO41-10      diode          1
+D2       1N4001         1N4004       DO41-10      diode          1
+D3                      ZDIO-10      D-10         discrete       1
+D4       1N4001         1N4004       DO41-10      diode          1
+D5       1N4001         1N4004       DO41-10      diode          1
+D6       1N4001         1N4004       DO41-10      diode          1
+D7       1N4001         1N4004       DO41-10      diode          1
+D8       1N4001         1N4004       DO41-10      diode          1
+D9                      ZDIO-10      D-10         discrete       1
+D10      1N4001         1N4004       DO41-10      diode          1
+D11      1N4001         1N4004       DO41-10      diode          1
+D18      1N4004         1N4004       DO41-10      diode          1
+D19      1N4001         1N4004       DO41-10      diode          1
+D22      1N4001         1N4004       DO41-10      diode          1
+D23      1N4001         1N4004       DO41-10      diode          1
+D24      1N4001         1N4004       DO41-10      diode          1
+D25                     1N4004       DO41-10      diode          1
+D26                     1N4004       DO41-10      diode          1
+D27                     ZDIO-10      D-10         discrete       1
+D28      1N4001         1N4004       DO41-10      diode          1
+D29      1N4001         1N4004       DO41-10      diode          1
+F2       1/4A SB        FUSE         FUSE         special        1
+IC1      317L           317T         TO220H       linear         1
+IC2      LM337LZ        LM337LZ      TO92         linear         1
+IC3      TL061P         TL061P       DIL08        linear         1
+IC4      TL061P         TL061P       DIL08        linear         1
+IC6      TL061P         TL061P       DIL08        linear         1
+IC7      TL061P         TL061P       DIL08        linear         1
+LED1                    LED          SMARTLED-TTW led            1
+LED2                    LED          SMARTLED-TTW led            1
+LED3                    LED          SMARTLED-TTW led            1
+LSP1     SE14           SE14         SE14         solpad         1
+LSP5     SE14           SE14         SE14         solpad         1
+LSP6     SE14           SE14         SE14         solpad         1
+LSP7     SE14           SE14         SE14         solpad         1
+Q1       2N5089         2N5089       TO92         transistor-npn 1
+Q2       2N5087         2N5087       TO92         transistor-pnp 1
+Q3       IRF9520        IRF9530      TO220        transistor-fet 1
+Q4       2N5089         2N5089       TO92         transistor-npn 1
+Q5       2N5087         2N5087       TO92         transistor-pnp 1
+R1                      TRIM_US-B25P B25P         pot            1
+R2                      RESUS-5      R-5          discrete       1
+R3       1.07K          RESUS-5      R-5          discrete       1
+R4                      RESUS-5      R-5          discrete       1
+R5                      RESUS-5      R-5          discrete       1
+R6       237            RESUS-5      R-5          discrete       1
+R7       237            RESUS-5      R-5          discrete       1
+R8                      RESUS-5      R-5          discrete       1
+R9                      RESUS-5      R-5          discrete       1
+R10      1.58K          RESUS-5      R-5          discrete       1
+R11                     RESUS-5      R-5          discrete       1
+R12                     RESUS-5      R-5          discrete       1
+R13                     RESUS-5      R-5          discrete       1
+R14                     RESUS-5      R-5          discrete       1
+R15                     RESUS-5      R-5          discrete       1
+R16                     RESUS-5      R-5          discrete       1
+R17                     RESUS-5      R-5          discrete       1
+R18                     RESUS-5      R-5          discrete       1
+R19                     RESUS-5      R-5          discrete       1
+R20                     RESUS-5      R-5          discrete       1
+R21                     RESUS-5      R-5          discrete       1
+R22                     RESUS-5      R-5          discrete       1
+R23                     RESUS-5      R-5          discrete       1
+R24                     RESUS-5      R-5          discrete       1
+R25                     RESUS-5      R-5          discrete       1
+R26                     RESUS-5      R-5          discrete       1
+R27                     RESUS-5      R-5          discrete       1
+R28                     RESUS-5      R-5          discrete       1
+R29                     RESUS-5      R-5          discrete       1
+R30                     RESUS-5      R-5          discrete       1
+R31                     RESUS-5      R-5          discrete       1
+R32                     RESUS-5      R-5          discrete       1
+R33                     RESUS-5      R-5          discrete       1
+R34                     RESUS-5      R-5          discrete       1
+R35                     RESUS-5      R-5          discrete       1
+R36                     RESUS-5      R-5          discrete       1
+R37                     RESUS-5      R-5          discrete       1
+R38                     RESUS-5      R-5          discrete       1
+R39                     RESUS-5      R-5          discrete       1
+R40                     TRIM_US-B25P B25P         pot            1
+R41                     RESUS-5      R-5          discrete       1
+R42                     RESUS-5      R-5          discrete       1
+R46                     RESUS-5      R-5          discrete       1
+R47                     RESUS-5      R-5          discrete       1
+R48                     RESUS-5      R-5          discrete       1
+R49                     RESUS-5      R-5          discrete       1
+R50                     RESUS-5      R-5          discrete       1
+R51                     RESUS-5      R-5          discrete       1
+R52                     RESUS-5      R-5          discrete       1
+R53                     RESUS-5      R-5          discrete       1
+R54                     RESUS-5      R-5          discrete       1
+R55                     RESUS-5      R-5          discrete       1
+R56                     RESUS-5      R-5          discrete       1
+R57                     RESUS-5      R-5          discrete       1
+R58                     RESUS-5      R-5          discrete       1
+R59                     RESUS-5      R-5          discrete       1
+R60                     RESUS-5      R-5          discrete       1
+R61                     RESUS-5      R-5          discrete       1
+R62                     RESUS-5      R-5          discrete       1
+R63                     RESUS-5      R-5          discrete       1
+R64                     RESUS-5      R-5          discrete       1
+R65                     RESUS-5      R-5          discrete       1
+R66                     RESUS-5      R-5          discrete       1
+S1       9450-1         9450-1       9450-1       switch-misc    1

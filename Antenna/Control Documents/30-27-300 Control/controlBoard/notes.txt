@@ -1,0 +1,26 @@
+Same board as rim controller, but that needs the corner populated.
+
+
+From Rob's e-mail:
+CadSoft Eagle board file (AlidadeEEBoxuCntrlr.brd) and PCB Gerber layout and drill files (AlidadeEEBoxuCntrlr.zip) attached.
+
+Schematic is not yet available.
+
+Contents of ZIP file (AlidadeEEBoxuCntrlr.zip):
+
+AlidadeEEBoxuCntrlr.drd - drill file (center position of holes)
+AlidadeEEBoxuCntrlr.dri - drill info (references drd and drl)
+AlidadeEEBoxuCntrlr.drl - drill tool list (drill sizes)
+AlidadeEEBoxuCntrlr.L1 - top layer
+AlidadeEEBoxuCntrlr.L2 - second to top layer
+AlidadeEEBoxuCntrlr.L3 - third to top layer
+AlidadeEEBoxuCntrlr.L4 - third to bottom layer
+AlidadeEEBoxuCntrlr.L5 - second to bottom layer
+AlidadeEEBoxuCntrlr.L6 - bottom layer
+AlidadeEEBoxuCntrlr.oln - board outline and mounting holes
+AlidadeEEBoxuCntrlr.slk - top silkscreen
+AlidadeEEBoxuCntrlr.smb - bottom solder mask
+AlidadeEEBoxuCntrlr.smt - top solder mask
+
+units are imperial (inches) not metric!
+

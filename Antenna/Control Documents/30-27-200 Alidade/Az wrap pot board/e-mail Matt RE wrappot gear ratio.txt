@@ -1,0 +1,25 @@
+From: Matt Fleming [mcfmec@pacbell.net]
+Sent: Thursday, October 09, 2008 1:59 PM
+To: 'Robert Ackermann'
+Subject: RE: wrappot gear ratio
+
+
+
+Gear ratio should be 3/5.        Matt
+
+
+
+-----Original Message-----
+From: Robert Ackermann [mailto:ackermann@seti.org]
+Sent: Thursday, October 09, 2008 7:32 AM
+To: Matt Fleming
+Cc: Rick Forster; Jeff Kaufman; gharp
+Subject: wrappot gear ratio
+
+Hi Matt (or anyone reading):
+
+Is there a gear ratio between the wrappot and Alidade rotation?
+
+The formula in use for computing Azimuth from wrappot value leads me to believe that the Alidade must turn 16 2/3 times to rotate the wrappot over its full 10 turns.  Is that correct?
+
+-Rob

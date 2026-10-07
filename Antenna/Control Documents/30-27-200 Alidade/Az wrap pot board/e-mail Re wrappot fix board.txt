@@ -1,0 +1,19 @@
+From: Robert Ackermann [ackermann@seti.org]
+Sent: Wednesday, October 15, 2008 2:48 PM
+To: Jeff Kaufman
+Cc: Rick Forster; gharp; Matt Fleming
+Subject: Re: wrappot fix board
+
+Attachments: wrappot-calc.jpg
+
+Hi Jeff,
+
+Thank you for the thorough work and the good news with regard to the prototype wrappot fix board.  I added two columns to your spreadsheet (see attached image):  column C computes azimuth from the wrappot value in column B (given current intercept and slope) and column D computes the absolute value difference between encoder azimuth (column A) and wrappot azimuth (column C).
+
+The largest azimuth difference is 7 degrees.  RMS is probably 2 to 3 degrees (I did not compute it).  This is as good as can be expected given current 5/3 azimuth-to-wrappot gear ratio, wrappot fix board gain, and ADC resolution.  AND, much more accurate than what is needed for wrap determination and 3f,3g,3h collision avoidance.
+
+I will build ten more boards (current IC inventory) and send them to you within the next few days.  They will have longer wire length.  Please continue to log wrappot to azimuth for the next installs, but I recommend only doing -90, 0, 90, 180, 270, 360, 450
+
+Thank you,
+Rob
+

@@ -1,0 +1,19 @@
+From: Robert Ackermann [robackrman@aol.com]
+Sent: Tuesday, June 28, 2005 1:57 PM
+To: ddeboer@seti.org
+Cc: Calvin Cheng; Matt Fleming; Gerald R. Harp
+Subject: Re: element monitor/control
+
+Hi Dave,
+Board sensor (my boards) are Microchip TC77 surface mount.  All other external sensors are LM35 in TO-220 package.  TO-220 package is the same package commonly used for linear regulators: large tab with central 150 mil hole that should be easy to mount with a screw or bolt in most places.  LM35 were selected for wide temp. range. Celsius calibration, multi-sourced industry standard, easy mounting, and most importantly:  
+analog return considering they will be external in some cases to the EE and drive boxes.
+-Rob
+
+ >Rob,  How are the sensors mounted?  We want them on  >several places in the box, not necessarily on the board.  We  >can run wires to the board from them for power, return,  >etc, which then just gets passed on to the computer.  We  >are looking at having four of them for now (diagnostic, in  >case we have problems).
+
+ >Locations:
+ >   board (1)
+ >   1/resistor (2)
+ >   heatsink (1)
+ >   TOTAL 4
+ >Dave

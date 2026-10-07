@@ -1,0 +1,12 @@
+From: Jeff Kaufman [jeff@hcro.berkeley.edu]
+Sent: Wednesday, October 15, 2008 1:45 PM
+To: Robert Ackermann
+Cc: Rick Forster; gharp; Matt Fleming
+Subject: Re: wrappot fix board
+
+Attachments: Wrappotvsaz001.xls; ATT00026.txt
+
+Hi Rob,
+
+Here is the Graph you requested. This is with the slope that you determined, and the new intercept of .549 Looks perfect.
+
